@@ -1,0 +1,270 @@
+<title>皇漢医学 症状検索</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=BIZ+UDPGothic:wght@400;700&display=swap">
+<style>
+/* Layout: 左に篇→方剤の目次（帙の背）、右に一方剤の頁。上部に症状検索。 */
+:root{
+  --bg:#eef0ec; --paper:#f8f9f6; --ink:#1f2a2e; --muted:#5d6a6c; --line:#c9d0cb;
+  --ai:#2c4a6b; --ai-soft:#dbe3ec; --shu:#b23a2a; --shu-soft:#f3e0dc; --hl:#f2e6a8;
+  --f-disp:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
+  --f-body:"BIZ UDPGothic","Hiragino Sans","Yu Gothic",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#151b1e; --paper:#1c2427; --ink:#e3e8e6; --muted:#9aa7a8; --line:#33403f;
+  --ai:#8fb3d9; --ai-soft:#24364a; --shu:#e07a68; --shu-soft:#3a2522; --hl:#5a4f1f; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#151b1e; --paper:#1c2427; --ink:#e3e8e6; --muted:#9aa7a8; --line:#33403f;
+  --ai:#8fb3d9; --ai-soft:#24364a; --shu:#e07a68; --shu-soft:#3a2522; --hl:#5a4f1f; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.8;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 48px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:14px 12px;border-bottom:1px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.top{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px;max-width:1180px;margin:0 auto}
+h1{font-family:var(--f-disp);font-size:22px;margin:0;letter-spacing:.08em}
+.sub{color:var(--muted);font-size:12px}
+.search{display:flex;gap:8px;max-width:1180px;margin:10px auto 0}
+.search input{flex:1;min-width:0;font:inherit;padding:9px 12px;border:1px solid var(--line);border-radius:6px;background:var(--paper);color:var(--ink)}
+.search input:focus{outline:2px solid var(--ai);outline-offset:1px}
+.hint{max-width:1180px;margin:6px auto 0;font-size:12px;color:var(--muted)}
+.hint button{font:inherit;font-size:12px;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:999px;padding:1px 10px;margin:2px 2px 0 0;cursor:pointer}
+#navbtn{display:none}
+.wrap{display:grid;grid-template-columns:220px minmax(0,1fr);gap:24px;max-width:1180px;margin:18px auto 0}
+nav{position:sticky;top:150px;align-self:start;font-size:14px}
+nav h3{font-family:var(--f-disp);font-size:13px;color:var(--muted);letter-spacing:.15em;margin:14px 0 4px;font-weight:500}
+nav a{display:block;padding:5px 10px;border-left:3px solid transparent;color:var(--ink);text-decoration:none;border-radius:0 4px 4px 0}
+nav a:hover{background:var(--ai-soft)}
+nav a.on{border-left-color:var(--ai);background:var(--ai-soft);font-weight:700}
+nav .vol{font-size:11px;color:var(--muted)}
+main{min-width:0}
+.results{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:14px 18px;margin-bottom:18px}
+.results h2{font-size:14px;margin:0 0 8px;color:var(--muted);font-weight:700}
+.hit{display:block;padding:10px 0;border-top:1px solid var(--line);color:var(--ink);text-decoration:none}
+.hit:first-of-type{border-top:0}
+.hit b{font-family:var(--f-disp);font-size:17px}
+.hit .where{font-size:12px;color:var(--ai);margin-left:8px}
+.hit p{margin:2px 0 0;font-size:13.5px;color:var(--muted)}
+mark{background:var(--hl);color:inherit;padding:0 1px}
+.page{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:24px clamp(16px,3vw,36px)}
+.page h2{font-family:var(--f-disp);font-size:30px;margin:0;letter-spacing:.1em;text-wrap:balance}
+.meta{color:var(--muted);font-size:12.5px;margin-top:2px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 0}
+.tag{font-size:12px;border:1px solid var(--line);border-radius:999px;padding:1px 10px;background:var(--bg);cursor:pointer;color:var(--ink);font-family:inherit}
+.tag:hover{border-color:var(--ai)}
+.rel{display:flex;flex-wrap:wrap;align-items:center;gap:4px 10px;margin-top:10px;font-size:13.5px}
+.rel a{color:var(--ai);font-family:var(--f-disp);font-weight:700}
+.toc{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:13px;margin:16px 0 0;padding-top:12px;border-top:1px solid var(--line)}
+.toc a{color:var(--ai)}
+section{margin-top:30px}
+section>h3{font-family:var(--f-disp);font-size:19px;margin:0 0 12px;padding-bottom:4px;border-bottom:2px solid var(--ink);letter-spacing:.08em}
+.houzai{display:grid;gap:4px}
+.houzai .c{font-family:var(--f-disp);font-size:17px;white-space:pre-line}
+.small{font-size:13px;color:var(--muted)}
+.jo{border-top:1px solid var(--line);padding:16px 0}
+.jo:first-of-type{border-top:0;padding-top:0}
+.johead{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:6px}
+.no{font-family:var(--f-disp);font-weight:700;color:var(--ai);font-variant-numeric:tabular-nums}
+.src{font-size:12px;color:var(--muted)}
+.seg{margin-left:auto;display:inline-flex;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.seg button{font:inherit;font-size:12.5px;border:0;background:transparent;color:var(--ink);padding:3px 12px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--ai);color:var(--paper)}
+.seg button:focus-visible{outline:2px solid var(--ai);outline-offset:-2px}
+.kaki{font-family:var(--f-disp);font-size:18px;line-height:2;margin:0}
+.yaku{font-size:15.5px;margin:0}
+.both .yaku{margin-top:6px;padding-left:12px;border-left:3px solid var(--ai-soft)}
+.yumoto{margin-top:12px;background:var(--shu-soft);border-radius:6px;padding:10px 14px}
+.yumoto summary{cursor:pointer;font-size:13px;font-weight:700;color:var(--shu);list-style:none}
+.yumoto summary::-webkit-details-marker{display:none}
+.yumoto summary::before{content:"求真按 ";font-family:var(--f-disp);border:1.5px solid var(--shu);border-radius:3px;padding:0 4px;margin-right:6px;font-weight:700}
+.yumoto p{margin:8px 0 0;font-size:14.5px}
+.sp{display:grid;grid-template-columns:minmax(120px,170px) minmax(0,1fr);gap:4px 16px;padding:10px 0;border-top:1px solid var(--line)}
+.sp:first-of-type{border-top:0}
+.sp .who{font-family:var(--f-disp);font-weight:700}
+.sp .who small{display:block;font-family:var(--f-body);font-weight:400;color:var(--muted);font-size:12px}
+.kw{display:flex;flex-wrap:wrap;gap:6px}
+.kw span{font-size:13px;background:var(--ai-soft);border-radius:4px;padding:1px 8px}
+.case{padding:12px 0;border-top:1px solid var(--line)}
+.case:first-of-type{border-top:0}
+.case b{font-family:var(--f-disp)}
+.case p{margin:4px 0 0}
+.box{background:var(--shu-soft);border-radius:6px;padding:12px 16px}
+.box p{margin:0 0 8px}
+.kg{padding:10px 0;border-top:1px solid var(--line)}
+.kg:first-of-type{border-top:0}
+.kg b{font-family:var(--f-disp);font-size:17px}
+.check{font-size:12.5px;color:var(--muted);margin-top:30px;border-top:1px dashed var(--line);padding-top:10px}
+@media (max-width:760px){
+  .wrap{grid-template-columns:minmax(0,1fr)}
+  #navbtn{display:block;max-width:1180px;margin:8px auto 0;width:100%;font:inherit;font-size:14px;padding:7px 12px;border:1px solid var(--line);border-radius:6px;background:var(--paper);color:var(--ink);cursor:pointer;text-align:left}
+  #navbtn[aria-expanded="true"]{border-color:var(--ai)}
+  nav{position:static;display:none;flex-wrap:wrap;gap:4px}
+  nav.open{display:flex}
+  nav h3{width:100%;margin:6px 0 0}
+  nav a{border:1px solid var(--line);border-radius:999px;padding:2px 12px}
+  nav a.on{border-color:var(--ai)}
+  .sp{grid-template-columns:minmax(0,1fr)}
+  .page h2{font-size:26px}
+}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+</style>
+
+<header>
+  <div class="top"><h1>皇漢医学 症状検索</h1><span class="sub">湯本求真『皇漢医学』（昭和8年 第2版・国立国会図書館デジタルコレクション）より</span></div>
+  <div class="search"><input id="q" type="search" placeholder="症状・方剤名・語句で検索（例：鼻血、みぞおち、寒気、下痢）" autocomplete="off"></div>
+  <div class="hint" id="hint">例：</div>
+  <button type="button" id="navbtn" aria-expanded="false" aria-controls="nav">目次（方剤・生薬）を開く</button>
+</header>
+<div class="wrap">
+  <nav id="nav"></nav>
+  <main>
+    <div class="results" id="results" hidden></div>
+    <article class="page" id="page"></article>
+  </main>
+</div>
+
+<script>
+/*__DATA__*/
+const D = window.KOKAN_DATA;
+// 現代語 → 古典語の対応（検索の言い換え）
+const SYN = {
+  "鼻血":["衄","衄血","紅汗","鼻出血"], "はなぢ":["衄","衄血"],
+  "寒気":["悪寒","惡寒","嗇嗇"], "さむけ":["悪寒","惡寒"], "ぞくぞく":["悪寒","嗇嗇"],
+  "風が嫌":["悪風","惡風"], "かぜ":["中風","感冒","外邪"], "風邪":["中風","感冒","外邪"],
+  "汗":["自汗","汗出","汗"], "寝汗":["盗汗","寝汗"], "黄疸":["黄疸","黄家","黄汗"], "冷え":["冷","厥冷","冷ゆ"], "しびれ":["不仁","麻痺","しびれ"],
+  "熱":["発熱","發熱","煩熱","熱"], "夕方":["日晡所","日暮"],
+  "頭痛":["頭痛","頭微痛","頭項強痛"], "首":["項","頭項"], "うなじ":["項","頭項"],
+  "のぼせ":["上衝","気上衝"], 
+  "みぞおち":["心下","心下痞","心下悶"], "つかえ":["痞","心下痞"], "胃":["心下","胃部"],
+  "吐き気":["嘔","乾嘔","嘔逆"], "えずき":["乾嘔"], "嘔吐":["吐","嘔吐"],
+  "下痢":["下利","下痢","自利","清穀"], "便秘":["大便せざる","大便せず"],
+  "腹痛":["腹痛","腹自ら痛む"], "お腹が張る":["腹脹満","腹満"], "腹部膨満":["腹脹満","腹満"],
+  "体の痛み":["身疼痛","身痛","身体疼痛"], "関節":["疼痛","身疼痛"],
+  "のど":["咽喉痛","咽喉"], "喉":["咽喉痛","咽喉"], "咳":["咳嗽"], "せき":["咳嗽"], "痰":["粘痰","痰"],
+  "鼻水":["鼻鳴"], "鼻づまり":["鼻鳴"], "うみ":["化膿"], "膿":["化膿","排膿"],
+  "産後":["産後","產後"], "痩せ":["羸","羸尫"], "皮膚":["肌膚","甲錯"], "尿":["小便"], "小便":["小便"],
+  "腹直筋":["腹直筋","拘攣","攣急"], "しゃっくり":["しゃっくり","吃逆","噦"], "こむら返り":["こむら返り","転筋","攣急"], "けいれん":["けいれん","痙攣","攣急","搐搦"], "いらいら":["いらいら","性急","煩躁"], "むくみ":["むくみ","水腫","水気","水毒","浮腫","皮水","風水"], "しびれ感":["不仁","痺","麻痺"], "不安":["驚","驚狂","煩驚","不安"], "疲れやすい":["虚労","虚羸","不足"], "月経":["月経","経閉","月閉"], "めまい":["めまい","眩暈","頭旋","目眩","頭眩","眩冒"], "動悸":["動悸","悸","心下悸","臍下悸","胸腹動"], "夢精":["失精","夢交","遺精","漏精"], "不眠":["眠","不眠","夢"], "痰":["痰","涎沫","唾濁","痰飲"], "胃の水音":["胃内停水","水鳴","停水"], "関節痛":["関節","骨節","歴節","身煩疼"], "腹証":["腹証","腹證"], "肩こり":["項背強","肩背強急","頭項強痛","項強"], "口渇":["口渇","渇","消渇","口燥"], "のどが渇く":["口渇","渇","消渇"], "乳":["乳汁","乳癰"], "母乳":["乳汁"], "胸が苦しい":["胸満","心下悶"], "こわばり":["強","強直","強急","几几"]
+};
+const EX = ["鼻血","寒気","みぞおち","下痢","のぼせ","こむら返り","吐き気","便秘"];
+const $ = s=>document.querySelector(s);
+const esc = s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const paras = s=>s.split("\n").map(t=>`<p>${esc(t)}</p>`).join("");
+let modePref = "both"; try{ modePref = localStorage.getItem("kk-mode")||"both" }catch(e){}
+
+function navHTML(){
+  const groups={};
+  D.forEach(e=>{const k=e.kind==="生薬"?"生薬":`第${e.vol}巻 ${e.hen}`;(groups[k]=groups[k]||[]).push(e)});
+  return Object.entries(groups).map(([g,es])=>`<h3>${esc(g)}</h3>`+es.map(e=>`<a href="#${e.id}" data-id="${e.id}">${esc(e.title)}</a>`).join("")).join("");
+}
+
+function render(id){
+  const e = D.find(x=>x.id===id)||D[0];
+  document.querySelectorAll("nav a").forEach(a=>a.classList.toggle("on",a.dataset.id===e.id));
+  const parts=[];
+  parts.push(`<h2>${esc(e.title)}</h2><div class="meta">第${e.vol}巻・${esc(e.hen)}　底本 p.${esc(e.pages)}（NDLコマ ${esc(e.koma)}）${e.yomi?"　"+esc(e.yomi):""}</div>`);
+  if(e.tags?.length) parts.push(`<div class="tags">${e.tags.map(t=>`<button class="tag" data-q="${esc(t)}">${esc(t)}</button>`).join("")}</div>`);
+  const toc=[];
+  const herb = e.kind==="生薬";
+  const rel = D.filter(x=>x.id!==e.id && ((e.related||[]).includes(x.id) || (x.related||[]).includes(e.id)));
+  const link=x=>`<a href="#${x.id}" data-goto="${x.id}" data-anchor="">${esc(x.title)}</a>`;
+  const relH=rel.filter(x=>x.kind==="生薬"), relF=rel.filter(x=>x.kind!=="生薬");
+  if(relF.length) parts.push(`<div class="rel"><span class="small">${herb?"この生薬を用いる方剤":"関連する方剤"}：</span>${relF.map(link).join("")}</div>`);
+  if(relH.length) parts.push(`<div class="rel"><span class="small">${herb?"関連する生薬":"生薬の解説"}：</span>${relH.map(link).join("")}</div>`);
+  if(herb && e.yumoto?.length) toc.push(["s-ym","湯本求真の論"]);
+  if(e.houzai) toc.push(["s-houzai","処方"]);
+  if(e.joubun?.length) toc.push(["s-jo",`条文（${e.joubun.length}）`]);
+  if(e.fukusho) toc.push(["s-fuku","腹証"]);
+  if(e.kagen?.length) toc.push(["s-kagen","加減方"]);
+  if(e.senpai?.length) toc.push(["s-sp",herb?"諸家の説":"先輩の論説"]);
+  if(e.cases?.length) toc.push(["s-case","症例"]);
+  if(!herb && e.yumoto?.length) toc.push(["s-ym","湯本求真の論"]);
+  parts.push(`<div class="toc">${toc.map(([a,b])=>`<a href="#${e.id}" data-jump="${a}">${b}</a>`).join("")}</div>`);
+  const ymHTML = e.yumoto?.length ? `<section id="s-ym"><h3>湯本求真の論（現代語訳）</h3>${e.yumoto.map(y=>`<details class="yumoto" open><summary>${esc(y.head)}</summary>${paras(y.text)}</details>`).join("")}</section>` : "";
+  if(herb) parts.push(ymHTML);
+  if(e.houzai) parts.push(`<section id="s-houzai"><h3>処方</h3><div class="houzai"><div class="c">${esc(e.houzai.comp)}</div><div>${esc(e.houzai.how)}</div><div class="small">${esc(e.houzai.note||"")}</div></div></section>`);
+  if(e.joubun?.length){
+    parts.push(`<section id="s-jo"><h3>条文</h3><div class="johead" style="margin-bottom:10px"><span class="small">表示</span>${segHTML("all",modePref)}</div>`+
+      e.joubun.map((j,i)=>`<div class="jo ${modePref}" data-mode="${modePref}" id="jo-${i+1}">
+        <div class="johead"><span class="no">第${i+1}条</span><span class="src">${esc(j.src)}</span>${segHTML(i,modePref)}</div>
+        <p class="kaki">${esc(j.kaki)}</p><p class="yaku">${esc(j.yaku)}</p>
+        ${j.yumoto?`<details class="yumoto" open><summary>湯本求真の註（現代語訳）</summary>${paras(j.yumoto)}</details>`:""}
+      </div>`).join("")+`</section>`);
+  }
+  if(e.fukusho) parts.push(`<section id="s-fuku"><h3>${esc(e.fukusho.title)}</h3><div class="box">${paras(e.fukusho.text)}</div></section>`);
+  if(e.kagen?.length) parts.push(`<section id="s-kagen"><h3>加減方</h3>${e.kagen.map(k=>`<div class="kg"><b>${esc(k.name)}</b><div class="small">${esc(k.comp)}</div><p style="margin:4px 0 0">主治：${esc(k.shuchi)}</p>${k.yumoto?`<details class="yumoto"><summary>湯本求真の註（現代語訳）</summary>${paras(k.yumoto)}</details>`:""}</div>`).join("")}</section>`);
+  if(e.senpai?.length) parts.push(`<section id="s-sp"><h3>${herb?"諸家の説（要点）":"先輩の論説（要点）"}</h3>${e.senpai.map(s=>`<div class="sp"><div class="who">${esc(s.who)}<small>${esc(s.src)}</small></div><div class="kw">${s.kw.map(k=>`<span>${esc(k)}</span>`).join("")}</div></div>`).join("")}</section>`);
+  if(e.cases?.length) parts.push(`<section id="s-case"><h3>症例（概略）</h3>${e.cases.map(c=>`<div class="case"><b>${esc(c.src)}</b><p>${esc(c.summary)}</p>${c.yumoto?`<details class="yumoto" open><summary>湯本求真の註（現代語訳）</summary>${paras(c.yumoto)}</details>`:""}</div>`).join("")}</section>`);
+  if(!herb) parts.push(ymHTML);
+  if(e.check?.length) parts.push(`<div class="check">要確認：${e.check.map(esc).join(" ／ ")}</div>`);
+  $("#page").innerHTML=parts.join("");
+}
+function segHTML(i,m){
+  const b=(v,l)=>`<button type="button" data-seg="${i}" data-v="${v}" aria-pressed="${m===v}">${l}</button>`;
+  return `<span class="seg" role="group" aria-label="表示切替">${b("kaki","書き下し")}${b("yaku","現代語訳")}${b("both","両方")}</span>`;
+}
+function applyMode(el,m){
+  el.dataset.mode=m; el.classList.remove("kaki","yaku","both"); el.classList.add(m);
+  el.querySelector(".kaki").hidden = m==="yaku"; el.querySelector(".yaku").hidden = m==="kaki";
+  el.querySelectorAll(".seg button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===m));
+}
+
+// 検索
+function terms(q){
+  const out=new Set();
+  q.split(/[\s　、,]+/).filter(Boolean).forEach(w=>{
+    out.add(w);
+    if(SYN[w]){ SYN[w].forEach(x=>out.add(x)); return }
+    // 完全一致がなければ、語を含む見出し語のうち最も長いものだけを使う
+    const ks=Object.keys(SYN).filter(k=>k.includes(w)||w.includes(k)).sort((a,b)=>b.length-a.length);
+    if(ks.length) SYN[ks[0]].forEach(x=>out.add(x));
+  });
+  return [...out];
+}
+function search(q){
+  const box=$("#results");
+  if(!q.trim()){box.hidden=true;return}
+  const ts=terms(q); const hits=[];
+  const test=s=>s&&ts.some(t=>s.includes(t));
+  D.forEach(e=>{
+    if(test(e.title)) hits.push({e,where:"方剤名",text:e.title,anchor:""});
+    (e.tags||[]).forEach(t=>{ if(test(t)) hits.push({e,where:"症状タグ",text:t,anchor:""}) });
+    (e.joubun||[]).forEach((j,i)=>{ const s=j.kaki+" "+j.yaku; if(test(s)) hits.push({e,where:`第${i+1}条`,text:j.yaku,anchor:`jo-${i+1}`});
+      else if(test(j.yumoto)) hits.push({e,where:`第${i+1}条・求真註`,text:j.yumoto,anchor:`jo-${i+1}`}); });
+    (e.senpai||[]).forEach(s=>{ const k=s.kw.join("、"); if(test(k)) hits.push({e,where:`論説・${s.who}`,text:k,anchor:"s-sp"}) });
+    (e.cases||[]).forEach(c=>{ if(test(c.summary)) hits.push({e,where:`症例・${c.src}`,text:c.summary,anchor:"s-case"}) });
+    (e.kagen||[]).forEach(k=>{ if(test(k.name+k.shuchi)) hits.push({e,where:`加減方・${k.name}`,text:k.shuchi,anchor:"s-kagen"}) });
+    if(e.fukusho&&test(e.fukusho.text)) hits.push({e,where:"腹証",text:e.fukusho.text,anchor:"s-fuku"});
+    (e.yumoto||[]).forEach(y=>{ if(test(y.text)) hits.push({e,where:`求真の論・${y.head}`,text:y.text,anchor:"s-ym"}) });
+  });
+  const mark=s=>{ let h=esc(s.length>120?snip(s,ts):s); ts.forEach(t=>{ if(t) h=h.split(esc(t)).join(`<mark>${esc(t)}</mark>`) }); return h };
+  box.hidden=false;
+  box.innerHTML=`<h2>「${esc(q)}」の検索結果 ${hits.length}件${ts.length>1?`<span class="small">（${esc(ts.slice(0,8).join("・"))} を含めて検索）</span>`:""}</h2>`+
+    (hits.length?hits.slice(0,60).map(h=>`<a class="hit" href="#${h.e.id}" data-goto="${h.e.id}" data-anchor="${h.anchor}"><b>${esc(h.e.title)}</b><span class="where">${esc(h.where)}</span><p>${mark(h.text)}</p></a>`).join(""):`<p class="small">該当なし。別の言い方（例：「寒気」→「悪寒」）でもお試しください。</p>`);
+}
+function snip(s,ts){ let i=-1; for(const t of ts){ i=s.indexOf(t); if(i>=0)break } i=Math.max(0,i-30); return (i>0?"…":"")+s.slice(i,i+110)+"…" }
+
+// イベント
+$("#nav").innerHTML=navHTML();
+$("#hint").innerHTML="例："+EX.map(x=>`<button type="button" data-q="${x}">${x}</button>`).join("");
+document.addEventListener("click",ev=>{
+  const t=ev.target.closest("[data-q],[data-seg],[data-goto],[data-jump]"); if(!t) return;
+  if(t.dataset.q){ $("#q").value=t.dataset.q; search(t.dataset.q); window.scrollTo(0,0); return }
+  if(t.dataset.seg!==undefined){
+    const m=t.dataset.v;
+    if(t.dataset.seg==="all"){ modePref=m; try{localStorage.setItem("kk-mode",m)}catch(e){}
+      t.parentNode.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===m));
+      document.querySelectorAll(".jo").forEach(el=>applyMode(el,m)); }
+    else applyMode(t.closest(".jo"),m);
+    return }
+  if(t.dataset.jump){ ev.preventDefault(); document.getElementById(t.dataset.jump)?.scrollIntoView(); return }
+  if(t.dataset.goto){ ev.preventDefault(); location.hash=t.dataset.goto; render(t.dataset.goto);
+    const a=t.dataset.anchor; requestAnimationFrame(()=>{ const el=a&&document.getElementById(a); (el||$("#page")).scrollIntoView(); }); }
+});
+$("#q").addEventListener("input",e=>search(e.target.value));
+$("#navbtn").addEventListener("click",()=>{const n=$("#nav"),o=!n.classList.contains("open");n.classList.toggle("open",o);$("#navbtn").setAttribute("aria-expanded",o);$("#navbtn").textContent=o?"目次を閉じる":"目次（方剤・生薬）を開く"});
+$("#nav").addEventListener("click",e=>{if(e.target.closest("a")&&matchMedia("(max-width:760px)").matches){$("#nav").classList.remove("open");$("#navbtn").setAttribute("aria-expanded","false");$("#navbtn").textContent="目次（方剤・生薬）を開く";setTimeout(()=>$("#page").scrollIntoView(),0)}});
+window.addEventListener("hashchange",()=>render(location.hash.slice(1)));
+render(location.hash.slice(1)||"v1-keishito");
+document.querySelectorAll(".jo").forEach(el=>applyMode(el,modePref));
+const _r=render; render=function(id){_r(id);document.querySelectorAll(".jo").forEach(el=>applyMode(el,modePref))};
+</script>
