@@ -1,5 +1,5 @@
 // 皇漢医学 症状検索：オフライン用 Service Worker
-const CACHE = "kokan-202611042255";
+const CACHE = "kokan-202611050211";
 const SHELL = ["./", "index.html", "manifest.webmanifest", "apple-touch-icon.png", "icon-192.png", "icon-512.png", "icon-maskable-512.png"];
 
 self.addEventListener("install", e => {
