@@ -12,7 +12,8 @@ def bbox(a,x0,x1):
     return x0+col[0]-30, 300+row[0]-30, x0+col[-1]+30, 300+row[-1]+30
 for k in map(int,sys.argv[2:]):
     img=Image.open(f'{base}/{vol}/koma_{k:04d}.jpg').convert('L'); a=np.array(img)
-    for p,(x0,x1) in [('R',(2120,3380)),('L',(700,1975))]:
+    rng=[('R',(2120,3380)),('L',(700,1975))] if vol=='v1' else [('R',(1965,3450)),('L',(560,1905))]
+    for p,(x0,x1) in rng:
         b=bbox(a,x0,x1); pg=ImageOps.autocontrast(img.crop(b)); w=pg.width
         pg.crop((w//2-60,0,w,pg.height)).save(f'{out}{vol}_{k:04d}{p}1.png')
         pg.crop((0,0,w//2+60,pg.height)).save(f'{out}{vol}_{k:04d}{p}2.png')
