@@ -4140,8 +4140,13 @@ const _r=render; render=function(id){_r(id);document.querySelectorAll(".jo").for
 </script>
 
 <script>
-if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}))}
+const APP_VER="202611082316";
+if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js",{updateViaCache:"none"}).catch(()=>{}))}
+// ホーム画面アプリは閉じても裏で残り再読込されないため、表示に戻るたびに新しい版を確認する
+function kkCheck(){if(!navigator.onLine)return;fetch("index.html?v="+Date.now(),{cache:"no-store"}).then(r=>r.text()).then(t=>{const m=t.match(/<!-- version ([0-9]+) -->/);if(m&&m[1]!==APP_VER){if(navigator.serviceWorker&&navigator.serviceWorker.getRegistration)navigator.serviceWorker.getRegistration().then(g=>g&&g.update());location.reload();}}).catch(()=>{})}
+document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")kkCheck()});
+window.addEventListener("load",()=>setTimeout(kkCheck,1500));
 </script>
-<!-- version 202611082312 -->
+<!-- version 202611082316 -->
 </body>
 </html>

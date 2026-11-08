@@ -15,7 +15,7 @@ self.addEventListener("fetch", e => {
   // 本体：ネット優先（つながれば最新版）、だめならキャッシュ
   if (req.mode === "navigate" || url.pathname.endsWith("index.html")) {
     e.respondWith(
-      fetch(req).then(r => { const c = r.clone(); caches.open(CACHE).then(x => x.put("index.html", c)); return r; })
+      fetch(req, { cache: "no-store" }).then(r => { const c = r.clone(); caches.open(CACHE).then(x => x.put("index.html", c)); return r; })
         .catch(() => caches.match("index.html"))
     );
     return;

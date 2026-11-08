@@ -4,7 +4,7 @@
 import glob, re, time, os
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 src=open('app.src.html').read()
-def key(f): return [int(t) if t.isdigit() else t for t in re.split(r'(\d+)', f)]
+def key(f): return [int(t) if t.isdigit() else t for t in re.split(r'([0-9]+)', f)]
 data="\n".join(open(f).read() for f in sorted(glob.glob('data/data_*.js'), key=key))
 body=src.replace('/*__DATA__*/',data)
 open('kokan_igaku.html','w').write(body)
@@ -25,7 +25,12 @@ head='''<!doctype html>
 '''
 tail=f'''
 <script>
-if("serviceWorker" in navigator){{window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{{}}))}}
+const APP_VER="{ver}";
+if("serviceWorker" in navigator){{window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js",{{updateViaCache:"none"}}).catch(()=>{{}}))}}
+// ホーム画面アプリは閉じても裏で残り再読込されないため、表示に戻るたびに新しい版を確認する
+function kkCheck(){{if(!navigator.onLine)return;fetch("index.html?v="+Date.now(),{{cache:"no-store"}}).then(r=>r.text()).then(t=>{{const m=t.match(/<!-- version ([0-9]+) -->/);if(m&&m[1]!==APP_VER){{if(navigator.serviceWorker&&navigator.serviceWorker.getRegistration)navigator.serviceWorker.getRegistration().then(g=>g&&g.update());location.reload();}}}}).catch(()=>{{}})}}
+document.addEventListener("visibilitychange",()=>{{if(document.visibilityState==="visible")kkCheck()}});
+window.addEventListener("load",()=>setTimeout(kkCheck,1500));
 </script>
 <!-- version {ver} -->
 '''

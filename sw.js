@@ -1,5 +1,5 @@
 // 皇漢医学 症状検索：オフライン用 Service Worker
-const CACHE = "kokan-202611082312";
+const CACHE = "kokan-202611082316";
 const SHELL = ["./", "index.html", "manifest.webmanifest", "apple-touch-icon.png", "icon-192.png", "icon-512.png", "icon-maskable-512.png"];
 
 self.addEventListener("install", e => {
@@ -15,7 +15,7 @@ self.addEventListener("fetch", e => {
   // 本体：ネット優先（つながれば最新版）、だめならキャッシュ
   if (req.mode === "navigate" || url.pathname.endsWith("index.html")) {
     e.respondWith(
-      fetch(req).then(r => { const c = r.clone(); caches.open(CACHE).then(x => x.put("index.html", c)); return r; })
+      fetch(req, { cache: "no-store" }).then(r => { const c = r.clone(); caches.open(CACHE).then(x => x.put("index.html", c)); return r; })
         .catch(() => caches.match("index.html"))
     );
     return;
