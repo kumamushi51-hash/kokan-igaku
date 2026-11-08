@@ -13,12 +13,13 @@
 - work/data/data_v1_taiyoNN.js：方剤・生薬データ（window.KOKAN_DATA.push(...)）。新しい回は次の番号の新ファイルに書く
 - work/app.src.html：アプリ本体。SYN が現代語→古典語の言い換え辞書
 - work/build.py：data を番号順に結合 → work/kokan_igaku.html（アーティファクト用）と ../index.html, ../sw.js（Pages用）
+- work/build_docx.js：`node work/build_docx.js` → work/皇漢医学_書き下し・現代語訳.docx（Word版。条文は書き下し文のみ、註・論・先輩の論説・症例は現代語訳）。利用者の指定で、方剤を追加するたびに再生成して一緒に commit する
 - アーティファクト（同じ内容の閲覧用）：https://claude.ai/artifact/49nLHuch6e932jk6mqptF3
 
 ## 1回の作業（自動実行は 10方剤）
 1. work/引き継ぎメモ.md の「次の作業位置」から始める
 2. 必要なコマを crop.py で切り出し、画像を読んで文字起こし・現代語訳する
-3. 方剤ごとに data ファイルへ追記し、**1方剤終わるごとに build.py → commit → push** する（上限で止まっても失われないように）。あわせて引き継ぎメモの「次の作業位置」も更新して一緒に push
+3. 方剤ごとに data ファイルへ追記し、**1方剤終わるごとに build.py と `node work/build_docx.js`（Word版の更新）→ commit → push** する（上限で止まっても失われないように）。あわせて引き継ぎメモの「次の作業位置」も更新して一緒に push
 4. 10方剤終えたら（または続けられなくなったら）build.py → ブラウザ（playwright）で work/kokan_igaku.html と ../index.html を開き、エラーがないこと・検索が動くことを1回確認
 5. アーティファクトを更新：Artifact の read（url 指定）をしてから、url を指定して work/kokan_igaku.html を publish
 6. 引き継ぎメモの「完了済み」「次の作業位置」を更新し、commit → push（push すると1分ほどで Pages に反映）
