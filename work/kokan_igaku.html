@@ -30,6 +30,7 @@ h1{font-family:var(--f-disp);font-size:22px;margin:0;letter-spacing:.08em}
 .hint{max-width:1180px;margin:6px auto 0;font-size:12px;color:var(--muted)}
 .hint button{font:inherit;font-size:12px;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:999px;padding:1px 10px;margin:2px 2px 0 0;cursor:pointer}
 #navbtn{display:none}
+#menufab{display:none}
 .wrap{display:grid;grid-template-columns:220px minmax(0,1fr);gap:24px;max-width:1180px;margin:18px auto 0}
 nav{position:sticky;top:150px;align-self:start;font-size:14px}
 nav h3{font-family:var(--f-disp);font-size:13px;color:var(--muted);letter-spacing:.15em;margin:14px 0 4px;font-weight:500}
@@ -105,6 +106,13 @@ section>h3{font-family:var(--f-disp);font-size:19px;margin:0 0 12px;padding-bott
   nav a.on{border-color:var(--ai)}
   .sp{grid-template-columns:minmax(0,1fr)}
   .page h2{font-size:26px}
+  /* 読むときは上の検索・目次を隠して全画面に。左下のボタンで呼び出す */
+  body.reading header,body.reading nav,body.reading #results{display:none!important}
+  body.reading .wrap{margin-top:12px}
+  body.reading{padding-bottom:calc(84px + env(safe-area-inset-bottom,0px))}
+  body.reading #menufab{display:flex;align-items:center;gap:6px;position:fixed;z-index:20;left:max(14px,env(safe-area-inset-left,0px));bottom:calc(14px + env(safe-area-inset-bottom,0px));
+    font:inherit;font-size:14px;font-weight:700;padding:10px 16px;border:0;border-radius:999px;background:var(--ai);color:var(--paper);box-shadow:0 2px 10px rgba(0,0,0,.25);cursor:pointer}
+  body.reading #menufab:active{transform:scale(.97)}
 }
 @media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
 </style>
@@ -115,6 +123,7 @@ section>h3{font-family:var(--f-disp);font-size:19px;margin:0 0 12px;padding-bott
   <div class="hint" id="hint">例：</div>
   <button type="button" id="navbtn" aria-expanded="false" aria-controls="nav">目次（方剤・生薬）を開く</button>
 </header>
+<button type="button" id="menufab" aria-label="検索・目次を開く"><span aria-hidden="true">☰</span>検索・目次</button>
 <div class="wrap">
   <nav id="nav"></nav>
   <main>
@@ -4103,7 +4112,7 @@ $("#nav").innerHTML=navHTML();
 $("#hint").innerHTML="例："+EX.map(x=>`<button type="button" data-q="${x}">${x}</button>`).join("");
 document.addEventListener("click",ev=>{
   const t=ev.target.closest("[data-q],[data-seg],[data-goto],[data-jump]"); if(!t) return;
-  if(t.dataset.q){ $("#q").value=t.dataset.q; search(t.dataset.q); window.scrollTo(0,0); return }
+  if(t.dataset.q){ reading(false); $("#q").value=t.dataset.q; search(t.dataset.q); window.scrollTo(0,0); return }
   if(t.dataset.seg!==undefined){
     const m=t.dataset.v;
     if(t.dataset.seg==="all"){ modePref=m; try{localStorage.setItem("kk-mode",m)}catch(e){}
@@ -4112,12 +4121,15 @@ document.addEventListener("click",ev=>{
     else applyMode(t.closest(".jo"),m);
     return }
   if(t.dataset.jump){ ev.preventDefault(); document.getElementById(t.dataset.jump)?.scrollIntoView(); return }
-  if(t.dataset.goto){ ev.preventDefault(); location.hash=t.dataset.goto; render(t.dataset.goto);
+  if(t.dataset.goto){ ev.preventDefault(); reading(true); location.hash=t.dataset.goto; render(t.dataset.goto);
     const a=t.dataset.anchor; requestAnimationFrame(()=>{ const el=a&&document.getElementById(a); (el||$("#page")).scrollIntoView(); }); }
 });
-$("#q").addEventListener("input",e=>search(e.target.value));
+function isMob(){return matchMedia("(max-width:760px)").matches}
+function reading(on){document.body.classList.toggle("reading",!!on&&isMob())}
+$("#q").addEventListener("input",e=>{reading(false);search(e.target.value)});
 $("#navbtn").addEventListener("click",()=>{const n=$("#nav"),o=!n.classList.contains("open");n.classList.toggle("open",o);$("#navbtn").setAttribute("aria-expanded",o);$("#navbtn").textContent=o?"目次を閉じる":"目次（方剤・生薬）を開く"});
-$("#nav").addEventListener("click",e=>{if(e.target.closest("a")&&matchMedia("(max-width:760px)").matches){$("#nav").classList.remove("open");$("#navbtn").setAttribute("aria-expanded","false");$("#navbtn").textContent="目次（方剤・生薬）を開く";setTimeout(()=>$("#page").scrollIntoView(),0)}});
+$("#nav").addEventListener("click",e=>{if(e.target.closest("a")&&isMob()){$("#nav").classList.remove("open");$("#navbtn").setAttribute("aria-expanded","false");$("#navbtn").textContent="目次（方剤・生薬）を開く";reading(true);setTimeout(()=>window.scrollTo({top:0,behavior:"instant"}),0)}});
+$("#menufab").addEventListener("click",()=>{reading(false);const n=$("#nav");n.classList.add("open");$("#navbtn").setAttribute("aria-expanded","true");$("#navbtn").textContent="目次を閉じる";window.scrollTo({top:0,behavior:"instant"})});
 window.addEventListener("hashchange",()=>render(location.hash.slice(1)));
 render(location.hash.slice(1)||"v1-keishito");
 document.querySelectorAll(".jo").forEach(el=>applyMode(el,modePref));
