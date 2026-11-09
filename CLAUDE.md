@@ -14,6 +14,7 @@
 - work/app.src.html：アプリ本体。SYN が現代語→古典語の言い換え辞書
 - work/build.py：data を番号順に結合 → work/kokan_igaku.html（アーティファクト用）と ../index.html, ../sw.js（Pages用）
 - work/build_docx.js：`node work/build_docx.js` → work/皇漢医学_書き下し・現代語訳.docx（Word版。条文は書き下し文のみ、註・論・先輩の論説・症例は現代語訳）。利用者の指定で、方剤を追加するたびに再生成して一緒に commit する
+- work/audio/：リスニング用MP3（試作中）。scripts/NNN_<id>.txt が聞きやすく書き直した台本（条文は書き下し文を `@K` 行で、ほかは現代語訳の話し言葉）、yomi.tsv が読み辞書、tts.py が生成スクリプト。push すると GitHub Actions（.github/workflows/audio.yml）が edge-tts で ../audio/*.mp3 と ../audio/index.html を作って commit する（変更のあった台本だけ作り直す）。誤読は yomi.tsv に1行足して直す
 - アーティファクト（同じ内容の閲覧用）：https://claude.ai/artifact/49nLHuch6e932jk6mqptF3
 
 ## 1回の作業（自動実行は 10方剤）
