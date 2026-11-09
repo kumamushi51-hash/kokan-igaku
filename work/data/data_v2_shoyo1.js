@@ -2133,11 +2133,12 @@ window.KOKAN_DATA.push(
  "title": "橘皮",
  "yomi": "きっぴ",
  "kind": "生薬",
- "pages": "170–171",
- "koma": "95",
+ "pages": "170–172",
+ "koma": "95–96",
  "related": [
   "v2-kippikijitsushokyoto",
-  "v2-shosaikoto"
+  "v2-shosaikoto",
+  "v2-kippito"
  ],
  "yumoto": [
   {
