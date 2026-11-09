@@ -1,0 +1,28 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
+<title>皇漢医学 リスニング</title>
+<style>
+:root{--bg:#faf8f3;--fg:#2b2620;--sub:#7a6f62;--card:#fff;--line:#e5ded2;--acc:#8a5a2b}
+@media (prefers-color-scheme:dark){:root{--bg:#1b1916;--fg:#ece6dc;--sub:#a59a8b;--card:#25221e;--line:#3a352e;--acc:#d7a46b}}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:"Hiragino Mincho ProN","Yu Mincho",serif}
+main{max-width:640px;margin:0 auto;padding:20px 16px 60px}
+h1{font-size:1.4rem;margin:.2em 0} p{color:var(--sub);font-size:.9rem;line-height:1.6}
+.rate{display:flex;gap:8px;margin:12px 0 18px;flex-wrap:wrap}
+.rate button{font:inherit;border:1px solid var(--line);background:var(--card);color:var(--fg);border-radius:999px;padding:6px 14px}
+.rate button.on{border-color:var(--acc);color:var(--acc)}
+ul{list-style:none;padding:0;margin:0} li{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:10px 0}
+.t{display:flex;justify-content:space-between;gap:8px;margin-bottom:8px;font-size:1.05rem} .t span{color:var(--sub);font-size:.85rem;white-space:nowrap}
+audio{width:100%}
+</style></head><body><main>
+<h1>皇漢医学 リスニング</h1>
+<p>条文は書き下し文（男性の声）、ほかは聞きやすく整えた現代語訳（女性の声）です。1曲が終わると次へ進みます。</p>
+<div class="rate" id="rate"><button data-r="1.0">1.0倍</button><button data-r="1.25">1.25倍</button><button data-r="1.5">1.5倍</button><button data-r="2.0">2.0倍</button></div>
+<ul><li><div class="t">桂枝湯<span>39分14秒</span></div><audio controls preload="none" src="001_v1-keishito.mp3"></audio></li><li><div class="t">桂枝加桂湯<span>5分12秒</span></div><audio controls preload="none" src="002_v1-keishikakeito.mp3"></audio></li><li><div class="t">桂枝加芍薬湯・桂枝加芍薬大黄湯<span>10分04秒</span></div><audio controls preload="none" src="003_v1-keishikashakuyakuto.mp3"></audio></li><li><div class="t">桂枝去芍薬湯<span>2分53秒</span></div><audio controls preload="none" src="004_v1-keishikyoshakuyakuto.mp3"></audio></li><li><div class="t">桂枝加葛根湯<span>2分56秒</span></div><audio controls preload="none" src="005_v1-keishikakakkonto.mp3"></audio></li></ul>
+</main><script>
+const as=[...document.querySelectorAll('audio')];let r=1;
+try{r=parseFloat(localStorage.getItem('kk_rate'))||1}catch(e){}
+const bs=[...document.querySelectorAll('#rate button')];
+function setR(v){r=v;as.forEach(a=>a.playbackRate=r);bs.forEach(b=>b.classList.toggle('on',parseFloat(b.dataset.r)===r));try{localStorage.setItem('kk_rate',r)}catch(e){}}
+bs.forEach(b=>b.onclick=()=>setR(parseFloat(b.dataset.r)));setR(r);
+as.forEach((a,i)=>{a.onplay=()=>{a.playbackRate=r;as.forEach(o=>o!==a&&o.pause())};a.onended=()=>{if(as[i+1]){as[i+1].play()}}});
+</script></body></html>

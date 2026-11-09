@@ -1,0 +1,27 @@
+{
+ "001_v1-keishito.mp3": {
+  "title": "桂枝湯",
+  "hash": "471fb01aaffd4c48",
+  "dur": 2354.7
+ },
+ "002_v1-keishikakeito.mp3": {
+  "title": "桂枝加桂湯",
+  "hash": "af8b9fd0f855fa0a",
+  "dur": 312.6
+ },
+ "003_v1-keishikashakuyakuto.mp3": {
+  "title": "桂枝加芍薬湯・桂枝加芍薬大黄湯",
+  "hash": "2ef57c4db017054b",
+  "dur": 604.8
+ },
+ "004_v1-keishikyoshakuyakuto.mp3": {
+  "title": "桂枝去芍薬湯",
+  "hash": "c1a6913cd6a71c76",
+  "dur": 173.9
+ },
+ "005_v1-keishikakakkonto.mp3": {
+  "title": "桂枝加葛根湯",
+  "hash": "0a7e61497d768022",
+  "dur": 176.2
+ }
+}
