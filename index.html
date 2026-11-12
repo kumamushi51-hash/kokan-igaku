@@ -5329,6 +5329,87 @@ window.KOKAN_DATA.push(
   "脈が細く弱い"
  ],
  "check": []
+},
+{
+ "id": "v2-kippichikujoto",
+ "vol": 2,
+ "hen": "少陽病篇",
+ "title": "橘皮竹茹湯",
+ "yomi": "きっぴちくじょとう",
+ "kind": "方剤",
+ "pages": "174–176",
+ "koma": "97–98",
+ "related": [
+  "v2-kippito",
+  "herb-kippi",
+  "v2-shosaikoto"
+ ],
+ "houzai": {
+  "comp": "橘皮 19.0　竹茹 5.0　大棗 4.6　生姜 5.0　甘草 3.0　人参 0.6（g、成人1日量）",
+  "how": "細かく刻み、水三合で一合に煎じ、滓を去って一日三回に分け、冷服あるいは温服する。",
+  "note": "私（求真）は常に半夏7.0以上を加えて用いる。これは本方に小半夏湯を合方する意で、妙効があるゆえんである。"
+ },
+ "joubun": [
+  {
+   "src": "金匱要略",
+   "kaki": "噦逆の者は、橘皮竹茹湯之を主る。",
+   "yaku": "しゃっくりが逆上して止まない者は、橘皮竹茹湯が主治する。",
+   "yumoto": "噦逆とは気逆によってしゃっくりするものである。橘皮湯のしゃっくりもそうでないわけではないが、そのしゃっくりは主として水毒の上迫によるものであるから、しゃっくりとともにからえずき、あるいは手足の冷えを起こすのである。これに反して本方のしゃっくりは気逆が主で、水毒の上迫は客にすぎないので、ただしゃっくりするだけで、からえずきや手足の冷えは起こさないのである。二方中の橘皮・生姜の多少を見てこの意を知るべきである。"
+  }
+ ],
+ "kagen": [],
+ "senpai": [
+  {
+   "who": "（著者名記載なし）",
+   "src": "三因方",
+   "kw": [
+    "咳逆・嘔噦し、胃中が虚冷で、一回しゃっくりするたびに八、九声続き、息が戻らず人を驚かすほどの者を治す",
+    "※求真：この症は百日咳の発作である。この発作でしゃっくりの様子がある者には本方が効くことがあろう。しかし胃中虚冷というのは誤りである。本方証は虚証であるが陽証で、陰虚証ではないからである"
+   ]
+  },
+  {
+   "who": "吉益東洞",
+   "src": "（本方の定義）",
+   "kw": [
+    "胸中が痺れてしゃっくりが逆上する者を治す"
+   ]
+  },
+  {
+   "who": "尾台榕堂",
+   "src": "類聚方広義",
+   "kw": [
+    "この方の薬量と水の割合は相当しない。かつ他薬の分量が多いのに人参はわずか一両である。張仲景の方中にこのようなものは絶えてないので、おそらく誤りがあろう。朱肱『活人書』には半夏がある",
+    "小児の吐乳（頭注：哯は吐と同じ）および百日咳には、この方に半夏を加えて極めて効がある。腹証に随って紫円・南呂丸を兼用する",
+    "※求真：私の経験では、百日咳には小柴胡湯あるいは小柴胡加石膏湯に半夏厚朴湯を合用すべきものが多く、本方を要することは比較的稀である"
+   ]
+  },
+  {
+   "who": "浅田宗伯",
+   "src": "勿誤薬室方函口訣",
+   "kw": [
+    "この方は橘皮の下気を主とし、竹茹の潤降を兼ねる。ゆえに気逆してしゃっくりを発する者を主とする",
+    "また甘草を多く入れるのが手段で、もし少量なら効がない"
+   ]
+  }
+ ],
+ "cases": [
+  {
+   "src": "古方便覧",
+   "summary": "ある商人、七十余歳。しゃっくりを患って三十日、口に一さじの飲み物も通らず、諸医が治療しても治らないこと十七、八日。東洞先生が往診すると、咽喉の肉が落ち、ひっくひっくという声はすでに出尽くし、ただ腹中に響きがあるばかりであった。そこで橘皮竹茹湯を一貼重さ十二銭（大量）に作って与えると、二剤で効を奏した。",
+   "yumoto": ""
+  }
+ ],
+ "yumoto": [],
+ "tags": [
+  "しゃっくり（気逆による）",
+  "しゃっくりが長引く",
+  "百日咳",
+  "小児の吐乳",
+  "胸の痺れ"
+ ],
+ "check": [
+  "処方の人参 0.6 は画像の判読による（尾台氏も人参が少なすぎると指摘）"
+ ]
 }
 );
 
@@ -5481,13 +5562,13 @@ const _r=render; render=function(id){_r(id);document.querySelectorAll(".jo").for
 </script>
 
 <script>
-const APP_VER="202611091221";
+const APP_VER="202611120305";
 if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js",{updateViaCache:"none"}).catch(()=>{}))}
 // ホーム画面アプリは閉じても裏で残り再読込されないため、表示に戻るたびに新しい版を確認する
 function kkCheck(){if(!navigator.onLine)return;fetch("index.html?v="+Date.now(),{cache:"no-store"}).then(r=>r.text()).then(t=>{const m=t.match(/<!-- version ([0-9]+) -->/);if(m&&m[1]!==APP_VER){if(navigator.serviceWorker&&navigator.serviceWorker.getRegistration)navigator.serviceWorker.getRegistration().then(g=>g&&g.update());location.reload();}}).catch(()=>{})}
 document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")kkCheck()});
 window.addEventListener("load",()=>setTimeout(kkCheck,1500));
 </script>
-<!-- version 202611091221 -->
+<!-- version 202611120305 -->
 </body>
 </html>
