@@ -5776,6 +5776,71 @@ window.KOKAN_DATA.push(
  "check": [
   "『続建殊録』の症例の甘草粉蜜湯の丹は画像の判読による"
  ]
+},
+{
+ "id": "v2-karogaihakuhangeto",
+ "vol": 2,
+ "hen": "少陽病篇",
+ "title": "括蔞薤白半夏湯",
+ "yomi": "かろがいはくはんげとう",
+ "kind": "方剤",
+ "pages": "187–189",
+ "koma": "103–104",
+ "related": [
+  "v2-karogaihakuhakushuto",
+  "v2-kijitsugaihakukeishito",
+  "herb-gaihaku",
+  "herb-karojitsu",
+  "herb-hange"
+ ],
+ "houzai": {
+  "comp": "括蔞実 2.4　薤白 3.6　半夏 7.2（g、成人1日量）",
+  "how": "煎法・用法は前（括蔞薤白白酒湯、清酒で煎じる）に同じ。",
+  "note": ""
+ },
+ "joubun": [
+  {
+   "src": "金匱要略",
+   "kaki": "胸痺臥すことを得ず、心痛背に徹する者は、括蔞薤白半夏湯之を主る。",
+   "yaku": "胸痺で横になることができず、心臓部の痛みが背中に抜ける者は、括蔞薤白半夏湯が主治する。",
+   "yumoto": "本条は「胸痺」の下に「喘息咳唾、胸背痛、短気」の九字があるとみなして解すべきで、横になれないのは喘息咳唾・短気のためであり、心痛すなわち心臓神経痛が背部に抜けるのは胸背痛が激しくなったものにほかならないので、本方は前方（括蔞薤白白酒湯）の証の激しいものを主治するもので、二者の異なるところは半夏の有無にほかならないから、これによってその治効を見るべきである。そして東洞翁が本方を定義して「括蔞薤白白酒湯証で嘔する者を治す」と言い、また「按ずるに当然嘔あるいは胸腹鳴の証があるはずである」と言ったのは、ただ半夏の治効の一部を言ったにすぎないので定義とするには足りないが、参考に供すべきである。\n（頭注）徹は通るの意である。"
+  }
+ ],
+ "kagen": [],
+ "senpai": [
+  {
+   "who": "吉益東洞",
+   "src": "（本方の定義）",
+   "kw": [
+    "括蔞薤白白酒湯証で嘔する者を治す",
+    "当然嘔あるいは胸腹鳴の証があるはず",
+    "※求真：半夏の治効の一部を言ったにすぎず定義とするには足りないが、参考に供すべし"
+   ]
+  },
+  {
+   "who": "尾台榕堂",
+   "src": "類聚方広義",
+   "kw": [
+    "『千金』括蔞湯（括蔞実一枚・半夏半升・薤白一斤・枳実二両・生姜四両、五味を咬咀し白載酒一斗で四升に煮、一升を服す）は主療が本方と同じ。今これを試みると、括蔞薤白半夏湯証で心胸が痞え満ちる者にはなはだよい（※求真：本方の方意を拡充したもの。証に随って用いるべし。頭注：咬咀とは歯でかむことで、古代は器械を用いず薬物を細かく刻めないので、かんで煎じ出したのである）",
+    "回虫による痛みの中には二方（括蔞薤白白酒湯・本方）の症に似た者があるが、二方の症には必ず痰涎・息切れがあり、痛みは必ず背に抜ける。回虫の痛みは必ず清水あるいは白い泡を吐き、あるいは悪心し、あるいは痛みが移動する。これが違いである"
+   ]
+  }
+ ],
+ "cases": [],
+ "yumoto": [],
+ "tags": [
+  "胸痺（胸の痛み）",
+  "横になれない",
+  "心臓部の痛みが背中に抜ける",
+  "喘息・咳",
+  "息切れ",
+  "吐き気",
+  "胸のつかえ",
+  "心臓神経痛"
+ ],
+ "check": [
+  "p.189 冒頭「蛔痛間二方ノ症ニ疑似スル者…」は見出しがなく、前の『類聚方広義』の続きと解した"
+ ]
 }
 );
 
@@ -5928,13 +5993,13 @@ const _r=render; render=function(id){_r(id);document.querySelectorAll(".jo").for
 </script>
 
 <script>
-const APP_VER="202611120306";
+const APP_VER="202611120307";
 if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js",{updateViaCache:"none"}).catch(()=>{}))}
 // ホーム画面アプリは閉じても裏で残り再読込されないため、表示に戻るたびに新しい版を確認する
 function kkCheck(){if(!navigator.onLine)return;fetch("index.html?v="+Date.now(),{cache:"no-store"}).then(r=>r.text()).then(t=>{const m=t.match(/<!-- version ([0-9]+) -->/);if(m&&m[1]!==APP_VER){if(navigator.serviceWorker&&navigator.serviceWorker.getRegistration)navigator.serviceWorker.getRegistration().then(g=>g&&g.update());location.reload();}}).catch(()=>{})}
 document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")kkCheck()});
 window.addEventListener("load",()=>setTimeout(kkCheck,1500));
 </script>
-<!-- version 202611120306 -->
+<!-- version 202611120307 -->
 </body>
 </html>
