@@ -6395,7 +6395,7 @@ window.KOKAN_DATA.push(
   "v2-kanzoto"
  ],
  "houzai": {
-  "comp": "甘草 5.5　小麦 （底本の表記「二、九〇」）　大棗 5.0（g、成人1日量）",
+  "comp": "甘草 5.5　小麦 20.0　大棗 5.0（g、成人1日量）",
   "how": "細かく刻み、水二合で一合に煎じ、滓を去って一日三回に分けて温服する。",
   "note": "（頭注）甘草および大棗の医治効用の条下を参照すべし。"
  },
@@ -6491,7 +6491,6 @@ window.KOKAN_DATA.push(
   "産後の精神錯乱"
  ],
  "check": [
-  "処方の小麦の分量は底本で「二、九〇」と読める（他薬の書き方からすると 2.90g となるが、原方は小麦一升で少なすぎるため、20.9 あるいは 29.0 の誤植の可能性あり）",
   "『生生堂治験』の症例は「中略」を含むため、水腫から癇の発症までの経過が一部省略されている"
  ]
 },
@@ -7781,13 +7780,13 @@ const _r=render; render=function(id){_r(id);document.querySelectorAll(".jo").for
 </script>
 
 <script>
-const APP_VER="202611130205";
+const APP_VER="202611130207";
 if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js",{updateViaCache:"none"}).catch(()=>{}))}
 // ホーム画面アプリは閉じても裏で残り再読込されないため、表示に戻るたびに新しい版を確認する
 function kkCheck(){if(!navigator.onLine)return;fetch("index.html?v="+Date.now(),{cache:"no-store"}).then(r=>r.text()).then(t=>{const m=t.match(/<!-- version ([0-9]+) -->/);if(m&&m[1]!==APP_VER){if(navigator.serviceWorker&&navigator.serviceWorker.getRegistration)navigator.serviceWorker.getRegistration().then(g=>g&&g.update());location.reload();}}).catch(()=>{})}
 document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")kkCheck()});
 window.addEventListener("load",()=>setTimeout(kkCheck,1500));
 </script>
-<!-- version 202611130205 -->
+<!-- version 202611130207 -->
 </body>
 </html>
