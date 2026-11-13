@@ -6541,6 +6541,7 @@ window.KOKAN_DATA.push(
 const D = window.KOKAN_DATA;
 // 現代語 → 古典語の対応（検索の言い換え）
 const SYN = {
+  "泣く":["悲傷","哭","啼哭","悲泣","泣"], "夜泣き":["夜啼","啼哭","泣き止まない","夜泣"], "あくび":["欠伸","あくび"], "ヒステリー":["蔵躁","藏躁"], "パニック":["驚狂","煩驚","急迫","蔵躁"],
   "鼻血":["衄","衄血","紅汗","鼻出血"], "はなぢ":["衄","衄血"],
   "寒気":["悪寒","惡寒","嗇嗇"], "さむけ":["悪寒","惡寒"], "ぞくぞく":["悪寒","嗇嗇"],
   "風が嫌":["悪風","惡風"], "かぜ":["中風","感冒","外邪"], "風邪":["中風","感冒","外邪"],
@@ -6687,13 +6688,13 @@ const _r=render; render=function(id){_r(id);document.querySelectorAll(".jo").for
 </script>
 
 <script>
-const APP_VER="202611130155";
+const APP_VER="202611130156";
 if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js",{updateViaCache:"none"}).catch(()=>{}))}
 // ホーム画面アプリは閉じても裏で残り再読込されないため、表示に戻るたびに新しい版を確認する
 function kkCheck(){if(!navigator.onLine)return;fetch("index.html?v="+Date.now(),{cache:"no-store"}).then(r=>r.text()).then(t=>{const m=t.match(/<!-- version ([0-9]+) -->/);if(m&&m[1]!==APP_VER){if(navigator.serviceWorker&&navigator.serviceWorker.getRegistration)navigator.serviceWorker.getRegistration().then(g=>g&&g.update());location.reload();}}).catch(()=>{})}
 document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")kkCheck()});
 window.addEventListener("load",()=>setTimeout(kkCheck,1500));
 </script>
-<!-- version 202611130155 -->
+<!-- version 202611130156 -->
 </body>
 </html>
