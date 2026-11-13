@@ -8943,6 +8943,68 @@ window.KOKAN_DATA.push(
   "下血後のむくみ・貧血"
  ],
  "check": []
+},
+{
+ "id": "v2-kijitsushishishito",
+ "vol": 2,
+ "hen": "少陽病篇",
+ "title": "枳実梔子豉湯",
+ "yomi": "きじつしししとう",
+ "kind": "方剤",
+ "pages": "331–332",
+ "koma": "175–176",
+ "related": [
+  "v2-shishishito",
+  "v2-kijitsushishidaioshito",
+  "herb-kijitsu"
+ ],
+ "houzai": {
+  "comp": "枳実 2.4　梔子 1.6　香豉 6.0",
+  "how": "それぞれ別に細かく刻み、まず酢二勺・水二合を空煮して一合二勺とし、枳実・梔子を入れて煮て五勺とし、滓を去り、豉を入れて五、六沸させて一度に服する。",
+  "note": ""
+ },
+ "joubun": [
+  {
+   "src": "傷寒論",
+   "kaki": "大病差ゆるの後、労復する者は、枳実梔子豉湯之を主る、若し宿食有る者は、大黄博棊子大の如きを五六枚加へ、之を服すれば愈ゆ。",
+   "yaku": "大病がおおかた治った後に、無理をして再発（労復）した者は、枳実梔子豉湯がこれを主治する。もし宿食（胃腸に停滞した不消化物）がある者は、大黄を博棊子（碁石）大のもの五、六枚加えて服すれば治る。",
+   "yumoto": "「差ゆ」とは、病は大半治ったがまだ全く健康体に復していないという意であり、「労復」とは種々の不摂生による病症の再発の義である。本条の労復は主として飲食の不適によるものであるが、これを治すのに本方を用いる理由は、病者がもし飲食などの摂養を怠ると、まだ全く常態に復していない消化管を刺激して炎症を起こさせるだけでなく、胃部の停滞膨満を自覚的にも他覚的にも生じさせるので、梔子豉湯を用いて炎症を治し、苦味健胃解凝薬（わずかに緩下作用がある）である枳実で胃部の停滞膨満感を治すのである。ゆえに腹証上では、梔子豉湯証のほかに更に心下部の膨満を診ることができる。これが東洞翁が本方を「梔子豉湯証にして胸満する者を治す」と定義した理由である。"
+  }
+ ],
+ "kagen": [],
+ "senpai": [
+  {
+   "who": "（著者名記載なし）",
+   "src": "傷寒蘊要",
+   "kw": [
+    "枳実梔子豉湯は、食復（食べ過ぎによる再発）・労復で身熱があり心下が痞えて悶えるものを治す。もし宿食が下らず大便が秘結して実し、脈に力がある者には大黄を加えるべきである"
+   ]
+  },
+  {
+   "who": "（著者名記載なし）",
+   "src": "内外傷弁惑論",
+   "kw": [
+    "本方条：脂っこい美食（膏粱）を食べ過ぎて煩熱し悶え乱れる者にもまたこれを服するのがよい"
+   ]
+  },
+  {
+   "who": "尾台榕堂",
+   "src": "類聚方広義",
+   "kw": [
+    "本方条：およそ大病が治ったばかりで血気がまだ回復しないうちに、労働や飲食が度を過ぎると、あるいは胸が満ちて悶え、あるいは煩熱を生ずる。この方を与えて養生させれば治る。もし大便が通じず宿食がある者は枳実梔子大黄豉湯がよい"
+   ]
+  }
+ ],
+ "cases": [],
+ "yumoto": [],
+ "tags": [
+  "病み上がりの無理・食べ過ぎによるぶり返し（労復・食復）",
+  "みぞおちの張り・つかえ",
+  "胸の満悶",
+  "煩熱",
+  "食べ過ぎ（脂っこい物）"
+ ],
+ "check": []
 }
 );
 
@@ -9096,13 +9158,13 @@ const _r=render; render=function(id){_r(id);document.querySelectorAll(".jo").for
 </script>
 
 <script>
-const APP_VER="202611131030";
+const APP_VER="202611131031";
 if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js",{updateViaCache:"none"}).catch(()=>{}))}
 // ホーム画面アプリは閉じても裏で残り再読込されないため、表示に戻るたびに新しい版を確認する
 function kkCheck(){if(!navigator.onLine)return;fetch("index.html?v="+Date.now(),{cache:"no-store"}).then(r=>r.text()).then(t=>{const m=t.match(/<!-- version ([0-9]+) -->/);if(m&&m[1]!==APP_VER){if(navigator.serviceWorker&&navigator.serviceWorker.getRegistration)navigator.serviceWorker.getRegistration().then(g=>g&&g.update());location.reload();}}).catch(()=>{})}
 document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")kkCheck()});
 window.addEventListener("load",()=>setTimeout(kkCheck,1500));
 </script>
-<!-- version 202611131030 -->
+<!-- version 202611131031 -->
 </body>
 </html>
