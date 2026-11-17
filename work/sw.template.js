@@ -6,12 +6,14 @@ self.addEventListener("install", e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting()));
 });
 self.addEventListener("activate", e => {
-  e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim()));
+  e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k.startsWith("kokan-") && k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim()));
 });
 self.addEventListener("fetch", e => {
   const req = e.request;
   if (req.method !== "GET") return;
   const url = new URL(req.url);
+  // 同じサイト内の別アプリ（類聚方広義 /ruijuho/）は、そちらの Service Worker に任せる
+  if (url.pathname.includes("/ruijuho/")) return;
   // 本体：ネット優先（つながれば最新版）、だめならキャッシュ
   if (req.mode === "navigate" || url.pathname.endsWith("index.html")) {
     e.respondWith(
