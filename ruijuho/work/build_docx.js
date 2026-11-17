@@ -41,6 +41,7 @@ function entry(e){
   (e.joubun||[]).forEach((j,i)=>{
     out.push(label(`条文${i+1}　『${j.src}』（コマ${j.koma}）`));
     out.push(...P(j.kaki,{indent:IND,run:{size:23}}));
+    if(j.an){ out.push(new Paragraph({children:[r('〔東洞按〕',{bold:true,color:'555555'})],indent:IND,spacing:{after:40},keepNext:true})); out.push(...P(j.an.kaki,{indent:IND2})); }
     (j.tochu||[]).forEach(t=>tochu(t,''));
   });
   if(e.check&&e.check.length) out.push(note('要確認：'+e.check.join('／')));

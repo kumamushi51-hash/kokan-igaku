@@ -84,6 +84,8 @@ table.herbs td:first-child{font-family:var(--f-disp);font-size:17px;font-weight:
 .tc a,.jo .src a,.meta a{color:var(--ai)}
 .tc .h span{font-weight:400;color:var(--muted);margin-left:6px}
 .tc .kaki{font-size:15.5px}
+.an{margin:10px 0 0;padding:8px 14px;border:1px dashed var(--line);border-radius:6px}
+.an .h{font-size:12px;font-weight:700;color:var(--muted)}
 .check{background:var(--shu-soft);border-radius:6px;padding:10px 16px 10px 30px;margin:0;font-size:13.5px}
 .check li{margin:2px 0}
 .note{font-size:13px;color:var(--muted);background:var(--bg);border-radius:6px;padding:10px 14px}
@@ -124,13 +126,13 @@ const SYN = {
   "泣く":["悲傷","哭","啼哭","悲泣","泣"], "鼻血":["衄","衄血","鼻血"], "はなぢ":["衄","鼻血"],
   "寒気":["悪寒","惡寒","嗇嗇","寒気"], "さむけ":["悪寒","惡寒","寒気"], "ぞくぞく":["悪寒","嗇嗇","ぞくぞく"],
   "風が嫌":["悪風","惡風","風を嫌"], "かぜ":["中風","かぜ","外邪"], "風邪":["中風","かぜ","外邪"],
-  "汗":["自汗","汗出","汗"], "寝汗":["盗汗","寝汗"], "冷え":["冷","厥冷","冷え"], "しびれ":["不仁","麻痺","しびれ"],
+  "汗":["自汗","汗出","汗"], "冷え":["冷","厥冷","冷え"], 
   "熱":["発熱","發熱","煩熱","熱"], "夕方":["日晡所","夕方"],
   "頭痛":["頭痛","頭微痛","頭項強痛"], "首":["項","頭項"], "うなじ":["項","頭項"],
   "のぼせ":["上衝","気上衝","のぼせ","突き上げ"],
   "みぞおち":["心下","心下痞","心下悶","みぞおち"], "つかえ":["痞","心下痞","つかえ"], "胃":["心下","みぞおち"],
   "吐き気":["嘔","乾嘔","嘔逆","吐き気","からえずき"], "えずき":["乾嘔","からえずき"], "嘔吐":["吐","嘔吐","吐く"],
-  "下痢":["下利","下痢","自利","清穀"], "便秘":["不大便","大便難","便通がなく"],
+  "下痢":["下利","下痢","自利","清穀"],
   "腹痛":["腹痛","腹中痛"], "お腹が張る":["腹脹滿","腹満","腹が張"], "腹部膨満":["腹脹滿","腹満","腹が張"],
   "体の痛み":["身疼痛","身痛","身體疼痛","体が痛","体の痛み"], "関節":["疼痛","身疼痛","関節"],
   "のど":["咽喉痛","咽喉","のど"], "喉":["咽喉痛","咽喉","のど"], "咳":["咳","咳嗽"], "せき":["咳","咳嗽"],
@@ -140,7 +142,11 @@ const SYN = {
   "腹直筋":["腹直筋","拘攣","攣急"], "けいれん":["けいれん","痙攣","攣急"], "いらいら":["いらいら","煩躁","煩"],
   "むくみ":["むくみ","水腫","水気","浮腫"], "動悸":["動悸","悸"], "めまい":["めまい","眩","目眩","頭眩"],
   "口渇":["口渇","渇","渴"], "のどが渇く":["口渇","渇","渴"], "胸が苦しい":["胸満","心下悶","重苦し"],
-  "突き上げ":["奔豚","上衝","突き上げ"], "酒":["酒客","酒"], "鍼":["鍼","刺"]
+  "突き上げ":["奔豚","上衝","突き上げ"], "酒":["酒客","酒"], "鍼":["鍼","刺"],
+  "ぜんそく":["喘","喘家","ぜんそく","喘鳴"], "喘息":["喘","喘家","ぜんそく"], "息苦しい":["喘","息苦し"], "しぶり腹":["裏急後重","しぶり腹"],
+  "寝汗":["盗汗","盜汗","寝汗"], "黄汗":["黄汗"], "黄疸":["黄家","黄疸"], "肩こり":["項背強","几几","肩こり","首のこわばり"], "首のこわばり":["項背強","項強","几几","こわば"],
+  "こわばり":["強","几几","こわば"], "破傷風":["破傷風"], "はしか":["麻疹","はしか"], "天然痘":["痘瘡"], "痔":["痔"], "腰痛":["腰痛","腰髖","腰脚"],
+  "疝":["疝"], "手足の冷え":["逆冷","手足の冷え","冷えあが"], "しびれ":["不仁","痺","しびれ"], "便秘":["不大便","大便難","便秘","大實痛","停滯"]
 };
 function terms(q){
   const out=new Set();
@@ -190,7 +196,7 @@ function render(id){
   h+=`<section id="s-shu"><h3>主治</h3>${txt(e.shuchi)}${(e.tochu||[]).map(t=>tc(t)).join("")}</section>`;
   h+=`<section id="s-ho"><h3>処方・煎法</h3><table class="herbs"><tr><th>生薬</th><th>原方</th><th>今用</th></tr>${(H.herbs||[]).map(x=>`<tr><td>${esc(x.name)}</td><td>${esc(x.ryo)}</td><td>${esc(x.ima||"")}</td></tr>`).join("")}</table>`+
     `${H.imaNote?`<p class="small">${esc(H.imaNote)}</p>`:""}${txt(H)}${(H.tochu||[]).map(t=>tc(t)).join("")}</section>`;
-  h+=`<section id="s-jo"><h3>条文</h3>${(e.joubun||[]).map((j,i)=>`<div class="jo" id="jo-${i+1}"><div><span class="no">第${i+1}条</span><span class="src">${esc(j.src||"")}　${komaLink(j.koma)}</span></div>${txt(j)}${(j.tochu||[]).map(t=>tc(t)).join("")}</div>`).join("")}</section>`;
+  h+=`<section id="s-jo"><h3>条文</h3>${(e.joubun||[]).map((j,i)=>`<div class="jo" id="jo-${i+1}"><div><span class="no">第${i+1}条</span><span class="src">${esc(j.src||"")}　${komaLink(j.koma)}</span></div>${txt(j)}${j.an?`<div class="an"><div class="h">東洞按（爲則按）</div>${txt(j.an,"",true)}</div>`:""}${(j.tochu||[]).map(t=>tc(t)).join("")}</div>`).join("")}</section>`;
   if(e.check&&e.check.length) h+=`<section id="s-chk"><h3>要確認</h3><ul class="check">${e.check.map(c=>`<li>${esc(c)}</li>`).join("")}</ul></section>`;
   $("#page").innerHTML=h+"</div>";
 }
@@ -204,6 +210,7 @@ function search(q){
     (e.tags||[]).forEach(t=>{ if(test(t)) hits.push({e,where:"症状タグ",text:t,a:""}) });
     (e.joubun||[]).forEach((j,i)=>{
       if(test(j.kaki+j.yaku)) hits.push({e,where:`第${i+1}条`,text:j.yaku,a:`jo-${i+1}`});
+      if(j.an&&test(j.an.kaki+j.an.yaku)) hits.push({e,where:`第${i+1}条・東洞按`,text:j.an.yaku,a:`jo-${i+1}`});
       (j.tochu||[]).forEach(t=>{ if(test(t.kaki+t.yaku)) hits.push({e,where:`第${i+1}条・頭注`,text:t.yaku,a:`jo-${i+1}`}) });
     });
     [...(e.tochu||[]),...(e.houzai?.tochu||[])].forEach(t=>{ if(test(t.kaki+t.yaku)) hits.push({e,where:`頭注・${t.head}`,text:t.yaku,a:"s-ho"}) });
