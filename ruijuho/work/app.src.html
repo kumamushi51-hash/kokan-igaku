@@ -63,18 +63,14 @@ mark{background:var(--hl);color:inherit;padding:0 1px}
 section{margin-top:30px}
 section>h3{font-family:var(--f-disp);font-size:19px;margin:0 0 12px;padding-bottom:4px;border-bottom:2px solid var(--ink);letter-spacing:.08em}
 .small{font-size:13px;color:var(--muted)}
-.gen{font-family:var(--f-disp);font-size:17px;letter-spacing:.04em}
 .kaki{font-family:var(--f-disp);font-size:16.5px}
 .yaku{font-size:15px}
 .lbl{display:inline-block;font-size:11px;color:var(--muted);border:1px solid var(--line);border-radius:3px;padding:0 5px;margin-right:6px;font-family:var(--f-body);letter-spacing:0;vertical-align:2px}
 .br{color:var(--br)}
 .txt>div{margin:4px 0}
-body[data-mode="gen"] .kaki, body[data-mode="gen"] .yaku{display:none}
-body[data-mode="kaki"] .gen, body[data-mode="kaki"] .yaku{display:none}
-body[data-mode="yaku"] .gen, body[data-mode="yaku"] .kaki{display:none}
-body[data-mode="both"] .gen{display:none}
-body:not([data-mode="all"]) .lbl{display:none}
-body[data-mode="both"] .kaki .lbl, body[data-mode="both"] .yaku .lbl{display:inline-block}
+body[data-mode="kaki"] .yaku{display:none}
+body[data-mode="yaku"] .kaki{display:none}
+body:not([data-mode="both"]) .lbl{display:none}
 table.herbs{border-collapse:collapse;font-size:15px;margin:4px 0 10px}
 table.herbs th,table.herbs td{border-bottom:1px solid var(--line);padding:4px 14px 4px 0;text-align:left;font-weight:400}
 table.herbs th{font-size:12px;color:var(--muted)}
@@ -87,10 +83,7 @@ table.herbs td:first-child{font-family:var(--f-disp);font-size:17px;font-weight:
 .tc .h{font-size:12px;font-weight:700;color:var(--ai)}
 .tc a,.jo .src a,.meta a{color:var(--ai)}
 .tc .h span{font-weight:400;color:var(--muted);margin-left:6px}
-.tc .gen{font-size:15px}
-.tc .kaki{display:none}
-body[data-mode="kaki"] .tc .gen, body[data-mode="both"] .tc .gen{display:none}
-body[data-mode="kaki"] .tc .yaku, body[data-mode="both"] .tc .yaku{display:block}
+.tc .kaki{font-size:15.5px}
 .check{background:var(--shu-soft);border-radius:6px;padding:10px 16px 10px 30px;margin:0;font-size:13.5px}
 .check li{margin:2px 0}
 .note{font-size:13px;color:var(--muted);background:var(--bg);border-radius:6px;padding:10px 14px}
@@ -166,19 +159,19 @@ function navHTML(){
   h+=`<h3>このアプリについて</h3><a href="#about" data-goto="about" id="n-about">凡例</a>`;
   return h;
 }
-function txt(o,cls=""){ // 原文・書き下し・現代語訳を表示モードに応じて
-  return `<div class="txt ${cls}">${o.gen?`<div class="gen"><span class="lbl">原文</span>${br(o.gen)}</div>`:""}`+
-    `${o.kaki?`<div class="kaki"><span class="lbl">書き下し</span>${br(o.kaki)}</div>`:""}`+
+function txt(o,cls="",plain=false){ // plain=頭注（「」は引用なので薄くしない） // 原文・書き下し・現代語訳を表示モードに応じて
+  return `<div class="txt ${cls}">`+
+    `${o.kaki?`<div class="kaki"><span class="lbl">書き下し</span>${plain?esc(o.kaki):br(o.kaki)}</div>`:""}`+
     `${o.yaku?`<div class="yaku"><span class="lbl">現代語訳</span>${brY(o.yaku)}</div>`:""}</div>`;
 }
 function komaLink(k){ const m=String(k).match(/\d+/); return m?`<a href="${RMDA}${+m[0]}" target="_blank" rel="noopener">コマ${esc(k)}</a>`:"" }
-function tc(t,i){ return `<div class="tc"${i?` id="${i}"`:""}><div class="h">頭注（榕堂）${t.head?"："+esc(t.head):""}<span>${komaLink(t.koma)}</span></div>${txt({gen:t.gen,yaku:t.yaku})}</div>` }
+function tc(t,i){ return `<div class="tc"${i?` id="${i}"`:""}><div class="h">頭注（榕堂）${t.head?"："+esc(t.head):""}<span>${komaLink(t.koma)}</span></div>${txt(t,"",true)}</div>` }
 function about(){
   return `<div class="page"><h2>凡例</h2><section><h3>この本について</h3><p>『類聚方広義』は、吉益東洞の『類聚方』（傷寒論・金匱要略の条文を方剤ごとに集めたもの）に、尾台榕堂が上段の「頭注」として自らの論・治験・用法を書き加えた書物です（嘉永・安政年間刊）。</p></section>
   <section><h3>表示</h3><ul>
-  <li><b>原文</b>：本書の本文をそのまま翻刻したもの。句読点は読みやすさのために補っています。</li>
-  <li><b>「」</b>（薄い色）：本書で東洞が括弧で囲んだ部分。頭注に「東洞先生之を域するは、其の辞を悪むなり」とあるように、後人の加筆や理屈の部分として東洞が疑ったところです。現代語訳では〔〕で示します。</li>
-  <li><b>頭注（榕堂）</b>：上段の頭注は、関係する条文のすぐ下に置きました。原文と現代語訳（全文）です。</li>
+  <li><b>書き下し</b>：本書の本文・頭注を書き下したもの（訓点を参考に、句読点を補っています）。</li>
+  <li><b>「」</b>（書き下しで薄い色）：本書で東洞が括弧で囲んだ部分。頭注に「東洞先生之を域するは、其の辞を悪むなり」とあるように、後人の加筆や理屈の部分として東洞が疑ったところです。現代語訳では〔〕で示します。</li>
+  <li><b>頭注（榕堂）</b>：上段の頭注は、関係する条文のすぐ下に置きました。全文の書き下しと現代語訳です。</li>
   <li><b>コマ</b>：京都大学貴重資料デジタルアーカイブの画像番号（1コマ＝見開き、R＝右頁、L＝左頁）。押すと原本画像が開きます。</li>
   <li><b>要確認</b>：判読に自信がない字や、括弧の範囲など、原本で確かめたい点です。</li></ul></section>
   <section><h3>底本</h3><p class="small">『類聚方広義』尾台逸（榕堂）著。京都大学附属図書館所蔵（富士川文庫, RB00005779）。画像の利用条件は同アーカイブの表示に従います。</p></section></div>`;
@@ -192,7 +185,7 @@ function render(id){
   let h=`<div class="page"><h2>${esc(e.title)}<small>${esc(e.yomi||"")}</small></h2>`+
     `<div class="meta">類聚方広義 第${e.no}方（${esc(e.group||"")}）　原本：${komaLink(e.koma[0])}〜${komaLink(e.koma[1])}（${esc(e.komaNote||"")}）</div>`+
     `<div class="tags">${(e.tags||[]).map(t=>`<button class="tag" data-q="${esc(t)}">${esc(t)}</button>`).join("")}</div>`+
-    `<div class="modebar">表示：<span class="seg" id="seg">${[["both","書き下し＋訳"],["kaki","書き下し"],["yaku","現代語訳"],["gen","原文"],["all","すべて"]].map(([v,l])=>`<button data-mode="${v}" aria-pressed="${document.body.dataset.mode===v}">${l}</button>`).join("")}</span></div>`+
+    `<div class="modebar">表示：<span class="seg" id="seg">${[["both","書き下し＋訳"],["kaki","書き下し"],["yaku","現代語訳"]].map(([v,l])=>`<button data-mode="${v}" aria-pressed="${document.body.dataset.mode===v}">${l}</button>`).join("")}</span></div>`+
     `<div class="toc"><a href="#" data-jump="s-shu">主治</a><a href="#" data-jump="s-ho">処方・煎法</a><a href="#" data-jump="s-jo">条文（${(e.joubun||[]).length}）</a>${e.check&&e.check.length?`<a href="#" data-jump="s-chk">要確認</a>`:""}</div>`;
   h+=`<section id="s-shu"><h3>主治</h3>${txt(e.shuchi)}${(e.tochu||[]).map(t=>tc(t)).join("")}</section>`;
   h+=`<section id="s-ho"><h3>処方・煎法</h3><table class="herbs"><tr><th>生薬</th><th>原方</th><th>今用</th></tr>${(H.herbs||[]).map(x=>`<tr><td>${esc(x.name)}</td><td>${esc(x.ryo)}</td><td>${esc(x.ima||"")}</td></tr>`).join("")}</table>`+
@@ -207,13 +200,13 @@ function search(q){
   const ts=terms(q); const hits=[]; const test=s=>s&&ts.some(t=>s.includes(t));
   D.forEach(e=>{
     if(test(e.title)) hits.push({e,where:"方剤名",text:e.title+"　"+(e.shuchi?.yaku||""),a:""});
-    if(test(e.shuchi?.gen+e.shuchi?.yaku)) hits.push({e,where:"主治",text:e.shuchi.yaku,a:"s-shu"});
+    if(test(e.shuchi?.kaki+e.shuchi?.yaku)) hits.push({e,where:"主治",text:e.shuchi.yaku,a:"s-shu"});
     (e.tags||[]).forEach(t=>{ if(test(t)) hits.push({e,where:"症状タグ",text:t,a:""}) });
     (e.joubun||[]).forEach((j,i)=>{
-      if(test(j.gen+j.kaki+j.yaku)) hits.push({e,where:`第${i+1}条`,text:j.yaku,a:`jo-${i+1}`});
-      (j.tochu||[]).forEach(t=>{ if(test(t.gen+t.yaku)) hits.push({e,where:`第${i+1}条・頭注`,text:t.yaku,a:`jo-${i+1}`}) });
+      if(test(j.kaki+j.yaku)) hits.push({e,where:`第${i+1}条`,text:j.yaku,a:`jo-${i+1}`});
+      (j.tochu||[]).forEach(t=>{ if(test(t.kaki+t.yaku)) hits.push({e,where:`第${i+1}条・頭注`,text:t.yaku,a:`jo-${i+1}`}) });
     });
-    [...(e.tochu||[]),...(e.houzai?.tochu||[])].forEach(t=>{ if(test(t.gen+t.yaku)) hits.push({e,where:`頭注・${t.head}`,text:t.yaku,a:"s-ho"}) });
+    [...(e.tochu||[]),...(e.houzai?.tochu||[])].forEach(t=>{ if(test(t.kaki+t.yaku)) hits.push({e,where:`頭注・${t.head}`,text:t.yaku,a:"s-ho"}) });
   });
   const seen=new Set(); const uniq=hits.filter(h=>{const k=h.e.id+h.where+h.text.slice(0,20); if(seen.has(k))return false; seen.add(k); return true});
   const mark=s=>{ let h=esc(s.length>130?snip(s,ts):s); ts.forEach(t=>{ if(t) h=h.split(esc(t)).join(`<mark>${esc(t)}</mark>`) }); return h };
@@ -223,6 +216,7 @@ function search(q){
 }
 function snip(s,ts){ let i=-1; for(const t of ts){ i=s.indexOf(t); if(i>=0)break } i=Math.max(0,i-30); return (i>0?"…":"")+s.slice(i,i+120)+"…" }
 let mode="both"; try{ mode=localStorage.getItem("rj-mode")||"both" }catch(e){}
+if(!["both","kaki","yaku"].includes(mode)) mode="both";
 document.body.dataset.mode=mode;
 $("#nav").innerHTML=navHTML();
 $("#hint").innerHTML="例："+EX.map(x=>`<button type="button" data-q="${x}">${x}</button>`).join("");
