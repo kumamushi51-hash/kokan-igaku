@@ -1,0 +1,12 @@
+manifest: https://rmda.kulib.kyoto-u.ac.jp/iiif/metadata_manifest/RB00005779/manifest.json
+v1: 類聚方広義  199コマ
+  v1 20/199
+  v1 40/199
+  v1 60/199
+  v1 80/199
+  v1 100/199
+  v1 120/199
+  v1 140/199
+  v1 160/199
+  v1 180/199
+完了 199 コマ
