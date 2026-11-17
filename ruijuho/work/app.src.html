@@ -1,0 +1,243 @@
+<title>類聚方広義 症状検索</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=BIZ+UDPGothic:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* 左に方剤の目次、右に一方剤の頁。上部に症状検索。皇漢医学アプリと同じ作り（色は茶） */
+:root{
+  --bg:#f1eee8; --paper:#fbf9f5; --ink:#2a2420; --muted:#6c625a; --line:#d6cec3;
+  --ai:#6b3e26; --ai-soft:#efe3d8; --shu:#b23a2a; --shu-soft:#f3e0dc; --hl:#f2e6a8; --br:#8a7f74;
+  --f-disp:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
+  --f-body:"BIZ UDPGothic","Hiragino Sans","Yu Gothic",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#1b1715; --paper:#231e1b; --ink:#ece5de; --muted:#a89d93; --line:#3d342e;
+  --ai:#d9a985; --ai-soft:#3a2b21; --shu:#e07a68; --shu-soft:#3a2522; --hl:#5a4f1f; --br:#9b8f84; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#1b1715; --paper:#231e1b; --ink:#ece5de; --muted:#a89d93; --line:#3d342e;
+  --ai:#d9a985; --ai-soft:#3a2b21; --shu:#e07a68; --shu-soft:#3a2522; --hl:#5a4f1f; --br:#9b8f84; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.85;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 48px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:14px 12px;border-bottom:1px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.top{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px;max-width:1180px;margin:0 auto}
+h1{font-family:var(--f-disp);font-size:22px;margin:0;letter-spacing:.08em}
+.sub{color:var(--muted);font-size:12px}
+.search{display:flex;gap:8px;max-width:1180px;margin:10px auto 0}
+.search input{flex:1;min-width:0;font:inherit;font-size:16px;padding:9px 12px;border:1px solid var(--line);border-radius:6px;background:var(--paper);color:var(--ink)}
+.search input:focus{outline:2px solid var(--ai);outline-offset:1px}
+.hint{max-width:1180px;margin:6px auto 0;font-size:12px;color:var(--muted)}
+.hint button{font:inherit;font-size:12px;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:999px;padding:1px 10px;margin:2px 2px 0 0;cursor:pointer}
+#navbtn{display:none}
+.wrap{display:grid;grid-template-columns:200px minmax(0,1fr);gap:24px;max-width:1180px;margin:18px auto 0}
+nav{position:sticky;top:150px;align-self:start;font-size:14px;max-height:calc(100vh - 170px);overflow:auto}
+nav h3{font-family:var(--f-disp);font-size:13px;color:var(--muted);letter-spacing:.15em;margin:14px 0 4px;font-weight:500}
+nav a{display:block;padding:5px 10px;border-left:3px solid transparent;color:var(--ink);text-decoration:none;border-radius:0 4px 4px 0}
+nav a:hover{background:var(--ai-soft)}
+nav a.on{border-left-color:var(--ai);background:var(--ai-soft);font-weight:700}
+nav .no{font-size:11px;color:var(--muted);margin-right:4px}
+main{min-width:0}
+.results{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:14px 18px;margin-bottom:18px}
+.results h2{font-size:14px;margin:0 0 8px;color:var(--muted);font-weight:700}
+.hit{display:block;padding:10px 0;border-top:1px solid var(--line);color:var(--ink);text-decoration:none}
+.hit:first-of-type{border-top:0}
+.hit b{font-family:var(--f-disp);font-size:17px}
+.hit .where{font-size:12px;color:var(--ai);margin-left:8px}
+.hit p{margin:2px 0 0;font-size:13.5px;color:var(--muted)}
+mark{background:var(--hl);color:inherit;padding:0 1px}
+.page{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:24px clamp(16px,3vw,36px)}
+.page h2{font-family:var(--f-disp);font-size:30px;margin:0;letter-spacing:.1em}
+.page h2 small{font-family:var(--f-body);font-size:13px;color:var(--muted);letter-spacing:0;margin-left:10px;font-weight:400}
+.meta{color:var(--muted);font-size:12.5px;margin-top:2px}
+.meta a{color:var(--ai)}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 0}
+.tag{font-size:12px;border:1px solid var(--line);border-radius:999px;padding:1px 10px;background:var(--bg);cursor:pointer;color:var(--ink);font-family:inherit}
+.tag:hover{border-color:var(--ai)}
+.modebar{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin-top:16px;padding-top:12px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.seg button{font:inherit;font-size:13px;border:0;background:var(--paper);color:var(--ink);padding:4px 12px;cursor:pointer;border-left:1px solid var(--line)}
+.seg button:first-child{border-left:0}
+.seg button[aria-pressed="true"]{background:var(--ai);color:var(--paper);font-weight:700}
+.toc{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:13px;margin:10px 0 0}
+.toc a{color:var(--ai)}
+section{margin-top:30px}
+section>h3{font-family:var(--f-disp);font-size:19px;margin:0 0 12px;padding-bottom:4px;border-bottom:2px solid var(--ink);letter-spacing:.08em}
+.small{font-size:13px;color:var(--muted)}
+.gen{font-family:var(--f-disp);font-size:17px;letter-spacing:.04em}
+.kaki{font-family:var(--f-disp);font-size:16.5px}
+.yaku{font-size:15px}
+.lbl{display:inline-block;font-size:11px;color:var(--muted);border:1px solid var(--line);border-radius:3px;padding:0 5px;margin-right:6px;font-family:var(--f-body);letter-spacing:0;vertical-align:2px}
+.br{color:var(--br)}
+.txt>div{margin:4px 0}
+body[data-mode="gen"] .kaki, body[data-mode="gen"] .yaku{display:none}
+body[data-mode="kaki"] .gen, body[data-mode="kaki"] .yaku{display:none}
+body[data-mode="yaku"] .gen, body[data-mode="yaku"] .kaki{display:none}
+body[data-mode="both"] .gen{display:none}
+body:not([data-mode="all"]) .lbl{display:none}
+body[data-mode="both"] .kaki .lbl, body[data-mode="both"] .yaku .lbl{display:inline-block}
+table.herbs{border-collapse:collapse;font-size:15px;margin:4px 0 10px}
+table.herbs th,table.herbs td{border-bottom:1px solid var(--line);padding:4px 14px 4px 0;text-align:left;font-weight:400}
+table.herbs th{font-size:12px;color:var(--muted)}
+table.herbs td:first-child{font-family:var(--f-disp);font-size:17px;font-weight:700}
+.jo{border-top:1px solid var(--line);padding:16px 0}
+.jo:first-of-type{border-top:0;padding-top:4px}
+.jo .no{font-family:var(--f-disp);font-weight:700;color:var(--ai);margin-right:6px}
+.jo .src{font-size:12px;color:var(--muted)}
+.tc{margin:10px 0 0;padding:10px 14px;background:var(--ai-soft);border-left:3px solid var(--ai);border-radius:0 6px 6px 0}
+.tc .h{font-size:12px;font-weight:700;color:var(--ai)}
+.tc a,.jo .src a,.meta a{color:var(--ai)}
+.tc .h span{font-weight:400;color:var(--muted);margin-left:6px}
+.tc .gen{font-size:15px}
+.tc .kaki{display:none}
+body[data-mode="kaki"] .tc .gen, body[data-mode="both"] .tc .gen{display:none}
+body[data-mode="kaki"] .tc .yaku, body[data-mode="both"] .tc .yaku{display:block}
+.check{background:var(--shu-soft);border-radius:6px;padding:10px 16px 10px 30px;margin:0;font-size:13.5px}
+.check li{margin:2px 0}
+.note{font-size:13px;color:var(--muted);background:var(--bg);border-radius:6px;padding:10px 14px}
+footer{max-width:1180px;margin:28px auto 0;font-size:12px;color:var(--muted)}
+footer a{color:var(--ai)}
+@media (max-width:760px){
+  .wrap{grid-template-columns:1fr}
+  #navbtn{display:block;width:100%;font:inherit;font-size:14px;padding:8px;border:1px solid var(--line);border-radius:6px;background:var(--paper);color:var(--ink);margin-top:8px}
+  nav{position:static;max-height:none;display:none}
+  nav.open{display:block}
+  .page h2{font-size:26px}
+}
+</style>
+<header>
+  <div class="top"><h1>類聚方広義</h1><span class="sub">尾台榕堂　条文・頭注を症状から検索</span></div>
+  <div class="search"><input id="q" type="search" placeholder="症状・方剤名で検索（例：のぼせ、頭痛、汗、下痢）" autocomplete="off" enterkeyhint="search"></div>
+  <div class="hint" id="hint"></div>
+  <button id="navbtn" type="button" aria-expanded="false">目次（方剤）を開く</button>
+</header>
+<div class="wrap">
+  <nav id="nav"></nav>
+  <main><div class="results" id="results" hidden></div><div id="page"></div></main>
+</div>
+<footer>底本：『類聚方広義』尾台逸（榕堂）著（京都大学附属図書館所蔵 富士川文庫）。画像は <a href="https://rmda.kulib.kyoto-u.ac.jp/item/rb00005779" target="_blank" rel="noopener">京都大学貴重資料デジタルアーカイブ</a>。書き下し・現代語訳は学習用の試訳です。</footer>
+<script>
+/*__DATA__*/
+</script>
+<script>
+const D=(window.RUIJU_DATA||[]).slice().sort((a,b)=>a.no-b.no);
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const RMDA="https://rmda.kulib.kyoto-u.ac.jp/item/rb00005779?page=";
+// 「」（東洞が囲んだ部分）と〔〕（訳でのその部分）を薄く表示
+const br=s=>esc(s).replace(/「([^」]*)」/g,'<span class="br">「$1」</span>');
+const brY=s=>esc(s).replace(/〔([^〕]*)〕/g,'<span class="br">〔$1〕</span>');
+const EX=["のぼせ","頭痛","汗","寒気","下痢","体の痛み","つわり","産後"];
+const SYN = {
+  "泣く":["悲傷","哭","啼哭","悲泣","泣"], "鼻血":["衄","衄血","鼻血"], "はなぢ":["衄","鼻血"],
+  "寒気":["悪寒","惡寒","嗇嗇","寒気"], "さむけ":["悪寒","惡寒","寒気"], "ぞくぞく":["悪寒","嗇嗇","ぞくぞく"],
+  "風が嫌":["悪風","惡風","風を嫌"], "かぜ":["中風","かぜ","外邪"], "風邪":["中風","かぜ","外邪"],
+  "汗":["自汗","汗出","汗"], "寝汗":["盗汗","寝汗"], "冷え":["冷","厥冷","冷え"], "しびれ":["不仁","麻痺","しびれ"],
+  "熱":["発熱","發熱","煩熱","熱"], "夕方":["日晡所","夕方"],
+  "頭痛":["頭痛","頭微痛","頭項強痛"], "首":["項","頭項"], "うなじ":["項","頭項"],
+  "のぼせ":["上衝","気上衝","のぼせ","突き上げ"],
+  "みぞおち":["心下","心下痞","心下悶","みぞおち"], "つかえ":["痞","心下痞","つかえ"], "胃":["心下","みぞおち"],
+  "吐き気":["嘔","乾嘔","嘔逆","吐き気","からえずき"], "えずき":["乾嘔","からえずき"], "嘔吐":["吐","嘔吐","吐く"],
+  "下痢":["下利","下痢","自利","清穀"], "便秘":["不大便","大便難","便通がなく"],
+  "腹痛":["腹痛","腹中痛"], "お腹が張る":["腹脹滿","腹満","腹が張"], "腹部膨満":["腹脹滿","腹満","腹が張"],
+  "体の痛み":["身疼痛","身痛","身體疼痛","体が痛","体の痛み"], "関節":["疼痛","身疼痛","関節"],
+  "のど":["咽喉痛","咽喉","のど"], "喉":["咽喉痛","咽喉","のど"], "咳":["咳","咳嗽"], "せき":["咳","咳嗽"],
+  "鼻水":["鼻鳴","鼻水"], "鼻づまり":["鼻鳴","鼻が詰ま","鼻づまり"], "膿":["膿","膿血"],
+  "産後":["産後","産后","產後"], "妊娠":["姙娠","妊娠","つわり"], "つわり":["姙娠","妊娠","つわり","不能食"],
+  "食欲がない":["不能食","食事がとれ"], "尿":["小便"], "小便":["小便"],
+  "腹直筋":["腹直筋","拘攣","攣急"], "けいれん":["けいれん","痙攣","攣急"], "いらいら":["いらいら","煩躁","煩"],
+  "むくみ":["むくみ","水腫","水気","浮腫"], "動悸":["動悸","悸"], "めまい":["めまい","眩","目眩","頭眩"],
+  "口渇":["口渇","渇","渴"], "のどが渇く":["口渇","渇","渴"], "胸が苦しい":["胸満","心下悶","重苦し"],
+  "突き上げ":["奔豚","上衝","突き上げ"], "酒":["酒客","酒"], "鍼":["鍼","刺"]
+};
+function terms(q){
+  const out=new Set();
+  q.split(/[\s　、,]+/).filter(Boolean).forEach(w=>{
+    out.add(w);
+    if(SYN[w]){ SYN[w].forEach(x=>out.add(x)); return }
+    const ks=Object.keys(SYN).filter(k=>k.includes(w)||w.includes(k)).sort((a,b)=>b.length-a.length);
+    if(ks.length) SYN[ks[0]].forEach(x=>out.add(x));
+  });
+  return [...out];
+}
+function navHTML(){
+  let h="", g=null;
+  D.forEach(e=>{ if(e.group!==g){ g=e.group; h+=`<h3>${esc(g)}</h3>` }
+    h+=`<a href="#${e.id}" data-goto="${e.id}" id="n-${e.id}"><span class="no">${e.no}</span>${esc(e.title)}</a>` });
+  h+=`<h3>このアプリについて</h3><a href="#about" data-goto="about" id="n-about">凡例</a>`;
+  return h;
+}
+function txt(o,cls=""){ // 原文・書き下し・現代語訳を表示モードに応じて
+  return `<div class="txt ${cls}">${o.gen?`<div class="gen"><span class="lbl">原文</span>${br(o.gen)}</div>`:""}`+
+    `${o.kaki?`<div class="kaki"><span class="lbl">書き下し</span>${br(o.kaki)}</div>`:""}`+
+    `${o.yaku?`<div class="yaku"><span class="lbl">現代語訳</span>${brY(o.yaku)}</div>`:""}</div>`;
+}
+function komaLink(k){ const m=String(k).match(/\d+/); return m?`<a href="${RMDA}${+m[0]}" target="_blank" rel="noopener">コマ${esc(k)}</a>`:"" }
+function tc(t,i){ return `<div class="tc"${i?` id="${i}"`:""}><div class="h">頭注（榕堂）${t.head?"："+esc(t.head):""}<span>${komaLink(t.koma)}</span></div>${txt({gen:t.gen,yaku:t.yaku})}</div>` }
+function about(){
+  return `<div class="page"><h2>凡例</h2><section><h3>この本について</h3><p>『類聚方広義』は、吉益東洞の『類聚方』（傷寒論・金匱要略の条文を方剤ごとに集めたもの）に、尾台榕堂が上段の「頭注」として自らの論・治験・用法を書き加えた書物です（嘉永・安政年間刊）。</p></section>
+  <section><h3>表示</h3><ul>
+  <li><b>原文</b>：本書の本文をそのまま翻刻したもの。句読点は読みやすさのために補っています。</li>
+  <li><b>「」</b>（薄い色）：本書で東洞が括弧で囲んだ部分。頭注に「東洞先生之を域するは、其の辞を悪むなり」とあるように、後人の加筆や理屈の部分として東洞が疑ったところです。現代語訳では〔〕で示します。</li>
+  <li><b>頭注（榕堂）</b>：上段の頭注は、関係する条文のすぐ下に置きました。原文と現代語訳（全文）です。</li>
+  <li><b>コマ</b>：京都大学貴重資料デジタルアーカイブの画像番号（1コマ＝見開き、R＝右頁、L＝左頁）。押すと原本画像が開きます。</li>
+  <li><b>要確認</b>：判読に自信がない字や、括弧の範囲など、原本で確かめたい点です。</li></ul></section>
+  <section><h3>底本</h3><p class="small">『類聚方広義』尾台逸（榕堂）著。京都大学附属図書館所蔵（富士川文庫, RB00005779）。画像の利用条件は同アーカイブの表示に従います。</p></section></div>`;
+}
+function render(id){
+  document.querySelectorAll("nav a").forEach(a=>a.classList.toggle("on",a.dataset.goto===id));
+  if(id==="about"){ $("#page").innerHTML=about(); return }
+  const e=D.find(x=>x.id===id)||D[0]; if(!e) return;
+  document.querySelectorAll("nav a").forEach(a=>a.classList.toggle("on",a.dataset.goto===e.id));
+  const H=e.houzai||{};
+  let h=`<div class="page"><h2>${esc(e.title)}<small>${esc(e.yomi||"")}</small></h2>`+
+    `<div class="meta">類聚方広義 第${e.no}方（${esc(e.group||"")}）　原本：${komaLink(e.koma[0])}〜${komaLink(e.koma[1])}（${esc(e.komaNote||"")}）</div>`+
+    `<div class="tags">${(e.tags||[]).map(t=>`<button class="tag" data-q="${esc(t)}">${esc(t)}</button>`).join("")}</div>`+
+    `<div class="modebar">表示：<span class="seg" id="seg">${[["both","書き下し＋訳"],["kaki","書き下し"],["yaku","現代語訳"],["gen","原文"],["all","すべて"]].map(([v,l])=>`<button data-mode="${v}" aria-pressed="${document.body.dataset.mode===v}">${l}</button>`).join("")}</span></div>`+
+    `<div class="toc"><a href="#" data-jump="s-shu">主治</a><a href="#" data-jump="s-ho">処方・煎法</a><a href="#" data-jump="s-jo">条文（${(e.joubun||[]).length}）</a>${e.check&&e.check.length?`<a href="#" data-jump="s-chk">要確認</a>`:""}</div>`;
+  h+=`<section id="s-shu"><h3>主治</h3>${txt(e.shuchi)}${(e.tochu||[]).map(t=>tc(t)).join("")}</section>`;
+  h+=`<section id="s-ho"><h3>処方・煎法</h3><table class="herbs"><tr><th>生薬</th><th>原方</th><th>今用</th></tr>${(H.herbs||[]).map(x=>`<tr><td>${esc(x.name)}</td><td>${esc(x.ryo)}</td><td>${esc(x.ima||"")}</td></tr>`).join("")}</table>`+
+    `${H.imaNote?`<p class="small">${esc(H.imaNote)}</p>`:""}${txt(H)}${(H.tochu||[]).map(t=>tc(t)).join("")}</section>`;
+  h+=`<section id="s-jo"><h3>条文</h3>${(e.joubun||[]).map((j,i)=>`<div class="jo" id="jo-${i+1}"><div><span class="no">第${i+1}条</span><span class="src">${esc(j.src||"")}　${komaLink(j.koma)}</span></div>${txt(j)}${(j.tochu||[]).map(t=>tc(t)).join("")}</div>`).join("")}</section>`;
+  if(e.check&&e.check.length) h+=`<section id="s-chk"><h3>要確認</h3><ul class="check">${e.check.map(c=>`<li>${esc(c)}</li>`).join("")}</ul></section>`;
+  $("#page").innerHTML=h+"</div>";
+}
+function search(q){
+  const box=$("#results");
+  if(!q.trim()){box.hidden=true;return}
+  const ts=terms(q); const hits=[]; const test=s=>s&&ts.some(t=>s.includes(t));
+  D.forEach(e=>{
+    if(test(e.title)) hits.push({e,where:"方剤名",text:e.title+"　"+(e.shuchi?.yaku||""),a:""});
+    if(test(e.shuchi?.gen+e.shuchi?.yaku)) hits.push({e,where:"主治",text:e.shuchi.yaku,a:"s-shu"});
+    (e.tags||[]).forEach(t=>{ if(test(t)) hits.push({e,where:"症状タグ",text:t,a:""}) });
+    (e.joubun||[]).forEach((j,i)=>{
+      if(test(j.gen+j.kaki+j.yaku)) hits.push({e,where:`第${i+1}条`,text:j.yaku,a:`jo-${i+1}`});
+      (j.tochu||[]).forEach(t=>{ if(test(t.gen+t.yaku)) hits.push({e,where:`第${i+1}条・頭注`,text:t.yaku,a:`jo-${i+1}`}) });
+    });
+    [...(e.tochu||[]),...(e.houzai?.tochu||[])].forEach(t=>{ if(test(t.gen+t.yaku)) hits.push({e,where:`頭注・${t.head}`,text:t.yaku,a:"s-ho"}) });
+  });
+  const seen=new Set(); const uniq=hits.filter(h=>{const k=h.e.id+h.where+h.text.slice(0,20); if(seen.has(k))return false; seen.add(k); return true});
+  const mark=s=>{ let h=esc(s.length>130?snip(s,ts):s); ts.forEach(t=>{ if(t) h=h.split(esc(t)).join(`<mark>${esc(t)}</mark>`) }); return h };
+  box.hidden=false;
+  box.innerHTML=`<h2>「${esc(q)}」の検索結果 ${uniq.length}件${ts.length>1?`<span class="small">（${esc(ts.slice(0,8).join("・"))} を含めて検索）</span>`:""}</h2>`+
+    (uniq.length?uniq.slice(0,80).map(h=>`<a class="hit" href="#${h.e.id}" data-goto="${h.e.id}" data-anchor="${h.a}"><b>${esc(h.e.title)}</b><span class="where">${esc(h.where)}</span><p>${mark(h.text)}</p></a>`).join(""):`<p class="small">該当なし。別の言い方（例：「寒気」→「悪寒」）でもお試しください。</p>`);
+}
+function snip(s,ts){ let i=-1; for(const t of ts){ i=s.indexOf(t); if(i>=0)break } i=Math.max(0,i-30); return (i>0?"…":"")+s.slice(i,i+120)+"…" }
+let mode="both"; try{ mode=localStorage.getItem("rj-mode")||"both" }catch(e){}
+document.body.dataset.mode=mode;
+$("#nav").innerHTML=navHTML();
+$("#hint").innerHTML="例："+EX.map(x=>`<button type="button" data-q="${x}">${x}</button>`).join("");
+document.addEventListener("click",ev=>{
+  const t=ev.target.closest("[data-q],[data-mode],[data-goto],[data-jump]"); if(!t||t.tagName==="BODY") return;
+  if(t.dataset.q){ $("#q").value=t.dataset.q; search(t.dataset.q); window.scrollTo(0,0); return }
+  if(t.dataset.mode&&t.tagName==="BUTTON"){ mode=t.dataset.mode; document.body.dataset.mode=mode; try{localStorage.setItem("rj-mode",mode)}catch(e){}
+    document.querySelectorAll("#seg button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.mode===mode)); return }
+  if(t.dataset.jump){ ev.preventDefault(); document.getElementById(t.dataset.jump)?.scrollIntoView(); return }
+  if(t.dataset.goto){ ev.preventDefault(); history.replaceState(null,"","#"+t.dataset.goto); render(t.dataset.goto);
+    if(matchMedia("(max-width:760px)").matches){ $("#nav").classList.remove("open"); $("#navbtn").setAttribute("aria-expanded","false"); $("#navbtn").textContent="目次（方剤）を開く" }
+    const a=t.dataset.anchor; requestAnimationFrame(()=>{ const el=a&&document.getElementById(a); (el||$("#page")).scrollIntoView(); }); }
+});
+$("#q").addEventListener("input",e=>search(e.target.value));
+$("#navbtn").addEventListener("click",()=>{const n=$("#nav"),o=!n.classList.contains("open");n.classList.toggle("open",o);$("#navbtn").setAttribute("aria-expanded",o);$("#navbtn").textContent=o?"目次を閉じる":"目次（方剤）を開く"});
+window.addEventListener("hashchange",()=>render(location.hash.slice(1)));
+render(location.hash.slice(1)||(D[0]&&D[0].id));
+</script>

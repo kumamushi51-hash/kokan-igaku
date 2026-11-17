@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="theme-color" content="#6b3e26">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="類聚方広義">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}[hidden]{display:none!important}</style>
+<title>類聚方広義 症状検索</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=BIZ+UDPGothic:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* 左に方剤の目次、右に一方剤の頁。上部に症状検索。皇漢医学アプリと同じ作り（色は茶） */
+:root{
+  --bg:#f1eee8; --paper:#fbf9f5; --ink:#2a2420; --muted:#6c625a; --line:#d6cec3;
+  --ai:#6b3e26; --ai-soft:#efe3d8; --shu:#b23a2a; --shu-soft:#f3e0dc; --hl:#f2e6a8; --br:#8a7f74;
+  --f-disp:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
+  --f-body:"BIZ UDPGothic","Hiragino Sans","Yu Gothic",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#1b1715; --paper:#231e1b; --ink:#ece5de; --muted:#a89d93; --line:#3d342e;
+  --ai:#d9a985; --ai-soft:#3a2b21; --shu:#e07a68; --shu-soft:#3a2522; --hl:#5a4f1f; --br:#9b8f84; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#1b1715; --paper:#231e1b; --ink:#ece5de; --muted:#a89d93; --line:#3d342e;
+  --ai:#d9a985; --ai-soft:#3a2b21; --shu:#e07a68; --shu-soft:#3a2522; --hl:#5a4f1f; --br:#9b8f84; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.85;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 48px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:14px 12px;border-bottom:1px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.top{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px;max-width:1180px;margin:0 auto}
+h1{font-family:var(--f-disp);font-size:22px;margin:0;letter-spacing:.08em}
+.sub{color:var(--muted);font-size:12px}
+.search{display:flex;gap:8px;max-width:1180px;margin:10px auto 0}
+.search input{flex:1;min-width:0;font:inherit;font-size:16px;padding:9px 12px;border:1px solid var(--line);border-radius:6px;background:var(--paper);color:var(--ink)}
+.search input:focus{outline:2px solid var(--ai);outline-offset:1px}
+.hint{max-width:1180px;margin:6px auto 0;font-size:12px;color:var(--muted)}
+.hint button{font:inherit;font-size:12px;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:999px;padding:1px 10px;margin:2px 2px 0 0;cursor:pointer}
+#navbtn{display:none}
+.wrap{display:grid;grid-template-columns:200px minmax(0,1fr);gap:24px;max-width:1180px;margin:18px auto 0}
+nav{position:sticky;top:150px;align-self:start;font-size:14px;max-height:calc(100vh - 170px);overflow:auto}
+nav h3{font-family:var(--f-disp);font-size:13px;color:var(--muted);letter-spacing:.15em;margin:14px 0 4px;font-weight:500}
+nav a{display:block;padding:5px 10px;border-left:3px solid transparent;color:var(--ink);text-decoration:none;border-radius:0 4px 4px 0}
+nav a:hover{background:var(--ai-soft)}
+nav a.on{border-left-color:var(--ai);background:var(--ai-soft);font-weight:700}
+nav .no{font-size:11px;color:var(--muted);margin-right:4px}
+main{min-width:0}
+.results{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:14px 18px;margin-bottom:18px}
+.results h2{font-size:14px;margin:0 0 8px;color:var(--muted);font-weight:700}
+.hit{display:block;padding:10px 0;border-top:1px solid var(--line);color:var(--ink);text-decoration:none}
+.hit:first-of-type{border-top:0}
+.hit b{font-family:var(--f-disp);font-size:17px}
+.hit .where{font-size:12px;color:var(--ai);margin-left:8px}
+.hit p{margin:2px 0 0;font-size:13.5px;color:var(--muted)}
+mark{background:var(--hl);color:inherit;padding:0 1px}
+.page{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:24px clamp(16px,3vw,36px)}
+.page h2{font-family:var(--f-disp);font-size:30px;margin:0;letter-spacing:.1em}
+.page h2 small{font-family:var(--f-body);font-size:13px;color:var(--muted);letter-spacing:0;margin-left:10px;font-weight:400}
+.meta{color:var(--muted);font-size:12.5px;margin-top:2px}
+.meta a{color:var(--ai)}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 0}
+.tag{font-size:12px;border:1px solid var(--line);border-radius:999px;padding:1px 10px;background:var(--bg);cursor:pointer;color:var(--ink);font-family:inherit}
+.tag:hover{border-color:var(--ai)}
+.modebar{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin-top:16px;padding-top:12px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.seg button{font:inherit;font-size:13px;border:0;background:var(--paper);color:var(--ink);padding:4px 12px;cursor:pointer;border-left:1px solid var(--line)}
+.seg button:first-child{border-left:0}
+.seg button[aria-pressed="true"]{background:var(--ai);color:var(--paper);font-weight:700}
+.toc{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:13px;margin:10px 0 0}
+.toc a{color:var(--ai)}
+section{margin-top:30px}
+section>h3{font-family:var(--f-disp);font-size:19px;margin:0 0 12px;padding-bottom:4px;border-bottom:2px solid var(--ink);letter-spacing:.08em}
+.small{font-size:13px;color:var(--muted)}
+.gen{font-family:var(--f-disp);font-size:17px;letter-spacing:.04em}
+.kaki{font-family:var(--f-disp);font-size:16.5px}
+.yaku{font-size:15px}
+.lbl{display:inline-block;font-size:11px;color:var(--muted);border:1px solid var(--line);border-radius:3px;padding:0 5px;margin-right:6px;font-family:var(--f-body);letter-spacing:0;vertical-align:2px}
+.br{color:var(--br)}
+.txt>div{margin:4px 0}
+body[data-mode="gen"] .kaki, body[data-mode="gen"] .yaku{display:none}
+body[data-mode="kaki"] .gen, body[data-mode="kaki"] .yaku{display:none}
+body[data-mode="yaku"] .gen, body[data-mode="yaku"] .kaki{display:none}
+body[data-mode="both"] .gen{display:none}
+body:not([data-mode="all"]) .lbl{display:none}
+body[data-mode="both"] .kaki .lbl, body[data-mode="both"] .yaku .lbl{display:inline-block}
+table.herbs{border-collapse:collapse;font-size:15px;margin:4px 0 10px}
+table.herbs th,table.herbs td{border-bottom:1px solid var(--line);padding:4px 14px 4px 0;text-align:left;font-weight:400}
+table.herbs th{font-size:12px;color:var(--muted)}
+table.herbs td:first-child{font-family:var(--f-disp);font-size:17px;font-weight:700}
+.jo{border-top:1px solid var(--line);padding:16px 0}
+.jo:first-of-type{border-top:0;padding-top:4px}
+.jo .no{font-family:var(--f-disp);font-weight:700;color:var(--ai);margin-right:6px}
+.jo .src{font-size:12px;color:var(--muted)}
+.tc{margin:10px 0 0;padding:10px 14px;background:var(--ai-soft);border-left:3px solid var(--ai);border-radius:0 6px 6px 0}
+.tc .h{font-size:12px;font-weight:700;color:var(--ai)}
+.tc a,.jo .src a,.meta a{color:var(--ai)}
+.tc .h span{font-weight:400;color:var(--muted);margin-left:6px}
+.tc .gen{font-size:15px}
+.tc .kaki{display:none}
+body[data-mode="kaki"] .tc .gen, body[data-mode="both"] .tc .gen{display:none}
+body[data-mode="kaki"] .tc .yaku, body[data-mode="both"] .tc .yaku{display:block}
+.check{background:var(--shu-soft);border-radius:6px;padding:10px 16px 10px 30px;margin:0;font-size:13.5px}
+.check li{margin:2px 0}
+.note{font-size:13px;color:var(--muted);background:var(--bg);border-radius:6px;padding:10px 14px}
+footer{max-width:1180px;margin:28px auto 0;font-size:12px;color:var(--muted)}
+footer a{color:var(--ai)}
+@media (max-width:760px){
+  .wrap{grid-template-columns:1fr}
+  #navbtn{display:block;width:100%;font:inherit;font-size:14px;padding:8px;border:1px solid var(--line);border-radius:6px;background:var(--paper);color:var(--ink);margin-top:8px}
+  nav{position:static;max-height:none;display:none}
+  nav.open{display:block}
+  .page h2{font-size:26px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="top"><h1>類聚方広義</h1><span class="sub">尾台榕堂　条文・頭注を症状から検索</span></div>
+  <div class="search"><input id="q" type="search" placeholder="症状・方剤名で検索（例：のぼせ、頭痛、汗、下痢）" autocomplete="off" enterkeyhint="search"></div>
+  <div class="hint" id="hint"></div>
+  <button id="navbtn" type="button" aria-expanded="false">目次（方剤）を開く</button>
+</header>
+<div class="wrap">
+  <nav id="nav"></nav>
+  <main><div class="results" id="results" hidden></div><div id="page"></div></main>
+</div>
+<footer>底本：『類聚方広義』尾台逸（榕堂）著（京都大学附属図書館所蔵 富士川文庫）。画像は <a href="https://rmda.kulib.kyoto-u.ac.jp/item/rb00005779" target="_blank" rel="noopener">京都大学貴重資料デジタルアーカイブ</a>。書き下し・現代語訳は学習用の試訳です。</footer>
+<script>
+// 類聚方広義（尾台榕堂）京都大学附属図書館所蔵 富士川文庫 RB00005779
+// koma は RMDA ビューアの page 番号（1コマ＝見開き）。R=右頁, L=左頁
+// gen=原文（「」は東洞が囲んだ部分）, kaki=書き下し, yaku=現代語訳（〔〕は「」の部分）
+// tochu=頭注（尾台榕堂）。全文 gen と現代語訳 yaku
+window.RUIJU_DATA = window.RUIJU_DATA || [];
+window.RUIJU_DATA.push(
+{
+  id: "keishito",
+  no: 1,
+  title: "桂枝湯",
+  yomi: "けいしとう",
+  group: "桂枝湯類",
+  koma: [26, 30], komaNote: "26L–30L",
+  shuchi: {
+    gen: "治上衝、頭痛、發熱、汗出、惡風、腹拘攣者。",
+    kaki: "上衝、頭痛、發熱、汗出で、惡風し、腹拘攣する者を治す。",
+    yaku: "気が上へ突き上げ（のぼせ）、頭痛・発熱があり、汗が出て風に当たるのを嫌い、腹（腹直筋）がひきつる者を治す。"
+  },
+  houzai: {
+    herbs: [
+      { name: "桂枝", ryo: "三兩", ima: "七分五釐" },
+      { name: "芍藥", ryo: "三兩", ima: "七分五釐" },
+      { name: "生薑", ryo: "三兩", ima: "七分五釐" },
+      { name: "大棗", ryo: "十二枚", ima: "七分五釐" },
+      { name: "甘草", ryo: "二兩", ima: "五分" }
+    ],
+    imaNote: "「今用」は本書に小字で添えられた当時の常用量（桂枝・芍藥・生薑・大棗は「各七分五釐」、甘草は「五分」）。",
+    gen: "右伍味、㕮咀、以水柒升、微火煮取三升、去滓、適寒温、服一升。（今以水一合四勺、煮取六勺、服。）服已須臾、歠熱稀粥一升餘、以助藥力。温覆令一時許、「遍身漐漐微似有汗者益佳。不可令如水流漓、病必不除。若一服汗出病差、停後服、不必盡劑。若不汗、更服依前法。又不汗、後服小促其間、半日許令三服盡。若病重者、一日一夜服、周時觀之。服一劑盡、病證猶在者、更作服。若汗不出者、乃服至二三劑。禁生冷、粘滑、肉麪、五辛、酒酪、臭惡等物。」",
+    kaki: "右五味、㕮咀し、水七升を以て、微火にて煮て三升を取り、滓を去り、寒温に適し、一升を服す。（今は水一合四勺を以て、煮て六勺を取り、服す。）服し已って須臾にして、熱稀粥一升餘を歠り、以て藥力を助く。温覆すること一時許りならしめ、「遍身漐漐として微かに汗有るに似たる者益々佳し。水の流漓するが如くならしむべからず、病必ず除かれず。若し一服にて汗出で病差ゆれば、後服を停め、必ずしも劑を盡くさず。若し汗せざれば、更に服すること前法に依る。又汗せざれば、後服は小しく其の間を促し、半日許りにして三服を盡くさしむ。若し病重き者は、一日一夜服し、周時之を觀る。一劑を服し盡くして、病證猶在る者は、更に作りて服す。若し汗出でざる者は、乃ち服すること二三劑に至る。生冷・粘滑・肉麪・五辛・酒酪・臭惡等の物を禁ず。」",
+    yaku: "以上の五味を刻み、水七升で弱火で煮て三升に煮詰め、かすを除き、ほどよい温かさにして一升を服用する。（今の用量では水一合四勺で煮て六勺にして服用する。）服用してしばらくしたら、熱い薄粥を一升あまりすすって薬の力を助ける。衣類や布団で一時（約2時間）ほど温め、〔全身がしっとりとわずかに汗ばむ程度が最もよい。水が流れるように汗をかかせてはならず、そうすると病は必ず治らない。一回の服用で汗が出て病が治れば、残りは飲むのをやめ、全部飲みきる必要はない。汗が出なければ、前と同じ方法でさらに服用する。それでも汗が出なければ、次の服用は間隔を少し詰め、半日ほどで三回分を飲みきるようにする。病が重い場合は昼夜を通して服用し、丸一日（周時）様子を観察する。一剤を飲みきっても病状がまだ残っていれば、さらに作って服用する。汗が出なければ二〜三剤まで服用する。生もの・冷たいもの、ねばり気・脂っこいもの、肉・麺類、五辛（にんにく・ねぎ類など刺激の強い野菜）、酒・乳製品、においのきついものなどは禁ずる。〕",
+    tochu: [
+      { head: "㕮咀", koma: "26L",
+        gen: "陶弘景曰、㕮咀者、細切之、較略令如㕮咀。",
+        yaku: "陶弘景は「㕮咀とは細かく刻むことで、おおよそ㕮咀（かみ砕いた）程度の大きさにすることだ」と言っている。" },
+      { head: "適寒温・服", koma: "26L–27R",
+        gen: "適、適宜之義、謂得中也。靈樞師傳篇曰、飲食衣服、亦欲適寒温。十四難曰、調其飲食、適其寒温。千金治卒倒法曰、適冷煖飲三升。說文曰、服、用也。氣味合而服之、見于素問藏氣法時論。",
+        yaku: "「適」は「ほどよい」という意味で、中庸を得ることをいう。『霊枢』師伝篇に「飲食や衣服もまた、寒温をほどよくしたい」とあり、『難経』十四難に「飲食を調え、寒温をほどよくする」とあり、『千金方』の卒倒の治法に「冷たさ温かさをほどよくして三升飲む」とある。『説文』に「服とは用いることである」とある。「気味合して之を服す」という語は『素問』蔵気法時論に見える。" },
+      { head: "服用の度合い", koma: "27R–27L",
+        gen: "醫之於用藥、勿論發汗吐下、假使方症相對、苟藥量用度不適機宜、疾疢安得其治。故處療之際、尤不可不用心于斯焉。但世人多怯乎攻疾、是以其於汗吐下也、多失之於不斷、顧望趑趄、不能爲于可爲、却使輕至於重、重斃於非命。東洞先生域之者、其意特在矯流弊耳。服度斟酌、安可廢、學者思之。",
+        yaku: "医者が薬を用いるにあたっては、発汗・吐・下のいずれであれ、たとえ処方と症状が合っていても、薬の量や服用の度合いが時機にかなっていなければ、どうして病を治すことができようか。だから治療のときには、とりわけこの点に心を用いなければならない。ところが世の人の多くは病を攻めることを恐れ、そのため汗・吐・下の治療で決断がつかずに失敗することが多い。ためらって先へ進めず、なすべきことをなせず、かえって軽い病を重くし、重い者を非業の死に至らせている。東洞先生がこの部分を囲んだ（「」で括った）のは、その意図がひとえに世に広まった弊害を正すことにあったにすぎない。服用の度合いを斟酌することを、どうして廃してよいだろうか。学ぶ者はよく考えよ。" },
+      { head: "禁忌の十五字", koma: "27L",
+        gen: "玉函・千金・千金翼共無禁生冷以下十五字、是也。",
+        yaku: "『金匱玉函経』『千金方』『千金翼方』にはいずれも「禁生冷」以下の十五字がない。それが正しい。" }
+    ]
+  },
+  joubun: [
+    { src: "傷寒論 太陽病上", koma: "27L",
+      gen: "「太陽中風、陽浮而陰弱。陽浮者熱自發、陰弱者汗自出。嗇嗇惡寒」、淅淅惡風、翕翕發熱、鼻鳴乾嘔者。",
+      kaki: "「太陽の中風、陽浮にして陰弱。陽浮の者は熱自ずから發し、陰弱の者は汗自ずから出づ。嗇嗇として惡寒し」、淅淅として惡風し、翕翕として發熱し、鼻鳴乾嘔する者。",
+      yaku: "〔太陽の中風で、脈が浅いところでは浮き、深いところでは弱い。浮いているのは自然に発熱するからで、弱いのは自然に汗が出るからである。ぞくぞくと寒気がし、〕すうすうと風を嫌い、ほかほかと発熱し、鼻が詰まって鳴り、からえずきをする者。" },
+    { src: "傷寒論 太陽病上", koma: "27L",
+      gen: "「太陽病」、頭痛發熱、汗出惡風者。",
+      kaki: "「太陽病」、頭痛發熱し、汗出で惡風する者。",
+      yaku: "〔太陽病で、〕頭痛・発熱があり、汗が出て風を嫌う者。",
+      tochu: [ { koma: "27L", gen: "第二章、是桂枝湯正症也。惡風下、脉經有若惡寒三字。",
+        yaku: "この第二条は桂枝湯の正証（本来の証）である。「惡風」の下に、『脈経』では「若惡寒（あるいは悪寒）」の三字がある。" } ] },
+    { src: "傷寒論 太陽病上", koma: "27L",
+      gen: "「太陽病、下之後」、其氣上衝者、可與桂枝湯。方用前法。若不上衝者、不可與之。",
+      kaki: "「太陽病、之を下して後」、其の氣上衝する者は、桂枝湯を與うべし。方は前法を用う。若し上衝せざる者は、之を與うべからず。",
+      yaku: "〔太陽病を下剤で下したあと、〕気が上へ突き上げる者には桂枝湯を与えるがよい。煎じ方・飲み方は前に述べた方法による。突き上げがない者には与えてはならない。",
+      tochu: [ { koma: "27L", gen: "特就上衝一症、用桂枝湯、可以見桂枝所主治也。如桂枝去芍藥湯・桂枝加桂湯・桂枝甘艸湯、亦可併考。按方用前法四字、玉函・千金翼并無、是。",
+        yaku: "上衝というただ一つの症状について桂枝湯を用いていることから、桂枝の主治するところがわかる。桂枝去芍薬湯・桂枝加桂湯・桂枝甘草湯なども、あわせて考えるべきである。按ずるに、「方用前法」の四字は『玉函経』にも『千金翼方』にもない。ないのが正しい。" } ] },
+    { src: "傷寒論 太陽病上", koma: "27L–28R",
+      gen: "「太陽病」、三日、已發汗、若吐、若下、若温鍼、仍不解者、此爲壞病、桂枝不中與也。觀其脉證、知犯何逆、隨證治之。",
+      kaki: "「太陽病」、三日、已に汗を發し、若しくは吐し、若しくは下し、若しくは温鍼して、仍お解せざる者は、此れを壞病と爲す、桂枝は與うるに中らざるなり。其の脉證を觀て、何の逆を犯せるかを知り、證に隨って之を治す。",
+      yaku: "〔太陽病で、〕三日たち、すでに発汗させ、あるいは吐かせ、あるいは下し、あるいは温鍼をしても、なお治らない者は「壊病」であり、桂枝湯を与えるのは適当でない。脈と症状をよく観察し、どのような誤治を犯したかを見きわめ、その証に従って治療する。",
+      tochu: [ { koma: "28R", gen: "壞病、謂經汗下諸治、正症敗壞也。隨症治之一句、處方之大要言。苟會斯義、方劑之用、疾病之治、可運之於掌上矣。王肯堂曰、隨症治之一句、語活而義廣、可謂知言矣。",
+        yaku: "「壊病」とは、発汗・下しなどの諸治療を経て、本来の証が崩れてしまったものをいう。「証に随って之を治す」の一句は、処方の大要を述べた言葉である。もしこの意味を会得すれば、方剤の運用も病気の治療も、手のひらの上で転がすように自在にできるだろう。王肯堂は「証に随って之を治すの一句は、言葉が生きていて意味が広い」と言っている。本質をとらえた言葉といえる。" } ] },
+    { src: "傷寒論 太陽病上", koma: "28R",
+      gen: "「桂枝本爲解肌。若其人脉浮緊、發熱汗不出者、不可與也。常須識此、勿令誤也。」",
+      kaki: "「桂枝は本と解肌と爲す。若し其の人脉浮緊、發熱して汗出でざる者は、與うべからざるなり。常に須らく此れを識り、誤らしむること勿かれ。」",
+      yaku: "〔桂枝湯は本来、肌（体表）の邪を解くものである。脈が浮いて緊張し、発熱しても汗が出ない者には与えてはならない。常にこれをわきまえ、誤ってはならない。〕",
+      tochu: [ { koma: "28R", gen: "若其人脉浮緊、發熱汗不出者、可用麻黄湯。若症而煩躁或渴者、可用大青龍湯。",
+        yaku: "脈が浮緊で、発熱して汗が出ない者には麻黄湯を用いるがよい。その証でさらに煩躁したり口渇があったりする者には、大青竜湯を用いるがよい。" } ] },
+    { src: "傷寒論 太陽病上", koma: "28R",
+      gen: "「若酒客病、不可與桂枝湯。得湯則嘔、以酒客不喜甘故也。」",
+      kaki: "「若し酒客病めば、桂枝湯を與うべからず。湯を得れば則ち嘔す、酒客は甘きを喜ばざるを以ての故なり。」",
+      yaku: "〔大酒飲みが病んだときは桂枝湯を与えてはならない。飲めば吐く。酒飲みは甘いものを好まないからである。〕" },
+    { src: "傷寒論 太陽病上", koma: "28R",
+      gen: "「凡服桂枝湯吐者、其後必吐膿血也。」",
+      kaki: "「凡そ桂枝湯を服して吐する者は、其の後必ず膿血を吐するなり。」",
+      yaku: "〔およそ桂枝湯を飲んで吐く者は、その後必ず膿血を吐く。〕" },
+    { src: "傷寒論 太陽病上", koma: "28R",
+      gen: "「太陽病」、初服桂枝湯、反煩不解者、「先刺風池風府」、却與桂枝湯則愈。",
+      kaki: "「太陽病」、初め桂枝湯を服し、反って煩して解せざる者は、「先ず風池・風府を刺し」、却って桂枝湯を與うれば則ち愈ゆ。",
+      yaku: "〔太陽病で、〕はじめに桂枝湯を飲んだところ、かえって煩わしく苦しみ、治らない者は、〔まず風池・風府のツボに鍼を刺し、〕そのうえで改めて桂枝湯を与えれば治る。",
+      tochu: [ { koma: "28R", gen: "反煩不解者、藥雖瞑眩、藥力不徹、病未得除也。故仍用桂枝湯也。",
+        yaku: "「かえって煩して治らない」というのは、薬による瞑眩は起きているものの、薬の力が行きわたらず、病がまだ除かれていないのである。だから引き続き桂枝湯を用いるのである。" } ] },
+    { src: "傷寒論 太陽病上", koma: "28R–28L",
+      gen: "服桂枝湯、大汗出、脉洪大者、與桂枝湯、如前法。「若形如瘧、日再發者、汗出必解。宜桂枝二麻黄一湯。」",
+      kaki: "桂枝湯を服し、大いに汗出で、脉洪大の者は、桂枝湯を與うること前法の如くす。「若し形瘧の如く、日に再發する者は、汗出づれば必ず解す。桂枝二麻黄一湯に宜し。」",
+      yaku: "桂枝湯を飲んで大いに汗が出て、脈が洪大（大きく力強い）になった者には、前と同じ方法で桂枝湯を与える。〔もし症状がマラリアのように寒熱をくり返し、一日に二度発作が起こる者は、汗が出れば必ず治る。桂枝二麻黄一湯がよい。〕",
+      tochu: [ { koma: "28R–28L", gen: "服桂枝湯以下十八字、是白虎加人參湯條文、錯誤入于此也。當删去之。若形以下、宜接前章却與桂枝湯則愈句下、以爲一章也。",
+        yaku: "「服桂枝湯」以下の十八字（服桂枝湯〜如前法）は白虎加人参湯の条文で、誤ってここに入ったものである。削除すべきである。「若形」以下は、前の条の「却って桂枝湯を与うれば則ち愈ゆ」の句の下に続けて、一条とすべきである。" } ] },
+    { src: "傷寒論 太陽病中", koma: "28L",
+      gen: "「太陽病、外證未解、脉浮弱者、當以汗解。」",
+      kaki: "「太陽病、外證未だ解せず、脉浮弱の者は、當に汗を以て解すべし。」",
+      yaku: "〔太陽病で、体表の症状（外証）がまだ治らず、脈が浮いて弱い者は、汗をかかせて治すべきである。〕",
+      tochu: [ { koma: "28L", gen: "太陽病外症未解云云二章、是已經發汗、大勢已解、而頭痛發熱惡風等症未全愈、脉亦浮弱、故曰外症未解、所以更用桂枝湯也。東洞先生域之者、惡其辭也。編中此類不勝枚舉、是斯書之體例也。學者思之。",
+        yaku: "「太陽病、外証未だ解せず」云々の二条（この条と次の条）は、すでに発汗を経て病勢の大部分は治まったが、頭痛・発熱・悪風などの症状がまだ完全には治らず、脈も浮弱である。だから「外証未だ解せず」と言うのであり、そのためさらに桂枝湯を用いるのである。東洞先生がこれを囲んだ（「」で括った）のは、その言い回しを嫌ったためである。本書中にこのような例は数えきれないほどあり、これが本書の体例（編集方針）である。学ぶ者はよく考えよ。" } ] },
+    { src: "傷寒論 太陽病中", koma: "28L",
+      gen: "「太陽病、外證未解者、不可下也。下之爲逆。欲解外者。」",
+      kaki: "「太陽病、外證未だ解せざる者は、下すべからざるなり。之を下すを逆と爲す。外を解せんと欲する者。」",
+      yaku: "〔太陽病で、体表の症状がまだ治らない者は、下してはならない。下すのは誤治である。体表の邪を解こうとする者（には桂枝湯）。〕" },
+    { src: "傷寒論 太陽病中", koma: "28L",
+      gen: "「太陽病、先發汗不解、而復下之、脉浮者不愈。浮爲在外、而反下之、故令不愈。今脉浮、故知在外。當須解外則愈。」",
+      kaki: "「太陽病、先ず汗を發して解せず、而るに復た之を下し、脉浮の者は愈えず。浮は外に在りと爲す、而るに反って之を下す、故に愈えざらしむ。今脉浮、故に外に在るを知る。當に須らく外を解すべし、則ち愈ゆ。」",
+      yaku: "〔太陽病で、まず発汗させても治らず、さらに下したが、脈が浮いている者は治らない。脈が浮くのは邪が外（体表）にあるからで、それなのに下したから治らないのである。いま脈が浮いているので、邪は外にあるとわかる。体表の邪を解けば治る。〕" },
+    { src: "傷寒論 太陽病中", koma: "28L–29R",
+      gen: "「病常自汗出者、此爲榮氣和。榮氣和者、外不諧、以衛氣不共榮氣和諧故爾。以榮行脉中、衛行脉外、復發其汗、榮衛和則愈。」",
+      kaki: "「病常に自汗出づる者は、此れを榮氣和すと爲す。榮氣和する者は、外諧わず、衛氣の榮氣と共に和諧せざるを以ての故に爾り。榮は脉中を行り、衛は脉外を行るを以て、復た其の汗を發し、榮衛和すれば則ち愈ゆ。」",
+      yaku: "〔病でいつも自然に汗が出る者は、栄気は調和している。栄気が調和していても外側（体表）が整わないのは、衛気が栄気と調和していないためである。栄気は脈の中を、衛気は脈の外をめぐるので、もう一度発汗させて栄衛が調和すれば治る。〕" },
+    { src: "傷寒論 太陽病中", koma: "29R",
+      gen: "病人「藏」無他病、時發熱、自汗出而不愈者、「此衛氣不和也」、先其時發汗則愈。",
+      kaki: "病人「藏」に他病無く、時に發熱し、自汗出でて愈えざる者は、「此れ衛氣和せざるなり」、其の時に先だって汗を發すれば則ち愈ゆ。",
+      yaku: "病人で、〔腹中（内臓）に〕ほかの病がなく、ときどき発熱し、自然に汗が出て治らない者は、〔衛気が調和していないのである。〕発熱する時刻より前に発汗させれば治る。",
+      tochu: [ { koma: "29R", gen: "藏無他病、藏與其藏有寒及藏厥之藏同、皆謂腹中也。魏志華佗傳曰、彭城樊阿從佗學、阿善鍼術。凡醫咸言、背及胸藏之間、不可妄鍼、鍼之不過四五分。而阿鍼背入一二寸、巨闕胸藏五六寸、而病皆愈。可以徵矣。",
+        yaku: "「蔵に他病無し」の「蔵」は、「其の蔵に寒有り」「蔵厥」の「蔵」と同じで、いずれも腹の中を指す。『魏志』華佗伝に「彭城の樊阿は華佗に学び、鍼術にすぐれていた。医者たちはみな、背中と胸部・内臓のあたりはむやみに鍼を刺してはならず、刺しても四〜五分を超えてはならないと言っていた。ところが樊阿は背中に一〜二寸、巨闕（みぞおち）から胸部・内臓に五〜六寸も刺し、それで病はみな治った」とある。これによって（蔵が胸腹部を指すことが）証明できる。" } ] },
+    { src: "傷寒論 太陽病中", koma: "29R",
+      gen: "「傷寒」、不大便六七日、頭痛有熱者、與承氣湯。「其小便清者、知不在裏、仍在表也。當須發汗。若頭痛者必衄。宜桂枝湯。」",
+      kaki: "「傷寒」、大便せざること六七日、頭痛して熱有る者は、承氣湯を與う。「其の小便清き者は、裏に在らず、仍お表に在るを知るなり。當に須らく汗を發すべし。若し頭痛する者は必ず衄す。桂枝湯に宜し。」",
+      yaku: "〔傷寒で、〕六〜七日便通がなく、頭痛して熱がある者には承気湯を与える。〔小便が澄んでいる者は、邪は裏（体内）ではなく、まだ表にあるとわかる。発汗させるべきである。頭痛する者は必ず鼻血を出す。桂枝湯がよい。〕",
+      tochu: [ { koma: "29R–29L", gen: "頭痛有熱下、千金翼有小便赤三字。小便下、外臺秘要有反字、倶是。承氣湯、大承氣湯也。大承氣湯一下、以疏蕩裏熱壅滯、則頭痛身熱即解。與傷寒六七日、目中不了了、睛不和、大便難、身微熱者、與大承氣湯、其義略同。",
+        yaku: "「頭痛有熱」の下に、『千金翼方』では「小便赤」の三字がある。「小便」の下に、『外台秘要』では「反」の字がある。どちらも正しい。ここでいう承気湯とは大承気湯である。大承気湯で一度下して裏熱の停滞を一掃すれば、頭痛・身熱はすぐに治る。「傷寒六七日、目中了了たらず、睛和せず、大便難く、身微熱の者は大承気湯を与う」という条と、意味はほぼ同じである。" } ] },
+    { src: "傷寒論 太陽病中", koma: "29R",
+      gen: "「傷寒」、發汗解、半日許、復煩、脉浮數者、可更發汗。",
+      kaki: "「傷寒」、汗を發して解し、半日許りにして、復た煩し、脉浮數の者は、更に汗を發すべし。",
+      yaku: "〔傷寒で、〕発汗させていったん治ったが、半日ほどして再び煩わしく苦しくなり、脈が浮いて速い者は、もう一度発汗させるべきである。",
+      tochu: [ { koma: "29L", gen: "傷寒發汗解、半日許、復煩、脉浮數者、邪氣未全除、死灰將再燃也。似可用麻黄湯、而今用桂枝湯者、以發汗後也。",
+        yaku: "「傷寒、発汗して解し、半日ほどで再び煩し、脈浮数」の者は、邪気がまだ完全に除かれておらず、消えかけた灰が再び燃えあがろうとしているのである。麻黄湯を用いてもよさそうに思えるが、ここで桂枝湯を用いるのは、すでに発汗したあとだからである。" } ] },
+    { src: "傷寒論 太陽病中", koma: "29L",
+      gen: "「傷寒」、醫下之、續得下利、清穀不止、身疼痛者、「急當救裏。」後身疼痛、清便自調者、「急當救表。救裏」宜四逆湯、「救表」宜桂枝湯。",
+      kaki: "「傷寒」、醫之を下し、續いて下利を得、清穀止まず、身疼痛する者は、「急に當に裏を救うべし。」後身疼痛し、清便自ら調う者は、「急に當に表を救うべし。裏を救うには」四逆湯に宜しく、「表を救うには」桂枝湯に宜し。",
+      yaku: "〔傷寒で、〕医者が下剤で下したところ、続いて下痢となり、未消化便（清穀）が止まらず、体が痛む者は、〔急いで裏（内部）を救わねばならない。〕その後、体の痛みは残るが便通が正常になった者は、〔急いで表を救わねばならない。裏を救うには〕四逆湯、〔表を救うには〕桂枝湯がよい。",
+      tochu: [ { koma: "29L–30R", gen: "傷寒醫下之、續得下利、清穀不止、身疼痛者、此不可下而下之、以至危急者也。故先以四逆湯救其危急、而後以桂枝湯發汗、則身疼痛隨愈。雉間子炳云、清穀雖止、身疼痛未愈者、猶宜四逆輩、恐非桂枝湯症。是不特不知處療之法、又不知二方之主治也。",
+        yaku: "「傷寒、医が下して、続いて下痢となり、清穀が止まらず、体が痛む」者は、下すべきでないのに下したために危急に至った者である。だから先に四逆湯でその危急を救い、そのあとで桂枝湯で発汗させれば、体の痛みもそれに従って治る。雉間子炳は「清穀は止まっても体の痛みがまだ治らない者は、なお四逆湯の類がよく、恐らく桂枝湯の証ではない」と言うが、これは処置の方法を知らないばかりか、二方の主治も知らないのである。" } ] },
+    { src: "傷寒論 太陽病中", koma: "29L",
+      gen: "「太陽病」、發熱汗出者、「此爲榮弱衛強、故使汗出。欲救邪風者。」",
+      kaki: "「太陽病」、發熱し汗出づる者は、「此れ榮弱く衛強しと爲す、故に汗出でしむ。邪風を救わんと欲する者。」",
+      yaku: "〔太陽病で、〕発熱して汗が出る者。〔これは栄気が弱く衛気が強いためで、そのため汗が出る。邪風を除こうとする者（には桂枝湯）。〕" },
+    { src: "傷寒論 太陽病下", koma: "29L",
+      gen: "「傷寒」、大下後、復發汗、心下痞、惡寒者、「表未解也。不可攻痞。當先解表。表解乃可攻痞。」解表宜桂枝湯、攻痞宜大黄黄連瀉心湯。",
+      kaki: "「傷寒」、大いに下して後、復た汗を發し、心下痞し、惡寒する者は、「表未だ解せざるなり。痞を攻むべからず。當に先ず表を解すべし。表解して乃ち痞を攻むべし。」表を解するには桂枝湯に宜しく、痞を攻むるには大黄黄連瀉心湯に宜し。",
+      yaku: "〔傷寒で、〕大いに下したあと、さらに発汗させ、みぞおちがつかえ（心下痞）、寒気がする者は、〔まだ表証が治っていない。つかえを攻めてはならない。まず表を解き、表が治ってからつかえを攻めるべきである。〕表を解くには桂枝湯、つかえを攻めるには大黄黄連瀉心湯がよい。",
+      tochu: [ { koma: "30R", gen: "傷寒大下後云云、心下痞下、疑脫頭痛發熱身疼痛等一二症。否則似與附子瀉心湯症無差別。",
+        yaku: "「傷寒、大いに下して後」云々の条で、「心下痞」の下に、頭痛・発熱・身疼痛など一、二の症状が脱落しているのではないかと疑われる。そうでなければ、附子瀉心湯の証と区別がないように思われる。" } ] },
+    { src: "傷寒論 陽明病", koma: "29L–30R",
+      gen: "「陽明病」、脉遲、汗出多、微惡寒者、「表未解也」、可發汗。",
+      kaki: "「陽明病」、脉遲く、汗出づること多く、微しく惡寒する者は、「表未だ解せざるなり」、汗を發すべし。",
+      yaku: "〔陽明病で、〕脈が遅く、汗がたくさん出て、わずかに寒気がする者は、〔まだ表証が治っていないのであり、〕発汗させるべきである。",
+      tochu: [ { koma: "30R", gen: "陽明病脉遲云云、按陽明篇小承氣湯條、微惡寒作微發熱惡寒、是。",
+        yaku: "「陽明病、脈遅」云々の条について。按ずるに陽明篇の小承気湯の条では「微惡寒」を「微發熱惡寒」に作っており、それが正しい。" } ] },
+    { src: "傷寒論 陽明病", koma: "30R",
+      gen: "病人煩熱、汗出則解、「又如瘧狀」、日晡所發熱者、「屬陽明也」。脉實者宜下之、脉浮虛者宜發汗。下之與大承氣湯、發汗宜桂枝湯。",
+      kaki: "病人煩熱し、汗出づれば則ち解し、「又瘧狀の如く」、日晡所に發熱する者は、「陽明に屬するなり」。脉實の者は宜しく之を下すべし、脉浮虛の者は宜しく汗を發すべし。之を下すには大承氣湯を與え、汗を發するには桂枝湯に宜し。",
+      yaku: "病人が熱っぽく苦しみ、汗が出ると治まり、〔またマラリアのように、〕夕方ごろ（日晡所）に発熱する者は、〔陽明に属する。〕脈が充実していれば下し、脈が浮いて虚していれば発汗させる。下すには大承気湯、発汗には桂枝湯がよい。",
+      tochu: [ { koma: "30R", gen: "病人煩熱云云、此症脉雖浮虛、恐用桂枝二麻黄一湯爲佳。",
+        yaku: "「病人煩熱」云々の条について。この証は脈が浮虚であっても、恐らく桂枝二麻黄一湯を用いるほうがよい。" } ] },
+    { src: "傷寒論 太陰病", koma: "30R",
+      gen: "「太陰病」、脉浮者、可發汗。",
+      kaki: "「太陰病」、脉浮の者は、汗を發すべし。",
+      yaku: "〔太陰病で、〕脈が浮いている者は発汗させるべきである。" },
+    { src: "傷寒論 厥陰病（金匱要略 嘔吐噦下利病にも）", koma: "30R",
+      gen: "下利、腹脹滿、身體疼痛者、「先温其裏、乃攻其表。温裏」四逆湯、「攻表」桂枝湯。",
+      kaki: "下利し、腹脹滿し、身體疼痛する者は、「先ず其の裏を温め、乃ち其の表を攻む。裏を温むるには」四逆湯、「表を攻むるには」桂枝湯。",
+      yaku: "下痢して腹が張り、体が痛む者は、〔まず裏を温め、その後に表を攻める。裏を温めるには〕四逆湯、〔表を攻めるには〕桂枝湯。",
+      tochu: [ { koma: "30R–30L", gen: "下利腹脹滿、身體疼痛者、先用四逆湯、則下利止、腹滿自和。而後以桂枝湯發汗、則身疼脱然去矣。是則治法之權宜也。以下二章義同。子炳云、下利腹脹滿以下三條、皆非桂枝湯症。子炳不解醫事、每每如此。",
+        yaku: "下痢して腹が張り、体が痛む者は、まず四逆湯を用いれば下痢は止まり、腹満も自然におさまる。そのあとで桂枝湯で発汗させれば、体の痛みはすっきりと去る。これが治法の臨機応変というものである。以下の二条も意味は同じである。子炳は「下利腹脹満以下の三条は、いずれも桂枝湯の証ではない」と言うが、子炳は医療の実際を理解しておらず、いつもこのようである。" } ] },
+    { src: "傷寒論 霍乱病", koma: "30R",
+      gen: "吐利止而身痛不休者、當「消息和解其外」、宜桂枝湯小和之。",
+      kaki: "吐利止んで身痛休まざる者は、當に「消息して其の外を和解すべし」、桂枝湯にて小しく之を和するに宜し。",
+      yaku: "嘔吐・下痢は止まったが体の痛みがおさまらない者は、〔様子を見ながら体表を和解すべきで、〕桂枝湯で軽く調和させるのがよい。" },
+    { src: "傷寒論 厥陰病（金匱要略 嘔吐噦下利病にも）", koma: "30R–30L",
+      gen: "下利後、身疼痛、清便自調者、「急當救表」、宜桂枝湯「發汗」。",
+      kaki: "下利の後、身疼痛し、清便自ら調う者は、「急に當に表を救うべし」、桂枝湯に宜し「汗を發す」。",
+      yaku: "下痢のあと、体が痛み、便通は正常になった者は、〔急いで表を救わねばならない。〕桂枝湯がよい〔（汗を出させる）〕。" },
+    { src: "金匱要略 婦人妊娠病", koma: "30L",
+      gen: "「師曰」、婦人得平脉、陰脉小弱、其人不能食、無寒熱、名姙娠、桂枝湯主之。「於法六十日當有此證。設有醫治逆者、却一月加吐下者、則絶之。」",
+      kaki: "「師曰く」、婦人平脉を得、陰脉小弱、其の人食すること能わず、寒熱無きは、姙娠と名づく、桂枝湯之を主る。「法に於いて六十日に當に此の證有るべし。設し醫の治逆する者有りて、却って一月にして吐下を加うる者は、則ち之を絶つ。」",
+      yaku: "〔師（張仲景）が言う。〕婦人の脈が平常で、尺脈（陰脈）がやや弱く、食事がとれず、悪寒・発熱がないものは妊娠である。桂枝湯が主治する。〔通常は妊娠六十日ごろにこの症状が現れる。もし医者が誤った治療をして、一か月のうちに吐かせたり下したりした場合は、これを絶つ（解釈には諸説ある）。〕" },
+    { src: "金匱要略 婦人産後病", koma: "30L",
+      gen: "「産后中風」、續之數十日不解、頭微痛、惡寒、時時有熱、心下悶、乾嘔、汗出、雖久、「陽旦」證續在耳。",
+      kaki: "「産后の中風」、之に續いて數十日解せず、頭微かに痛み、惡寒し、時時熱有り、心下悶し、乾嘔し、汗出づ、久しと雖も、「陽旦」の證續いて在るのみ。",
+      yaku: "〔産後のかぜが〕数十日続いて治らず、頭が少し痛み、寒気がし、ときどき熱が出て、みぞおちが重苦しく、からえずきをし、汗が出る。長引いていても、〔陽旦（＝桂枝湯）の〕証がずっと続いているだけである（桂枝湯でよい）。",
+      tochu: [ { koma: "30L", gen: "金匱要略陽旦湯、小註曰、即桂枝湯。千金陽旦湯亦桂枝湯也。成無已曰、陽旦、桂枝別名。",
+        yaku: "『金匱要略』の陽旦湯には小注に「即ち桂枝湯なり」とある。『千金方』の陽旦湯も桂枝湯である。成無己は「陽旦とは桂枝（湯）の別名である」と言っている。" } ] }
+  ],
+  tochu: [
+    { head: "桂枝湯総論", koma: "26L",
+      gen: "桂枝湯者、蓋經方之權輿也。傷寒論資始於桂枝湯、雜病論發端於括蔞桂枝湯者、必非偶然也。斯書之列方、亦以桂枝湯爲衆方之嚆矢。仲景之方、凡二百餘首、其用桂枝者殆六十方、其中以桂枝爲主藥者、垂于三十方。是亦可以見其比諸它方、變化尤多矣。",
+      yaku: "桂枝湯は、思うに経方（古方）の始まりである。『傷寒論』が桂枝湯から始まり、『雑病論』（金匱要略）が栝蔞桂枝湯から書き起こされているのは、決して偶然ではない。本書の方剤の配列も、桂枝湯を諸方の先頭に置いている。仲景の方は全部で二百余首あり、そのうち桂枝を用いるものはほぼ六十方、桂枝を主薬とするものは三十方近くに及ぶ。このことからも、桂枝湯が他の方に比べて変化（加減による展開）がとりわけ多いことがわかる。" }
+  ],
+  tags: ["のぼせ", "上衝", "頭痛", "発熱", "汗が出る", "自汗", "悪風", "悪寒", "腹直筋の緊張", "腹拘攣", "かぜ", "鼻づまり", "鼻鳴", "からえずき", "乾嘔", "体の痛み", "身疼痛", "下痢後の体の痛み", "つわり", "妊娠", "産後のかぜ", "夕方の発熱"],
+  related: [],
+  check: [
+    "「」（東洞が囲んだ部分）の範囲は画像から判読したもの。返り点（レ点）と紛らわしい箇所があり、とくに煎法（「遍身」〜「等物」）、第15・19・20・24・25条の括弧の始まりと終わりは要確認。",
+    "煎法の頭注「較略令如㕮咀」の「令」は「今」とも読める字形（陶弘景『本草経集注』序録の文から「令」とした）。",
+    "頭注「素問藏氣法時論」：刻本では「時」が「治」に近い字形に見える。通行の篇名に従った。",
+    "頭注「適冷煖飲三升」の「煖」は火偏の異体字で刻されている。",
+    "第26条：『金匱要略』の通行本にある「其人渴」の「渴」が本書にはない（「其人不能食」）。本書のとおりとした。",
+    "第26条「則絶之」の解釈には諸説ある（治療を中止する／妊娠が絶える など）。",
+    "第23条は本書では「宜」がなく方名だけを記す（「温裏」四逆湯、「攻表」桂枝湯）。本書のとおりとした。",
+    "「今用」の用量注記がだれによるものか（榕堂か）は本書の凡例で要確認。",
+    "頭注の「成無已」は成無己のこと（刻本の字のまま）。",
+    "頭注の「雉間子炳」は東洞門下の雉間煥（字は子炳）と思われる（本書には名の記載なし）。"
+  ]
+}
+);
+
+</script>
+<script>
+const D=(window.RUIJU_DATA||[]).slice().sort((a,b)=>a.no-b.no);
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const RMDA="https://rmda.kulib.kyoto-u.ac.jp/item/rb00005779?page=";
+// 「」（東洞が囲んだ部分）と〔〕（訳でのその部分）を薄く表示
+const br=s=>esc(s).replace(/「([^」]*)」/g,'<span class="br">「$1」</span>');
+const brY=s=>esc(s).replace(/〔([^〕]*)〕/g,'<span class="br">〔$1〕</span>');
+const EX=["のぼせ","頭痛","汗","寒気","下痢","体の痛み","つわり","産後"];
+const SYN = {
+  "泣く":["悲傷","哭","啼哭","悲泣","泣"], "鼻血":["衄","衄血","鼻血"], "はなぢ":["衄","鼻血"],
+  "寒気":["悪寒","惡寒","嗇嗇","寒気"], "さむけ":["悪寒","惡寒","寒気"], "ぞくぞく":["悪寒","嗇嗇","ぞくぞく"],
+  "風が嫌":["悪風","惡風","風を嫌"], "かぜ":["中風","かぜ","外邪"], "風邪":["中風","かぜ","外邪"],
+  "汗":["自汗","汗出","汗"], "寝汗":["盗汗","寝汗"], "冷え":["冷","厥冷","冷え"], "しびれ":["不仁","麻痺","しびれ"],
+  "熱":["発熱","發熱","煩熱","熱"], "夕方":["日晡所","夕方"],
+  "頭痛":["頭痛","頭微痛","頭項強痛"], "首":["項","頭項"], "うなじ":["項","頭項"],
+  "のぼせ":["上衝","気上衝","のぼせ","突き上げ"],
+  "みぞおち":["心下","心下痞","心下悶","みぞおち"], "つかえ":["痞","心下痞","つかえ"], "胃":["心下","みぞおち"],
+  "吐き気":["嘔","乾嘔","嘔逆","吐き気","からえずき"], "えずき":["乾嘔","からえずき"], "嘔吐":["吐","嘔吐","吐く"],
+  "下痢":["下利","下痢","自利","清穀"], "便秘":["不大便","大便難","便通がなく"],
+  "腹痛":["腹痛","腹中痛"], "お腹が張る":["腹脹滿","腹満","腹が張"], "腹部膨満":["腹脹滿","腹満","腹が張"],
+  "体の痛み":["身疼痛","身痛","身體疼痛","体が痛","体の痛み"], "関節":["疼痛","身疼痛","関節"],
+  "のど":["咽喉痛","咽喉","のど"], "喉":["咽喉痛","咽喉","のど"], "咳":["咳","咳嗽"], "せき":["咳","咳嗽"],
+  "鼻水":["鼻鳴","鼻水"], "鼻づまり":["鼻鳴","鼻が詰ま","鼻づまり"], "膿":["膿","膿血"],
+  "産後":["産後","産后","產後"], "妊娠":["姙娠","妊娠","つわり"], "つわり":["姙娠","妊娠","つわり","不能食"],
+  "食欲がない":["不能食","食事がとれ"], "尿":["小便"], "小便":["小便"],
+  "腹直筋":["腹直筋","拘攣","攣急"], "けいれん":["けいれん","痙攣","攣急"], "いらいら":["いらいら","煩躁","煩"],
+  "むくみ":["むくみ","水腫","水気","浮腫"], "動悸":["動悸","悸"], "めまい":["めまい","眩","目眩","頭眩"],
+  "口渇":["口渇","渇","渴"], "のどが渇く":["口渇","渇","渴"], "胸が苦しい":["胸満","心下悶","重苦し"],
+  "突き上げ":["奔豚","上衝","突き上げ"], "酒":["酒客","酒"], "鍼":["鍼","刺"]
+};
+function terms(q){
+  const out=new Set();
+  q.split(/[\s　、,]+/).filter(Boolean).forEach(w=>{
+    out.add(w);
+    if(SYN[w]){ SYN[w].forEach(x=>out.add(x)); return }
+    const ks=Object.keys(SYN).filter(k=>k.includes(w)||w.includes(k)).sort((a,b)=>b.length-a.length);
+    if(ks.length) SYN[ks[0]].forEach(x=>out.add(x));
+  });
+  return [...out];
+}
+function navHTML(){
+  let h="", g=null;
+  D.forEach(e=>{ if(e.group!==g){ g=e.group; h+=`<h3>${esc(g)}</h3>` }
+    h+=`<a href="#${e.id}" data-goto="${e.id}" id="n-${e.id}"><span class="no">${e.no}</span>${esc(e.title)}</a>` });
+  h+=`<h3>このアプリについて</h3><a href="#about" data-goto="about" id="n-about">凡例</a>`;
+  return h;
+}
+function txt(o,cls=""){ // 原文・書き下し・現代語訳を表示モードに応じて
+  return `<div class="txt ${cls}">${o.gen?`<div class="gen"><span class="lbl">原文</span>${br(o.gen)}</div>`:""}`+
+    `${o.kaki?`<div class="kaki"><span class="lbl">書き下し</span>${br(o.kaki)}</div>`:""}`+
+    `${o.yaku?`<div class="yaku"><span class="lbl">現代語訳</span>${brY(o.yaku)}</div>`:""}</div>`;
+}
+function komaLink(k){ const m=String(k).match(/\d+/); return m?`<a href="${RMDA}${+m[0]}" target="_blank" rel="noopener">コマ${esc(k)}</a>`:"" }
+function tc(t,i){ return `<div class="tc"${i?` id="${i}"`:""}><div class="h">頭注（榕堂）${t.head?"："+esc(t.head):""}<span>${komaLink(t.koma)}</span></div>${txt({gen:t.gen,yaku:t.yaku})}</div>` }
+function about(){
+  return `<div class="page"><h2>凡例</h2><section><h3>この本について</h3><p>『類聚方広義』は、吉益東洞の『類聚方』（傷寒論・金匱要略の条文を方剤ごとに集めたもの）に、尾台榕堂が上段の「頭注」として自らの論・治験・用法を書き加えた書物です（嘉永・安政年間刊）。</p></section>
+  <section><h3>表示</h3><ul>
+  <li><b>原文</b>：本書の本文をそのまま翻刻したもの。句読点は読みやすさのために補っています。</li>
+  <li><b>「」</b>（薄い色）：本書で東洞が括弧で囲んだ部分。頭注に「東洞先生之を域するは、其の辞を悪むなり」とあるように、後人の加筆や理屈の部分として東洞が疑ったところです。現代語訳では〔〕で示します。</li>
+  <li><b>頭注（榕堂）</b>：上段の頭注は、関係する条文のすぐ下に置きました。原文と現代語訳（全文）です。</li>
+  <li><b>コマ</b>：京都大学貴重資料デジタルアーカイブの画像番号（1コマ＝見開き、R＝右頁、L＝左頁）。押すと原本画像が開きます。</li>
+  <li><b>要確認</b>：判読に自信がない字や、括弧の範囲など、原本で確かめたい点です。</li></ul></section>
+  <section><h3>底本</h3><p class="small">『類聚方広義』尾台逸（榕堂）著。京都大学附属図書館所蔵（富士川文庫, RB00005779）。画像の利用条件は同アーカイブの表示に従います。</p></section></div>`;
+}
+function render(id){
+  document.querySelectorAll("nav a").forEach(a=>a.classList.toggle("on",a.dataset.goto===id));
+  if(id==="about"){ $("#page").innerHTML=about(); return }
+  const e=D.find(x=>x.id===id)||D[0]; if(!e) return;
+  document.querySelectorAll("nav a").forEach(a=>a.classList.toggle("on",a.dataset.goto===e.id));
+  const H=e.houzai||{};
+  let h=`<div class="page"><h2>${esc(e.title)}<small>${esc(e.yomi||"")}</small></h2>`+
+    `<div class="meta">類聚方広義 第${e.no}方（${esc(e.group||"")}）　原本：${komaLink(e.koma[0])}〜${komaLink(e.koma[1])}（${esc(e.komaNote||"")}）</div>`+
+    `<div class="tags">${(e.tags||[]).map(t=>`<button class="tag" data-q="${esc(t)}">${esc(t)}</button>`).join("")}</div>`+
+    `<div class="modebar">表示：<span class="seg" id="seg">${[["both","書き下し＋訳"],["kaki","書き下し"],["yaku","現代語訳"],["gen","原文"],["all","すべて"]].map(([v,l])=>`<button data-mode="${v}" aria-pressed="${document.body.dataset.mode===v}">${l}</button>`).join("")}</span></div>`+
+    `<div class="toc"><a href="#" data-jump="s-shu">主治</a><a href="#" data-jump="s-ho">処方・煎法</a><a href="#" data-jump="s-jo">条文（${(e.joubun||[]).length}）</a>${e.check&&e.check.length?`<a href="#" data-jump="s-chk">要確認</a>`:""}</div>`;
+  h+=`<section id="s-shu"><h3>主治</h3>${txt(e.shuchi)}${(e.tochu||[]).map(t=>tc(t)).join("")}</section>`;
+  h+=`<section id="s-ho"><h3>処方・煎法</h3><table class="herbs"><tr><th>生薬</th><th>原方</th><th>今用</th></tr>${(H.herbs||[]).map(x=>`<tr><td>${esc(x.name)}</td><td>${esc(x.ryo)}</td><td>${esc(x.ima||"")}</td></tr>`).join("")}</table>`+
+    `${H.imaNote?`<p class="small">${esc(H.imaNote)}</p>`:""}${txt(H)}${(H.tochu||[]).map(t=>tc(t)).join("")}</section>`;
+  h+=`<section id="s-jo"><h3>条文</h3>${(e.joubun||[]).map((j,i)=>`<div class="jo" id="jo-${i+1}"><div><span class="no">第${i+1}条</span><span class="src">${esc(j.src||"")}　${komaLink(j.koma)}</span></div>${txt(j)}${(j.tochu||[]).map(t=>tc(t)).join("")}</div>`).join("")}</section>`;
+  if(e.check&&e.check.length) h+=`<section id="s-chk"><h3>要確認</h3><ul class="check">${e.check.map(c=>`<li>${esc(c)}</li>`).join("")}</ul></section>`;
+  $("#page").innerHTML=h+"</div>";
+}
+function search(q){
+  const box=$("#results");
+  if(!q.trim()){box.hidden=true;return}
+  const ts=terms(q); const hits=[]; const test=s=>s&&ts.some(t=>s.includes(t));
+  D.forEach(e=>{
+    if(test(e.title)) hits.push({e,where:"方剤名",text:e.title+"　"+(e.shuchi?.yaku||""),a:""});
+    if(test(e.shuchi?.gen+e.shuchi?.yaku)) hits.push({e,where:"主治",text:e.shuchi.yaku,a:"s-shu"});
+    (e.tags||[]).forEach(t=>{ if(test(t)) hits.push({e,where:"症状タグ",text:t,a:""}) });
+    (e.joubun||[]).forEach((j,i)=>{
+      if(test(j.gen+j.kaki+j.yaku)) hits.push({e,where:`第${i+1}条`,text:j.yaku,a:`jo-${i+1}`});
+      (j.tochu||[]).forEach(t=>{ if(test(t.gen+t.yaku)) hits.push({e,where:`第${i+1}条・頭注`,text:t.yaku,a:`jo-${i+1}`}) });
+    });
+    [...(e.tochu||[]),...(e.houzai?.tochu||[])].forEach(t=>{ if(test(t.gen+t.yaku)) hits.push({e,where:`頭注・${t.head}`,text:t.yaku,a:"s-ho"}) });
+  });
+  const seen=new Set(); const uniq=hits.filter(h=>{const k=h.e.id+h.where+h.text.slice(0,20); if(seen.has(k))return false; seen.add(k); return true});
+  const mark=s=>{ let h=esc(s.length>130?snip(s,ts):s); ts.forEach(t=>{ if(t) h=h.split(esc(t)).join(`<mark>${esc(t)}</mark>`) }); return h };
+  box.hidden=false;
+  box.innerHTML=`<h2>「${esc(q)}」の検索結果 ${uniq.length}件${ts.length>1?`<span class="small">（${esc(ts.slice(0,8).join("・"))} を含めて検索）</span>`:""}</h2>`+
+    (uniq.length?uniq.slice(0,80).map(h=>`<a class="hit" href="#${h.e.id}" data-goto="${h.e.id}" data-anchor="${h.a}"><b>${esc(h.e.title)}</b><span class="where">${esc(h.where)}</span><p>${mark(h.text)}</p></a>`).join(""):`<p class="small">該当なし。別の言い方（例：「寒気」→「悪寒」）でもお試しください。</p>`);
+}
+function snip(s,ts){ let i=-1; for(const t of ts){ i=s.indexOf(t); if(i>=0)break } i=Math.max(0,i-30); return (i>0?"…":"")+s.slice(i,i+120)+"…" }
+let mode="both"; try{ mode=localStorage.getItem("rj-mode")||"both" }catch(e){}
+document.body.dataset.mode=mode;
+$("#nav").innerHTML=navHTML();
+$("#hint").innerHTML="例："+EX.map(x=>`<button type="button" data-q="${x}">${x}</button>`).join("");
+document.addEventListener("click",ev=>{
+  const t=ev.target.closest("[data-q],[data-mode],[data-goto],[data-jump]"); if(!t||t.tagName==="BODY") return;
+  if(t.dataset.q){ $("#q").value=t.dataset.q; search(t.dataset.q); window.scrollTo(0,0); return }
+  if(t.dataset.mode&&t.tagName==="BUTTON"){ mode=t.dataset.mode; document.body.dataset.mode=mode; try{localStorage.setItem("rj-mode",mode)}catch(e){}
+    document.querySelectorAll("#seg button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.mode===mode)); return }
+  if(t.dataset.jump){ ev.preventDefault(); document.getElementById(t.dataset.jump)?.scrollIntoView(); return }
+  if(t.dataset.goto){ ev.preventDefault(); history.replaceState(null,"","#"+t.dataset.goto); render(t.dataset.goto);
+    if(matchMedia("(max-width:760px)").matches){ $("#nav").classList.remove("open"); $("#navbtn").setAttribute("aria-expanded","false"); $("#navbtn").textContent="目次（方剤）を開く" }
+    const a=t.dataset.anchor; requestAnimationFrame(()=>{ const el=a&&document.getElementById(a); (el||$("#page")).scrollIntoView(); }); }
+});
+$("#q").addEventListener("input",e=>search(e.target.value));
+$("#navbtn").addEventListener("click",()=>{const n=$("#nav"),o=!n.classList.contains("open");n.classList.toggle("open",o);$("#navbtn").setAttribute("aria-expanded",o);$("#navbtn").textContent=o?"目次を閉じる":"目次（方剤）を開く"});
+window.addEventListener("hashchange",()=>render(location.hash.slice(1)));
+render(location.hash.slice(1)||(D[0]&&D[0].id));
+</script>
+
+<script>
+const APP_VER="202611170832";
+if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js",{updateViaCache:"none"}).catch(()=>{}))}
+// ホーム画面アプリは閉じても裏で残り再読込されないため、表示に戻るたびに新しい版を確認する
+function kkCheck(){if(!navigator.onLine)return;fetch("index.html?v="+Date.now(),{cache:"no-store"}).then(r=>r.text()).then(t=>{const m=t.match(/<!-- version ([0-9]+) -->/);if(m&&m[1]!==APP_VER){if(navigator.serviceWorker&&navigator.serviceWorker.getRegistration)navigator.serviceWorker.getRegistration().then(g=>g&&g.update());location.reload();}}).catch(()=>{})}
+document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")kkCheck()});
+window.addEventListener("load",()=>setTimeout(kkCheck,1500));
+</script>
+<!-- version 202611170832 -->
+</body>
+</html>

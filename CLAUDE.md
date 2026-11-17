@@ -46,3 +46,6 @@
   Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
   Claude-Session: （そのセッションのURL）
 - push 前に `git fetch origin main` して必要なら rebase（浅いクローンからの大きな push は 413 になる）
+
+## 類聚方広義（別アプリ）
+- `ruijuho/` フォルダは尾台榕堂『類聚方広義』のアプリ。作業するときは ruijuho/work/手順書.md と ruijuho/work/引き継ぎメモ.md を正本とする（上の皇漢医学の手順は適用しない）
