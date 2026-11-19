@@ -410,7 +410,7 @@ window.RUIJU_DATA.push(
       ] }
   ],
   tags: ["胸苦しい", "胸のもやもや", "不眠", "眠れない", "寝返り", "いらいら", "胸の熱感", "胸がつまる", "胸痛", "下痢の後", "頭汗", "空腹なのに食べられない", "舌苔", "口が苦い", "のどの渇き"],
-  related: ["byakkokaninjinto", "choreito", "keishikanzoryukotsuboreito", "daijokito"],
+  related: ["byakkokaninjinto", "choreito", "keishikanzoryukotsuboreito", "daijokito", "shishikanzoshito", "shishishokyoshito", "kijitsushishishito", "shishikobokuto", "shishikankyoto"],
   check: [
     "東洞按は最後の条（下利後更煩）の後にある。東洞は集註に従い「得吐止後服」を削ったと言うが、本書の煎法には「得吐者、止後服」が括弧付きで残る。",
     "第1条は通行本では梔子甘草豉湯・梔子生薑豉湯の条を兼ねる。第4条（凡用梔子豉湯…）は全体が括弧付き。",
