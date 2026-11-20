@@ -182,11 +182,17 @@ async def main():
     mpath = OUT / "manifest.json"
     manifest = json.loads(mpath.read_text()) if mpath.exists() else {}
     only = set(sys.argv[1:])
+    limit = int(os.environ.get("MAX_ITEMS", "0"))  # 1回に作る本数の上限（0＝無制限）。残りがあれば終了コード3
+    built, more = 0, False
     for src in sorted(SCRIPTS.glob("*.txt")):
         name = src.stem + ".mp3"
         h = hashlib.sha256((VERSION + str(VOICE_N) + str(VOICE_K) + ytxt + src.read_text(encoding="utf-8")).encode()).hexdigest()[:16]
         if (only and src.stem not in only) or (not only and manifest.get(name, {}).get("hash") == h and (OUT / name).exists()):
             continue
+        if limit and built >= limit:
+            more = True
+            break
+        built += 1
         print("building", name, flush=True)
         meta, dur = await build_one(src, pairs, OUT / name)
         manifest[name] = {"title": meta.get("title", src.stem), "hash": h, "dur": round(dur, 1)}
@@ -197,7 +203,8 @@ async def main():
             (OUT / name).unlink(missing_ok=True); manifest.pop(name)
     mpath.write_text(json.dumps(manifest, ensure_ascii=False, indent=1))
     write_index(manifest)
+    return more
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    sys.exit(3 if asyncio.run(main()) else 0)
