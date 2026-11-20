@@ -153,5 +153,80 @@
   "title": "31 半夏散及湯",
   "hash": "8e16cc0c90a89322",
   "dur": 143.7
+ },
+ "032_keishininjinto.mp3": {
+  "title": "32 桂枝人參湯",
+  "hash": "91665132c175582e",
+  "dur": 218.9
+ },
+ "033_ninjinto.mp3": {
+  "title": "33 人參湯",
+  "hash": "765544a4edcde75e",
+  "dur": 530.3
+ },
+ "034_bukuryokyoninkanzoto.mp3": {
+  "title": "34 茯苓杏仁甘草湯",
+  "hash": "0cff6df548ce7402",
+  "dur": 166.5
+ },
+ "035_bukuryojuento.mp3": {
+  "title": "35 茯苓戎鹽湯",
+  "hash": "c40d0a1182a1e108",
+  "dur": 147.2
+ },
+ "036_kishibukuryosan.mp3": {
+  "title": "36 葵子茯苓散",
+  "hash": "9d6fbe7ae455240f",
+  "dur": 127.6
+ },
+ "037_ryokyojutsukanto.mp3": {
+  "title": "37 苓薑朮甘湯",
+  "hash": "4f0ce6688e60af18",
+  "dur": 221.8
+ },
+ "038_ryokeijutsukanto.mp3": {
+  "title": "38 苓桂朮甘湯",
+  "hash": "18ccae08ea8dc13c",
+  "dur": 269.8
+ },
+ "039_ryokeikansoto.mp3": {
+  "title": "39 苓桂甘棗湯",
+  "hash": "a1c85cec8e10e091",
+  "dur": 115.3
+ },
+ "040_ryokeigomikanzoto.mp3": {
+  "title": "40 苓桂五味甘草湯",
+  "hash": "1bce901af8133a1b",
+  "dur": 244.0
+ },
+ "041_ryokangomikyoshinto.mp3": {
+  "title": "41 苓甘五味薑辛湯",
+  "hash": "dfff9af888c4455d",
+  "dur": 116.0
+ },
+ "042_ryokankyomishingeto.mp3": {
+  "title": "42 苓甘薑味辛夏湯",
+  "hash": "3bef227455f70b75",
+  "dur": 143.6
+ },
+ "043_ryokankyomishingeninto.mp3": {
+  "title": "43 苓甘薑味辛夏仁湯",
+  "hash": "30095d11c47581b1",
+  "dur": 162.7
+ },
+ "044_ryokankyomishingeninoto.mp3": {
+  "title": "44 苓甘薑味辛夏仁黃湯",
+  "hash": "b909a3e81c1dc91b",
+  "dur": 109.6
+ },
+ "045_takushato.mp3": {
+  "title": "45 澤瀉湯",
+  "hash": "8a947a8de9ff0d06",
+  "dur": 107.2
+ },
+ "046_bukuryotakushato.mp3": {
+  "title": "46 茯苓澤瀉湯",
+  "hash": "3d77222d288bb63f",
+  "dur": 178.6
  }
 }
