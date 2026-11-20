@@ -453,5 +453,80 @@
   "title": "91 附子瀉心湯",
   "hash": "9ec28934a5640eb4",
   "dur": 135.4
+ },
+ "092_daiobushito.mp3": {
+  "title": "92 大黃附子湯",
+  "hash": "e43a401d8e2bd559",
+  "dur": 144.3
+ },
+ "093_daiokanzoto.mp3": {
+  "title": "93 大黃甘草湯",
+  "hash": "9c78e684e0f89cf0",
+  "dur": 195.3
+ },
+ "094_chouijokito.mp3": {
+  "title": "94 調胃承氣湯",
+  "hash": "6fa713cfe9684c30",
+  "dur": 721.8
+ },
+ "095_kippidaioboshoto.mp3": {
+  "title": "95 橘皮大黃朴消湯",
+  "hash": "368ce074d2f6971e",
+  "dur": 158.3
+ },
+ "096_tokakujokito.mp3": {
+  "title": "96 桃核承氣湯",
+  "hash": "d82b9863fb374eaa",
+  "dur": 347.1
+ },
+ "097_daiobotanpito.mp3": {
+  "title": "97 大黃牡丹皮湯",
+  "hash": "7a72181e4b5053f8",
+  "dur": 320.2
+ },
+ "098_daiokansuito.mp3": {
+  "title": "98 大黃甘遂湯",
+  "hash": "85db0a50486e0cc7",
+  "dur": 259.3
+ },
+ "099_geoketsuto.mp3": {
+  "title": "99 下瘀血湯",
+  "hash": "3917dcffab464424",
+  "dur": 305.1
+ },
+ "100_teitoto.mp3": {
+  "title": "100 抵當湯",
+  "hash": "6431cfffe9d7e55f",
+  "dur": 454.7
+ },
+ "101_teitogan.mp3": {
+  "title": "101 抵當丸",
+  "hash": "4809b41ee5f217a4",
+  "dur": 152.1
+ },
+ "102_dokakonsan.mp3": {
+  "title": "102 土瓜根散",
+  "hash": "13eeb7ff357023a3",
+  "dur": 303.4
+ },
+ "103_kanzoto.mp3": {
+  "title": "103 甘草湯",
+  "hash": "0d84fe668d8aa2c6",
+  "dur": 155.4
+ },
+ "104_kikyoto.mp3": {
+  "title": "104 桔梗湯",
+  "hash": "b77ec0e3600522fc",
+  "dur": 306.9
+ },
+ "105_hainoto.mp3": {
+  "title": "105 排膿湯",
+  "hash": "69d76fa8e33e4d19",
+  "dur": 108.8
+ },
+ "106_shakuyakukanzoto.mp3": {
+  "title": "106 芍藥甘草湯",
+  "hash": "1fd1ea768998a5f2",
+  "dur": 183.7
  }
 }
