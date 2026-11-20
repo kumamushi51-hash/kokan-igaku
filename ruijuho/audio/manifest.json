@@ -303,5 +303,80 @@
   "title": "61 麻黃杏仁薏苡甘草湯",
   "hash": "7ebf62e8673bed74",
   "dur": 181.2
+ },
+ "062_boreito.mp3": {
+  "title": "62 牡蠣湯",
+  "hash": "f286486bcca23b09",
+  "dur": 140.4
+ },
+ "063_maojunshuto.mp3": {
+  "title": "63 麻黃醇酒湯",
+  "hash": "ce762aae2947ac7f",
+  "dur": 87.1
+ },
+ "064_hangemaogan.mp3": {
+  "title": "64 半夏麻黃丸",
+  "hash": "0f0a775d3ccdbd9b",
+  "dur": 64.4
+ },
+ "065_shoseiryuto.mp3": {
+  "title": "65 小青龍湯",
+  "hash": "f520fba2d3183c79",
+  "dur": 528.7
+ },
+ "066_daiseiryuto.mp3": {
+  "title": "66 大青龍湯",
+  "hash": "912cc214fe1ad13f",
+  "dur": 503.5
+ },
+ "067_bunkoto.mp3": {
+  "title": "67 文蛤湯",
+  "hash": "c0f3d14bb19628fe",
+  "dur": 212.5
+ },
+ "068_bunkosan.mp3": {
+  "title": "68 文蛤散",
+  "hash": "c065d646d8941213",
+  "dur": 185.4
+ },
+ "069_eppito.mp3": {
+  "title": "69 越婢湯",
+  "hash": "0d9c846f8709c627",
+  "dur": 156.0
+ },
+ "070_eppikajutsuto.mp3": {
+  "title": "70 越婢加朮湯",
+  "hash": "47c33f38975ece0e",
+  "dur": 334.4
+ },
+ "071_eppikahangeto.mp3": {
+  "title": "71 越婢加半夏湯",
+  "hash": "9353a6413c4ccb05",
+  "dur": 135.4
+ },
+ "072_kakkonto.mp3": {
+  "title": "72 葛根湯",
+  "hash": "5a486ac2ed3c262a",
+  "dur": 688.2
+ },
+ "073_kakkonkahangeto.mp3": {
+  "title": "73 葛根加半夏湯",
+  "hash": "e0d53d56c83c34d1",
+  "dur": 90.5
+ },
+ "074_kakkonogonto.mp3": {
+  "title": "74 葛根黃連黃芩湯",
+  "hash": "1f27fbfe36e4ef9a",
+  "dur": 165.3
+ },
+ "075_shosaikoto.mp3": {
+  "title": "75 小柴胡湯",
+  "hash": "c93c7999f69724f9",
+  "dur": 2217.3
+ },
+ "076_saikokaboshoto.mp3": {
+  "title": "76 柴胡加芒消湯",
+  "hash": "fb77143b5a9e7200",
+  "dur": 204.2
  }
 }
