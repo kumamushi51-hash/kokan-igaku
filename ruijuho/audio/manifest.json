@@ -228,5 +228,80 @@
   "title": "46 茯苓澤瀉湯",
   "hash": "3d77222d288bb63f",
   "dur": 178.6
+ },
+ "047_bukuryokanzoto.mp3": {
+  "title": "47 茯苓甘草湯",
+  "hash": "0e38ccce90bf4381",
+  "dur": 186.4
+ },
+ "048_goreisan.mp3": {
+  "title": "48 五苓散",
+  "hash": "c9b192c146082177",
+  "dur": 776.2
+ },
+ "049_inchingoreisan.mp3": {
+  "title": "49 茵蔯五苓散",
+  "hash": "2c96494a7903dda8",
+  "dur": 71.3
+ },
+ "050_choreito.mp3": {
+  "title": "50 猪苓湯",
+  "hash": "cb1a781921f352c7",
+  "dur": 360.8
+ },
+ "051_choreisan.mp3": {
+  "title": "51 猪苓散",
+  "hash": "201708961f3e8159",
+  "dur": 84.3
+ },
+ "052_boreitakushasan.mp3": {
+  "title": "52 牡蠣澤瀉散",
+  "hash": "f17ca5bf4b880667",
+  "dur": 117.3
+ },
+ "053_hachimigan.mp3": {
+  "title": "53 八味丸",
+  "hash": "e29a88b3358dc70c",
+  "dur": 380.9
+ },
+ "054_karokubakugan.mp3": {
+  "title": "54 括蔞瞿麥丸",
+  "hash": "c296287026be2c24",
+  "dur": 121.8
+ },
+ "055_maoto.mp3": {
+  "title": "55 麻黃湯",
+  "hash": "9666df08dddb9709",
+  "dur": 702.4
+ },
+ "056_maokajutsuto.mp3": {
+  "title": "56 麻黃加朮湯",
+  "hash": "b8b60c2d493d6167",
+  "dur": 160.1
+ },
+ "057_kanzomaoto.mp3": {
+  "title": "57 甘草麻黃湯",
+  "hash": "80bbf0b75429e17e",
+  "dur": 176.7
+ },
+ "058_maobushikanzoto.mp3": {
+  "title": "58 麻黃附子甘草湯",
+  "hash": "4a5199d62cd11a8e",
+  "dur": 234.4
+ },
+ "059_maobushisaishinto.mp3": {
+  "title": "59 麻黃附子細辛湯",
+  "hash": "5a8e2c35dd6431a4",
+  "dur": 96.9
+ },
+ "060_makyokansekito.mp3": {
+  "title": "60 麻黃杏仁甘草石膏湯",
+  "hash": "68f35fdf8406b4cb",
+  "dur": 189.6
+ },
+ "061_makyoyokukanto.mp3": {
+  "title": "61 麻黃杏仁薏苡甘草湯",
+  "hash": "7ebf62e8673bed74",
+  "dur": 181.2
  }
 }
