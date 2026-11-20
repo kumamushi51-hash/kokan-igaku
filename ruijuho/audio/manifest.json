@@ -1,7 +1,157 @@
 {
  "001_keishito.mp3": {
   "title": "1 桂枝湯",
-  "hash": "c2e2aef26a60e2ac",
+  "hash": "6f87e3d3a7a3bc2b",
   "dur": 1854.2
+ },
+ "002_keishikakeito.mp3": {
+  "title": "2 桂枝加桂湯",
+  "hash": "b6774d26bf0c1692",
+  "dur": 192.2
+ },
+ "003_keishikashakuyakuto.mp3": {
+  "title": "3 桂枝加芍藥湯",
+  "hash": "eef0be51bc0c5818",
+  "dur": 190.4
+ },
+ "004_keishikyoshakuyakuto.mp3": {
+  "title": "4 桂枝去芍藥湯",
+  "hash": "6f4cbb6a7fd907ec",
+  "dur": 160.2
+ },
+ "005_keishikakakkonto.mp3": {
+  "title": "5 桂枝加葛根湯",
+  "hash": "8274722434516413",
+  "dur": 192.8
+ },
+ "006_karokeishito.mp3": {
+  "title": "6 括蔞桂枝湯",
+  "hash": "3818f5b0224f6135",
+  "dur": 186.1
+ },
+ "007_keishikaogito.mp3": {
+  "title": "7 桂枝加黄耆湯",
+  "hash": "b5065f746745b7cd",
+  "dur": 338.1
+ },
+ "008_keishikashakuyakudaioto.mp3": {
+  "title": "8 桂枝加芍藥大黄湯",
+  "hash": "f3b4dccef35b4b83",
+  "dur": 179.5
+ },
+ "009_keishikashakuyakushokyoninjinto.mp3": {
+  "title": "9 桂枝加芍藥生薑人參湯",
+  "hash": "439aa244a0711ba3",
+  "dur": 154.4
+ },
+ "010_keishikakobokukyoshito.mp3": {
+  "title": "10 桂枝加厚朴杏子湯",
+  "hash": "1270f0ff5a96532b",
+  "dur": 146.2
+ },
+ "011_uzukeishito.mp3": {
+  "title": "11 烏頭桂枝湯",
+  "hash": "99eac133791e91f0",
+  "dur": 276.7
+ },
+ "012_keishikabushito.mp3": {
+  "title": "12 桂枝加附子湯",
+  "hash": "cd556f2a163b5236",
+  "dur": 193.2
+ },
+ "013_keishikyoshakuyakukabushito.mp3": {
+  "title": "13 桂枝去芍藥加附子湯",
+  "hash": "c30db6906ec49fc1",
+  "dur": 102.9
+ },
+ "014_keishibushito.mp3": {
+  "title": "14 桂枝附子湯",
+  "hash": "60ff016cb4f73f08",
+  "dur": 145.4
+ },
+ "015_keishibushikyokeishikajutsuto.mp3": {
+  "title": "15 桂枝附子去桂枝加朮湯",
+  "hash": "4ac661a1ee2cc643",
+  "dur": 235.7
+ },
+ "016_kanzobushito.mp3": {
+  "title": "16 甘草附子湯",
+  "hash": "4915319ebc09b842",
+  "dur": 231.8
+ },
+ "017_keishikyokeikabukuryojutsuto.mp3": {
+  "title": "17 桂枝去桂加茯苓朮湯",
+  "hash": "1d754e0e7f006372",
+  "dur": 245.5
+ },
+ "018_keishikyoshakuyakukamaobushisaishinto.mp3": {
+  "title": "18 桂枝去芍藥加麻黄附子細辛湯",
+  "hash": "b488b0d42b5ce969",
+  "dur": 183.4
+ },
+ "019_keishikyoshakuyakukasokyoto.mp3": {
+  "title": "19 桂枝去芍藥加皂莢湯",
+  "hash": "545def730fd5ad86",
+  "dur": 133.7
+ },
+ "020_keishikaryukotsuboreito.mp3": {
+  "title": "20 桂枝加龍骨牡蠣湯",
+  "hash": "f0a9199e0a4593df",
+  "dur": 254.2
+ },
+ "021_keishikyoshakuyakukashokushitsuryukotsuboreito.mp3": {
+  "title": "21 桂枝去芍藥加蜀漆龍骨牡蠣湯",
+  "hash": "73dc8c6766ad02b8",
+  "dur": 119.4
+ },
+ "022_keishikanzoryukotsuboreito.mp3": {
+  "title": "22 桂枝甘草龍骨牡蠣湯",
+  "hash": "1e8dbf3e5ae0e2d2",
+  "dur": 129.8
+ },
+ "023_keishinimaoichito.mp3": {
+  "title": "23 桂枝二麻黄一湯",
+  "hash": "1267ebcd196495f3",
+  "dur": 198.5
+ },
+ "024_keishinieppiichito.mp3": {
+  "title": "24 桂枝二越婢一湯",
+  "hash": "03d1afb9f215f28f",
+  "dur": 158.5
+ },
+ "025_keishimaokakuhanto.mp3": {
+  "title": "25 桂枝麻黄各半湯",
+  "hash": "91096865a1c5488e",
+  "dur": 215.9
+ },
+ "026_shokenchuto.mp3": {
+  "title": "26 小建中湯",
+  "hash": "f6ca70e073e76efe",
+  "dur": 361.1
+ },
+ "027_ogikenchuto.mp3": {
+  "title": "27 黄耆建中湯",
+  "hash": "b92b38909aa31ddc",
+  "dur": 186.1
+ },
+ "028_ogikeishigomotsuto.mp3": {
+  "title": "28 黄耆桂枝五物湯",
+  "hash": "e8d2aa978ea1cd6e",
+  "dur": 168.6
+ },
+ "029_ogishakuyakukeishikushuto.mp3": {
+  "title": "29 黄耆芍藥桂枝苦酒湯",
+  "hash": "168028d9d5cdeadb",
+  "dur": 211.3
+ },
+ "030_keishikanzoto.mp3": {
+  "title": "30 桂枝甘草湯",
+  "hash": "0119e406ca70c4fe",
+  "dur": 107.7
+ },
+ "031_hangesankyuto.mp3": {
+  "title": "31 半夏散及湯",
+  "hash": "8e16cc0c90a89322",
+  "dur": 143.7
  }
 }
