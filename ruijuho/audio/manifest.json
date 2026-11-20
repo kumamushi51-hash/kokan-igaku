@@ -678,5 +678,80 @@
   "title": "136 大黃消石湯",
   "hash": "7bb4ef2dcb7ff019",
   "dur": 133.1
+ },
+ "137_inchinkoto.mp3": {
+  "title": "137 茵蔯蒿湯",
+  "hash": "4e715a8000530845",
+  "dur": 311.6
+ },
+ "138_shishihakuhito.mp3": {
+  "title": "138 梔子蘗皮湯",
+  "hash": "bb4ad819c4be4a07",
+  "dur": 106.7
+ },
+ "139_shishikobokuto.mp3": {
+  "title": "139 梔子厚朴湯",
+  "hash": "b0643aefa6a64c32",
+  "dur": 126.3
+ },
+ "140_shishikankyoto.mp3": {
+  "title": "140 梔子乾薑湯",
+  "hash": "a1f573b41adbc57c",
+  "dur": 95.7
+ },
+ "141_sansoninto.mp3": {
+  "title": "141 酸棗仁湯",
+  "hash": "fd6cf472dce1db6c",
+  "dur": 184.9
+ },
+ "142_daikankyoto.mp3": {
+  "title": "142 大陷胸湯",
+  "hash": "2d0ac10a60e38adb",
+  "dur": 594.1
+ },
+ "143_daikankyogan.mp3": {
+  "title": "143 大陷胸丸",
+  "hash": "96d4739c0a974a62",
+  "dur": 191.9
+ },
+ "144_shokankyoto.mp3": {
+  "title": "144 小陷胸湯",
+  "hash": "5ff076b884528c3a",
+  "dur": 253.0
+ },
+ "145_kijitsugaihakukeishito.mp3": {
+  "title": "145 枳實薤白桂枝湯",
+  "hash": "2c4148d919e68c1a",
+  "dur": 167.6
+ },
+ "146_karogaihakuhakushuto.mp3": {
+  "title": "146 括蔞薤白白酒湯",
+  "hash": "d6e266684503ec77",
+  "dur": 186.8
+ },
+ "147_karogaihakuhangeto.mp3": {
+  "title": "147 括蔞薤白半夏湯",
+  "hash": "005c762379fce645",
+  "dur": 152.2
+ },
+ "148_kateisan.mp3": {
+  "title": "148 瓜蔕散",
+  "hash": "2e20c9a4436e1109",
+  "dur": 296.8
+ },
+ "149_shohangeto.mp3": {
+  "title": "149 小半夏湯",
+  "hash": "718f85ca911ccbe7",
+  "dur": 269.4
+ },
+ "150_shohangekabukuryoto.mp3": {
+  "title": "150 小半夏加茯苓湯",
+  "hash": "a682b2b7ea90d451",
+  "dur": 119.9
+ },
+ "151_daihangeto.mp3": {
+  "title": "151 大半夏湯",
+  "hash": "cfbf30bb964c11dd",
+  "dur": 91.3
  }
 }
