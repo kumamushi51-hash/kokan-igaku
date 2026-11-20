@@ -603,5 +603,80 @@
   "title": "121 眞武湯",
   "hash": "67057613f3c2a694",
   "dur": 333.8
+ },
+ "122_fushito.mp3": {
+  "title": "122 附子湯",
+  "hash": "89ab59188ca6d3f3",
+  "dur": 207.5
+ },
+ "123_fushikobeito.mp3": {
+  "title": "123 附子粳米湯",
+  "hash": "7678810f55b4c73c",
+  "dur": 170.1
+ },
+ "124_sekigan.mp3": {
+  "title": "124 赤丸",
+  "hash": "5e63024ad2eef692",
+  "dur": 129.7
+ },
+ "125_daiuzusen.mp3": {
+  "title": "125 大烏頭煎",
+  "hash": "ed2ad54691251630",
+  "dur": 186.6
+ },
+ "126_uzuto.mp3": {
+  "title": "126 烏頭湯",
+  "hash": "6a130448e06cc3a0",
+  "dur": 285.4
+ },
+ "127_yokuininbushisan.mp3": {
+  "title": "127 薏苡附子散",
+  "hash": "1f158b00c91c530b",
+  "dur": 135.3
+ },
+ "128_yokuininbushihaishosan.mp3": {
+  "title": "128 薏苡附子敗醬散",
+  "hash": "ae4b302bec3b9b0c",
+  "dur": 215.6
+ },
+ "129_tenyusan.mp3": {
+  "title": "129 天雄散",
+  "hash": "4d47c954382a65b4",
+  "dur": 133.3
+ },
+ "130_shokushitsusan.mp3": {
+  "title": "130 蜀漆散",
+  "hash": "98ce5c2c88acea28",
+  "dur": 134.8
+ },
+ "131_shishishito.mp3": {
+  "title": "131 梔子豉湯",
+  "hash": "8c15df79818893ec",
+  "dur": 661.4
+ },
+ "132_shishikanzoshito.mp3": {
+  "title": "132 梔子甘草豉湯",
+  "hash": "db68f8ee1887e4c3",
+  "dur": 172.1
+ },
+ "133_shishishokyoshito.mp3": {
+  "title": "133 梔子生薑豉湯",
+  "hash": "32e5ce8d5a215289",
+  "dur": 111.7
+ },
+ "134_kijitsushishishito.mp3": {
+  "title": "134 枳實梔子豉湯",
+  "hash": "443fe534ac4b9482",
+  "dur": 217.4
+ },
+ "135_kijitsushishidaioshito.mp3": {
+  "title": "135 枳實梔子大黃豉湯",
+  "hash": "aca8adaad2b935e4",
+  "dur": 150.3
+ },
+ "136_daioshosekito.mp3": {
+  "title": "136 大黃消石湯",
+  "hash": "7bb4ef2dcb7ff019",
+  "dur": 133.1
  }
 }
