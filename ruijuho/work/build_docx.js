@@ -7,6 +7,7 @@ const files=fs.readdirSync(dir).filter(f=>/^data_.*\.js$/.test(f)).sort();
 const ctx={window:{}}; vm.createContext(ctx);
 files.forEach(f=>vm.runInContext(fs.readFileSync(path.join(dir,f),'utf8'),ctx));
 const D=ctx.window.RUIJU_DATA.slice().sort((a,b)=>a.no-b.no);
+const F=ctx.window.RUIJU_FRONT||[];
 const MIN='Yu Mincho', GO='Yu Gothic', AI='6B3E26';
 const r=(t,o={})=>new TextRun({text:t,font:{ascii:MIN,eastAsia:MIN,hAnsi:MIN},...o});
 const P=(t,o={})=>String(t||'').split('\n').filter(x=>x.trim()).map(x=>new Paragraph({children:[r(x,o.run||{})],spacing:{after:100,line:340},indent:o.indent,...(o.para||{})}));
@@ -23,7 +24,7 @@ const out=[];
 out.push(new Paragraph({alignment:AlignmentType.CENTER,spacing:{before:2400,after:400},children:[r('類聚方広義',{size:56,bold:true})]}));
 out.push(new Paragraph({alignment:AlignmentType.CENTER,children:[r('尾台榕堂 著　―　条文書き下し・頭注現代語訳',{size:26})]}));
 out.push(new Paragraph({alignment:AlignmentType.CENTER,spacing:{before:600},children:[r('底本：京都大学附属図書館所蔵（富士川文庫）『類聚方広義』　画像：京都大学貴重資料デジタルアーカイブ',{size:20,color:'555555'})]}));
-out.push(new Paragraph({alignment:AlignmentType.CENTER,spacing:{before:200},children:[r('凡例：主治・煎法・条文は書き下し文、上段の頭注（尾台榕堂）は現代語訳（全文）で記す。「」は東洞が本書で括弧に囲んだ部分。コマは同アーカイブの画像番号（R＝右頁、L＝左頁）。「要確認」は判読に不確実な点などを示す。',{size:20,color:'555555'})]}));
+out.push(new Paragraph({alignment:AlignmentType.CENTER,spacing:{before:200},children:[r('凡例：序文・凡例・跋文は現代語訳、主治・煎法・条文は書き下し文、上段の頭注（尾台榕堂）は現代語訳（全文）で記す。「」は東洞が本書で括弧に囲んだ部分。コマは同アーカイブの画像番号（R＝右頁、L＝左頁）。「要確認」は判読に不確実な点などを示す。',{size:20,color:'555555'})]}));
 out.push(new Paragraph({children:[new PageBreak()]}));
 out.push(new TableOfContents('目次',{hyperlink:true,headingStyleRange:'1-2'}));
 
@@ -46,9 +47,16 @@ function entry(e){
   });
   if(e.check&&e.check.length) out.push(note('要確認：'+e.check.join('／')));
 }
+function front(f){ // 序・跋：現代語訳（全文）
+  out.push(H1(f.title));
+  out.push(note([f.author,f.date,'原本コマ '+f.koma].filter(Boolean).join('　')));
+  f.paras.forEach(p=>{ if(p.head) out.push(label(p.head)); out.push(...P(p.yaku,{indent:IND})); });
+}
+F.filter(f=>f.where==='前').forEach(front);
 let g=null;
 D.forEach(e=>{ if(e.group!==g){ g=e.group; out.push(H1(g)); } entry(e); });
 
+F.filter(f=>f.where==='後').forEach(front);
 const doc=new Document({
   features:{updateFields:true}, creator:'栗原智', title:'類聚方広義 書き下し・現代語訳',
   styles:{default:{document:{run:{font:MIN,size:21}}},

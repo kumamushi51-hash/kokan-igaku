@@ -29,8 +29,15 @@ h1{font-family:var(--f-disp);font-size:22px;margin:0;letter-spacing:.08em}
 .hint{max-width:1180px;margin:6px auto 0;font-size:12px;color:var(--muted)}
 .hint button{font:inherit;font-size:12px;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:999px;padding:1px 10px;margin:2px 2px 0 0;cursor:pointer}
 #navbtn{display:none}
+.tabs{display:flex;gap:6px;max-width:1180px;margin:10px auto 0}
+.tabs button{font:inherit;font-size:14px;padding:5px 16px;border:1px solid var(--line);border-bottom-width:3px;border-radius:6px 6px 0 0;background:var(--paper);color:var(--muted);cursor:pointer}
+.tabs button[aria-selected="true"]{color:var(--ink);font-weight:700;border-bottom-color:var(--ai)}
+.fm p.intro{font-size:14px;color:var(--muted);background:var(--bg);border-radius:6px;padding:10px 14px;margin:12px 0 0}
+.fm .para{border-top:1px solid var(--line);padding:16px 0}
+.fm .para:first-of-type{border-top:0}
+.fm .para h4{font-family:var(--f-disp);font-size:16px;margin:0 0 6px;color:var(--ai)}
 .wrap{display:grid;grid-template-columns:200px minmax(0,1fr);gap:24px;max-width:1180px;margin:18px auto 0}
-nav{position:sticky;top:150px;align-self:start;font-size:14px;max-height:calc(100vh - 170px);overflow:auto}
+nav{position:sticky;top:225px;align-self:start;font-size:14px;max-height:calc(100vh - 245px);overflow:auto}
 nav h3{font-family:var(--f-disp);font-size:13px;color:var(--muted);letter-spacing:.15em;margin:14px 0 4px;font-weight:500}
 nav a{display:block;padding:5px 10px;border-left:3px solid transparent;color:var(--ink);text-decoration:none;border-radius:0 4px 4px 0}
 nav a:hover{background:var(--ai-soft)}
@@ -103,7 +110,8 @@ footer a{color:var(--ai)}
   <div class="top"><h1>類聚方広義</h1><span class="sub">尾台榕堂　条文・頭注を症状から検索</span></div>
   <div class="search"><input id="q" type="search" placeholder="症状・方剤名で検索（例：のぼせ、頭痛、汗、下痢）" autocomplete="off" enterkeyhint="search"></div>
   <div class="hint" id="hint"></div>
-  <button id="navbtn" type="button" aria-expanded="false">目次（方剤）を開く</button>
+  <div class="tabs" role="tablist"><button type="button" role="tab" data-tab="fang" aria-selected="true">方剤</button><button type="button" role="tab" data-tab="jo" aria-selected="false">序文・凡例・跋文</button></div>
+  <button id="navbtn" type="button" aria-expanded="false">目次を開く</button>
 </header>
 <div class="wrap">
   <nav id="nav"></nav>
@@ -115,6 +123,8 @@ footer a{color:var(--ai)}
 </script>
 <script>
 const D=(window.RUIJU_DATA||[]).slice().sort((a,b)=>a.no-b.no);
+const F=(window.RUIJU_FRONT||[]);
+let tab="fang";
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const RMDA="https://rmda.kulib.kyoto-u.ac.jp/item/rb00005779?page=";
@@ -194,6 +204,12 @@ function terms(q){
   return [...out];
 }
 function navHTML(){
+  if(tab==="jo"){
+    let h=`<h3>巻頭</h3>`+F.filter(f=>f.where==="前").map(f=>`<a href="#${f.id}" data-goto="${f.id}">${esc(f.title)}</a>`).join("");
+    h+=`<h3>巻末</h3>`+F.filter(f=>f.where==="後").map(f=>`<a href="#${f.id}" data-goto="${f.id}">${esc(f.title)}</a>`).join("");
+    h+=`<h3>このアプリについて</h3><a href="#about" data-goto="about">凡例</a>`;
+    return h;
+  }
   let h="", g=null;
   D.forEach(e=>{ if(e.group!==g){ g=e.group; h+=`<h3>${esc(g)}</h3>` }
     h+=`<a href="#${e.id}" data-goto="${e.id}" id="n-${e.id}"><span class="no">${e.no}</span>${esc(e.title)}</a>` });
@@ -217,9 +233,22 @@ function about(){
   <li><b>要確認</b>：判読に自信がない字や、括弧の範囲など、原本で確かめたい点です。</li></ul></section>
   <section><h3>底本</h3><p class="small">『類聚方広義』尾台逸（榕堂）著。京都大学附属図書館所蔵（富士川文庫, RB00005779）。画像の利用条件は同アーカイブの表示に従います。</p></section></div>`;
 }
+function setTab(t){ if(t===tab) return; tab=t; $("#nav").innerHTML=navHTML();
+  document.querySelectorAll(".tabs button").forEach(b=>b.setAttribute("aria-selected",b.dataset.tab===tab)); }
+function modebar(){ return `<div class="modebar">表示：<span class="seg" id="seg">${[["both","書き下し＋訳"],["kaki","書き下し"],["yaku","現代語訳"]].map(([v,l])=>`<button data-mode="${v}" aria-pressed="${document.body.dataset.mode===v}">${l}</button>`).join("")}</span></div>` }
+function renderFront(f){
+  let h=`<div class="page fm"><h2>${esc(f.title)}</h2><div class="meta">${f.author?esc(f.author)+"　":""}${f.date?esc(f.date)+"　":""}原本：${String(f.koma).split(/,\s*/).map(k=>komaLink(k)).join("・")}</div>`;
+  if(f.intro) h+=`<p class="intro">${esc(f.intro)}</p>`;
+  h+=modebar()+`<section>${f.paras.map((p,i)=>`<div class="para" id="fp-${i+1}">${p.head?`<h4>${esc(p.head)}</h4>`:""}${txt(p,"",true)}</div>`).join("")}</section>`;
+  if(f.check&&f.check.length) h+=`<section><h3>要確認</h3><ul class="check">${f.check.map(c=>`<li>${esc(c)}</li>`).join("")}</ul></section>`;
+  $("#page").innerHTML=h+"</div>";
+}
 function render(id){
+  const f=F.find(x=>x.id===id);
+  if(f) setTab("jo"); else if(id!=="about") setTab("fang");
   document.querySelectorAll("nav a").forEach(a=>a.classList.toggle("on",a.dataset.goto===id));
   if(id==="about"){ $("#page").innerHTML=about(); return }
+  if(f){ renderFront(f); return }
   const e=D.find(x=>x.id===id)||D[0]; if(!e) return;
   document.querySelectorAll("nav a").forEach(a=>a.classList.toggle("on",a.dataset.goto===e.id));
   const H=e.houzai||{};
@@ -250,6 +279,7 @@ function search(q){
     });
     [...(e.tochu||[]),...(e.houzai?.tochu||[])].forEach(t=>{ if(test(t.kaki+t.yaku)) hits.push({e,where:`頭注・${t.head}`,text:t.yaku,a:"s-ho"}) });
   });
+  F.forEach(f=>f.paras.forEach((p,i)=>{ if(test(p.kaki+p.yaku)) hits.push({e:{id:f.id,title:f.title},where:p.head||"本文",text:p.yaku,a:`fp-${i+1}`}) }));
   const seen=new Set(); const uniq=hits.filter(h=>{const k=h.e.id+h.where+h.text.slice(0,20); if(seen.has(k))return false; seen.add(k); return true});
   const mark=s=>{ let h=esc(s.length>130?snip(s,ts):s); ts.forEach(t=>{ if(t) h=h.split(esc(t)).join(`<mark>${esc(t)}</mark>`) }); return h };
   box.hidden=false;
@@ -263,17 +293,20 @@ document.body.dataset.mode=mode;
 $("#nav").innerHTML=navHTML();
 $("#hint").innerHTML="例："+EX.map(x=>`<button type="button" data-q="${x}">${x}</button>`).join("");
 document.addEventListener("click",ev=>{
+  const tb=ev.target.closest(".tabs button");
+  if(tb){ const t=tb.dataset.tab; setTab(t); const first=t==="jo"?F[0]&&F[0].id:D[0]&&D[0].id; history.replaceState(null,"","#"+first); render(first);
+    if(matchMedia("(max-width:760px)").matches){ $("#nav").classList.add("open"); $("#navbtn").setAttribute("aria-expanded","true"); $("#navbtn").textContent="目次を閉じる" } return }
   const t=ev.target.closest("[data-q],[data-mode],[data-goto],[data-jump]"); if(!t||t.tagName==="BODY") return;
   if(t.dataset.q){ $("#q").value=t.dataset.q; search(t.dataset.q); window.scrollTo(0,0); return }
   if(t.dataset.mode&&t.tagName==="BUTTON"){ mode=t.dataset.mode; document.body.dataset.mode=mode; try{localStorage.setItem("rj-mode",mode)}catch(e){}
     document.querySelectorAll("#seg button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.mode===mode)); return }
   if(t.dataset.jump){ ev.preventDefault(); document.getElementById(t.dataset.jump)?.scrollIntoView(); return }
   if(t.dataset.goto){ ev.preventDefault(); history.replaceState(null,"","#"+t.dataset.goto); render(t.dataset.goto);
-    if(matchMedia("(max-width:760px)").matches){ $("#nav").classList.remove("open"); $("#navbtn").setAttribute("aria-expanded","false"); $("#navbtn").textContent="目次（方剤）を開く" }
+    if(matchMedia("(max-width:760px)").matches){ $("#nav").classList.remove("open"); $("#navbtn").setAttribute("aria-expanded","false"); $("#navbtn").textContent="目次を開く" }
     const a=t.dataset.anchor; requestAnimationFrame(()=>{ const el=a&&document.getElementById(a); (el||$("#page")).scrollIntoView(); }); }
 });
 $("#q").addEventListener("input",e=>search(e.target.value));
-$("#navbtn").addEventListener("click",()=>{const n=$("#nav"),o=!n.classList.contains("open");n.classList.toggle("open",o);$("#navbtn").setAttribute("aria-expanded",o);$("#navbtn").textContent=o?"目次を閉じる":"目次（方剤）を開く"});
+$("#navbtn").addEventListener("click",()=>{const n=$("#nav"),o=!n.classList.contains("open");n.classList.toggle("open",o);$("#navbtn").setAttribute("aria-expanded",o);$("#navbtn").textContent=o?"目次を閉じる":"目次を開く"});
 window.addEventListener("hashchange",()=>render(location.hash.slice(1)));
 render(location.hash.slice(1)||(D[0]&&D[0].id));
 </script>
