@@ -528,5 +528,80 @@
   "title": "106 芍藥甘草湯",
   "hash": "1fd1ea768998a5f2",
   "dur": 183.7
+ },
+ "107_shakuyakukanzobushito.mp3": {
+  "title": "107 芍藥甘草附子湯",
+  "hash": "28b320fb55fe1510",
+  "dur": 133.0
+ },
+ "108_kanzuihangeto.mp3": {
+  "title": "108 甘遂半夏湯",
+  "hash": "7ecfd55610cda198",
+  "dur": 174.6
+ },
+ "109_kanbakutaisoto.mp3": {
+  "title": "109 甘草小麥大棗湯",
+  "hash": "a0f29948ab75db2e",
+  "dur": 185.0
+ },
+ "110_kanzofunmitsuto.mp3": {
+  "title": "110 甘草粉蜜湯",
+  "hash": "680ac88d93913055",
+  "dur": 288.1
+ },
+ "111_shokyokanzoto.mp3": {
+  "title": "111 生薑甘草湯",
+  "hash": "a5baf0e515671940",
+  "dur": 90.2
+ },
+ "112_kanzokankyoto.mp3": {
+  "title": "112 甘草乾薑湯",
+  "hash": "c774f7584ce38c3a",
+  "dur": 304.6
+ },
+ "113_kankyobushito.mp3": {
+  "title": "113 乾薑附子湯",
+  "hash": "21fbe0c2f17f719a",
+  "dur": 146.7
+ },
+ "114_shigyakuto.mp3": {
+  "title": "114 四逆湯",
+  "hash": "c0178a209d7e3523",
+  "dur": 983.5
+ },
+ "115_tsumyakushigyakuto.mp3": {
+  "title": "115 通脈四逆湯",
+  "hash": "ab49aa2859b07324",
+  "dur": 185.9
+ },
+ "116_shigyakukaninjinto.mp3": {
+  "title": "116 四逆加人參湯",
+  "hash": "18e8cdf8a12d8096",
+  "dur": 130.9
+ },
+ "117_bukuryoshigyakuto.mp3": {
+  "title": "117 茯苓四逆湯",
+  "hash": "0fe89fe88f808179",
+  "dur": 188.3
+ },
+ "118_tsumyakushigyakukachotanjuto.mp3": {
+  "title": "118 通脈四逆加猪膽汁湯",
+  "hash": "e2b922b12aab7b43",
+  "dur": 194.5
+ },
+ "119_hakutsuto.mp3": {
+  "title": "119 白通湯",
+  "hash": "ffb03b62f9bac68d",
+  "dur": 215.8
+ },
+ "120_hakutsukachotanjuto.mp3": {
+  "title": "120 白通加猪膽汁湯",
+  "hash": "4d7f597b7385dd06",
+  "dur": 162.0
+ },
+ "121_shinbuto.mp3": {
+  "title": "121 眞武湯",
+  "hash": "67057613f3c2a694",
+  "dur": 333.8
  }
 }
