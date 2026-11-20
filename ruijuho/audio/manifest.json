@@ -378,5 +378,80 @@
   "title": "76 柴胡加芒消湯",
   "hash": "fb77143b5a9e7200",
   "dur": 204.2
+ },
+ "077_saikokyohangekarokonto.mp3": {
+  "title": "77 柴胡去半夏加括蔞湯",
+  "hash": "a00d2cd085313006",
+  "dur": 116.5
+ },
+ "078_saikokeishito.mp3": {
+  "title": "78 柴胡桂枝湯",
+  "hash": "5bd838d34c453727",
+  "dur": 325.6
+ },
+ "079_saikokeishikankyoto.mp3": {
+  "title": "79 柴胡桂枝乾薑湯",
+  "hash": "4e7e65a1c37b5a04",
+  "dur": 229.6
+ },
+ "080_saikokaryukotsuboreito.mp3": {
+  "title": "80 柴胡加龍骨牡蠣湯",
+  "hash": "b87bd911f488ca9c",
+  "dur": 263.9
+ },
+ "081_daisaikoto.mp3": {
+  "title": "81 大柴胡湯",
+  "hash": "95f12fd112bc883b",
+  "dur": 477.1
+ },
+ "082_byakkoto.mp3": {
+  "title": "82 白虎湯",
+  "hash": "66138a0ae0023458",
+  "dur": 336.7
+ },
+ "083_byakkokaninjinto.mp3": {
+  "title": "83 白虎加人參湯",
+  "hash": "43af8fd4d78a767f",
+  "dur": 540.0
+ },
+ "084_byakkokakeishito.mp3": {
+  "title": "84 白虎加桂枝湯",
+  "hash": "c9063e1dd51dfb76",
+  "dur": 122.0
+ },
+ "085_shojokito.mp3": {
+  "title": "85 小承氣湯",
+  "hash": "5323cd7f91e5f795",
+  "dur": 1032.6
+ },
+ "086_kobokusanmotsuto.mp3": {
+  "title": "86 厚朴三物湯",
+  "hash": "088948f9f09be965",
+  "dur": 204.8
+ },
+ "087_kobokushichimotsuto.mp3": {
+  "title": "87 厚朴七物湯",
+  "hash": "28cc4f42e80b0ee0",
+  "dur": 174.1
+ },
+ "088_daijokito.mp3": {
+  "title": "88 大承氣湯",
+  "hash": "d5311e85c017dd17",
+  "dur": 2433.9
+ },
+ "089_daiokoorenshashinto.mp3": {
+  "title": "89 大黃黃連瀉心湯",
+  "hash": "636b002e72d17230",
+  "dur": 333.6
+ },
+ "090_shashinto.mp3": {
+  "title": "90 瀉心湯",
+  "hash": "e0178eb06945744e",
+  "dur": 348.1
+ },
+ "091_bushishashinto.mp3": {
+  "title": "91 附子瀉心湯",
+  "hash": "9ec28934a5640eb4",
+  "dur": 135.4
  }
 }
