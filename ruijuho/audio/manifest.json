@@ -753,5 +753,80 @@
   "title": "151 大半夏湯",
   "hash": "cfbf30bb964c11dd",
   "dur": 91.3
+ },
+ "152_shokyohangeto.mp3": {
+  "title": "152 生薑半夏湯",
+  "hash": "89edf470a43d098c",
+  "dur": 191.5
+ },
+ "153_hangekushuto.mp3": {
+  "title": "153 半夏苦酒湯",
+  "hash": "f01691c7af07bc0e",
+  "dur": 174.3
+ },
+ "154_hangekobokuto.mp3": {
+  "title": "154 半夏厚朴湯",
+  "hash": "7e6b068520805ce1",
+  "dur": 158.0
+ },
+ "155_hangekankyosan.mp3": {
+  "title": "155 半夏乾薑散",
+  "hash": "f7916b477da694de",
+  "dur": 100.5
+ },
+ "156_kobokushokyohangekanzoninjinto.mp3": {
+  "title": "156 厚朴生薑半夏甘草人參湯",
+  "hash": "98ce42dc40c02f11",
+  "dur": 103.9
+ },
+ "157_kankyoninjinhangegan.mp3": {
+  "title": "157 乾薑人參半夏丸",
+  "hash": "c5a02d29b00502fa",
+  "dur": 103.4
+ },
+ "158_kankyoorengonninjinto.mp3": {
+  "title": "158 乾薑黃連黃芩人參湯",
+  "hash": "240348c4313fceee",
+  "dur": 151.5
+ },
+ "159_orento.mp3": {
+  "title": "159 黃連湯",
+  "hash": "f0610f0e0f8dbd6b",
+  "dur": 142.2
+ },
+ "160_hangeshashinto.mp3": {
+  "title": "160 半夏瀉心湯",
+  "hash": "62ea573e61ec5cac",
+  "dur": 259.6
+ },
+ "161_kanzoshashinto.mp3": {
+  "title": "161 甘草瀉心湯",
+  "hash": "152b2cf70bff9af3",
+  "dur": 265.9
+ },
+ "162_shokyoshashinto.mp3": {
+  "title": "162 生薑瀉心湯",
+  "hash": "f428575a11c21c0f",
+  "dur": 173.1
+ },
+ "163_senpukukataishasekito.mp3": {
+  "title": "163 旋覆花代赭石湯",
+  "hash": "f3d46839689a18de",
+  "dur": 133.2
+ },
+ "164_goshuyuto.mp3": {
+  "title": "164 吳茱萸湯",
+  "hash": "0bd0d2d96f42d64c",
+  "dur": 266.2
+ },
+ "165_daikenchuto.mp3": {
+  "title": "165 大建中湯",
+  "hash": "14e52725e1a422c5",
+  "dur": 214.8
+ },
+ "166_orenaokyoto.mp3": {
+  "title": "166 黃連阿膠湯",
+  "hash": "288222bdf55f35a1",
+  "dur": 192.7
  }
 }
