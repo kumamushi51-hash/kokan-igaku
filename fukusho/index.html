@@ -186,7 +186,7 @@ window.FUKU_DATA.push(
   id: "keishito", no: 1, kind: "方剤", title: "桂枝湯", yomi: "けいしとう", group: "正編 上冊",
   koma: [11, 13], komaNote: "11L–13R",
   fig: { src: "img/fig_011L.jpg", koma: "11L", label: "桂枝湯之證",
-    desc: "冠をかぶった髭の男が椅子に腰掛け、胸腹をあらわにしている。臍の斜め上（向かって左）に緑の彩色が一か所ある。" },
+    desc: "冠をかぶった髭の男が椅子に腰掛け、胸腹をあらわにしている。臍のすぐ左上（向かって左上）に、くすんだ青緑色の小さな彩色が一か所ある。" },
   paras: [
     { head: "腹証と三方の使い分け", koma: "12R",
       kaki: "此の證、腹滑にして、底までもこたゆるものなく、圖のごとく、只拘攣あり。所謂臓に他病なし。上衝・發熱・頭痛有りて、汗あり惡風する者は、桂枝湯を用ゆる也。拘攣せざる者は、去芍藥湯を用ゆるなり。拘攣劇しき者は、加芍藥湯を用ゆるなり。此の三方を合せみれば、上衝と拘攣との二つ、此の症の準據たること知るべし。",
@@ -207,7 +207,7 @@ window.FUKU_DATA.push(
   shoken: [
     { k: "腹力", w: "腹滑にして、底までもこたゆるものなく", src: "本文", koma: "12R", note: "腹壁はなめらかで、深部に抵抗がない（腹力は強くない）", sure: false },
     { k: "腹直筋攣急", w: "只拘攣あり（指頭にあたりて、かゝはり引きつるもの）", src: "本文", koma: "12R–12L", note: "拘攣の強弱で桂枝去芍薬湯・桂枝加芍薬湯と使い分ける", sure: false },
-    { k: "その他", w: "臍の斜め上（向かって左）の緑の彩色", src: "図", koma: "11L", note: "彩色の部位の意味は本文に記載なし" }
+    { k: "その他", w: "臍のすぐ左上（向かって左上）の青緑色の彩色", src: "図", koma: "11L", note: "彩色の部位の意味は本文に記載なし" }
   ],
   tochu: [
     { head: "上衝はしばらくして衰える", koma: "12R",
@@ -417,13 +417,13 @@ render(location.hash.slice(1)||((D.find(x=>x.kind==="方剤")||D[0])||{}).id);
 </script>
 
 <script>
-const APP_VER="202611210748";
+const APP_VER="202611210752";
 if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js",{updateViaCache:"none"}).catch(()=>{}))}
 // ホーム画面アプリは閉じても裏で残り再読込されないため、表示に戻るたびに新しい版を確認する
 function kkCheck(){if(!navigator.onLine)return;fetch("index.html?v="+Date.now(),{cache:"no-store"}).then(r=>r.text()).then(t=>{const m=t.match(/<!-- version ([0-9]+) -->/);if(m&&m[1]!==APP_VER){if(navigator.serviceWorker&&navigator.serviceWorker.getRegistration)navigator.serviceWorker.getRegistration().then(g=>g&&g.update());location.reload();}}).catch(()=>{})}
 document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")kkCheck()});
 window.addEventListener("load",()=>setTimeout(kkCheck,1500));
 </script>
-<!-- version 202611210748 -->
+<!-- version 202611210752 -->
 </body>
 </html>
