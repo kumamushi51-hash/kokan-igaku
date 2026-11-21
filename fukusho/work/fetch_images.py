@@ -7,7 +7,10 @@ import json, os, re, sys, time, io, urllib.request
 from PIL import Image
 
 ITEM = os.environ.get("RMDA_ITEM", "RB00004916")
-BASE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "images")
+BASE = os.path.join(os.path.dirname(os.path.abspath(__file__)), os.environ.get("OUT", "images"))
+# KOMA="70-120" のように指定すると、その範囲のコマだけ取る（別本から一部だけ補うとき）
+_kr = os.environ.get("KOMA", "")
+KOMA = tuple(map(int, _kr.split("-"))) if _kr else None
 MAXSIDE = 3000          # 長辺の上限（リポジトリ容量を抑えるため皇漢医学・類聚方広義より小さめ）
 UA = {"User-Agent": "Mozilla/5.0 (kokan-igaku study app; personal use)"}
 
@@ -90,6 +93,8 @@ def main():
         cs = canvases(md)
         print(f"{vol}: {label(md)}  {len(cs)}コマ", flush=True)
         for k, (cl, svc, direct) in enumerate(cs, 1):
+            if KOMA and not (KOMA[0] <= k <= KOMA[1]):
+                continue
             path = f"{BASE}/{vol}/koma_{k:04d}.jpg"
             src = None
             if not os.path.exists(path):
