@@ -1,0 +1,6 @@
+manifest: https://rmda.kulib.kyoto-u.ac.jp/iiif/metadata_manifest/RB00004915/manifest.json
+v1: 腹証奇覧 正編2巻・後編2巻  151コマ
+  v1 80/151
+  v1 100/151
+  v1 120/151
+完了 53 コマ
