@@ -1,5 +1,5 @@
 // 腹証奇覧：オフライン用 Service Worker
-const CACHE = "fukusho-202611210752";
+const CACHE = "fukusho-202611210757";
 const SHELL = ["./", "index.html", "manifest.webmanifest", "apple-touch-icon.png", "icon-192.png", "icon-512.png", "icon-maskable-512.png", "img/fig_011L.jpg"];
 
 self.addEventListener("install", e => {

@@ -121,6 +121,27 @@ footer a{color:var(--ai)}
 .skh{font-family:var(--f-disp);font-weight:700;font-size:16px;color:var(--ai);display:flex;justify-content:space-between;align-items:baseline}
 .skh a{font-family:var(--f-body);font-weight:400;font-size:12px;color:var(--muted)}
 .fig table.sk{font-size:13px}
+.kgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:6px 10px}
+.kc{display:flex;align-items:center;gap:8px;min-height:44px;padding:4px 10px;border:1px solid var(--line);border-radius:8px;background:var(--paper);cursor:pointer}
+.kc input{width:20px;height:20px;accent-color:var(--ai)}
+.kc span{flex:1}
+.kc select{font:inherit;font-size:13px;padding:4px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink)}
+.kc:has(input:checked){border-color:var(--ai);background:var(--ai-soft)}
+.klv{display:flex;flex-wrap:wrap}
+.klv button{min-height:44px}
+.kmore{margin-top:10px}.kmore summary{cursor:pointer;color:var(--ai);padding:8px 0}
+.kclear{font:inherit;font-size:14px;padding:8px 14px;border:1px solid var(--line);border-radius:6px;background:var(--paper);color:var(--ink);cursor:pointer}
+.kr{display:grid;grid-template-columns:72px minmax(0,1fr);gap:12px;padding:12px 0;border-bottom:1px solid var(--line);color:inherit;text-decoration:none}
+.kr img{width:72px;height:auto;border-radius:4px;border:1px solid var(--line)}
+.krh{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px}
+.kbar{display:inline-block;width:90px;height:8px;border-radius:4px;background:var(--line);overflow:hidden}.kbar i{display:block;height:100%;background:var(--ai)}
+.kchips{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
+.kchip{font-size:12px;padding:2px 8px;border-radius:10px;border:1px solid var(--line)}
+.kchip.ok{background:var(--ai);color:var(--paper);border-color:var(--ai)}
+.kchip.half{background:var(--ai-soft);border-color:var(--ai)}
+.kchip.ex{background:var(--bg)}
+.kchip.no{color:var(--muted);text-decoration:line-through}
+.kleg .kchip{margin-right:4px}
 table.sk{width:100%;border-collapse:collapse;font-size:14px}
 table.sk th,table.sk td{border-bottom:1px solid var(--line);padding:7px 8px;text-align:left;vertical-align:top}
 table.sk th{font-size:12px;color:var(--muted);font-weight:400}
@@ -236,7 +257,7 @@ function navHTML(){
   let h="", g=null;
   D.forEach(e=>{ if(e.group!==g){ g=e.group; h+=`<h3>${esc(g)}</h3>` }
     h+=`<a href="#${e.id}" data-goto="${e.id}"><span class="no">${e.kind==="方剤"?e.no:"総"}</span>${esc(e.title)}</a>` });
-  return `<h3>腹証から引く</h3><a href="#shoken" data-goto="shoken">腹証所見一覧</a>`+h+`<h3>このアプリについて</h3><a href="#about" data-goto="about">凡例</a>`;
+  return `<h3>腹証から引く</h3><a href="#kensaku" data-goto="kensaku">患者の腹証から探す</a><a href="#shoken" data-goto="shoken">腹証所見一覧</a>`+h+`<h3>このアプリについて</h3><a href="#about" data-goto="about">凡例</a>`;
 }
 function txt(o){
   return `<div class="txt">${o.kaki?`<div class="kaki"><span class="lbl">本文</span>${esc(o.kaki)}</div>`:""}${o.yaku?`<div class="yaku"><span class="lbl">現代語訳</span>${esc(o.yaku)}</div>`:""}</div>`;
@@ -246,8 +267,67 @@ function modebar(){ return `<div class="modebar">表示：<span class="seg" id="
 const SRC_L={"本文":"本文","頭注":"頭注","図":"図"};
 function shokenRows(list,withTitle){
   return `<div class="scroll"><table class="sk"><thead><tr>${withTitle?"<th>方剤</th>":"<th>所見</th>"}<th>原本の記載</th><th>出典</th><th>注</th></tr></thead><tbody>`+
-    list.map(x=>`<tr><td>${withTitle?`<a href="#${x.e.id}" data-goto="${x.e.id}">${esc(x.e.title)}</a>`:`<b>${esc(x.k)}</b>`}${x.sure===false?'<span class="guess">解釈</span>':""}</td><td class="w">${esc(x.w)}</td><td class="src">${esc(SRC_L[x.src]||x.src||"")}${x.koma?" "+komaLink(x.koma):""}</td><td>${esc(x.note||"")}</td></tr>`).join("")+"</tbody></table></div>";
+    list.map(x=>`<tr><td>${withTitle?`<a href="#${x.e.id}" data-goto="${x.e.id}">${esc(x.e.title)}</a>`:`<b>${esc(x.k)}</b>`}${x.sure===false?'<span class="guess">解釈</span>':""}</td><td class="w">${esc(x.w)}${x.side?`<span class="small">（${esc(x.side==="両"?"両側":x.side)}）</span>`:""}${x.lv?`<span class="small">（腹力：${esc([].concat(x.lv).join("〜"))}）</span>`:""}</td><td class="src">${esc(SRC_L[x.src]||x.src||"")}${x.koma?" "+komaLink(x.koma):""}</td><td>${esc(x.note||"")}</td></tr>`).join("")+"</tbody></table></div>";
 }
+// ===== 患者の腹証から方剤を探す =====
+const LV=["軟","やや軟","中等度","やや充実","充実"];
+const SIDED=new Set(["胸脇苦満","腹直筋攣急","臍傍圧痛点","臍傍悸"]);
+let K={lv:"",f:{}};   // f[項目]=左右（""＝部位問わず、"右","左","両"）
+try{ const v=JSON.parse(sessionStorage.getItem("fk-k")||"null"); if(v&&v.f) K=v }catch(e){}
+function kSave(){ try{ sessionStorage.setItem("fk-k",JSON.stringify(K)) }catch(e){} }
+function lvRange(x){ const a=[].concat(x.lv||[]).map(v=>LV.indexOf(v)).filter(i=>i>=0); return a.length?[Math.min(...a),Math.max(...a)]:null }
+function kensakuPage(){
+  const cats=SHOKEN_CATS.filter(c=>c!=="腹力"&&c!=="その他");
+  const main=cats.slice(0,11), more=cats.slice(11);
+  const box=c=>`<label class="kc"><input type="checkbox" data-kf="${esc(c)}" ${c in K.f?"checked":""}><span>${esc(c)}</span>${SIDED.has(c)?`<select data-ks="${esc(c)}" aria-label="${esc(c)}の左右"${c in K.f?"":" disabled"}>${[["","左右問わず"],["右","右"],["左","左"],["両","両側"]].map(([v,l])=>`<option value="${v}"${(K.f[c]||"")===v?" selected":""}>${l}</option>`).join("")}</select>`:""}</label>`;
+  return `<div class="page"><h2>患者の腹証から探す</h2>
+  <p class="note">患者の腹診所見を選ぶと、『腹証奇覧』の各図に記された腹証所見（原本の記載を項目に振り分けたもの）と照らし合わせ、一致の多い方剤から並べます。<b>文献を引くための道具で、診断や処方の判断を代わりに行うものではありません。</b>項目への振り分けには解釈を含むものがあります（各方剤の頁の「解釈」の印）。収録済みの図は現在 ${D.filter(e=>e.shoken&&e.shoken.length).length} 図です。</p>
+  <section><h3>腹力</h3><div class="seg klv">${["",...LV].map(v=>`<button type="button" data-klv="${v}" aria-pressed="${K.lv===v}">${v||"指定なし"}</button>`).join("")}</div></section>
+  <section><h3>所見</h3><div class="kgrid">${main.map(box).join("")}</div>
+  <details class="kmore"${more.some(c=>c in K.f)?" open":""}><summary>そのほかの所見（${more.length}）</summary><div class="kgrid">${more.map(box).join("")}</div></details>
+  <p><button type="button" class="kclear" data-kclear="1">選択をすべて消す</button></p></section>
+  <section><h3>一致する方剤</h3><div id="kres"></div></section></div>`;
+}
+function kScore(e){
+  const S=Object.keys(K.f); const E=(e.shoken||[]).filter(x=>x.k!=="その他");
+  const ecats=new Set(E.filter(x=>x.k!=="腹力").map(x=>x.k));
+  const hit=[],sideNg=[],miss=[];
+  S.forEach(c=>{ if(!ecats.has(c)){ miss.push(c); return }
+    const want=K.f[c]; const ok=!want||E.some(x=>x.k===c&&(!x.side||x.side===want||x.side==="両"||want==="両"));
+    (ok?hit:sideNg).push(c) });
+  const extra=[...ecats].filter(c=>!(c in K.f));
+  let lvTxt="", lvPt=0;
+  if(K.lv){ const r=E.filter(x=>x.k==="腹力").map(lvRange).find(Boolean); const i=LV.indexOf(K.lv);
+    if(r){ const d=i<r[0]?r[0]-i:i>r[1]?i-r[1]:0; lvPt=d===0?1:d===1?.5:0; lvTxt=d===0?"腹力一致":d===1?"腹力やや近い":"腹力不一致" } else lvTxt="腹力の記載なし" }
+  const nS=S.length+(K.lv?1:0), nE=ecats.size+(K.lv?1:0);
+  const pts=hit.length+sideNg.length*.5+lvPt;
+  const score=nS? pts/(nS+extra.length) : 0;   // 患者の所見と方剤の所見の重なり（0〜1）
+  return {e,hit,sideNg,miss,extra,lvTxt,lvPt,score,pts};
+}
+function kRun(){
+  const el=$("#kres"); if(!el) return;
+  if(!Object.keys(K.f).length&&!K.lv){ el.innerHTML=`<p class="small">所見を選んでください。</p>`; return }
+  const rs=D.filter(e=>e.shoken&&e.shoken.length).map(kScore).filter(r=>r.pts>0).sort((a,b)=>b.score-a.score||b.pts-a.pts||a.e.no-b.e.no);
+  if(!rs.length){ el.innerHTML=`<p class="small">選んだ所見を含む方剤は、収録済みの図の中にはありません。</p>`; return }
+  const chip=(c,cls)=>`<span class="kchip ${cls}">${esc(c)}</span>`;
+  el.innerHTML=rs.slice(0,30).map(r=>`<a class="kr" href="#${r.e.id}" data-goto="${r.e.id}">
+    ${r.e.fig?`<img src="${esc(r.e.fig.src)}" alt="" loading="lazy">`:"<span></span>"}
+    <div><div class="krh"><b>${esc(r.e.title)}</b><span class="small">${esc(r.e.group)}　第${r.e.no}図</span><span class="kbar"><i style="width:${Math.round(r.score*100)}%"></i></span><span class="small">${Math.round(r.score*100)}%</span></div>
+    <div class="kchips">${r.hit.map(c=>chip(c,"ok")).join("")}${r.sideNg.map(c=>chip(c+"（左右違い）","half")).join("")}${r.lvTxt?chip(r.lvTxt,r.lvPt===1?"ok":r.lvPt?"half":"no"):""}${r.extra.map(c=>chip(c,"ex")).join("")}${r.miss.map(c=>chip(c,"no")).join("")}</div></div></a>`).join("")+
+    `<p class="small kleg">${chip("一致","ok")}${chip("部分一致","half")}${chip("方剤にあって未選択","ex")}${chip("方剤に記載なし","no")}　％は、選んだ所見と方剤の所見の重なりの割合（目安）。</p>`;
+}
+document.addEventListener("change",ev=>{
+  const t=ev.target;
+  if(t.dataset&&t.dataset.kf!==undefined){ const c=t.dataset.kf; if(t.checked) K.f[c]=""; else delete K.f[c];
+    const sel=document.querySelector(`select[data-ks="${CSS.escape(c)}"]`); if(sel){ sel.disabled=!t.checked; if(!t.checked) sel.value="" }
+    kSave(); kRun() }
+  if(t.dataset&&t.dataset.ks!==undefined){ const c=t.dataset.ks; if(c in K.f){ K.f[c]=t.value; kSave(); kRun() } }
+});
+document.addEventListener("click",ev=>{
+  const b=ev.target.closest("[data-klv],[data-kclear]"); if(!b) return;
+  if(b.dataset.kclear){ K={lv:"",f:{}}; kSave(); $("#page").innerHTML=kensakuPage(); kRun(); return }
+  K.lv=b.dataset.klv; document.querySelectorAll("[data-klv]").forEach(x=>x.setAttribute("aria-pressed",x.dataset.klv===K.lv)); kSave(); kRun();
+});
 function skBlock(e){
   if(!e.shoken||!e.shoken.length) return "";
   return `<div class="skbox" id="s-sk"><div class="skh">腹証所見<a href="#shoken" data-goto="shoken">一覧へ</a></div>${shokenRows(e.shoken.map(x=>Object.assign({e},x)),false)}</div>`;
@@ -267,6 +347,7 @@ function about(){
   <li><b>腹証図</b>：原本の図を切り出したもの。押すと拡大します。緑の色付けは原本の彩色で、腹証の部位を示します。</li>
   <li><b>本文</b>：原本の漢字カタカナ交じり文を、ひらがな交じりに改め、句読点を補ったもの。漢字は原本の字体のまま。漢文の引用は書き下しました。</li>
   <li><b>腹証所見</b>：本文・頭注・図の彩色から腹証の記載を拾い、腹力・腹直筋攣急・心下痞硬・胸脇苦満・心下悸・臍上悸・臍傍悸・臍下悸・臍傍圧痛点・S状結腸部圧痛・回盲部圧痛点・小腹不仁などの項目に振り分けたもの。原文の語をそのまま示し、対応に解釈を含むものには「解釈」の印を付けています。目次の「腹証所見一覧」で項目ごとに方剤を引けます。</li>
+  <li><b>患者の腹証から探す</b>：腹力と所見（左右）を選ぶと、各図の腹証所見と照らし合わせて一致の多い方剤から並べます。文献を引くための道具で、診断や処方の判断を代わりに行うものではありません。</li>
   <li><b>頭注</b>：枠の上に刷られた注。全文を本文と現代語訳で載せています。</li>
   <li><b>コマ</b>：京都大学貴重資料デジタルアーカイブの画像番号（11冊通しの番号。1コマ＝見開き、R＝右頁、L＝左頁）。押すと原本画像が開きます。</li>
   <li><b>要確認</b>：判読に自信がない字や、読み方を確かめたい点です。</li></ul></section>
@@ -276,6 +357,7 @@ function render(id){
   document.querySelectorAll("nav a").forEach(a=>a.classList.toggle("on",a.dataset.goto===id));
   if(id==="about"){ $("#page").innerHTML=about(); return }
   if(id==="shoken"){ $("#page").innerHTML=shokenPage(); return }
+  if(id==="kensaku"){ $("#page").innerHTML=kensakuPage(); kRun(); return }
   const e=D.find(x=>x.id===id)||D.find(x=>x.kind==="方剤")||D[0]; if(!e) return;
   document.querySelectorAll("nav a").forEach(a=>a.classList.toggle("on",a.dataset.goto===e.id));
   let h=`<div class="page"><h2>${esc(e.title)}<small>${esc(e.yomi||"")}</small></h2>`+
