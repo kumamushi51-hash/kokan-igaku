@@ -117,6 +117,9 @@ footer a{color:var(--ai)}
 .rel{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:14px}
 .rel a{color:var(--ai)}
 [hidden]{display:none!important}
+.fig2{display:grid;grid-template-columns:120px minmax(0,1fr);gap:12px;margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}
+.fig2 img{width:120px;height:auto;border:1px solid var(--line);border-radius:6px;cursor:zoom-in}
+.fig2 .cap{font-size:16px}
 .skbox{margin-top:14px;border-top:2px solid var(--ai);padding-top:8px}
 .skh{font-family:var(--f-disp);font-weight:700;font-size:16px;color:var(--ai);display:flex;justify-content:space-between;align-items:baseline}
 .skh a{font-family:var(--f-body);font-weight:400;font-size:12px;color:var(--muted)}
@@ -365,7 +368,7 @@ function render(id){
   document.querySelectorAll("nav a").forEach(a=>a.classList.toggle("on",a.dataset.goto===e.id));
   let h=`<div class="page"><h2>${esc(e.title)}<small>${esc(e.yomi||"")}</small></h2>`+
     `<div class="meta">${esc(e.group)}　${e.kind==="方剤"?`第${e.no}図`:esc(e.kind)}　原本：${komaLink(e.koma[0])}〜${komaLink(e.koma[1])}（${esc(e.komaNote||"")}）</div>`;
-  if(e.fig) h+=`<div class="fig"><img src="${esc(e.fig.src)}" alt="${esc(e.fig.label)}（腹証図）" data-zoom="${esc(e.fig.src)}" loading="lazy"><div><div class="cap">${esc(e.fig.label)}</div><p class="small">${komaLink(e.fig.koma)}</p><p>${esc(e.fig.desc||"")}</p>${skBlock(e)}</div></div>`;
+  if(e.fig) h+=`<div class="fig"><img src="${esc(e.fig.src)}" alt="${esc(e.fig.label)}（腹証図）" data-zoom="${esc(e.fig.src)}" loading="lazy"><div><div class="cap">${esc(e.fig.label)}</div><p class="small">${komaLink(e.fig.koma)}</p><p>${esc(e.fig.desc||"")}</p>${(e.figs||[]).map(f=>`<div class="fig2"><img src="${esc(f.src)}" alt="${esc(f.label)}（腹証図）" data-zoom="${esc(f.src)}" loading="lazy"><div><div class="cap">${esc(f.label)}</div><p class="small">${komaLink(f.koma)}</p><p>${esc(f.desc||"")}</p></div></div>`).join("")}${skBlock(e)}</div></div>`;
   if(e.intro) h+=`<p class="note" style="margin-top:14px">${esc(e.intro)}</p>`;
   h+=`<div class="tags">${(e.tags||[]).map(t=>`<button class="tag" data-q="${esc(t)}">${esc(t)}</button>`).join("")}</div>`+modebar();
   if(!e.fig) h+=skBlock(e);
@@ -383,7 +386,7 @@ function search(q){
   D.forEach(e=>{
     if(test(e.title)) hits.push({e,where:e.kind==="方剤"?"方剤名":"見出し",text:(e.paras[0]||{}).yaku||"",a:""});
     (e.tags||[]).forEach(t=>{ if(test(t)) hits.push({e,where:"タグ",text:t,a:""}) });
-    if(e.fig&&test(e.fig.desc)) hits.push({e,where:"腹証図",text:e.fig.desc,a:""});
+    [e.fig,...(e.figs||[])].filter(Boolean).forEach(f=>{ if(test(f.desc)) hits.push({e,where:"腹証図",text:f.desc,a:""}) });
     (e.shoken||[]).forEach(x=>{ if(test(x.k+x.w+(x.note||""))) hits.push({e,where:"腹証所見",text:`${x.k}：${x.w}${x.note?"（"+x.note+"）":""}`,a:"s-sk"}) });
     e.paras.forEach((p,i)=>{ if(test(p.kaki+p.yaku)) hits.push({e,where:p.head||"本文",text:p.yaku,a:`p-${i+1}`}) });
     (e.tochu||[]).forEach((t,i)=>{ if(test(t.kaki+t.yaku)) hits.push({e,where:"頭注",text:t.yaku,a:`t-${i+1}`}) });

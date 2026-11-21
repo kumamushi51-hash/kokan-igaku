@@ -1,6 +1,6 @@
 // 腹証奇覧：オフライン用 Service Worker
-const CACHE = "fukusho-202611210809";
-const SHELL = ["./", "index.html", "manifest.webmanifest", "apple-touch-icon.png", "icon-192.png", "icon-512.png", "icon-maskable-512.png", "img/fig_011L.jpg"];
+const CACHE = "fukusho-202611210824";
+const SHELL = ["./", "index.html", "manifest.webmanifest", "apple-touch-icon.png", "icon-192.png", "icon-512.png", "icon-maskable-512.png", "img/fig_011L.jpg", "img/fig_013L.jpg", "img/fig_015L.jpg", "img/fig_016L.jpg", "img/fig_018R.jpg", "img/fig_019L.jpg", "img/fig_021R.jpg", "img/fig_023L.jpg", "img/fig_024L.jpg", "img/fig_026R.jpg", "img/fig_027R.jpg", "img/fig_028R.jpg"];
 
 self.addEventListener("install", e => {
 // 更新時はブラウザのHTTPキャッシュを通さず取り直す（図を差し替えても古い画像が残らないように）
