@@ -129,6 +129,7 @@ footer a{color:var(--ai)}
 .para h4 a{color:var(--muted)}
 .rel{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:14px}
 .rel a{color:var(--ai)}
+[hidden]{display:none!important}
 #zoom{position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.85);display:flex;align-items:center;justify-content:center;padding:12px}
 #zoom img{max-width:100%;max-height:100%}
 @media (max-width:760px){.fig{grid-template-columns:1fr}.fig img{max-width:420px}}
@@ -372,13 +373,13 @@ render(location.hash.slice(1)||((D.find(x=>x.kind==="方剤")||D[0])||{}).id);
 </script>
 
 <script>
-const APP_VER="202611210106";
+const APP_VER="202611210651";
 if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js",{updateViaCache:"none"}).catch(()=>{}))}
 // ホーム画面アプリは閉じても裏で残り再読込されないため、表示に戻るたびに新しい版を確認する
 function kkCheck(){if(!navigator.onLine)return;fetch("index.html?v="+Date.now(),{cache:"no-store"}).then(r=>r.text()).then(t=>{const m=t.match(/<!-- version ([0-9]+) -->/);if(m&&m[1]!==APP_VER){if(navigator.serviceWorker&&navigator.serviceWorker.getRegistration)navigator.serviceWorker.getRegistration().then(g=>g&&g.update());location.reload();}}).catch(()=>{})}
 document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")kkCheck()});
 window.addEventListener("load",()=>setTimeout(kkCheck,1500));
 </script>
-<!-- version 202611210106 -->
+<!-- version 202611210651 -->
 </body>
 </html>
