@@ -150,6 +150,7 @@ table.sk th,table.sk td{border-bottom:1px solid var(--line);padding:7px 8px;text
 table.sk th{font-size:12px;color:var(--muted);font-weight:400}
 table.sk td.w{font-family:var(--f-disp)}
 table.sk td.src{white-space:nowrap;font-size:13px}
+.guess.neg{background:var(--line)}
 .guess{display:inline-block;margin-left:6px;font-size:11px;padding:0 5px;border-radius:4px;background:var(--shu-soft);color:var(--ink)}
 .scroll{overflow-x:auto}
 a.tag{text-decoration:none;color:inherit}
@@ -259,7 +260,7 @@ function terms(q){
 function navHTML(){
   let h="", g=null;
   D.forEach(e=>{ if(e.group!==g){ g=e.group; h+=`<h3>${esc(g)}</h3>` }
-    h+=`<a href="#${e.id}" data-goto="${e.id}"><span class="no">${e.kind==="方剤"?e.no:"総"}</span>${esc(e.title)}</a>` });
+    h+=`<a href="#${e.id}" data-goto="${e.id}"><span class="no">${e.fig?e.no:"総"}</span>${esc(e.title)}</a>` });
   return `<h3>腹証から引く</h3><a href="#kensaku" data-goto="kensaku">患者の腹証から探す</a><a href="#shoken" data-goto="shoken">腹証所見一覧</a>`+h+`<h3>このアプリについて</h3><a href="#about" data-goto="about">凡例</a>`;
 }
 function txt(o){
@@ -272,7 +273,7 @@ function modebar(){ return `<div class="modebar">表示：<span class="seg" id="
 const SRC_L={"本文":"本文","頭注":"頭注","図":"図"};
 function shokenRows(list,withTitle){
   return `<div class="scroll"><table class="sk"><thead><tr>${withTitle?"<th>方剤</th>":"<th>所見</th>"}<th>原本の記載</th><th>出典</th><th>注</th></tr></thead><tbody>`+
-    list.map(x=>`<tr><td>${withTitle?`<a href="#${x.e.id}" data-goto="${x.e.id}">${esc(x.e.title)}</a>`:`<b>${esc(x.k)}</b>`}${x.sure===false?'<span class="guess">解釈</span>':""}</td><td class="w">${esc(x.w)}${x.side?`<span class="small">（${esc(x.side==="両"?"両側":x.side)}）</span>`:""}${x.lv?`<span class="small">（腹力：${esc([].concat(x.lv).join("〜"))}）</span>`:""}</td><td class="src">${esc(SRC_L[x.src]||x.src||"")}${x.koma?" "+komaLink(x.koma):""}</td><td>${esc(x.note||"")}</td></tr>`).join("")+"</tbody></table></div>";
+    list.map(x=>`<tr><td>${withTitle?`<a href="#${x.e.id}" data-goto="${x.e.id}">${esc(x.e.title)}</a>`:`<b>${esc(x.k)}</b>`}${x.sure===false?'<span class="guess">解釈</span>':""}${x.neg?'<span class="guess neg">鑑別・本方になし</span>':""}</td><td class="w">${esc(x.w)}${x.side?`<span class="small">（${esc(x.side==="両"?"両側":x.side)}）</span>`:""}${x.lv?`<span class="small">（腹力：${esc([].concat(x.lv).join("〜"))}）</span>`:""}</td><td class="src">${esc(SRC_L[x.src]||x.src||"")}${x.koma?" "+komaLink(x.koma):""}</td><td>${esc(x.note||"")}</td></tr>`).join("")+"</tbody></table></div>";
 }
 // ===== 患者の腹証から方剤を探す =====
 const LV=["軟","やや軟","中等度","やや充実","充実"];
@@ -294,7 +295,7 @@ function kensakuPage(){
   <section><h3>一致する方剤</h3><div id="kres"></div></section></div>`;
 }
 function kScore(e){
-  const S=Object.keys(K.f); const E=(e.shoken||[]).filter(x=>x.k!=="その他");
+  const S=Object.keys(K.f); const E=(e.shoken||[]).filter(x=>x.k!=="その他"&&!x.neg);
   const ecats=new Set(E.filter(x=>x.k!=="腹力").map(x=>x.k));
   const hit=[],sideNg=[],miss=[];
   S.forEach(c=>{ if(!ecats.has(c)){ miss.push(c); return }
@@ -338,7 +339,7 @@ function skBlock(e){
   return `<div class="skbox" id="s-sk"><div class="skh">腹証所見<a href="#shoken" data-goto="shoken">一覧へ</a></div>${shokenRows(e.shoken.map(x=>Object.assign({e},x)),false)}</div>`;
 }
 function shokenPage(){
-  const all=[]; D.forEach(e=>(e.shoken||[]).forEach(x=>all.push(Object.assign({e},x))));
+  const all=[]; D.forEach(e=>(e.shoken||[]).filter(x=>!x.neg).forEach(x=>all.push(Object.assign({e},x))));
   const cats=SHOKEN_CATS.filter(c=>all.some(x=>x.k===c));
   let h=`<div class="page"><h2>腹証所見一覧</h2><p class="note">各図の本文・頭注・腹証図の彩色から腹証の記載を拾い、現代の腹診用語の項目に振り分けたもの。「原本の記載」は原文の語のまま。「解釈」の印は、原文の語と項目の対応に解釈を含むもの（例：「腹滑」→腹力）。</p>`+
     `<div class="tags">${cats.map(c=>`<a class="tag" href="#sk-${SHOKEN_CATS.indexOf(c)}">${esc(c)}（${new Set(all.filter(x=>x.k===c).map(x=>x.e.id)).size}）</a>`).join("")}</div>`;
@@ -367,7 +368,7 @@ function render(id){
   const e=D.find(x=>x.id===id)||D.find(x=>x.kind==="方剤")||D[0]; if(!e) return;
   document.querySelectorAll("nav a").forEach(a=>a.classList.toggle("on",a.dataset.goto===e.id));
   let h=`<div class="page"><h2>${esc(e.title)}<small>${esc(e.yomi||"")}</small></h2>`+
-    `<div class="meta">${esc(e.group)}　${e.kind==="方剤"?`第${e.no}図`:esc(e.kind)}　原本：${komaLink(e.koma[0])}〜${komaLink(e.koma[1])}（${esc(e.komaNote||"")}）</div>`;
+    `<div class="meta">${esc(e.group)}　${e.fig?`第${e.no}図`:esc(e.kind)}　原本：${komaLink(e.koma[0])}〜${komaLink(e.koma[1])}（${esc(e.komaNote||"")}）</div>`;
   if(e.fig) h+=`<div class="fig"><img src="${esc(e.fig.src)}" alt="${esc(e.fig.label)}（腹証図）" data-zoom="${esc(e.fig.src)}" loading="lazy"><div><div class="cap">${esc(e.fig.label)}</div><p class="small">${komaLink(e.fig.koma)}</p><p>${esc(e.fig.desc||"")}</p>${(e.figs||[]).map(f=>`<div class="fig2"><img src="${esc(f.src)}" alt="${esc(f.label)}（腹証図）" data-zoom="${esc(f.src)}" loading="lazy"><div><div class="cap">${esc(f.label)}</div><p class="small">${komaLink(f.koma)}</p><p>${esc(f.desc||"")}</p></div></div>`).join("")}${skBlock(e)}</div></div>`;
   if(e.intro) h+=`<p class="note" style="margin-top:14px">${esc(e.intro)}</p>`;
   h+=`<div class="tags">${(e.tags||[]).map(t=>`<button class="tag" data-q="${esc(t)}">${esc(t)}</button>`).join("")}</div>`+modebar();
