@@ -417,13 +417,13 @@ render(location.hash.slice(1)||((D.find(x=>x.kind==="方剤")||D[0])||{}).id);
 </script>
 
 <script>
-const APP_VER="202611210747";
+const APP_VER="202611210748";
 if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js",{updateViaCache:"none"}).catch(()=>{}))}
 // ホーム画面アプリは閉じても裏で残り再読込されないため、表示に戻るたびに新しい版を確認する
 function kkCheck(){if(!navigator.onLine)return;fetch("index.html?v="+Date.now(),{cache:"no-store"}).then(r=>r.text()).then(t=>{const m=t.match(/<!-- version ([0-9]+) -->/);if(m&&m[1]!==APP_VER){if(navigator.serviceWorker&&navigator.serviceWorker.getRegistration)navigator.serviceWorker.getRegistration().then(g=>g&&g.update());location.reload();}}).catch(()=>{})}
 document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")kkCheck()});
 window.addEventListener("load",()=>setTimeout(kkCheck,1500));
 </script>
-<!-- version 202611210747 -->
+<!-- version 202611210748 -->
 </body>
 </html>

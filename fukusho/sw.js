@@ -1,9 +1,10 @@
 // 腹証奇覧：オフライン用 Service Worker
-const CACHE = "fukusho-202611210747";
+const CACHE = "fukusho-202611210748";
 const SHELL = ["./", "index.html", "manifest.webmanifest", "apple-touch-icon.png", "icon-192.png", "icon-512.png", "icon-maskable-512.png", "img/fig_011L.jpg"];
 
 self.addEventListener("install", e => {
-  e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting()));
+// 更新時はブラウザのHTTPキャッシュを通さず取り直す（図を差し替えても古い画像が残らないように）
+  e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL.map(u => new Request(u, { cache: "reload" })))).then(() => self.skipWaiting()));
 });
 self.addEventListener("activate", e => {
   e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k.startsWith("fukusho-") && k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim()));
