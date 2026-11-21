@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="theme-color" content="#3f5f3a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="腹証奇覧">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}[hidden]{display:none!important}</style>
+<title>腹証奇覧 腹証図・症状検索</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=BIZ+UDPGothic:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* 腹証奇覧：類聚方広義アプリと同じ作り（色は腹証図の緑） */
+:root{
+  --bg:#f1eee8; --paper:#fbf9f5; --ink:#2a2420; --muted:#6c625a; --line:#d6cec3;
+  --ai:#3f5f3a; --ai-soft:#e3ecdc; --shu:#b23a2a; --shu-soft:#f3e0dc; --hl:#f2e6a8; --br:#8a7f74;
+  --f-disp:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
+  --f-body:"BIZ UDPGothic","Hiragino Sans","Yu Gothic",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#1b1715; --paper:#231e1b; --ink:#ece5de; --muted:#a89d93; --line:#3d342e;
+  --ai:#a9cf98; --ai-soft:#25311f; --shu:#e07a68; --shu-soft:#3a2522; --hl:#5a4f1f; --br:#9b8f84; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#1b1715; --paper:#231e1b; --ink:#ece5de; --muted:#a89d93; --line:#3d342e;
+  --ai:#a9cf98; --ai-soft:#25311f; --shu:#e07a68; --shu-soft:#3a2522; --hl:#5a4f1f; --br:#9b8f84; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.85;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 48px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:14px 12px;border-bottom:1px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.top{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px;max-width:1180px;margin:0 auto}
+h1{font-family:var(--f-disp);font-size:22px;margin:0;letter-spacing:.08em}
+.sub{color:var(--muted);font-size:12px}
+.search{display:flex;gap:8px;max-width:1180px;margin:10px auto 0}
+.search input{flex:1;min-width:0;font:inherit;font-size:16px;padding:9px 12px;border:1px solid var(--line);border-radius:6px;background:var(--paper);color:var(--ink)}
+.search input:focus{outline:2px solid var(--ai);outline-offset:1px}
+.hint{max-width:1180px;margin:6px auto 0;font-size:12px;color:var(--muted)}
+.hint button{font:inherit;font-size:12px;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:999px;padding:1px 10px;margin:2px 2px 0 0;cursor:pointer}
+#navbtn{display:none}
+.tabs{display:flex;gap:6px;max-width:1180px;margin:10px auto 0}
+.tabs button{font:inherit;font-size:14px;padding:5px 16px;border:1px solid var(--line);border-bottom-width:3px;border-radius:6px 6px 0 0;background:var(--paper);color:var(--muted);cursor:pointer}
+.tabs button[aria-selected="true"]{color:var(--ink);font-weight:700;border-bottom-color:var(--ai)}
+.fm p.intro{font-size:14px;color:var(--muted);background:var(--bg);border-radius:6px;padding:10px 14px;margin:12px 0 0}
+.fm .para{border-top:1px solid var(--line);padding:16px 0}
+.fm .para:first-of-type{border-top:0}
+.fm .para h4{font-family:var(--f-disp);font-size:16px;margin:0 0 6px;color:var(--ai)}
+.wrap{display:grid;grid-template-columns:200px minmax(0,1fr);gap:24px;max-width:1180px;margin:18px auto 0}
+nav{position:sticky;top:225px;align-self:start;font-size:14px;max-height:calc(100vh - 245px);overflow:auto}
+nav h3{font-family:var(--f-disp);font-size:13px;color:var(--muted);letter-spacing:.15em;margin:14px 0 4px;font-weight:500}
+nav a{display:block;padding:5px 10px;border-left:3px solid transparent;color:var(--ink);text-decoration:none;border-radius:0 4px 4px 0}
+nav a:hover{background:var(--ai-soft)}
+nav a.on{border-left-color:var(--ai);background:var(--ai-soft);font-weight:700}
+nav .no{font-size:11px;color:var(--muted);margin-right:4px}
+main{min-width:0}
+.results{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:14px 18px;margin-bottom:18px}
+.results h2{font-size:14px;margin:0 0 8px;color:var(--muted);font-weight:700}
+.hit{display:block;padding:10px 0;border-top:1px solid var(--line);color:var(--ink);text-decoration:none}
+.hit:first-of-type{border-top:0}
+.hit b{font-family:var(--f-disp);font-size:17px}
+.hit .where{font-size:12px;color:var(--ai);margin-left:8px}
+.hit p{margin:2px 0 0;font-size:13.5px;color:var(--muted)}
+mark{background:var(--hl);color:inherit;padding:0 1px}
+.page{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:24px clamp(16px,3vw,36px)}
+.page h2{font-family:var(--f-disp);font-size:30px;margin:0;letter-spacing:.1em}
+.page h2 small{font-family:var(--f-body);font-size:13px;color:var(--muted);letter-spacing:0;margin-left:10px;font-weight:400}
+.meta{color:var(--muted);font-size:12.5px;margin-top:2px}
+.meta a{color:var(--ai)}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 0}
+.tag{font-size:12px;border:1px solid var(--line);border-radius:999px;padding:1px 10px;background:var(--bg);cursor:pointer;color:var(--ink);font-family:inherit}
+.tag:hover{border-color:var(--ai)}
+.modebar{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin-top:16px;padding-top:12px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.seg button{font:inherit;font-size:13px;border:0;background:var(--paper);color:var(--ink);padding:4px 12px;cursor:pointer;border-left:1px solid var(--line)}
+.seg button:first-child{border-left:0}
+.seg button[aria-pressed="true"]{background:var(--ai);color:var(--paper);font-weight:700}
+.toc{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:13px;margin:10px 0 0}
+.toc a{color:var(--ai)}
+section{margin-top:30px}
+section>h3{font-family:var(--f-disp);font-size:19px;margin:0 0 12px;padding-bottom:4px;border-bottom:2px solid var(--ink);letter-spacing:.08em}
+.small{font-size:13px;color:var(--muted)}
+.kaki{font-family:var(--f-disp);font-size:16.5px}
+.yaku{font-size:15px}
+.lbl{display:inline-block;font-size:11px;color:var(--muted);border:1px solid var(--line);border-radius:3px;padding:0 5px;margin-right:6px;font-family:var(--f-body);letter-spacing:0;vertical-align:2px}
+.br{color:var(--br)}
+.txt>div{margin:4px 0}
+body[data-mode="kaki"] .yaku{display:none}
+body[data-mode="yaku"] .kaki{display:none}
+body:not([data-mode="both"]) .lbl{display:none}
+table.herbs{border-collapse:collapse;font-size:15px;margin:4px 0 10px}
+table.herbs th,table.herbs td{border-bottom:1px solid var(--line);padding:4px 14px 4px 0;text-align:left;font-weight:400}
+table.herbs th{font-size:12px;color:var(--muted)}
+table.herbs td:first-child{font-family:var(--f-disp);font-size:17px;font-weight:700}
+.jo{border-top:1px solid var(--line);padding:16px 0}
+.jo:first-of-type{border-top:0;padding-top:4px}
+.jo .no{font-family:var(--f-disp);font-weight:700;color:var(--ai);margin-right:6px}
+.jo .src{font-size:12px;color:var(--muted)}
+.tc{margin:10px 0 0;padding:10px 14px;background:var(--ai-soft);border-left:3px solid var(--ai);border-radius:0 6px 6px 0}
+.tc .h{font-size:12px;font-weight:700;color:var(--ai)}
+.tc a,.jo .src a,.meta a{color:var(--ai)}
+.tc .h span{font-weight:400;color:var(--muted);margin-left:6px}
+.tc .kaki{font-size:15.5px}
+.an{margin:10px 0 0;padding:8px 14px;border:1px dashed var(--line);border-radius:6px}
+.an .h{font-size:12px;font-weight:700;color:var(--muted)}
+.check{background:var(--shu-soft);border-radius:6px;padding:10px 16px 10px 30px;margin:0;font-size:13.5px}
+.check li{margin:2px 0}
+.note{font-size:13px;color:var(--muted);background:var(--bg);border-radius:6px;padding:10px 14px}
+footer{max-width:1180px;margin:28px auto 0;font-size:12px;color:var(--muted)}
+footer a{color:var(--ai)}
+@media (max-width:760px){
+  .wrap{grid-template-columns:1fr}
+  #navbtn{display:block;width:100%;font:inherit;font-size:14px;padding:8px;border:1px solid var(--line);border-radius:6px;background:var(--paper);color:var(--ink);margin-top:8px}
+  nav{position:static;max-height:none;display:none}
+  nav.open{display:block}
+  .page h2{font-size:26px}
+}
+.fig{display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:18px;align-items:start;margin-top:16px}
+.fig img{width:100%;height:auto;border:1px solid var(--line);border-radius:6px;cursor:zoom-in;background:#efe9dd}
+.fig .cap{font-family:var(--f-disp);font-size:18px;font-weight:700}
+.fig p{margin:6px 0 0;font-size:14px}
+.para{border-top:1px solid var(--line);padding:16px 0}
+.para:first-of-type{border-top:0;padding-top:4px}
+.para h4{font-family:var(--f-disp);font-size:16px;margin:0 0 6px;color:var(--ai)}
+.para h4 span{font-family:var(--f-body);font-size:12px;font-weight:400;color:var(--muted);margin-left:8px}
+.para h4 a{color:var(--muted)}
+.rel{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:14px}
+.rel a{color:var(--ai)}
+#zoom{position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.85);display:flex;align-items:center;justify-content:center;padding:12px}
+#zoom img{max-width:100%;max-height:100%}
+@media (max-width:760px){.fig{grid-template-columns:1fr}.fig img{max-width:420px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="top"><h1>腹証奇覧</h1><span class="sub">稲葉文礼　腹証図と本文を症状から検索</span></div>
+  <div class="search"><input id="q" type="search" placeholder="症状・方剤名・腹証で検索（例：のぼせ、胸脇苦満、腹のひきつり）" autocomplete="off" enterkeyhint="search"></div>
+  <div class="hint" id="hint"></div>
+  <button id="navbtn" type="button" aria-expanded="false">目次を開く</button>
+</header>
+<div class="wrap">
+  <nav id="nav"></nav>
+  <main><div class="results" id="results" hidden></div><div id="page"></div></main>
+</div>
+<div id="zoom" hidden></div>
+<footer>底本：『腹証奇覧』稲葉克（文礼）著（京都大学附属図書館所蔵 富士川文庫）。画像は <a href="https://rmda.kulib.kyoto-u.ac.jp/item/rb00004915" target="_blank" rel="noopener">京都大学貴重資料デジタルアーカイブ</a>（出典：京都大学附属図書館。腹証図は同画像から切り出したもの）。本文の読み・現代語訳は学習用の試訳です。</footer>
+<script>
+// 腹証奇覧（稲葉文礼）正編 上冊：腹診の法（総論）・第1図 桂枝湯　コマ10L–13R
+// 書式：paras[] は本文の段落（kaki＝本文をひらがな交じりに直したもの、yaku＝現代語訳）。
+//       本文中の漢文の引用は書き下す。tochu[] は枠外上部の頭注。fig は腹証図（../img/fig_コマ頁.jpg）
+window.FUKU_DATA = window.FUKU_DATA || [];
+window.FUKU_DATA.push(
+{
+  id: "fukushin-ho", no: 0, kind: "総論", title: "腹診の法", yomi: "ふくしんのほう", group: "正編 上冊",
+  koma: [10, 11], komaNote: "10L–11R",
+  intro: "上冊の巻頭、「腹證奇覧上冊　湖南 稲葉克文禮著」に続く総論。診察の心構えと、腹を診る順序を述べる。",
+  paras: [
+    { head: "診察の心構え", koma: "10L",
+      kaki: "夫れ腹症を按ずるの法。まづ病人を平らかに臥しめ、志氣を正しうせしめ、さて醫者も亦平らかに坐し、呼吸をたゞし、志氣を臍下に收め、あたかも武夫の兵器を執りて敵にむかふが如く、大病を怖れず、死生に眩せず、富貴に屈せず、貧賤を侮らず、その病毒を治して、その疾苦を救はんと、心を專一にして診察すべし。是れ疾醫病者を診察するの大法なり。",
+      yaku: "腹証を按じて診る方法。まず病人を平らに寝かせ、気持ちを落ち着けさせる。医者もまた姿勢を正して座り、呼吸を整え、気力を臍の下に収める。ちょうど武士が武器を取って敵に向かうときのように、大病を恐れず、生死に心を乱されず、相手が富貴でもへつらわず、貧賤でも侮らず、その病毒を治してその苦しみを救おうと、心を一つにして診察しなければならない。これが疾医（古方の医者）が病者を診察するときの大原則である。" },
+    { head: "腹を診る順序", koma: "10L–11R",
+      kaki: "凡そ腹症を候ふの法。右のごとく病者に臨み、まづ右手の掌を徐かに胸心へあて、一息して呼吸を定靜し、こゝろをしづめて胸脇の毒をうかゞふ。中央より診して左右におよぶ。而して後、心下へやはらかに指を下して、三指（食指・中指・無名指）の頭にて按すべし。次に肋骨のはしへ指頭をかゝげ入れて、苦滿の有無をうかゞひ、次に腹中、次に左右の小腹、次に臍究、次に左右の臍傍、次に臍下と、順々に診察すべし。これ診腹の次第なり。かくのごとくにして後、外證を察し、諸患の有無を問ふべし。",
+      yaku: "腹証をうかがう手順。上のような心構えで病者に向かい、まず右手のてのひらを静かに胸に当てる。ひと呼吸おいて呼吸を整え、心を静めて、胸脇の毒をうかがう。中央から診て左右に及ぶ。その後、みぞおち（心下）へやわらかに指を下ろし、三本の指（人差し指・中指・薬指）の先で按じる。次に肋骨の縁へ指先を差し入れるようにして、苦満（胸脇苦満）の有無をうかがう。次に腹の中、次に左右の下腹部（小腹）、次に臍、次に臍の左右、次に臍の下と、順々に診察する。これが腹診の順序である。こうして腹を診たのちに、外に現れた症状（外証）を観察し、そのほかの症状の有無を問うべきである。" }
+  ],
+  tags: ["腹診", "診察の順序", "胸脇苦満", "みぞおち"],
+  check: ["11R「臍究」の「究」は字形どおり。臍窠（へそのくぼみ）の意と解した"]
+},
+{
+  id: "keishito", no: 1, kind: "方剤", title: "桂枝湯", yomi: "けいしとう", group: "正編 上冊",
+  koma: [11, 13], komaNote: "11L–13R",
+  fig: { src: "img/fig_011L.jpg", koma: "11L", label: "桂枝湯之證",
+    desc: "冠をかぶった髭の男が椅子に腰掛け、胸腹をあらわにしている。腹部に色付けはない。" },
+  paras: [
+    { head: "腹証と三方の使い分け", koma: "12R",
+      kaki: "此の證、腹滿にして、底までもこたゆるものなく、圖のごとく、只拘攣あり。所謂臓に他病なし。上衝・發熱・頭痛有りて、汗あり惡風する者は、桂枝湯を用ゆる也。拘攣せざる者は、去芍藥湯を用ゆるなり。拘攣劇しき者は、加芍藥湯を用ゆるなり。此の三方を合せみれば、上衝と拘攣との二つ、此の症の準據たること知るべし。",
+      yaku: "この証は、腹は張っているが、底のほうまで手に応える（しこりや抵抗の）ものはなく、図のように、ただ拘攣（腹のひきつり）があるだけである。いわゆる「臓に他病なし」（内臓にはほかの病がない）の状態である。上衝（気の突き上げ）・発熱・頭痛があって、汗が出て風を嫌う者には桂枝湯を用いる。拘攣のない者には桂枝去芍薬湯を、拘攣の激しい者には桂枝加芍薬湯を用いる。この三方を合わせて見れば、上衝と拘攣の二つが、この証の目安（準拠）であることがわかる。" },
+    { head: "「衝」と「拘攣」の字義・拘攣の診かた", koma: "12R–12L",
+      kaki: "故に腹證を知らんと欲せば、まづ準據とするところの字義を味ひ考ふべし。衝は突なり、向なり。毒の頭上へ突き上るなり。拘は物を去り手能く之を止むるなり。また擁なり。攣は係攣なり。縄を以て引きつりしばるなり。然れば拘攣は毒のかゝはりひきつるものなり。これを診する法、やはらかに指を下して、腹中をいろひ探るに、指頭にあたりて、かゝはり引きつるものあり。是れすなはち拘攣なり。",
+      yaku: "だから腹証を知ろうとするなら、まず目安とする語の字義をよく味わい考えるべきである。「衝」は突く、向かうの意で、毒が頭のほうへ突き上がることである。「拘」は手でとどめる意であり、また抱え込む（擁）意でもある。「攣」はつなぎひきつる（係攣）意で、縄で引きつらせて縛ることである。そうであれば、拘攣とは毒がつっぱって引きつるものである。これを診る方法は、やわらかに指を下ろして腹の中をさわり探ると、指先に当たってつっぱり引きつるものがある。これがすなわち拘攣である。" },
+    { head: "方意（生薬の役割）", koma: "12L",
+      kaki: "夫れ毒腹中にあり、拘攣して上衝す。是れ即ち桂枝湯の主治する所なり。衝逆して毒心胸を過ぐるを以て、嘔する氣味ある故、方中に生姜あり。又拘攣上衝すれば、攣引急迫も其のうちにこもりある故、大棗・甘草あり。是は諸藥各主治する所ありといへども、壹に皆桂芍二味に佐として、拘攣上衝の毒を治するものなり。",
+      yaku: "そもそも毒が腹の中にあって、拘攣して上衝する。これがすなわち桂枝湯の主治するところである。突き上げた毒が胸を通り過ぎるので吐き気の気味があり、そのため方中に生姜がある。また拘攣して上衝すれば、ひきつり（攣引）や差し迫った症状（急迫）もその中に含まれているので、大棗と甘草がある。これらの薬にはそれぞれ主治があるが、すべて桂枝・芍薬の二味の補佐として、拘攣・上衝の毒を治すものである。" },
+    { head: "上衝が決め手", koma: "12L–13R",
+      kaki: "然れども、拘攣のみにて上衝なければ、此の方の證にあらざる故、上衝をつかまへものにして、「上衝する者は桂枝湯を與ふべし」と傷寒論にもいへり。これを明らかに方意を「毒の所在を視る」といふなり。右桂枝湯及び去芍藥・加芍藥の三方、此に於いてもとむべし。その餘、本方より去加の諸方も、亦みな桂芍二味の證を主として出入去加したるものなれば、只桂芍二味の意を主として考ふべし。",
+      yaku: "しかし拘攣だけで上衝がなければこの方の証ではないので、上衝を押さえどころとする。『傷寒論』にも「上衝する者には桂枝湯を与えるべきである」と言っている。これこそ、方意を明らかにして「毒の所在を見る」ということである。以上の桂枝湯、桂枝去芍薬湯、桂枝加芍薬湯の三方は、ここに基づいて求めるべきである。そのほか本方から生薬を除いたり加えたりした諸方も、みな桂枝・芍薬二味の証を主として出し入れしたものなので、ただ桂枝・芍薬二味の意味を主として考えればよい。" },
+    { head: "秘伝", koma: "13R",
+      kaki: "又曰く、桂枝加桂枝・桂枝加皂莢、密傳あり、後篇に書す。懇請の人あらば傳ふべし。桂枝去芍藥湯も亦腹候傳あり。",
+      yaku: "また言う。桂枝加桂枝（桂枝加桂湯）と桂枝加皂莢には秘伝があり、後編に記す。熱心に請う人があれば伝えよう。桂枝去芍薬湯にもまた腹候の伝授がある。" }
+  ],
+  tochu: [
+    { head: "上衝はしばらくして衰える", koma: "12R",
+      kaki: "孔安國曰く、「衝風の末は、力鴻毛を漂はすこと能はず。初め勁からざるに非ず、末力衰ふるなり」と。人の上衝にも此に似たることあり。其の初め劇しき者といへども、衝風の末力の衰ふるが如く、少間にして衰ふるものなり。",
+      yaku: "孔安国は「激しい風も吹き終わりには、鴻（おおとり）の羽毛さえ漂わせる力がない。初めが強くないのではなく、終わりに力が衰えるのである」と言っている。人の上衝にもこれに似たことがある。初めは激しいものでも、激しい風の吹き終わりに力が衰えるように、しばらくすると衰えるものである。" },
+    { head: "字義", koma: "12R",
+      kaki: "攣は係なり。拘は執なり。",
+      yaku: "「攣」はつなぐ（係）意、「拘」はとらえる（執）意である。" }
+  ],
+  related: ["fukushin-ho"],
+  tags: ["のぼせ", "上衝", "頭痛", "発熱", "汗", "風が嫌", "腹のひきつり", "かぜ", "吐き気"],
+  check: [
+    "12R 頭注「孔安國曰」：この語（衝風之末、力不能漂鴻毛…）は『史記』韓長孺列伝の韓安国の言として知られる。本書の表記のまま「孔安国」とした",
+    "12R 左の小さい頭注「攣ハ係也、拘ハ執也」は小字で判読に自信がない",
+    "12R「拘ハ物ヲ去リ手能止之ナリ」の読み（字書の説明の引用か）",
+    "13R「上衝スル者ハ桂枝湯ヲ與フベシト傷寒論ニモイヘリ」：通行本の傷寒論は「其の氣上衝する者は、桂枝湯を與ふべし」",
+    "13R「視毒之所在」の返り点の読み",
+    "13R「桂枝加桂枝」は字形どおり（桂枝加桂湯の意と解した）"
+  ]
+}
+);
+
+</script>
+<script>
+const D=(window.FUKU_DATA||[]).slice().sort((a,b)=>a.no-b.no);
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const RMDA="https://rmda.kulib.kyoto-u.ac.jp/item/rb00004915?page=";
+const EX=["のぼせ","胸脇苦満","腹のひきつり","みぞおち","頭痛","汗"];
+const SYN = {
+  "泣く":["悲傷","哭","啼哭","悲泣","泣"], "鼻血":["衄","衄血","鼻血"], "はなぢ":["衄","鼻血"],
+  "寒気":["悪寒","惡寒","嗇嗇","寒気"], "さむけ":["悪寒","惡寒","寒気"], "ぞくぞく":["悪寒","嗇嗇","ぞくぞく"],
+  "風が嫌":["悪風","惡風","風を嫌"], "かぜ":["中風","かぜ","外邪"], "風邪":["中風","かぜ","外邪"],
+  "汗":["自汗","汗出","汗"], "冷え":["冷","厥冷","冷え"], 
+  "熱":["発熱","發熱","煩熱","熱"], "夕方":["日晡所","夕方"],
+  "頭痛":["頭痛","頭微痛","頭項強痛"], "首":["項","頭項"], "うなじ":["項","頭項"],
+  "のぼせ":["上衝","気上衝","のぼせ","突き上げ"],
+  "みぞおち":["心下","心下痞","心下悶","みぞおち"], "つかえ":["痞","心下痞","つかえ"], "胃":["心下","みぞおち"],
+  "吐き気":["嘔","乾嘔","嘔逆","吐き気","からえずき"], "えずき":["乾嘔","からえずき"], "嘔吐":["吐","嘔吐","吐く"],
+  "下痢":["下利","下痢","自利","清穀"],
+  "腹痛":["腹痛","腹中痛"], "お腹が張る":["腹脹滿","腹満","腹が張"], "腹部膨満":["腹脹滿","腹満","腹が張"],
+  "体の痛み":["身疼痛","身痛","身體疼痛","体が痛","体の痛み"], "関節":["疼痛","身疼痛","関節"],
+  "のど":["咽喉痛","咽喉","のど"], "喉":["咽喉痛","咽喉","のど"], "咳":["咳","咳嗽"], "せき":["咳","咳嗽"],
+  "鼻水":["鼻鳴","鼻水"], "鼻づまり":["鼻鳴","鼻が詰ま","鼻づまり"], "膿":["膿","膿血"],
+  "産後":["産後","産后","產後"], "妊娠":["姙娠","妊娠","つわり"], "つわり":["姙娠","妊娠","つわり","不能食"],
+  "食欲がない":["不能食","食事がとれ"], "尿":["小便"], "小便":["小便"],
+  "腹直筋":["腹直筋","拘攣","攣急"], "けいれん":["けいれん","痙攣","攣急"], "いらいら":["いらいら","煩躁","煩"],
+  "むくみ":["むくみ","水腫","水気","浮腫"], "動悸":["動悸","悸"], "めまい":["めまい","眩","目眩","頭眩"],
+  "口渇":["口渇","渇","渴"], "のどが渇く":["口渇","渇","渴"], "胸が苦しい":["胸満","心下悶","重苦し"],
+  "突き上げ":["奔豚","上衝","突き上げ"], "酒":["酒客","酒"], "鍼":["鍼","刺"],
+  "ぜんそく":["喘","喘家","ぜんそく","喘鳴"], "喘息":["喘","喘家","ぜんそく"], "息苦しい":["喘","息苦し"], "しぶり腹":["裏急後重","しぶり腹"],
+  "寝汗":["盗汗","盜汗","寝汗"], "黄汗":["黄汗"], "黄疸":["黄家","黄疸","發黃","身黃"], "肩こり":["項背強","几几","肩こり","首のこわばり"], "首のこわばり":["項背強","項強","几几","こわば"],
+  "こわばり":["強","几几","こわば"], "破傷風":["破傷風"], "はしか":["麻疹","はしか"], "天然痘":["痘瘡"], "痔":["痔"], "腰痛":["腰痛","腰髖","腰脚"],
+  "疝":["疝"], "手足の冷え":["逆冷","手足の冷え","冷えあが"], "しびれ":["不仁","痺","しびれ"], "便秘":["不大便","大便難","便秘","大實痛","停滯"],
+  "痰":["痰飲","淡飲","痰","飲家"], "胸痛":["胸痺","胸の痛み","胸痛"], "おねしょ":["遺尿","おねしょ","夜尿"], "夜尿症":["遺尿","おねしょ","夜尿"],
+  "尿失禁":["小便不禁","小便失禁","尿失禁"], "腰の冷え":["腰中冷","腰以下冷","腰の冷え","腰髀冷"], "息切れ":["短氣","短気","息切れ"],
+  "目の病気":["眼目","雲翳","眵淚","目の"], "鳥目":["雀目","鳥目"], "立ちくらみ":["起則頭眩","起てば","立ちくらみ","頭眩"],
+  "排尿痛":["淋","淋瀝","莖中痛","排尿痛"], "膀胱炎":["淋","淋瀝","膀胱炎"], "血尿":["膿血","血尿"], "水を飲むと吐く":["水逆","水入則吐","水を飲むとすぐ吐"],
+  "回転性めまい":["冒眩","昏昏搖搖","迴轉","回転性めまい"], "吐き戻し":["胃反","反胃","吐き戻"], "陰嚢":["陰囊","陰嚢"], "不眠":["不得眠","眠れない","不眠"],
+  "脚気":["脚氣","脚気"], "インポテンツ":["陰痿","インポテンツ"], "おりもの":["白沃","帯下","白物","白帶","おりもの"], "貧血":["黃胖","貧血"], "陰部のかゆみ":["陰中痒","陰部のかゆみ"], "肛門のただれ":["蝕於肛","肛門のただれ"], "頻尿":["頻數","頻尿","數十行"],
+  "流産":["墮胎","流産"], "意識がない":["氣絕","昏冒","人事を省みず","意識"], "失神":["氣絕","暈倒","失神"], "乳児":["初生兒","乳児"],
+  "肺膿瘍":["肺癰","肺膿瘍"], "痛風":["痛風"], "インフルエンザ":["傷寒","インフルエンザ"], "多飲多尿":["消渴","多飲多尿"], "糖尿病":["消渴","糖尿病"],
+  "マラリア":["瘧","マラリア","間欠熱"], "目やに":["眵","目やに"], "まぶしい":["羞明","まぶし"], "丹毒":["丹毒","赤遊"],
+  "ひきつけ":["驚風","驚癇","搐搦","ひきつけ"], "皮膚病":["疥癬","皮膚病"], "足が萎える":["痿躄","足が萎え"],
+  "脇腹の張り":["胸脇苦滿","胸脇苦満","脇下","脇腹"], "寒気と熱が交互":["往來寒熱","往来寒熱","寒熱"], "蓄膿症":["鼻淵","腦漏","蓄膿"],
+  "おたふくかぜ":["痄腮","發頤","おたふく"], "耳鳴り":["耳鳴","啾啾","耳鳴り"], "血の道":["血道","血の道"], "てんかん":["癲癇","癇","てんかん"],
+  "胸焼け":["嘈雜","呑酸","吞酸","胸焼け"],
+  "しゃっくり":["噦","吃逆","しゃっくり"], "二日酔い":["宿醒","宿酲","二日酔い"], "熱中症":["暍","中熱","暑気あたり","熱中症"], "暑気あたり":["暍","中熱","暑気あたり"],
+  "歯痛":["齒牙疼痛","齲齒","歯痛","歯が痛"], "吐血":["吐血"], "脳卒中":["中風卒倒","卒倒","脳卒中","半身不随"], "半身不随":["偏枯","癱瘓","半身不随"],
+  "虫垂炎":["腸癰","虫垂炎"], "盲腸":["腸癰","虫垂炎"], "月経不順":["經水不調","經水不利","月経不順"], "生理不順":["經水不調","經水不利","月経不順"],
+  "無月経":["經閉","經水不利","無月経"], "瘀血":["瘀血","乾血","畜血","蓄血"], "打撲":["打撲","墮撲","打ち身"], "打ち身":["打撲","墮撲","打ち身"],
+  "物忘れ":["喜忘","健忘","物忘れ"], "回虫":["蚘虫","蛔","回虫"], "夜泣き":["夜啼","夜泣き"], "片側の痛み":["偏痛","片側の痛み"],
+  "ヒステリー":["藏躁","臟躁","ヒステリー"], "こむら返り":["腳攣急","脚攣急","こむら返り"], "扁桃炎":["喉痺","咽痛","扁桃炎"], "寄生虫":["蚘蟲","蚘虫","三虫","寄生虫"],
+  "よだれ":["涎","涎沫","よだれ"], "できもの":["瘡瘍","諸瘍","できもの"], "あくび":["欠伸","あくび"], "肺膿瘍":["肺癰","肺膿瘍"],
+  "コレラ":["霍亂","霍乱","コレラ"], "急性胃腸炎":["霍亂","霍乱","吐き下し","急性胃腸炎"], "冷や汗":["冷汗","脫汗","冷や汗"], "ショック":["脫汗","脈微欲絕","厥冷","ショック"],
+  "未消化便":["清穀","下利清穀","未消化"], "顔が赤い":["面赤","面色赤","顔が赤"], "ふらつき":["振振欲擗地","頭眩","ふらつ"], "ぴくつき":["瞤動","筋惕","ぴくつ"], "脱水":["亡血","脫汗","脱水"],
+  "腹鳴":["雷鳴","腹中雷鳴","漉漉","腹鳴"], "おなかが鳴る":["雷鳴","腹中雷鳴","腹鳴"], "寝汗":["盜汗","盗汗","寝汗"],
+  "胸のもやもや":["懊憹","虛煩","胸のもやもや"], "胸苦しい":["懊憹","虛煩","煩熱","胸苦し"], "梅毒":["黴毒","結毒","梅毒"],
+  "天然痘":["痘瘡","天然痘"], "半身不随":["偏枯","癱瘓","半身不随"], "頻尿":["小便頻數","小便數","頻尿"],
+  "遺精":["失精","遺精"], "勃起不全":["陰痿","勃起不全"],
+  "肝炎":["黄疸","發黃"], "結膜炎":["眼球黃赤","目の充血","結膜炎"], "目の充血":["眼球黃赤","目の充血"], "胸やけ":["嘈雜","胸やけ","胸焼け"], "食道がつかえる":["膈噎","食道がつかえる"], "昏睡":["昏昏不醒","傾眠","意識障害"], "病後":["差後","勞復","病後"], "ぶり返し":["勞復","ぶり返し"],
+  "狭心症":["胸痹","眞心痛","心痛徹背","狭心症"], "心筋梗塞":["眞心痛","心筋梗塞"], "背中に抜ける痛み":["徹背","胸から背中に抜ける痛み"], "はと胸":["龜胸","はと胸"], "食べるとすぐ吐く":["胃反","食入卽吐","食べるとすぐ吐く"], "肩が急にこわばる":["早打肩","肩背強急"], "横になれない":["不得臥","横になれない"],
+  "のどの異物感":["炙臠","梅核氣","のどの異物感"], "梅核気":["炙臠","梅核氣","梅核気"], "声がれ":["音啞","聲出","聲喝","声がれ","声が出ない"], "げっぷ":["噫氣","噯氣","乾噫","げっぷ"], "おくび":["噫氣","噯氣","げっぷ"], "呑酸":["吞酸","呑酸"], "ベーチェット病":["狐惑","ベーチェット"], "口内炎":["狐惑","咽中生瘡","口内炎"], "微熱が続く":["骨蒸","勞熱","微熱が続く"], "からえずき":["乾嘔","からえずき"],
+  "ほてり":["煩熱","ほてり"], "手足のほてり":["四肢煩熱","手掌足心煩熱","手足のほてり"], "赤痢":["痢疾","熱利","熱痢","膿血","赤痢"], "血便":["便膿血","便血","清血","血便"], "出血":["失血","血症","出血"], "涙目":["風淚","涙目"], "片頭痛":["頭痛","片頭痛"], "肛門の灼熱感":["肛門灼熱","肛中焮熱","肛門の灼熱感"],
+  "顔色が黒い":["黧黑","面色黧黑","顔色が黒"], "体が重い":["身重","體重","体が重"], "多汗":["汗出","多汗","汗かき"], "骨髄炎":["附骨疽","骨髄炎"], "下半身のむくみ":["腰以下當腫","下半身のむくみ"],
+  "歯槽膿漏":["骨槽風","歯槽膿漏"], "首のしこり":["結核","首のしこり"], "胸が詰まる":["胸中氣塞","愊愊","胸が詰ま"], "空腹感":["饑","心懸","空腹感"], "心不全":["支飲","心不全"], "悪露":["惡露","悪露"],
+  "不整脈":["結代","結悸","不整脈","脈が飛ぶ"], "脈が飛ぶ":["結代","脈が飛ぶ"], "夜盲症":["雀目","夜盲症","鳥目"],
+  "関節リウマチ":["歷節","肢節疼痛","痛風","関節リウマチ"], "ヘルニア":["陰狐疝","狐疝","疝","ヘルニア"], "脱腸":["陰狐疝","狐疝","脱腸"],
+  "虫歯":["蝕齒","疳蟲","虫歯"], "喘鳴":["水鷄聲","喘鳴"], "しもやけ":["手足厥寒","しもやけ"], "肺結核":["骨蒸","勞嗽","肺痿","結核"],
+};
+Object.assign(SYN,{
+  "腹のひきつり":["拘攣","攣急","ひきつ"], "胸脇苦満":["苦滿","苦満","胸脇"], "腹診":["腹診","診腹","腹症","腹證"]
+});
+function terms(q){
+  const out=new Set();
+  q.split(/[\s　、,]+/).filter(Boolean).forEach(w=>{
+    out.add(w);
+    if(SYN[w]){ SYN[w].forEach(x=>out.add(x)); return }
+    const ks=Object.keys(SYN).filter(k=>k.includes(w)||w.includes(k)).sort((a,b)=>b.length-a.length);
+    if(ks.length) SYN[ks[0]].forEach(x=>out.add(x));
+  });
+  return [...out];
+}
+function navHTML(){
+  let h="", g=null;
+  D.forEach(e=>{ if(e.group!==g){ g=e.group; h+=`<h3>${esc(g)}</h3>` }
+    h+=`<a href="#${e.id}" data-goto="${e.id}"><span class="no">${e.kind==="方剤"?e.no:"総"}</span>${esc(e.title)}</a>` });
+  return h+`<h3>このアプリについて</h3><a href="#about" data-goto="about">凡例</a>`;
+}
+function txt(o){
+  return `<div class="txt">${o.kaki?`<div class="kaki"><span class="lbl">本文</span>${esc(o.kaki)}</div>`:""}${o.yaku?`<div class="yaku"><span class="lbl">現代語訳</span>${esc(o.yaku)}</div>`:""}</div>`;
+}
+function komaLink(k){ const m=String(k).match(/\d+/); return m?`<a href="${RMDA}${+m[0]}" target="_blank" rel="noopener">コマ${esc(k)}</a>`:"" }
+function modebar(){ return `<div class="modebar">表示：<span class="seg" id="seg">${[["both","本文＋訳"],["kaki","本文"],["yaku","現代語訳"]].map(([v,l])=>`<button data-mode="${v}" aria-pressed="${document.body.dataset.mode===v}">${l}</button>`).join("")}</span></div>` }
+function about(){
+  return `<div class="page"><h2>凡例</h2><section><h3>この本について</h3><p>『腹証奇覧』は、吉益南涯の門人稲葉文礼（克）が、吉益東洞以来の古方の腹診を方剤ごとの図と解説にまとめた書物です。正編（寛政12年〈1800〉序刊）と後編（文化6年〈1809〉刊）があり、のちに門人の和久田叔虎が『腹証奇覧翼』を著しました。</p></section>
+  <section><h3>表示</h3><ul>
+  <li><b>腹証図</b>：原本の図を切り出したもの。押すと拡大します。緑の色付けは原本の彩色で、腹証の部位を示します。</li>
+  <li><b>本文</b>：原本の漢字カタカナ交じり文を、ひらがな交じりに改め、句読点を補ったもの。漢字は原本の字体のまま。漢文の引用は書き下しました。</li>
+  <li><b>頭注</b>：枠の上に刷られた注。全文を本文と現代語訳で載せています。</li>
+  <li><b>コマ</b>：京都大学貴重資料デジタルアーカイブの画像番号（1コマ＝見開き、R＝右頁、L＝左頁）。押すと原本画像が開きます。</li>
+  <li><b>要確認</b>：判読に自信がない字や、読み方を確かめたい点です。</li></ul></section>
+  <section><h3>底本</h3><p class="small">『腹証奇覧』正編2巻・後編2巻（1冊）、稲葉克（文礼）著。京都大学附属図書館所蔵（富士川文庫, RB00004915）。利用条件：自由利用（出典表示）。</p></section></div>`;
+}
+function render(id){
+  document.querySelectorAll("nav a").forEach(a=>a.classList.toggle("on",a.dataset.goto===id));
+  if(id==="about"){ $("#page").innerHTML=about(); return }
+  const e=D.find(x=>x.id===id)||D.find(x=>x.kind==="方剤")||D[0]; if(!e) return;
+  document.querySelectorAll("nav a").forEach(a=>a.classList.toggle("on",a.dataset.goto===e.id));
+  let h=`<div class="page"><h2>${esc(e.title)}<small>${esc(e.yomi||"")}</small></h2>`+
+    `<div class="meta">${esc(e.group)}　${e.kind==="方剤"?`第${e.no}図`:esc(e.kind)}　原本：${komaLink(e.koma[0])}〜${komaLink(e.koma[1])}（${esc(e.komaNote||"")}）</div>`;
+  if(e.fig) h+=`<div class="fig"><img src="${esc(e.fig.src)}" alt="${esc(e.fig.label)}（腹証図）" data-zoom="${esc(e.fig.src)}" loading="lazy"><div><div class="cap">${esc(e.fig.label)}</div><p class="small">${komaLink(e.fig.koma)}</p><p>${esc(e.fig.desc||"")}</p></div></div>`;
+  if(e.intro) h+=`<p class="note" style="margin-top:14px">${esc(e.intro)}</p>`;
+  h+=`<div class="tags">${(e.tags||[]).map(t=>`<button class="tag" data-q="${esc(t)}">${esc(t)}</button>`).join("")}</div>`+modebar();
+  h+=`<section id="s-hon"><h3>本文</h3>${e.paras.map((p,i)=>`<div class="para" id="p-${i+1}">${p.head||p.koma?`<h4>${esc(p.head||"")}<span>${komaLink(p.koma)}</span></h4>`:""}${txt(p)}</div>`).join("")}</section>`;
+  if(e.tochu&&e.tochu.length) h+=`<section id="s-tc"><h3>頭注</h3>${e.tochu.map((t,i)=>`<div class="tc" id="t-${i+1}"><div class="h">${esc(t.head||"頭注")}<span>${komaLink(t.koma)}</span></div>${txt(t)}</div>`).join("")}</section>`;
+  const rel=(e.related||[]).map(r=>D.find(x=>x.id===r)).filter(Boolean);
+  if(rel.length) h+=`<section><h3>関連</h3><div class="rel">${rel.map(r=>`<a href="#${r.id}" data-goto="${r.id}">${esc(r.title)}</a>`).join("")}</div></section>`;
+  if(e.check&&e.check.length) h+=`<section id="s-chk"><h3>要確認</h3><ul class="check">${e.check.map(c=>`<li>${esc(c)}</li>`).join("")}</ul></section>`;
+  $("#page").innerHTML=h+"</div>";
+}
+function search(q){
+  const box=$("#results");
+  if(!q.trim()){box.hidden=true;return}
+  const ts=terms(q); const hits=[]; const test=s=>s&&ts.some(t=>s.includes(t));
+  D.forEach(e=>{
+    if(test(e.title)) hits.push({e,where:e.kind==="方剤"?"方剤名":"見出し",text:(e.paras[0]||{}).yaku||"",a:""});
+    (e.tags||[]).forEach(t=>{ if(test(t)) hits.push({e,where:"タグ",text:t,a:""}) });
+    if(e.fig&&test(e.fig.desc)) hits.push({e,where:"腹証図",text:e.fig.desc,a:""});
+    e.paras.forEach((p,i)=>{ if(test(p.kaki+p.yaku)) hits.push({e,where:p.head||"本文",text:p.yaku,a:`p-${i+1}`}) });
+    (e.tochu||[]).forEach((t,i)=>{ if(test(t.kaki+t.yaku)) hits.push({e,where:"頭注",text:t.yaku,a:`t-${i+1}`}) });
+  });
+  const seen=new Set(); const uniq=hits.filter(h=>{const k=h.e.id+h.where+h.text.slice(0,20); if(seen.has(k))return false; seen.add(k); return true});
+  const mark=s=>{ let h=esc(s.length>130?snip(s,ts):s); ts.forEach(t=>{ if(t) h=h.split(esc(t)).join(`<mark>${esc(t)}</mark>`) }); return h };
+  box.hidden=false;
+  box.innerHTML=`<h2>「${esc(q)}」の検索結果 ${uniq.length}件${ts.length>1?`<span class="small">（${esc(ts.slice(0,8).join("・"))} を含めて検索）</span>`:""}</h2>`+
+    (uniq.length?uniq.slice(0,80).map(h=>`<a class="hit" href="#${h.e.id}" data-goto="${h.e.id}" data-anchor="${h.a}"><b>${esc(h.e.title)}</b><span class="where">${esc(h.where)}</span><p>${mark(h.text)}</p></a>`).join(""):`<p class="small">該当なし。別の言い方（例：「のぼせ」→「上衝」）でもお試しください。</p>`);
+}
+function snip(s,ts){ let i=-1; for(const t of ts){ i=s.indexOf(t); if(i>=0)break } i=Math.max(0,i-30); return (i>0?"…":"")+s.slice(i,i+120)+"…" }
+let mode="both"; try{ mode=localStorage.getItem("fk-mode")||"both" }catch(e){}
+if(!["both","kaki","yaku"].includes(mode)) mode="both";
+document.body.dataset.mode=mode;
+$("#nav").innerHTML=navHTML();
+$("#hint").innerHTML="例："+EX.map(x=>`<button type="button" data-q="${x}">${x}</button>`).join("");
+document.addEventListener("click",ev=>{
+  const z=ev.target.closest("[data-zoom]");
+  if(z){ $("#zoom").innerHTML=`<img src="${esc(z.dataset.zoom)}" alt="">`; $("#zoom").hidden=false; return }
+  if(ev.target.closest("#zoom")){ $("#zoom").hidden=true; return }
+  const t=ev.target.closest("[data-q],[data-mode],[data-goto]"); if(!t||t.tagName==="BODY") return;
+  if(t.dataset.q){ $("#q").value=t.dataset.q; search(t.dataset.q); window.scrollTo(0,0); return }
+  if(t.dataset.mode&&t.tagName==="BUTTON"){ mode=t.dataset.mode; document.body.dataset.mode=mode; try{localStorage.setItem("fk-mode",mode)}catch(e){}
+    document.querySelectorAll("#seg button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.mode===mode)); return }
+  if(t.dataset.goto){ ev.preventDefault(); history.replaceState(null,"","#"+t.dataset.goto); render(t.dataset.goto);
+    if(matchMedia("(max-width:760px)").matches){ $("#nav").classList.remove("open"); $("#navbtn").setAttribute("aria-expanded","false"); $("#navbtn").textContent="目次を開く" }
+    const a=t.dataset.anchor; requestAnimationFrame(()=>{ const el=a&&document.getElementById(a); (el||$("#page")).scrollIntoView(); }); }
+});
+$("#q").addEventListener("input",e=>search(e.target.value));
+$("#navbtn").addEventListener("click",()=>{const n=$("#nav"),o=!n.classList.contains("open");n.classList.toggle("open",o);$("#navbtn").setAttribute("aria-expanded",o);$("#navbtn").textContent=o?"目次を閉じる":"目次を開く"});
+window.addEventListener("hashchange",()=>render(location.hash.slice(1)));
+render(location.hash.slice(1)||((D.find(x=>x.kind==="方剤")||D[0])||{}).id);
+</script>
+
+<script>
+const APP_VER="202611210106";
+if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js",{updateViaCache:"none"}).catch(()=>{}))}
+// ホーム画面アプリは閉じても裏で残り再読込されないため、表示に戻るたびに新しい版を確認する
+function kkCheck(){if(!navigator.onLine)return;fetch("index.html?v="+Date.now(),{cache:"no-store"}).then(r=>r.text()).then(t=>{const m=t.match(/<!-- version ([0-9]+) -->/);if(m&&m[1]!==APP_VER){if(navigator.serviceWorker&&navigator.serviceWorker.getRegistration)navigator.serviceWorker.getRegistration().then(g=>g&&g.update());location.reload();}}).catch(()=>{})}
+document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")kkCheck()});
+window.addEventListener("load",()=>setTimeout(kkCheck,1500));
+</script>
+<!-- version 202611210106 -->
+</body>
+</html>
