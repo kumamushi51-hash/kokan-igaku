@@ -1,25 +1,30 @@
 # 使い方: python3 fukusho/work/crop.py 11 12 …（コマ番号）→ /tmp/fk_crops/ に切り出し
-# 1コマ＝見開き2頁。R（右頁）が先、L（左頁）が後。各頁を上下2分割（1,2）。読む順は R1,R2,L1,L2 ではなく
-# 縦書きなので、各頁は「右半分(a)→左半分(b)」の順に読む：Ra, Rb, La, Lb（いずれも全高）
+# 1コマ＝見開き2頁。R（右頁）が先、L（左頁）が後。頁の位置は pages.py で自動検出（撮影位置がコマごとに違う）。
+# 出力：0012R.jpg / 0012L.jpg（頁全体。通常はこれで読める）、0012Ra/Rb/La/Lb.jpg（頁の右半分・左半分。縦書きなので a→b の順）
+# のどの位置がずれたときは  12=1450  のように「コマ=のどのx座標（原画像）」を付けて指定できる
 import sys, os
-from PIL import Image, ImageOps
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from PIL import Image
+from pages import pages
+
 base = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'images', 'v1')
 out = '/tmp/fk_crops/'; os.makedirs(out, exist_ok=True)
-MID = {}
-args = [a for a in sys.argv[1:]]
-ks = []
-for a in args:
-    if '=' in a: kk, m = a.split('='); MID[int(kk)] = int(m)
-    else: ks.append(int(a))
+MID, ks = {}, []
+for a in sys.argv[1:]:
+    if '=' in a:
+        kk, m = a.split('='); MID[int(kk)] = int(m)
+    else:
+        ks.append(int(a))
 for k in ks:
     img = Image.open(f'{base}/koma_{k:04d}.jpg')
-    W, H = img.size
-    # 撮影位置はほぼ一定（紙面は x≈700〜3300、のど≈2000）。ずれる場合は引数の後に mid=xxxx を付ける
-    mid = MID.get(k, 2000); x0, x1 = mid - 1300, mid + 1300
-    for p, (a, b) in (('R', (mid - 20, x1)), ('L', (x0, mid + 20))):
-        page = img.crop((a, int(H*.12), b, int(H*.94)))
-        w = page.width
-        page.save(f'{out}{k:04d}{p}.jpg', quality=85)
-        for t, box in (('a', (w//2 - 30, 0, w, page.height)), ('b', (0, 0, w//2 + 30, page.height))):
-            page.crop(box).save(f'{out}{k:04d}{p}{t}.jpg', quality=90)
-    print(k, 'ok', mid)
+    P = pages(img)
+    if k in MID:
+        m = MID[k]; P['R'] = (m,) + P['R'][1:]; P['L'] = P['L'][:2] + (m, P['L'][3])
+    for p in ('R', 'L'):
+        page = img.crop(P[p])
+        w, h = page.size
+        page.save(f'{out}{k:04d}{p}.jpg', quality=88)
+        e = w // 40
+        page.crop((w // 2 - e, 0, w, h)).save(f'{out}{k:04d}{p}a.jpg', quality=90)
+        page.crop((0, 0, w // 2 + e, h)).save(f'{out}{k:04d}{p}b.jpg', quality=90)
+    print(k, 'ok', P)

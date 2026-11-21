@@ -132,7 +132,7 @@ footer a{color:var(--ai)}
   <main><div class="results" id="results" hidden></div><div id="page"></div></main>
 </div>
 <div id="zoom" hidden></div>
-<footer>底本：『腹証奇覧』稲葉克（文礼）著（京都大学附属図書館所蔵 富士川文庫）。画像は <a href="https://rmda.kulib.kyoto-u.ac.jp/item/rb00004915" target="_blank" rel="noopener">京都大学貴重資料デジタルアーカイブ</a>（出典：京都大学附属図書館。腹証図は同画像から切り出したもの）。本文の読み・現代語訳は学習用の試訳です。</footer>
+<footer>底本：『腹証奇覧』稲葉克（文礼）著・『腹証奇覧翼』和久田叔虎著（京都大学附属図書館所蔵 富士川文庫）。画像は <a href="https://rmda.kulib.kyoto-u.ac.jp/item/rb00004916" target="_blank" rel="noopener">京都大学貴重資料デジタルアーカイブ</a>（出典：京都大学附属図書館。腹証図は同画像から切り出したもの）。本文の読み・現代語訳は学習用の試訳です。</footer>
 <script>
 /*__DATA__*/
 </script>
@@ -140,7 +140,7 @@ footer a{color:var(--ai)}
 const D=(window.FUKU_DATA||[]).slice().sort((a,b)=>a.no-b.no);
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const RMDA="https://rmda.kulib.kyoto-u.ac.jp/item/rb00004915?page=";
+const RMDA="https://rmda.kulib.kyoto-u.ac.jp/item/rb00004916?page=";
 const EX=["のぼせ","胸脇苦満","腹のひきつり","みぞおち","頭痛","汗"];
 const SYN = {
   "泣く":["悲傷","哭","啼哭","悲泣","泣"], "鼻血":["衄","衄血","鼻血"], "はなぢ":["衄","鼻血"],
@@ -233,9 +233,9 @@ function about(){
   <li><b>腹証図</b>：原本の図を切り出したもの。押すと拡大します。緑の色付けは原本の彩色で、腹証の部位を示します。</li>
   <li><b>本文</b>：原本の漢字カタカナ交じり文を、ひらがな交じりに改め、句読点を補ったもの。漢字は原本の字体のまま。漢文の引用は書き下しました。</li>
   <li><b>頭注</b>：枠の上に刷られた注。全文を本文と現代語訳で載せています。</li>
-  <li><b>コマ</b>：京都大学貴重資料デジタルアーカイブの画像番号（1コマ＝見開き、R＝右頁、L＝左頁）。押すと原本画像が開きます。</li>
+  <li><b>コマ</b>：京都大学貴重資料デジタルアーカイブの画像番号（11冊通しの番号。1コマ＝見開き、R＝右頁、L＝左頁）。押すと原本画像が開きます。</li>
   <li><b>要確認</b>：判読に自信がない字や、読み方を確かめたい点です。</li></ul></section>
-  <section><h3>底本</h3><p class="small">『腹証奇覧』正編2巻・後編2巻（1冊）、稲葉克（文礼）著。京都大学附属図書館所蔵（富士川文庫, RB00004915）。利用条件：自由利用（出典表示）。</p></section></div>`;
+  <section><h3>底本</h3><p class="small">『腹証奇覧』（正編・後編・腹証奇覧翼、11冊）、稲葉克（文礼）・和久田叔虎著。京都大学附属図書館所蔵（富士川文庫, RB00004916）。利用条件：自由利用（出典表示）。</p></section></div>`;
 }
 function render(id){
   document.querySelectorAll("nav a").forEach(a=>a.classList.toggle("on",a.dataset.goto===id));
