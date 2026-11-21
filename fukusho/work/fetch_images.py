@@ -6,9 +6,9 @@
 import json, os, re, sys, time, io, urllib.request
 from PIL import Image
 
-ITEM = os.environ.get("RMDA_ITEM", "RB00004915")
+ITEM = os.environ.get("RMDA_ITEM", "RB00004916")
 BASE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "images")
-MAXSIDE = 4000          # 長辺の上限（皇漢医学の画像と同程度）
+MAXSIDE = 3000          # 長辺の上限（リポジトリ容量を抑えるため皇漢医学・類聚方広義より小さめ）
 UA = {"User-Agent": "Mozilla/5.0 (kokan-igaku study app; personal use)"}
 
 def get(url, tries=4):
@@ -105,7 +105,7 @@ def main():
                 im = Image.open(io.BytesIO(raw)); im.load()
                 if max(im.size) > MAXSIDE:
                     im.thumbnail((MAXSIDE, MAXSIDE), Image.LANCZOS)
-                im.convert("RGB").save(path, "JPEG", quality=85, optimize=True)
+                im.convert("RGB").save(path, "JPEG", quality=80, optimize=True)
                 time.sleep(0.5)  # 相手サーバーに配慮
                 if k % 20 == 0: print(f"  {vol} {k}/{len(cs)}", flush=True)
             info.append((vol, k, cl, src or svc or direct or ""))
