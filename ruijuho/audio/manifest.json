@@ -828,5 +828,80 @@
   "title": "166 黃連阿膠湯",
   "hash": "288222bdf55f35a1",
   "dur": 192.7
+ },
+ "167_ogonto.mp3": {
+  "title": "167 黃芩湯",
+  "hash": "6ce02c427b7c2c9f",
+  "dur": 131.4
+ },
+ "168_ogonkahangeshokyoto.mp3": {
+  "title": "168 黃芩加半夏生薑湯",
+  "hash": "8883e6bf91e97302",
+  "dur": 118.1
+ },
+ "169_rokumotsuogonto.mp3": {
+  "title": "169 六物黃芩湯",
+  "hash": "682cd8602e627395",
+  "dur": 106.7
+ },
+ "170_sanmotsuogonto.mp3": {
+  "title": "170 三物黃芩湯",
+  "hash": "a1656daf4d07aae8",
+  "dur": 191.8
+ },
+ "171_hakutooto.mp3": {
+  "title": "171 白頭翁湯",
+  "hash": "3fc2c02f06a1548d",
+  "dur": 204.4
+ },
+ "172_hakutookakanzoakyoto.mp3": {
+  "title": "172 白頭翁加甘草阿膠湯",
+  "hash": "e69ec50b114c6a2a",
+  "dur": 135.9
+ },
+ "173_mokuboito.mp3": {
+  "title": "173 木防已湯",
+  "hash": "55d179ff6564faee",
+  "dur": 247.2
+ },
+ "174_mokuboikyosekkokabukuryobososhoto.mp3": {
+  "title": "174 木防已去石膏加茯苓芒消湯",
+  "hash": "6f9cd36c7db2e759",
+  "dur": 238.4
+ },
+ "175_boibukuryoto.mp3": {
+  "title": "175 防已茯苓湯",
+  "hash": "2222d78f4f0d995f",
+  "dur": 142.9
+ },
+ "176_boiogito.mp3": {
+  "title": "176 防已黃耆湯",
+  "hash": "309b7952a46017c4",
+  "dur": 225.0
+ },
+ "177_kijutsuto.mp3": {
+  "title": "177 枳朮湯",
+  "hash": "6f8c6ba60eb9a02a",
+  "dur": 231.8
+ },
+ "178_kijitsushakuyakusan.mp3": {
+  "title": "178 枳實芍藥散",
+  "hash": "56bf7c79ce3678cf",
+  "dur": 126.1
+ },
+ "179_hainosan.mp3": {
+  "title": "179 排膿散",
+  "hash": "433ac900014ac2f9",
+  "dur": 215.9
+ },
+ "180_keishishokyokijitsuto.mp3": {
+  "title": "180 桂枝生薑枳實湯",
+  "hash": "b1f3983b0de0d611",
+  "dur": 164.6
+ },
+ "181_kippikijitsushokyoto.mp3": {
+  "title": "181 橘皮枳實生薑湯",
+  "hash": "8c24926b4c500c90",
+  "dur": 166.7
  }
 }
