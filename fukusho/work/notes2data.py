@@ -49,7 +49,7 @@ if __name__ == '__main__':
     for it in m.ITEMS:
         it = dict(it)
         if 'notes' in it:
-            nfile, a, b = it.pop('notes'); Y = it.pop('yaku')
+            nfile, a, b = it.pop('notes')[:3]; Y = it.pop('yaku')
             fix = it.pop('kakifix', {})
             ps = []
             for p in paras(f'{HERE}/notes/{nfile}', a, b):
