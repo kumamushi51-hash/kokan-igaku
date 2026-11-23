@@ -260,7 +260,7 @@ function terms(q){
 function navHTML(){
   let h="", g=null;
   D.forEach(e=>{ if(e.group!==g){ g=e.group; h+=`<h3>${esc(g)}</h3>` }
-    h+=`<a href="#${e.id}" data-goto="${e.id}"><span class="no">${e.fig?e.no:"総"}</span>${esc(e.title)}</a>` });
+    h+=`<a href="#${e.id}" data-goto="${e.id}"><span class="no">${e.fig?e.no:(e.kind==="序"?"序":e.kind==="附録"?"附":"総")}</span>${esc(e.title)}</a>` });
   return `<h3>腹証から引く</h3><a href="#kensaku" data-goto="kensaku">患者の腹証から探す</a><a href="#shoken" data-goto="shoken">腹証所見一覧</a>`+h+`<h3>このアプリについて</h3><a href="#about" data-goto="about">凡例</a>`;
 }
 function txt(o){
