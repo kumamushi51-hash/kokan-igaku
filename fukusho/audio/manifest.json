@@ -1,0 +1,77 @@
+{
+ "001_jo-seihen.mp3": {
+  "title": "序　自叙（稲葉文礼）",
+  "hash": "8cad69669d5af7b5",
+  "dur": 823.1
+ },
+ "002_fukushin-ho.mp3": {
+  "title": "総論　腹診の法",
+  "hash": "bbd8cf66c916188d",
+  "dur": 223.2
+ },
+ "003_keishito.mp3": {
+  "title": "第1図　桂枝湯",
+  "hash": "1b88236b02bcab81",
+  "dur": 511.7
+ },
+ "004_shosaikoto.mp3": {
+  "title": "第2図　小柴胡湯",
+  "hash": "b9228e0d9cfeeddb",
+  "dur": 432.2
+ },
+ "005_shosaikoto-2.mp3": {
+  "title": "第3図　小柴胡湯（胸肋膨脹）",
+  "hash": "5bed949a97c25fb8",
+  "dur": 207.0
+ },
+ "006_daisaikoto.mp3": {
+  "title": "第4図　大柴胡湯",
+  "hash": "b2a0b01c9d908420",
+  "dur": 226.9
+ },
+ "007_saikokabosho.mp3": {
+  "title": "第5図　柴胡加芒硝湯",
+  "hash": "f4c56873b4b0f096",
+  "dur": 323.1
+ },
+ "008_goshuyuto.mp3": {
+  "title": "第6図　呉茱萸湯",
+  "hash": "f6116cea79f4d2f4",
+  "dur": 293.9
+ },
+ "009_ninjinkyugun-tokato.mp3": {
+  "title": "第7図　人参芎軍桃花湯",
+  "hash": "bfe4bee7ab3db513",
+  "dur": 478.5
+ },
+ "010_togun-en.mp3": {
+  "title": "第8図　桃軍円",
+  "hash": "24481f2dd99bac83",
+  "dur": 432.0
+ },
+ "011_karo-gaihaku-hakushuto.mp3": {
+  "title": "第9図　括蔞薤白白酒湯",
+  "hash": "3e791fbfd2f46ea6",
+  "dur": 180.6
+ },
+ "012_jiseki-gan.mp3": {
+  "title": "第10図　磁石丸",
+  "hash": "d0950cc2dcb6062a",
+  "dur": 169.7
+ },
+ "013_kippi-daio-bokushoto.mp3": {
+  "title": "第11図　橘皮大黄朴硝湯",
+  "hash": "4975d1e3c11f372c",
+  "dur": 145.3
+ },
+ "014_rikkunshito.mp3": {
+  "title": "第12図　六君子湯",
+  "hash": "3d73aec676bf1359",
+  "dur": 150.0
+ },
+ "015_daisaiko-kanzokankyo.mp3": {
+  "title": "第13図　大柴胡湯・甘草乾姜湯（二方相合）",
+  "hash": "742b54c8b131790a",
+  "dur": 177.8
+ }
+}
