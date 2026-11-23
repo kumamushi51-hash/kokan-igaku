@@ -14,6 +14,10 @@ def pages(im):
     paper = ((rgb[..., 0] - rgb[..., 2]) > 16) & (g > 140)
     colf = paper[int(h * .3):int(h * .7)].mean(axis=0)
     xs = np.where(colf > 0.35)[0]
+    if len(xs) < 50:   # 白黒画像（東北大本など）は黄みがないので明るさだけで紙面を判定
+        paper = g > 150
+        colf = paper[int(h * .3):int(h * .7)].mean(axis=0)
+        xs = np.where(colf > 0.35)[0]
     # カラーチャートなどを除くため、最も長い区間（20px 未満の切れ目はつなぐ）を本とみなす
     runs, start = [], xs[0]
     for a, b in zip(xs, xs[1:]):

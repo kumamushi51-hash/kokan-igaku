@@ -11,6 +11,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 def path_of(k):
     # 'b85' のように b を付けたコマは別本 RB00004915（後編 上の補い）の画像
     if str(k).startswith('b'): return f'{HERE}/images_b/v1/koma_{int(str(k)[1:]):04d}.jpg', 'b%04d' % int(str(k)[1:])
+    # 'c12' は東北大 狩野文庫本（翼二編、10010000025022、白黒）
+    if str(k).startswith('c'): return f'{HERE}/images_c/v1/koma_{int(str(k)[1:]):04d}.jpg', 'c%04d' % int(str(k)[1:])
     return f'{HERE}/images/v1/koma_{int(k):04d}.jpg', '%04d' % int(k)
 out = '/tmp/fk_crops/'; os.makedirs(out, exist_ok=True)
 MID, ks = {}, []
