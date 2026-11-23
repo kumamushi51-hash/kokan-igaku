@@ -8531,7 +8531,7 @@ function navHTML(){
   let h="", g=null;
   D.forEach(e=>{ if(e.group!==g){ g=e.group; h+=`<h3>${esc(g)}</h3>` }
     h+=`<a href="#${e.id}" data-goto="${e.id}"><span class="no">${e.fig?e.no:(e.kind==="序"?"序":e.kind==="附録"?"附":"総")}</span>${esc(e.title)}</a>` });
-  return `<h3>腹証から引く</h3><a href="#kensaku" data-goto="kensaku">患者の腹証から探す</a><a href="#shoken" data-goto="shoken">腹証所見一覧</a>`+h+`<h3>このアプリについて</h3><a href="#about" data-goto="about">凡例</a>`;
+  return `<h3>腹証から引く</h3><a href="#kensaku" data-goto="kensaku">患者の腹証から探す</a><a href="#shoken" data-goto="shoken">腹証所見一覧</a>`+h+`<h3>このアプリについて</h3><a href="#about" data-goto="about">凡例</a><a href="https://kumamushi51-hash.github.io/kokan-igaku/fukusho/audio/" target="_blank" rel="noopener">リスニング（音声版）</a>`;
 }
 function txt(o){
   return `<div class="txt">${o.kaki?`<div class="kaki"><span class="lbl">本文</span>${esc(o.kaki)}</div>`:""}${o.yaku?`<div class="yaku"><span class="lbl">現代語訳</span>${esc(o.yaku)}</div>`:""}</div>`;
@@ -8695,13 +8695,13 @@ render(location.hash.slice(1)||((D.find(x=>x.kind==="方剤")||D[0])||{}).id);
 </script>
 
 <script>
-const APP_VER="202611230611";
+const APP_VER="202611230706";
 if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js",{updateViaCache:"none"}).catch(()=>{}))}
 // ホーム画面アプリは閉じても裏で残り再読込されないため、表示に戻るたびに新しい版を確認する
 function kkCheck(){if(!navigator.onLine)return;fetch("index.html?v="+Date.now(),{cache:"no-store"}).then(r=>r.text()).then(t=>{const m=t.match(/<!-- version ([0-9]+) -->/);if(m&&m[1]!==APP_VER){if(navigator.serviceWorker&&navigator.serviceWorker.getRegistration)navigator.serviceWorker.getRegistration().then(g=>g&&g.update());location.reload();}}).catch(()=>{})}
 document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")kkCheck()});
 window.addEventListener("load",()=>setTimeout(kkCheck,1500));
 </script>
-<!-- version 202611230611 -->
+<!-- version 202611230706 -->
 </body>
 </html>

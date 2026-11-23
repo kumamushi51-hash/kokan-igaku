@@ -1,0 +1,8 @@
+# GitHub Pages（Jekyll）の設定：作業用フォルダ（原本画像・データ・台本など）は公開しない。
+# 公開サイトの容量上限（1GB）を超えないため。アプリ・音声・図（*/img, */audio）は公開される。
+exclude:
+  - work
+  - ruijuho/work
+  - fukusho/work
+  - CLAUDE.md
+  - README.md

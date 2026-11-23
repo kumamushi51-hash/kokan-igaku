@@ -1,0 +1,42 @@
+name: 腹証奇覧 リスニング音声の生成
+on:
+  push:
+    branches: [main]
+    paths:
+      - "fukusho/work/audio/**"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: audio
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: 依存関係
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+          pip install -U edge-tts
+      - name: 音声を生成（変更のあった台本のみ、15本ごとに commit）
+        run: |
+          git config user.name "kokan-audio-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          while true; do
+            set +e; MAX_ITEMS=15 python fukusho/work/audio/tts.py; rc=$?; set -e
+            if [ $rc -ne 0 ] && [ $rc -ne 3 ]; then exit $rc; fi
+            git add fukusho/audio
+            if ! git diff --cached --quiet; then
+              git commit -m "腹証奇覧 リスニング音声を更新 [skip ci]"
+              for i in 1 2 3; do git pull --rebase origin main && git push && break; sleep 5; done
+            fi
+            [ $rc -eq 3 ] || break
+          done
