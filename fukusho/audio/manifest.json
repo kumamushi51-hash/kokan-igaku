@@ -223,5 +223,80 @@
   "title": "第41図　小品奔豚湯",
   "hash": "4da591237510361e",
   "dur": 344.1
+ },
+ "046_kosai-hontonto.mp3": {
+  "title": "第42図　広済奔豚湯",
+  "hash": "657764d9bc4affcf",
+  "dur": 196.2
+ },
+ "047_bofu-bukuryoto.mp3": {
+  "title": "第43図　防風茯苓湯",
+  "hash": "67b9742a625af6a4",
+  "dur": 133.6
+ },
+ "048_shohin-borei-hontonto.mp3": {
+  "title": "第44図　小品牡蠣奔豚湯",
+  "hash": "288292b48d60574e",
+  "dur": 117.2
+ },
+ "049_tokikenchuto.mp3": {
+  "title": "第45図　当帰建中湯",
+  "hash": "d9ba6ad23212f009",
+  "dur": 372.0
+ },
+ "050_odoto.mp3": {
+  "title": "第46図　黄土湯",
+  "hash": "6f534776822ccf13",
+  "dur": 314.3
+ },
+ "051_keishikabushito.mp3": {
+  "title": "第47図　桂枝加附子湯",
+  "hash": "4522c91927b8c5df",
+  "dur": 352.3
+ },
+ "052_fushito.mp3": {
+  "title": "第48図　附子湯",
+  "hash": "c4c7b6591bf486a0",
+  "dur": 373.6
+ },
+ "053_richukabushito.mp3": {
+  "title": "第49図　理中加附子湯",
+  "hash": "9da25e701ed394b5",
+  "dur": 680.8
+ },
+ "054_mokuboi-kyosekko-kabukuryoboshoto.mp3": {
+  "title": "第50図　木防已去石膏加茯苓芒硝湯",
+  "hash": "843a902746926ed4",
+  "dur": 494.6
+ },
+ "055_shigyakusan.mp3": {
+  "title": "第51図　四逆散",
+  "hash": "8ffcedb602b1ee61",
+  "dur": 171.4
+ },
+ "056_chouijokito.mp3": {
+  "title": "第52図　調胃承気湯",
+  "hash": "d0be4c18191905af",
+  "dur": 120.4
+ },
+ "057_jakuke-kanzui-tokato.mp3": {
+  "title": "第53図　鶴家甘遂桃花湯",
+  "hash": "5faa55fdf87d3f4f",
+  "dur": 290.6
+ },
+ "058_daiobushito.mp3": {
+  "title": "第54図　大黄附子湯",
+  "hash": "0c431e2507dce0fd",
+  "dur": 171.4
+ },
+ "059_daio-oren-shashinto.mp3": {
+  "title": "第55図　大黄黄連瀉心湯",
+  "hash": "e98dd5ba4bbbf920",
+  "dur": 297.8
+ },
+ "060_daikenchuto.mp3": {
+  "title": "第56図　大建中湯（三図）",
+  "hash": "3b94a93139d3d873",
+  "dur": 422.7
  }
 }
