@@ -1,0 +1,7 @@
+manifest: https://rmda.kulib.kyoto-u.ac.jp/iiif/metadata_manifest/RB00004921/manifest.json
+v1: 腹証奇覧翼 初編2巻  84コマ
+  v1 20/84
+  v1 40/84
+  v1 60/84
+  v1 80/84
+完了 84 コマ
