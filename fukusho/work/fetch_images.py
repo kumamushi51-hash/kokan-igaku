@@ -26,6 +26,9 @@ def get(url, tries=4):
     raise RuntimeError("取得失敗: " + url)
 
 def find_manifest():
+    # MANIFEST="https://…/manifest.json" で RMDA 以外（東北大など）の IIIF を直接指定できる
+    if os.environ.get("MANIFEST"):
+        u = os.environ["MANIFEST"]; d = json.loads(get(u)); print("manifest:", u); return u, d
     cands = [
         f"https://rmda.kulib.kyoto-u.ac.jp/iiif/metadata_manifest/{ITEM}/manifest.json",
         f"https://rmda.kulib.kyoto-u.ac.jp/iiif/metadata_manifest/{ITEM.lower()}/manifest.json",

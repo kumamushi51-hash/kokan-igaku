@@ -31,12 +31,15 @@ jobs:
       - name: 後編 上を別本（RB00004915）から補う（コマ範囲のみ）
         run: RMDA_ITEM=RB00004915 OUT=images_b KOMA=70-122 python fukusho/work/fetch_images.py 2>&1 | tee fukusho/work/fetch_log_b.txt
         continue-on-error: true
+      - name: 翼 二編を東北大 狩野文庫（10010000025022）から取得（二編上冊の欠丁の補い）
+        run: MANIFEST=https://touda.tohoku.ac.jp/collection/iiif/metadata/10010000025022/manifest.json OUT=images_c python fukusho/work/fetch_images.py 2>&1 | tee fukusho/work/fetch_log_c.txt
+        continue-on-error: true
       - name: コミット（途中で止まっても取れた分は保存）
         if: always()
         run: |
           git config user.name "kokan-images-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add fukusho/work/images fukusho/work/fetch_log.txt fukusho/work/images_b fukusho/work/fetch_log_b.txt || true
+          git add fukusho/work/images fukusho/work/fetch_log.txt fukusho/work/images_b fukusho/work/fetch_log_b.txt fukusho/work/images_c fukusho/work/fetch_log_c.txt || true
           if git diff --cached --quiet; then echo "変更なし"; exit 0; fi
           git commit -m "腹証奇覧 原本画像を取得 [skip ci]"
           for i in 1 2 3; do git pull --rebase origin main && git push && break; sleep 5; done
