@@ -5,12 +5,14 @@ import sys, os, re, glob
 from PIL import Image
 here = os.path.dirname(os.path.abspath(__file__))
 out = os.path.join(here, '..', 'img'); os.makedirs(out, exist_ok=True)
-BOX = {}
+BOX = {'d82R': (1585, 445, 2587, 1770)}
 from pages import pages, frame as find_frame
 
 def make(tag):
     side = tag[-1]; kk = tag[:-1]
-    if kk.startswith('b'):   # 別本 RB00004915（後編 上の補い）
+    if kk.startswith('d'):   # 京大 別本 RB00004921（翼初編の補い）
+        k = int(kk[1:]); im = Image.open(f'{here}/images_d/v1/koma_{k:04d}.jpg'); pre = 'd'
+    elif kk.startswith('b'):   # 別本 RB00004915（後編 上の補い）
         k = int(kk[1:]); im = Image.open(f'{here}/images_b/v1/koma_{k:04d}.jpg'); pre = 'b'
     else:
         k = int(kk); im = Image.open(f'{here}/images/v1/koma_{k:04d}.jpg'); pre = ''
@@ -26,6 +28,6 @@ def make(tag):
 tags = sys.argv[1:]
 if not tags:
     for f in glob.glob(f'{here}/data/data_*.js'):
-        tags += re.findall(r'fig_(b?\d{3}[RL])\.jpg', open(f, encoding='utf-8').read())
-    tags = [('b' if t.startswith('b') else '') + str(int(t.lstrip('b')[:-1])) + t[-1] for t in sorted(set(tags))]
+        tags += re.findall(r'fig_([bd]?\d{3}[RL])\.jpg', open(f, encoding='utf-8').read())
+    tags = [(t[0] if t[0] in 'bd' else '') + str(int(t.lstrip('bd')[:-1])) + t[-1] for t in sorted(set(tags))]
 for t in tags: make(t)

@@ -267,7 +267,9 @@ function txt(o){
   return `<div class="txt">${o.kaki?`<div class="kaki"><span class="lbl">本文</span>${esc(o.kaki)}</div>`:""}${o.yaku?`<div class="yaku"><span class="lbl">現代語訳</span>${esc(o.yaku)}</div>`:""}</div>`;
 }
 const RMDA_B="https://rmda.kulib.kyoto-u.ac.jp/item/rb00004915?page=";  // 後編 上の補い（別本）
+const RMDA_D="https://rmda.kulib.kyoto-u.ac.jp/item/rb00004921?page=";  // 翼初編の補い（京大 別本）
 function komaLink(k){ const s=String(k), m=s.match(/\d+/); if(!m) return ""; const b=/^b/.test(s.trim());
+  if(/^d/.test(s.trim())) return `<a href="${RMDA_D}${+m[0]}" target="_blank" rel="noopener">京大別本コマ${esc(s.trim().slice(1))}</a>`;
   return `<a href="${b?RMDA_B:RMDA}${+m[0]}" target="_blank" rel="noopener">${b?"別本コマ"+esc(s.trim().slice(1)):"コマ"+esc(s)}</a>` }
 function modebar(){ return `<div class="modebar">表示：<span class="seg" id="seg">${[["both","本文＋訳"],["kaki","本文"],["yaku","現代語訳"]].map(([v,l])=>`<button data-mode="${v}" aria-pressed="${document.body.dataset.mode===v}">${l}</button>`).join("")}</span></div>` }
 const SRC_L={"本文":"本文","頭注":"頭注","図":"図"};
