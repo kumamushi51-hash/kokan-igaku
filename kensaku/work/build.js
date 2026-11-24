@@ -79,7 +79,9 @@ for(const [b,x] of entries){
 }
 
 // 同じ所見に同じ本から重複した根拠は1つの本として数える（表示は全部）
+for(const k of Object.keys(N.EXTRACT)) if(!FORM.has(k)) console.warn('エキス対応表の方剤が索引にない:',k);
 const list=[...FORM.values()].map(f=>({
+  ext: (f.key in N.EXTRACT) ? (N.EXTRACT[f.key]||f.key) : '',
   key:f.key, name:f.name, yomi:f.yomi, alias:[...f.alias], herbs:f.herbs||'', shuchi:f.shuchi||'',
   books:f.books, fu:f.fu, ev:f.ev, contra:f.contra
 })).sort((a,b)=>(a.yomi||a.name).localeCompare(b.yomi||b.name,'ja'));

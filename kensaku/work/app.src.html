@@ -62,6 +62,7 @@ textarea{width:100%;min-height:220px;font:15px/1.7 inherit;padding:10px;border:1
 .bk{display:inline-block;font-size:11px;border-radius:4px;padding:0 5px;color:#fff;margin-right:3px}
 .bk.R{background:var(--R)}.bk.K{background:var(--K)}.bk.F{background:var(--F)}
 .bk.off{background:#ccc}
+.ext{display:inline-block;font-size:11px;border:1px solid #b5651d;color:#b5651d;border-radius:4px;padding:0 5px;margin-left:4px;background:#fff7ee;white-space:nowrap}
 .mt{font-size:13px}
 .mt .chip{cursor:default}
 .mt .chip.m3{background:#2f5f6f;color:#fff;border-color:#2f5f6f}
@@ -168,6 +169,7 @@ textarea{width:100%;min-height:220px;font:15px/1.7 inherit;padding:10px;border:1
   <div class="card">
     <h2>所見に合う方剤</h2>
     <div class="note" id="resNote"></div>
+    <label style="display:inline-block;margin-top:6px;font-size:14px"><input type="checkbox" id="extOnly"> 保険診療で処方できるエキス剤のある方剤だけ表示</label>
     <div class="btns" id="cmpBar" hidden><button class="btn small" id="bCmp">選んだ方剤を比べる</button><span class="note" id="cmpN"></span></div>
   </div>
   <div class="card cmp" id="cmpBox" hidden></div>
@@ -200,6 +202,7 @@ textarea{width:100%;min-height:220px;font:15px/1.7 inherit;padding:10px;border:1
       <li>「薄白苔」「淡紅舌」など正常の表現は所見として拾いません。</li>
       <li>記載の多い方剤が何にでも当たらないよう、方剤ごとの所見の数で少し割り引きます。</li>
       <li>入力した所見が方剤の禁忌に当たると警告を出し、点数を下げます。</li>
+      <li>「エキス」の印＝保険診療で処方できる医療用エキス製剤がある方剤（PMDA の医療用医薬品情報で確認、2026年11月）。名前が違う場合は製剤名を併記（例：八味丸→八味地黄丸）。製剤の生薬の分量は古典の処方と異なることがあります。</li>
     </ul>
     <h3>注意</h3>
     <ul class="note">
@@ -235,7 +238,7 @@ const BN={R:'類聚方広義',K:'皇漢医学',F:'腹証奇覧'}, BS={R:'類',K:
 const LATERAL=new Set(['ab_kyokyo','ab_fukuchokukin','ab_saiho_atsutsu','ab_saihoki']);
 
 // ---- 状態（端末の中だけ。保存しない）
-const S={sel:{}, an:null, visit:0, cmp:new Set(), open:null};
+const S={sel:{}, an:null, visit:0, cmp:new Set(), open:null, extOnly:false};
 // sel[fid]={side:'', src:'t'|'m'}
 
 // ---- タブ
@@ -415,6 +418,7 @@ function scoreOne(f){
 function rank(){ return FORMS.map(scoreOne).filter(r=>r.hits.length).sort((a,b)=>b.score-a.score); }
 
 // ---- 結果
+function extBadge(f){ if(!f.ext) return ''; return `<span class="ext" title="保険診療で処方できる医療用エキス製剤あり">エキス${f.ext!==f.name?'：'+esc(f.ext):''}</span>`; }
 function bookBadges(f){ return ['F','R','K'].map(b=>`<span class="bk ${f.books[b].length?b:'off'}" title="${BN[b]}">${BS[b]}</span>`).join(''); }
 function linkHTML(f){
   const a=[];
@@ -450,13 +454,13 @@ function detailHTML(r){
 function renderResults(){
   const n=selCount();
   if(!n){ $('#resNote').textContent=''; $('#resList').innerHTML='<div class="empty">所見を入れてから検索してください。</div>'; $('#cmpBar').hidden=true; $('#cmpBox').hidden=true; return; }
-  const rs=rank(); const top=rs.slice(0,25); const mx=top.length?top[0].score:1;
+  const rsAll=rank(); const rs=S.extOnly?rsAll.filter(r=>r.f.ext):rsAll; const top=rs.slice(0,25); const mx=top.length?top[0].score:1;
   const noEv=Object.keys(S.sel).filter(fid=>!DF[fid]).map(fid=>FD[fid].label);
   $('#resNote').innerHTML=`入力 ${n} 件の所見で ${rs.length} 方剤が該当（上位 ${top.length} を表示）。`+(noEv.length?`<br>3冊に記載がなく点数に効かない所見：${esc(noEv.join('、'))}`:'');
   $('#resList').innerHTML=top.map((r,i)=>{
     const f=r.f; const k=f.key;
     return `<div class="res" data-k="${esc(k)}"><div class="top"><div class="rank">${i+1}</div><div style="flex:1">
-      <div><span class="nm">${esc(f.name)}</span> <span class="yomi">${esc(f.yomi)}</span> ${bookBadges(f)}</div>
+      <div><span class="nm">${esc(f.name)}</span> <span class="yomi">${esc(f.yomi)}</span> ${bookBadges(f)}${extBadge(f)}</div>
       <div class="bar"><i style="width:${(100*r.score/mx).toFixed(0)}%"></i></div>
       <div class="meta">一致 ${r.hits.length}/${n}：${r.hits.slice(0,6).map(x=>esc(FD[x.fid].label)).join('、')}${r.hits.length>6?' ほか':''}${r.contra.length?' <span class="warn">⚠禁忌</span>':''}</div></div>
       <label onclick="event.stopPropagation()" style="font-size:12px;white-space:nowrap"><input type="checkbox" class="cmpc" data-k="${esc(k)}" ${S.cmp.has(k)?'checked':''}>比較</label></div>
@@ -468,13 +472,14 @@ function renderResults(){
   updCmp();
 }
 function updCmp(){ $('#cmpBar').hidden=S.cmp.size<2; $('#cmpN').textContent=S.cmp.size+' 方剤を選択'; }
+$('#extOnly').onchange=()=>{ S.extOnly=$('#extOnly').checked; renderResults(); };
 $('#bCmp').onclick=()=>{
   const fs=[...S.cmp].map(k=>FORMS.find(f=>f.key===k)).filter(Boolean);
   // 行：入力した所見＋各方剤の特徴的な所見
   const rows=new Set(Object.keys(S.sel).filter(fid=>fs.some(f=>f.ev[fid])));
   fs.forEach(f=>missing(f,8).forEach(m=>rows.add(m.fid)));
   const rl=[...rows].sort((a,b)=>(S.sel[b]?1:0)-(S.sel[a]?1:0)||D.cats.findIndex(c=>c[0]===FD[a].cat)-D.cats.findIndex(c=>c[0]===FD[b].cat));
-  let h=`<h2>方剤の比較</h2><table><tr><th class="l">所見</th>${fs.map(f=>`<th>${esc(f.name)}</th>`).join('')}</tr>`;
+  let h=`<h2>方剤の比較</h2><table><tr><th class="l">所見</th>${fs.map(f=>`<th>${esc(f.name)}${extBadge(f)}</th>`).join('')}</tr>`;
   h+=`<tr><td class="l">腹証図</td>${fs.map(f=>`<td>${figHTML(f)||'—'}</td>`).join('')}</tr>`;
   for(const fid of rl) h+=`<tr class="${S.sel[fid]?'in':''}"><td class="l">${esc(FD[fid].label)}${S.sel[fid]&&S.sel[fid].side?'（'+S.sel[fid].side+'）':''}</td>${fs.map(f=>{const e=f.ev[fid]; return `<td class="${e?'y':''}">${e?booksOf(e).map(b=>BS[b]).join(''):''}</td>`;}).join('')}</tr>`;
   h+='</table><p class="note">黄色の行＝入力した所見。セルの文字＝その所見が載っている本（腹＝腹証奇覧、類＝類聚方広義、皇＝皇漢医学）。</p>';
@@ -486,14 +491,14 @@ $('#formQ').oninput=()=>{
   const q=$('#formQ').value.trim(); if(!q){$('#formSugg').innerHTML='';return;}
   const nq=X.norm(q);
   const hit=D.formulas.filter(f=>f.name.includes(nq)||(f.yomi||'').includes(q)||f.alias.some(a=>a.includes(nq))).slice(0,30);
-  $('#formSugg').innerHTML=hit.map(f=>`<span class="chip" data-k="${esc(f.key)}">${esc(f.name)}</span>`).join('')||'<span class="note">見つかりません</span>';
+  $('#formSugg').innerHTML=hit.map(f=>`<span class="chip" data-k="${esc(f.key)}">${esc(f.name)}${f.ext?' <span class="kbd">エキス</span>':''}</span>`).join('')||'<span class="note">見つかりません</span>';
   $$('#formSugg .chip').forEach(c=>c.onclick=()=>showForm(c.dataset.k));
 };
 function showForm(k){
   const f=D.formulas.find(x=>x.key===k); if(!f) return;
   const byCat={};
   for(const fid of Object.keys(f.ev)) (byCat[FD[fid].cat]=byCat[FD[fid].cat]||[]).push(fid);
-  let h=`<div class="card"><h2>${esc(f.name)} <span class="yomi">${esc(f.yomi)}</span> ${bookBadges(f)}</h2>`;
+  let h=`<div class="card"><h2>${esc(f.name)} <span class="yomi">${esc(f.yomi)}</span> ${bookBadges(f)}${extBadge(f)}</h2>`;
   if(f.alias.length) h+=`<div class="note">別名：${esc(f.alias.join('、'))}</div>`;
   if(f.herbs) h+=`<div class="note">構成：${esc(f.herbs)}</div>`;
   if(f.shuchi) h+=`<div style="margin:6px 0"><span class="bk R">類</span><b>主治</b> ${esc(f.shuchi)}</div>`;
