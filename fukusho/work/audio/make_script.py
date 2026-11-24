@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """腹証奇覧 リスニング用台本を data_NN.js から作る：python3 fukusho/work/audio/make_script.py [id ...]
 引数なしで全項目。台本は fukusho/work/audio/scripts/NNN_<id>.txt（NNN は本書の順の通し番号）。
-書式は類聚方広義・皇漢医学と同じ（@K＝書き下し文・男性の声、ほか＝現代語訳・女性の声、## 見出し、--- 区切り）。
-腹証奇覧は図が中心なので、各項の初めに腹証図の説明（図題・彩色の部位）と腹証所見を読む。
+書式は類聚方広義・皇漢医学と同じ（## 見出し、--- 区切り。@K 行は男性の声）。
+利用者の指定（2026-11-24）で、本文・頭注は現代語訳だけを読む（書き下し文は読まない。訳のない段だけ原文を @K で読む）。
+腹証奇覧は図が中心なので、各項の初めに腹証図の説明（図題・彩色の部位）と腹証所見（項目名だけ）を読む。
 方剤名の読みは data の yomi から yomi_auto.tsv に書き出す（tts.py が読み辞書に加える）。"""
 import json, re, subprocess, sys, tempfile
 from pathlib import Path
@@ -68,26 +69,28 @@ def main(ids):
         figs = ([e["fig"]] if e.get("fig") else []) + list(e.get("figs") or [])
         for j, f in enumerate(figs, 1):
             figure(f, L, f" その{j}" if len(figs) > 1 else None)
-        sk = [s for s in (e.get("shoken") or []) if s.get("src") != "図"]
-        if sk:
+        sk = [s for s in (e.get("shoken") or []) if s.get("src") != "図" and s["k"] != "その他"]
+        pos = []; neg = []
+        for s in sk:
+            side = f"（{s['side']}）" if s.get("side") and s["side"] != "両" else ("（両側）" if s.get("side") == "両" else "")
+            t = s["k"].replace("・", "、") + side
+            (neg if s.get("neg") else pos).append(t)
+        pos = list(dict.fromkeys(pos)); neg = list(dict.fromkeys(neg))
+        if pos or neg:
             L.append("## 腹証所見")
-            for s in sk:
-                side = f"、{s['side']}側" if s.get("side") and s["side"] != "両" else ("、両側" if s.get("side") == "両" else "")
-                if s.get("neg"):
-                    L.append(f"鑑別として、本方にない所見。{s['k']}。{k(s['w'])}。")
-                else:
-                    L.append(f"{s['k'].replace('・','、')}{side}。原本では、{k(s['w'])}。")
+            if pos: L.append("腹証所見は、" + "、".join(pos) + "。")
+            if neg: L.append("鑑別として本方にない所見は、" + "、".join(neg) + "。")
             L.append("")
         L.append("---")
         for p in e.get("paras") or []:
             L.append(f"## {shin(p.get('head',''))}" if p.get("head") else "")
-            if p.get("kaki"): L.append(f"@K {k(p['kaki'])}")
-            if p.get("yaku"): L += ["現代語訳です。", y(p["yaku"])]
+            if p.get("yaku"): L.append(y(p["yaku"]))
+            elif p.get("kaki"): L.append(f"@K {k(p['kaki'])}")  # 訳のない段（図の書き込みなど）だけ原文を読む
             L.append("")
         for t in e.get("tochu") or []:
             L.append(f"## 頭注、{shin(t.get('head',''))}")
-            if t.get("kaki"): L.append(f"@K {k(t['kaki'])}")
-            if t.get("yaku"): L += ["現代語訳です。", y(t["yaku"])]
+            if t.get("yaku"): L.append(y(t["yaku"]))
+            elif t.get("kaki"): L.append(f"@K {k(t['kaki'])}")
             L.append("")
         txt = "\n".join(L)
         txt = re.sub(r"\n{3,}", "\n\n", txt).rstrip() + "\n"

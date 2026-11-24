@@ -164,7 +164,7 @@ ul{{list-style:none;padding:0;margin:0}} li{{background:var(--card);border:1px s
 audio{{width:100%}} .pod code{{word-break:break-all;user-select:all}}
 </style></head><body><main>
 <h1>腹証奇覧 リスニング</h1>
-<p>各項の初めに腹証図の説明（図題と彩色の部位）と腹証所見を読み、本文・頭注は書き下し文（男性の声）と現代語訳（女性の声）を続けて読みます。1曲が終わると次へ進みます。図は<a href="../">アプリ</a>で見られます。</p>
+<p>各項の初めに腹証図の説明（図題と彩色の部位）と腹証所見を読み、本文・頭注は現代語訳で読みます。1曲が終わると次へ進みます。図は<a href="../">アプリ</a>で見られます。</p>
 <p class="pod">車（CarPlay）などで続けて聞くには、iPhone の Podcast アプリでこの番組をフォローします：ライブラリ →（右上の …）→「URLで番組をフォロー」に次のURLを入れる。<br><code>https://kumamushi51-hash.github.io/kokan-igaku/fukusho/audio/feed.xml</code></p>
 <div class="rate" id="rate">{''.join(f'<button data-r="{r}">{r}倍</button>' for r in ("1.0","1.25","1.5","2.0"))}</div>
 <ul>{''.join(rows)}</ul>
