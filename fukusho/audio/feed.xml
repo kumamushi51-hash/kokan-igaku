@@ -2,72 +2,72 @@
 <rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel><title>腹証奇覧 リスニング</title><link>https://kumamushi51-hash.github.io/kokan-igaku/fukusho/audio/</link><language>ja</language>
 <atom:link href="https://kumamushi51-hash.github.io/kokan-igaku/fukusho/audio/feed.xml" rel="self" type="application/rss+xml"/>
-<description>稲葉文礼『腹証奇覧』と和久田叔虎『腹証奇覧翼』の朗読。各項で腹証図の説明と腹証所見を読み、本文・頭注を書き下し文と現代語訳で続けて読みます。図はアプリで見られます。</description><itunes:summary>稲葉文礼『腹証奇覧』と和久田叔虎『腹証奇覧翼』の朗読。各項で腹証図の説明と腹証所見を読み、本文・頭注を書き下し文と現代語訳で続けて読みます。図はアプリで見られます。</itunes:summary>
-<itunes:author>稲葉文礼・和久田叔虎（現代語訳つき）</itunes:author><itunes:subtitle>腹証図の説明・書き下し文・現代語訳</itunes:subtitle>
+<description>稲葉文礼『腹証奇覧』と和久田叔虎『腹証奇覧翼』の朗読。各項で腹証図の説明と腹証所見を読み、本文・頭注を現代語訳で読みます。図はアプリで見られます。</description><itunes:summary>稲葉文礼『腹証奇覧』と和久田叔虎『腹証奇覧翼』の朗読。各項で腹証図の説明と腹証所見を読み、本文・頭注を現代語訳で読みます。図はアプリで見られます。</itunes:summary>
+<itunes:author>稲葉文礼・和久田叔虎（現代語訳つき）</itunes:author><itunes:subtitle>腹証図の説明・現代語訳</itunes:subtitle>
 <itunes:image href="https://kumamushi51-hash.github.io/kokan-igaku/fukusho/audio/cover.jpg"/><image><url>https://kumamushi51-hash.github.io/kokan-igaku/fukusho/audio/cover.jpg</url><title>腹証奇覧 リスニング</title><link>https://kumamushi51-hash.github.io/kokan-igaku/fukusho/audio/</link></image>
 <itunes:type>serial</itunes:type><itunes:explicit>false</itunes:explicit><itunes:block>Yes</itunes:block>
 <itunes:category text="Education"/>
 <item><title>001 序　自叙（稲葉文礼）</title>
-<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/fukusho/audio/001_jo-seihen.mp3" length="3293103" type="audio/mpeg"/>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/fukusho/audio/001_jo-seihen.mp3" length="1721007" type="audio/mpeg"/>
 <guid isPermaLink="false">fukusho-001_jo-seihen.mp3</guid><pubDate>Sun, 01 Nov 2026 01:00:00 +0000</pubDate>
 <itunes:episode>1</itunes:episode><itunes:episodeType>full</itunes:episodeType>
-<itunes:duration>0:13:43</itunes:duration></item><item><title>002 総論　腹診の法</title>
-<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/fukusho/audio/002_fukushin-ho.mp3" length="893382" type="audio/mpeg"/>
+<itunes:duration>0:07:10</itunes:duration></item><item><title>002 総論　腹診の法</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/fukusho/audio/002_fukushin-ho.mp3" length="518406" type="audio/mpeg"/>
 <guid isPermaLink="false">fukusho-002_fukushin-ho.mp3</guid><pubDate>Sun, 01 Nov 2026 02:00:00 +0000</pubDate>
 <itunes:episode>2</itunes:episode><itunes:episodeType>full</itunes:episodeType>
-<itunes:duration>0:03:43</itunes:duration></item><item><title>003 第1図　桂枝湯</title>
-<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/fukusho/audio/003_keishito.mp3" length="2047204" type="audio/mpeg"/>
+<itunes:duration>0:02:09</itunes:duration></item><item><title>003 第1図　桂枝湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/fukusho/audio/003_keishito.mp3" length="1164100" type="audio/mpeg"/>
 <guid isPermaLink="false">fukusho-003_keishito.mp3</guid><pubDate>Sun, 01 Nov 2026 03:00:00 +0000</pubDate>
 <itunes:episode>3</itunes:episode><itunes:episodeType>full</itunes:episodeType>
-<itunes:duration>0:08:32</itunes:duration></item><item><title>004 第2図　小柴胡湯</title>
-<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/fukusho/audio/004_shosaikoto.mp3" length="1729543" type="audio/mpeg"/>
+<itunes:duration>0:04:51</itunes:duration></item><item><title>004 第2図　小柴胡湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/fukusho/audio/004_shosaikoto.mp3" length="977095" type="audio/mpeg"/>
 <guid isPermaLink="false">fukusho-004_shosaikoto.mp3</guid><pubDate>Sun, 01 Nov 2026 04:00:00 +0000</pubDate>
 <itunes:episode>4</itunes:episode><itunes:episodeType>full</itunes:episodeType>
-<itunes:duration>0:07:12</itunes:duration></item><item><title>005 第3図　小柴胡湯（胸肋膨脹）</title>
-<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/fukusho/audio/005_shosaikoto-2.mp3" length="828697" type="audio/mpeg"/>
+<itunes:duration>0:04:04</itunes:duration></item><item><title>005 第3図　小柴胡湯（胸肋膨脹）</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/fukusho/audio/005_shosaikoto-2.mp3" length="511129" type="audio/mpeg"/>
 <guid isPermaLink="false">fukusho-005_shosaikoto-2.mp3</guid><pubDate>Sun, 01 Nov 2026 05:00:00 +0000</pubDate>
 <itunes:episode>5</itunes:episode><itunes:episodeType>full</itunes:episodeType>
-<itunes:duration>0:03:27</itunes:duration></item><item><title>006 第4図　大柴胡湯</title>
-<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/fukusho/audio/006_daisaikoto.mp3" length="908071" type="audio/mpeg"/>
+<itunes:duration>0:02:08</itunes:duration></item><item><title>006 第4図　大柴胡湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/fukusho/audio/006_daisaikoto.mp3" length="540775" type="audio/mpeg"/>
 <guid isPermaLink="false">fukusho-006_daisaikoto.mp3</guid><pubDate>Sun, 01 Nov 2026 06:00:00 +0000</pubDate>
 <itunes:episode>6</itunes:episode><itunes:episodeType>full</itunes:episodeType>
-<itunes:duration>0:03:47</itunes:duration></item><item><title>007 第5図　柴胡加芒硝湯</title>
-<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/fukusho/audio/007_saikokabosho.mp3" length="1293037" type="audio/mpeg"/>
+<itunes:duration>0:02:15</itunes:duration></item><item><title>007 第5図　柴胡加芒硝湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/fukusho/audio/007_saikokabosho.mp3" length="732301" type="audio/mpeg"/>
 <guid isPermaLink="false">fukusho-007_saikokabosho.mp3</guid><pubDate>Sun, 01 Nov 2026 07:00:00 +0000</pubDate>
 <itunes:episode>7</itunes:episode><itunes:episodeType>full</itunes:episodeType>
-<itunes:duration>0:05:23</itunes:duration></item><item><title>008 第6図　呉茱萸湯</title>
-<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/fukusho/audio/008_goshuyuto.mp3" length="1176199" type="audio/mpeg"/>
+<itunes:duration>0:03:03</itunes:duration></item><item><title>008 第6図　呉茱萸湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/fukusho/audio/008_goshuyuto.mp3" length="673543" type="audio/mpeg"/>
 <guid isPermaLink="false">fukusho-008_goshuyuto.mp3</guid><pubDate>Sun, 01 Nov 2026 08:00:00 +0000</pubDate>
 <itunes:episode>8</itunes:episode><itunes:episodeType>full</itunes:episodeType>
-<itunes:duration>0:04:54</itunes:duration></item><item><title>009 第7図　人参芎軍桃花湯</title>
-<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/fukusho/audio/009_ninjinkyugun-tokato.mp3" length="1914544" type="audio/mpeg"/>
+<itunes:duration>0:02:48</itunes:duration></item><item><title>009 第7図　人参芎軍桃花湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/fukusho/audio/009_ninjinkyugun-tokato.mp3" length="1043056" type="audio/mpeg"/>
 <guid isPermaLink="false">fukusho-009_ninjinkyugun-tokato.mp3</guid><pubDate>Sun, 01 Nov 2026 09:00:00 +0000</pubDate>
 <itunes:episode>9</itunes:episode><itunes:episodeType>full</itunes:episodeType>
-<itunes:duration>0:07:58</itunes:duration></item><item><title>010 第8図　桃軍円</title>
-<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/fukusho/audio/010_togun-en.mp3" length="1728772" type="audio/mpeg"/>
+<itunes:duration>0:04:21</itunes:duration></item><item><title>010 第8図　桃軍円</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/fukusho/audio/010_togun-en.mp3" length="985540" type="audio/mpeg"/>
 <guid isPermaLink="false">fukusho-010_togun-en.mp3</guid><pubDate>Sun, 01 Nov 2026 10:00:00 +0000</pubDate>
 <itunes:episode>10</itunes:episode><itunes:episodeType>full</itunes:episodeType>
-<itunes:duration>0:07:12</itunes:duration></item><item><title>011 第9図　括蔞薤白白酒湯</title>
-<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/fukusho/audio/011_karo-gaihaku-hakushuto.mp3" length="722896" type="audio/mpeg"/>
+<itunes:duration>0:04:06</itunes:duration></item><item><title>011 第9図　括蔞薤白白酒湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/fukusho/audio/011_karo-gaihaku-hakushuto.mp3" length="464368" type="audio/mpeg"/>
 <guid isPermaLink="false">fukusho-011_karo-gaihaku-hakushuto.mp3</guid><pubDate>Sun, 01 Nov 2026 11:00:00 +0000</pubDate>
 <itunes:episode>11</itunes:episode><itunes:episodeType>full</itunes:episodeType>
-<itunes:duration>0:03:01</itunes:duration></item><item><title>012 第10図　磁石丸</title>
-<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/fukusho/audio/012_jiseki-gan.mp3" length="679205" type="audio/mpeg"/>
+<itunes:duration>0:01:56</itunes:duration></item><item><title>012 第10図　磁石丸</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/fukusho/audio/012_jiseki-gan.mp3" length="423077" type="audio/mpeg"/>
 <guid isPermaLink="false">fukusho-012_jiseki-gan.mp3</guid><pubDate>Sun, 01 Nov 2026 12:00:00 +0000</pubDate>
 <itunes:episode>12</itunes:episode><itunes:episodeType>full</itunes:episodeType>
-<itunes:duration>0:02:50</itunes:duration></item><item><title>013 第11図　橘皮大黄朴硝湯</title>
-<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/fukusho/audio/013_kippi-daio-bokushoto.mp3" length="581873" type="audio/mpeg"/>
+<itunes:duration>0:01:46</itunes:duration></item><item><title>013 第11図　橘皮大黄朴硝湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/fukusho/audio/013_kippi-daio-bokushoto.mp3" length="358001" type="audio/mpeg"/>
 <guid isPermaLink="false">fukusho-013_kippi-daio-bokushoto.mp3</guid><pubDate>Sun, 01 Nov 2026 13:00:00 +0000</pubDate>
 <itunes:episode>13</itunes:episode><itunes:episodeType>full</itunes:episodeType>
-<itunes:duration>0:02:25</itunes:duration></item><item><title>014 第12図　六君子湯</title>
-<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/fukusho/audio/014_rikkunshito.mp3" length="600680" type="audio/mpeg"/>
+<itunes:duration>0:01:29</itunes:duration></item><item><title>014 第12図　六君子湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/fukusho/audio/014_rikkunshito.mp3" length="379592" type="audio/mpeg"/>
 <guid isPermaLink="false">fukusho-014_rikkunshito.mp3</guid><pubDate>Sun, 01 Nov 2026 14:00:00 +0000</pubDate>
 <itunes:episode>14</itunes:episode><itunes:episodeType>full</itunes:episodeType>
-<itunes:duration>0:02:30</itunes:duration></item><item><title>015 第13図　大柴胡湯・甘草乾姜湯（二方相合）</title>
-<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/fukusho/audio/015_daisaiko-kanzokankyo.mp3" length="711692" type="audio/mpeg"/>
+<itunes:duration>0:01:35</itunes:duration></item><item><title>015 第13図　大柴胡湯・甘草乾姜湯（二方相合）</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/fukusho/audio/015_daisaiko-kanzokankyo.mp3" length="440204" type="audio/mpeg"/>
 <guid isPermaLink="false">fukusho-015_daisaiko-kanzokankyo.mp3</guid><pubDate>Sun, 01 Nov 2026 15:00:00 +0000</pubDate>
 <itunes:episode>15</itunes:episode><itunes:episodeType>full</itunes:episodeType>
-<itunes:duration>0:02:58</itunes:duration></item><item><title>016 第14図　大黄甘遂湯</title>
+<itunes:duration>0:01:50</itunes:duration></item><item><title>016 第14図　大黄甘遂湯</title>
 <enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/fukusho/audio/016_daiokanzuito.mp3" length="1261451" type="audio/mpeg"/>
 <guid isPermaLink="false">fukusho-016_daiokanzuito.mp3</guid><pubDate>Sun, 01 Nov 2026 16:00:00 +0000</pubDate>
 <itunes:episode>16</itunes:episode><itunes:episodeType>full</itunes:episodeType>
