@@ -1,0 +1,931 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel><title>類聚方広義 リスニング</title><link>https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/</link><language>ja</language>
+<atom:link href="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/feed.xml" rel="self" type="application/rss+xml"/>
+<description>尾台榕堂『類聚方広義』の朗読。条文の書き下し文と、現代語訳・頭注の現代語訳を続けて読みます。</description><itunes:summary>尾台榕堂『類聚方広義』の朗読。条文の書き下し文と、現代語訳・頭注の現代語訳を続けて読みます。</itunes:summary>
+<itunes:author>尾台榕堂（現代語訳つき）</itunes:author><itunes:subtitle>書き下し文・現代語訳</itunes:subtitle>
+<itunes:image href="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/cover.jpg"/><image><url>https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/cover.jpg</url><title>類聚方広義 リスニング</title><link>https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/</link></image>
+<itunes:type>serial</itunes:type><itunes:explicit>false</itunes:explicit><itunes:block>Yes</itunes:block>
+<itunes:category text="Education"/>
+<item><title>001 1 桂枝湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/001_keishito.mp3" length="14834651" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-001_keishito.mp3</guid><pubDate>Sun, 01 Nov 2026 01:00:00 +0000</pubDate>
+<itunes:episode>1</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:30:54</itunes:duration></item><item><title>002 2 桂枝加桂湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/002_keishikakeito.mp3" length="1538081" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-002_keishikakeito.mp3</guid><pubDate>Sun, 01 Nov 2026 02:00:00 +0000</pubDate>
+<itunes:episode>2</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:03:12</itunes:duration></item><item><title>003 3 桂枝加芍藥湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/003_keishikashakuyakuto.mp3" length="1524260" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-003_keishikashakuyakuto.mp3</guid><pubDate>Sun, 01 Nov 2026 03:00:00 +0000</pubDate>
+<itunes:episode>3</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:03:10</itunes:duration></item><item><title>004 4 桂枝去芍藥湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/004_keishikyoshakuyakuto.mp3" length="1282340" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-004_keishikyoshakuyakuto.mp3</guid><pubDate>Sun, 01 Nov 2026 04:00:00 +0000</pubDate>
+<itunes:episode>4</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:40</itunes:duration></item><item><title>005 5 桂枝加葛根湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/005_keishikakakkonto.mp3" length="1542884" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-005_keishikakakkonto.mp3</guid><pubDate>Sun, 01 Nov 2026 05:00:00 +0000</pubDate>
+<itunes:episode>5</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:03:13</itunes:duration></item><item><title>006 6 括蔞桂枝湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/006_karokeishito.mp3" length="1489313" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-006_karokeishito.mp3</guid><pubDate>Sun, 01 Nov 2026 06:00:00 +0000</pubDate>
+<itunes:episode>6</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:03:06</itunes:duration></item><item><title>007 7 桂枝加黄耆湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/007_keishikaogito.mp3" length="2705444" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-007_keishikaogito.mp3</guid><pubDate>Sun, 01 Nov 2026 07:00:00 +0000</pubDate>
+<itunes:episode>7</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:05:38</itunes:duration></item><item><title>008 8 桂枝加芍藥大黄湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/008_keishikashakuyakudaioto.mp3" length="1437098" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-008_keishikashakuyakudaioto.mp3</guid><pubDate>Sun, 01 Nov 2026 08:00:00 +0000</pubDate>
+<itunes:episode>8</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:03:00</itunes:duration></item><item><title>009 9 桂枝加芍藥生薑人參湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/009_keishikashakuyakushokyoninjinto.mp3" length="1236464" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-009_keishikashakuyakushokyoninjinto.mp3</guid><pubDate>Sun, 01 Nov 2026 09:00:00 +0000</pubDate>
+<itunes:episode>9</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:34</itunes:duration></item><item><title>010 10 桂枝加厚朴杏子湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/010_keishikakobokukyoshito.mp3" length="1170603" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-010_keishikakobokukyoshito.mp3</guid><pubDate>Sun, 01 Nov 2026 10:00:00 +0000</pubDate>
+<itunes:episode>10</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:26</itunes:duration></item><item><title>011 11 烏頭桂枝湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/011_uzukeishito.mp3" length="2214690" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-011_uzukeishito.mp3</guid><pubDate>Sun, 01 Nov 2026 11:00:00 +0000</pubDate>
+<itunes:episode>11</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:04:37</itunes:duration></item><item><title>012 12 桂枝加附子湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/012_keishikabushito.mp3" length="1546341" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-012_keishikabushito.mp3</guid><pubDate>Sun, 01 Nov 2026 12:00:00 +0000</pubDate>
+<itunes:episode>12</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:03:13</itunes:duration></item><item><title>013 13 桂枝去芍藥加附子湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/013_keishikyoshakuyakukabushito.mp3" length="824430" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-013_keishikyoshakuyakukabushito.mp3</guid><pubDate>Sun, 01 Nov 2026 13:00:00 +0000</pubDate>
+<itunes:episode>13</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:01:43</itunes:duration></item><item><title>014 14 桂枝附子湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/014_keishibushito.mp3" length="1164450" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-014_keishibushito.mp3</guid><pubDate>Sun, 01 Nov 2026 14:00:00 +0000</pubDate>
+<itunes:episode>14</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:25</itunes:duration></item><item><title>015 15 桂枝附子去桂枝加朮湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/015_keishibushikyokeishikajutsuto.mp3" length="1886385" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-015_keishibushikyokeishikajutsuto.mp3</guid><pubDate>Sun, 01 Nov 2026 15:00:00 +0000</pubDate>
+<itunes:episode>15</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:03:56</itunes:duration></item><item><title>016 16 甘草附子湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/016_kanzobushito.mp3" length="1855458" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-016_kanzobushito.mp3</guid><pubDate>Sun, 01 Nov 2026 16:00:00 +0000</pubDate>
+<itunes:episode>16</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:03:52</itunes:duration></item><item><title>017 17 桂枝去桂加茯苓朮湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/017_keishikyokeikabukuryojutsuto.mp3" length="1964718" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-017_keishikyokeikabukuryojutsuto.mp3</guid><pubDate>Sun, 01 Nov 2026 17:00:00 +0000</pubDate>
+<itunes:episode>17</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:04:06</itunes:duration></item><item><title>018 18 桂枝去芍藥加麻黄附子細辛湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/018_keishikyoshakuyakukamaobushisaishinto.mp3" length="1468218" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-018_keishikyoshakuyakukamaobushisaishinto.mp3</guid><pubDate>Sun, 01 Nov 2026 18:00:00 +0000</pubDate>
+<itunes:episode>18</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:03:03</itunes:duration></item><item><title>019 19 桂枝去芍藥加皂莢湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/019_keishikyoshakuyakukasokyoto.mp3" length="1070382" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-019_keishikyoshakuyakukasokyoto.mp3</guid><pubDate>Sun, 01 Nov 2026 19:00:00 +0000</pubDate>
+<itunes:episode>19</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:14</itunes:duration></item><item><title>020 20 桂枝加龍骨牡蠣湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/020_keishikaryukotsuboreito.mp3" length="2034603" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-020_keishikaryukotsuboreito.mp3</guid><pubDate>Sun, 01 Nov 2026 20:00:00 +0000</pubDate>
+<itunes:episode>20</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:04:14</itunes:duration></item><item><title>021 21 桂枝去芍藥加蜀漆龍骨牡蠣湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/021_keishikyoshakuyakukashokushitsuryukotsuboreito.mp3" length="955770" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-021_keishikyoshakuyakukashokushitsuryukotsuboreito.mp3</guid><pubDate>Sun, 01 Nov 2026 21:00:00 +0000</pubDate>
+<itunes:episode>21</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:01:59</itunes:duration></item><item><title>022 22 桂枝甘草龍骨牡蠣湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/022_keishikanzoryukotsuboreito.mp3" length="1039470" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-022_keishikanzoryukotsuboreito.mp3</guid><pubDate>Sun, 01 Nov 2026 22:00:00 +0000</pubDate>
+<itunes:episode>22</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:10</itunes:duration></item><item><title>023 23 桂枝二麻黄一湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/023_keishinimaoichito.mp3" length="1588776" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-023_keishinimaoichito.mp3</guid><pubDate>Sun, 01 Nov 2026 23:00:00 +0000</pubDate>
+<itunes:episode>23</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:03:18</itunes:duration></item><item><title>024 24 桂枝二越婢一湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/024_keishinieppiichito.mp3" length="1269096" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-024_keishinieppiichito.mp3</guid><pubDate>Mon, 02 Nov 2026 00:00:00 +0000</pubDate>
+<itunes:episode>24</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:38</itunes:duration></item><item><title>025 25 桂枝麻黄各半湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/025_keishimaokakuhanto.mp3" length="1728168" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-025_keishimaokakuhanto.mp3</guid><pubDate>Mon, 02 Nov 2026 01:00:00 +0000</pubDate>
+<itunes:episode>25</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:03:36</itunes:duration></item><item><title>026 26 小建中湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/026_shokenchuto.mp3" length="2889567" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-026_shokenchuto.mp3</guid><pubDate>Mon, 02 Nov 2026 02:00:00 +0000</pubDate>
+<itunes:episode>26</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:06:01</itunes:duration></item><item><title>027 27 黄耆建中湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/027_ogikenchuto.mp3" length="1490082" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-027_ogikenchuto.mp3</guid><pubDate>Mon, 02 Nov 2026 03:00:00 +0000</pubDate>
+<itunes:episode>27</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:03:06</itunes:duration></item><item><title>028 28 黄耆桂枝五物湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/028_ogikeishigomotsuto.mp3" length="1349352" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-028_ogikeishigomotsuto.mp3</guid><pubDate>Mon, 02 Nov 2026 04:00:00 +0000</pubDate>
+<itunes:episode>28</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:49</itunes:duration></item><item><title>029 29 黄耆芍藥桂枝苦酒湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/029_ogishakuyakukeishikushuto.mp3" length="1691502" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-029_ogishakuyakukeishikushuto.mp3</guid><pubDate>Mon, 02 Nov 2026 05:00:00 +0000</pubDate>
+<itunes:episode>29</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:03:31</itunes:duration></item><item><title>030 30 桂枝甘草湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/030_keishikanzoto.mp3" length="862050" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-030_keishikanzoto.mp3</guid><pubDate>Mon, 02 Nov 2026 06:00:00 +0000</pubDate>
+<itunes:episode>30</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:01:48</itunes:duration></item><item><title>031 31 半夏散及湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/031_hangesankyuto.mp3" length="1150242" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-031_hangesankyuto.mp3</guid><pubDate>Mon, 02 Nov 2026 07:00:00 +0000</pubDate>
+<itunes:episode>31</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:24</itunes:duration></item><item><title>032 32 桂枝人參湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/032_keishininjinto.mp3" length="1752354" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-032_keishininjinto.mp3</guid><pubDate>Mon, 02 Nov 2026 08:00:00 +0000</pubDate>
+<itunes:episode>32</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:03:39</itunes:duration></item><item><title>033 33 人參湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/033_ninjinto.mp3" length="4242780" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-033_ninjinto.mp3</guid><pubDate>Mon, 02 Nov 2026 09:00:00 +0000</pubDate>
+<itunes:episode>33</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:08:50</itunes:duration></item><item><title>034 34 茯苓杏仁甘草湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/034_bukuryokyoninkanzoto.mp3" length="1332840" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-034_bukuryokyoninkanzoto.mp3</guid><pubDate>Mon, 02 Nov 2026 10:00:00 +0000</pubDate>
+<itunes:episode>34</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:46</itunes:duration></item><item><title>035 35 茯苓戎鹽湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/035_bukuryojuento.mp3" length="1178466" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-035_bukuryojuento.mp3</guid><pubDate>Mon, 02 Nov 2026 11:00:00 +0000</pubDate>
+<itunes:episode>35</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:27</itunes:duration></item><item><title>036 36 葵子茯苓散</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/036_kishibukuryosan.mp3" length="1021410" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-036_kishibukuryosan.mp3</guid><pubDate>Mon, 02 Nov 2026 12:00:00 +0000</pubDate>
+<itunes:episode>36</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:08</itunes:duration></item><item><title>037 37 苓薑朮甘湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/037_ryokyojutsukanto.mp3" length="1775202" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-037_ryokyojutsukanto.mp3</guid><pubDate>Mon, 02 Nov 2026 13:00:00 +0000</pubDate>
+<itunes:episode>37</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:03:42</itunes:duration></item><item><title>038 38 苓桂朮甘湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/038_ryokeijutsukanto.mp3" length="2159586" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-038_ryokeijutsukanto.mp3</guid><pubDate>Mon, 02 Nov 2026 14:00:00 +0000</pubDate>
+<itunes:episode>38</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:04:30</itunes:duration></item><item><title>039 39 苓桂甘棗湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/039_ryokeikansoto.mp3" length="923106" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-039_ryokeikansoto.mp3</guid><pubDate>Mon, 02 Nov 2026 15:00:00 +0000</pubDate>
+<itunes:episode>39</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:01:55</itunes:duration></item><item><title>040 40 苓桂五味甘草湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/040_ryokeigomikanzoto.mp3" length="1952424" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-040_ryokeigomikanzoto.mp3</guid><pubDate>Mon, 02 Nov 2026 16:00:00 +0000</pubDate>
+<itunes:episode>40</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:04:04</itunes:duration></item><item><title>041 41 苓甘五味薑辛湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/041_ryokangomikyoshinto.mp3" length="928488" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-041_ryokangomikyoshinto.mp3</guid><pubDate>Mon, 02 Nov 2026 17:00:00 +0000</pubDate>
+<itunes:episode>41</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:01:56</itunes:duration></item><item><title>042 42 苓甘薑味辛夏湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/042_ryokankyomishingeto.mp3" length="1150056" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-042_ryokankyomishingeto.mp3</guid><pubDate>Mon, 02 Nov 2026 18:00:00 +0000</pubDate>
+<itunes:episode>42</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:24</itunes:duration></item><item><title>043 43 苓甘薑味辛夏仁湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/043_ryokankyomishingeninto.mp3" length="1302507" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-043_ryokankyomishingeninto.mp3</guid><pubDate>Mon, 02 Nov 2026 19:00:00 +0000</pubDate>
+<itunes:episode>43</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:43</itunes:duration></item><item><title>044 44 苓甘薑味辛夏仁黃湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/044_ryokankyomishingeninoto.mp3" length="877614" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-044_ryokankyomishingeninoto.mp3</guid><pubDate>Mon, 02 Nov 2026 20:00:00 +0000</pubDate>
+<itunes:episode>44</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:01:50</itunes:duration></item><item><title>045 45 澤瀉湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/045_takushato.mp3" length="858780" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-045_takushato.mp3</guid><pubDate>Mon, 02 Nov 2026 21:00:00 +0000</pubDate>
+<itunes:episode>45</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:01:47</itunes:duration></item><item><title>046 46 茯苓澤瀉湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/046_bukuryotakushato.mp3" length="1429602" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-046_bukuryotakushato.mp3</guid><pubDate>Mon, 02 Nov 2026 22:00:00 +0000</pubDate>
+<itunes:episode>46</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:59</itunes:duration></item><item><title>047 47 茯苓甘草湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/047_bukuryokanzoto.mp3" length="1492002" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-047_bukuryokanzoto.mp3</guid><pubDate>Mon, 02 Nov 2026 23:00:00 +0000</pubDate>
+<itunes:episode>47</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:03:06</itunes:duration></item><item><title>048 48 五苓散</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/048_goreisan.mp3" length="6210396" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-048_goreisan.mp3</guid><pubDate>Tue, 03 Nov 2026 00:00:00 +0000</pubDate>
+<itunes:episode>48</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:12:56</itunes:duration></item><item><title>049 49 茵蔯五苓散</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/049_inchingoreisan.mp3" length="571362" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-049_inchingoreisan.mp3</guid><pubDate>Tue, 03 Nov 2026 01:00:00 +0000</pubDate>
+<itunes:episode>49</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:01:11</itunes:duration></item><item><title>050 50 猪苓湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/050_choreito.mp3" length="2886876" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-050_choreito.mp3</guid><pubDate>Tue, 03 Nov 2026 02:00:00 +0000</pubDate>
+<itunes:episode>50</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:06:01</itunes:duration></item><item><title>051 51 猪苓散</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/051_choreisan.mp3" length="675228" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-051_choreisan.mp3</guid><pubDate>Tue, 03 Nov 2026 03:00:00 +0000</pubDate>
+<itunes:episode>51</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:01:24</itunes:duration></item><item><title>052 52 牡蠣澤瀉散</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/052_boreitakushasan.mp3" length="939042" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-052_boreitakushasan.mp3</guid><pubDate>Tue, 03 Nov 2026 04:00:00 +0000</pubDate>
+<itunes:episode>52</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:01:57</itunes:duration></item><item><title>053 53 八味丸</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/053_hachimigan.mp3" length="3048156" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-053_hachimigan.mp3</guid><pubDate>Tue, 03 Nov 2026 05:00:00 +0000</pubDate>
+<itunes:episode>53</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:06:21</itunes:duration></item><item><title>054 54 括蔞瞿麥丸</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/054_karokubakugan.mp3" length="975330" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-054_karokubakugan.mp3</guid><pubDate>Tue, 03 Nov 2026 06:00:00 +0000</pubDate>
+<itunes:episode>54</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:02</itunes:duration></item><item><title>055 55 麻黃湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/055_maoto.mp3" length="5620188" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-055_maoto.mp3</guid><pubDate>Tue, 03 Nov 2026 07:00:00 +0000</pubDate>
+<itunes:episode>55</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:11:42</itunes:duration></item><item><title>056 56 麻黃加朮湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/056_maokajutsuto.mp3" length="1281186" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-056_maokajutsuto.mp3</guid><pubDate>Tue, 03 Nov 2026 08:00:00 +0000</pubDate>
+<itunes:episode>56</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:40</itunes:duration></item><item><title>057 57 甘草麻黃湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/057_kanzomaoto.mp3" length="1414242" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-057_kanzomaoto.mp3</guid><pubDate>Tue, 03 Nov 2026 09:00:00 +0000</pubDate>
+<itunes:episode>57</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:57</itunes:duration></item><item><title>058 58 麻黃附子甘草湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/058_maobushikanzoto.mp3" length="1875624" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-058_maobushikanzoto.mp3</guid><pubDate>Tue, 03 Nov 2026 10:00:00 +0000</pubDate>
+<itunes:episode>58</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:03:54</itunes:duration></item><item><title>059 59 麻黃附子細辛湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/059_maobushisaishinto.mp3" length="776232" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-059_maobushisaishinto.mp3</guid><pubDate>Tue, 03 Nov 2026 11:00:00 +0000</pubDate>
+<itunes:episode>59</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:01:37</itunes:duration></item><item><title>060 60 麻黃杏仁甘草石膏湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/060_makyokansekito.mp3" length="1517358" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-060_makyokansekito.mp3</guid><pubDate>Tue, 03 Nov 2026 12:00:00 +0000</pubDate>
+<itunes:episode>60</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:03:10</itunes:duration></item><item><title>061 61 麻黃杏仁薏苡甘草湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/061_makyoyokukanto.mp3" length="1450158" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-061_makyoyokukanto.mp3</guid><pubDate>Tue, 03 Nov 2026 13:00:00 +0000</pubDate>
+<itunes:episode>61</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:03:01</itunes:duration></item><item><title>062 62 牡蠣湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/062_boreito.mp3" length="1123740" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-062_boreito.mp3</guid><pubDate>Tue, 03 Nov 2026 14:00:00 +0000</pubDate>
+<itunes:episode>62</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:20</itunes:duration></item><item><title>063 63 麻黃醇酒湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/063_maojunshuto.mp3" length="697890" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-063_maojunshuto.mp3</guid><pubDate>Tue, 03 Nov 2026 15:00:00 +0000</pubDate>
+<itunes:episode>63</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:01:27</itunes:duration></item><item><title>064 64 半夏麻黃丸</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/064_hangemaogan.mp3" length="515682" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-064_hangemaogan.mp3</guid><pubDate>Tue, 03 Nov 2026 16:00:00 +0000</pubDate>
+<itunes:episode>64</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:01:04</itunes:duration></item><item><title>065 65 小青龍湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/065_shoseiryuto.mp3" length="4230111" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-065_shoseiryuto.mp3</guid><pubDate>Tue, 03 Nov 2026 17:00:00 +0000</pubDate>
+<itunes:episode>65</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:08:49</itunes:duration></item><item><title>066 66 大青龍湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/066_daiseiryuto.mp3" length="4029087" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-066_daiseiryuto.mp3</guid><pubDate>Tue, 03 Nov 2026 18:00:00 +0000</pubDate>
+<itunes:episode>66</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:08:24</itunes:duration></item><item><title>067 67 文蛤湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/067_bunkoto.mp3" length="1701084" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-067_bunkoto.mp3</guid><pubDate>Tue, 03 Nov 2026 19:00:00 +0000</pubDate>
+<itunes:episode>67</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:03:32</itunes:duration></item><item><title>068 68 文蛤散</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/068_bunkosan.mp3" length="1484316" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-068_bunkosan.mp3</guid><pubDate>Tue, 03 Nov 2026 20:00:00 +0000</pubDate>
+<itunes:episode>68</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:03:05</itunes:duration></item><item><title>069 69 越婢湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/069_eppito.mp3" length="1249116" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-069_eppito.mp3</guid><pubDate>Tue, 03 Nov 2026 21:00:00 +0000</pubDate>
+<itunes:episode>69</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:36</itunes:duration></item><item><title>070 70 越婢加朮湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/070_eppikajutsuto.mp3" length="2676450" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-070_eppikajutsuto.mp3</guid><pubDate>Tue, 03 Nov 2026 22:00:00 +0000</pubDate>
+<itunes:episode>70</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:05:34</itunes:duration></item><item><title>071 71 越婢加半夏湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/071_eppikahangeto.mp3" length="1084389" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-071_eppikahangeto.mp3</guid><pubDate>Tue, 03 Nov 2026 23:00:00 +0000</pubDate>
+<itunes:episode>71</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:15</itunes:duration></item><item><title>072 72 葛根湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/072_kakkonto.mp3" length="5506716" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-072_kakkonto.mp3</guid><pubDate>Wed, 04 Nov 2026 00:00:00 +0000</pubDate>
+<itunes:episode>72</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:11:28</itunes:duration></item><item><title>073 73 葛根加半夏湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/073_kakkonkahangeto.mp3" length="725157" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-073_kakkonkahangeto.mp3</guid><pubDate>Wed, 04 Nov 2026 01:00:00 +0000</pubDate>
+<itunes:episode>73</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:01:30</itunes:duration></item><item><title>074 74 葛根黃連黃芩湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/074_kakkonogonto.mp3" length="1323432" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-074_kakkonogonto.mp3</guid><pubDate>Wed, 04 Nov 2026 02:00:00 +0000</pubDate>
+<itunes:episode>74</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:45</itunes:duration></item><item><title>075 75 小柴胡湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/075_shosaikoto.mp3" length="17739423" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-075_shosaikoto.mp3</guid><pubDate>Wed, 04 Nov 2026 03:00:00 +0000</pubDate>
+<itunes:episode>75</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:36:57</itunes:duration></item><item><title>076 76 柴胡加芒消湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/076_saikokaboshoto.mp3" length="1634277" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-076_saikokaboshoto.mp3</guid><pubDate>Wed, 04 Nov 2026 04:00:00 +0000</pubDate>
+<itunes:episode>76</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:03:24</itunes:duration></item><item><title>077 77 柴胡去半夏加括蔞湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/077_saikokyohangekarokonto.mp3" length="932526" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-077_saikokyohangekarokonto.mp3</guid><pubDate>Wed, 04 Nov 2026 05:00:00 +0000</pubDate>
+<itunes:episode>77</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:01:56</itunes:duration></item><item><title>078 78 柴胡桂枝湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/078_saikokeishito.mp3" length="2605986" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-078_saikokeishito.mp3</guid><pubDate>Wed, 04 Nov 2026 06:00:00 +0000</pubDate>
+<itunes:episode>78</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:05:26</itunes:duration></item><item><title>079 79 柴胡桂枝乾薑湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/079_saikokeishikankyoto.mp3" length="1837800" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-079_saikokeishikankyoto.mp3</guid><pubDate>Wed, 04 Nov 2026 07:00:00 +0000</pubDate>
+<itunes:episode>79</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:03:50</itunes:duration></item><item><title>080 80 柴胡加龍骨牡蠣湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/080_saikokaryukotsuboreito.mp3" length="2112171" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-080_saikokaryukotsuboreito.mp3</guid><pubDate>Wed, 04 Nov 2026 08:00:00 +0000</pubDate>
+<itunes:episode>80</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:04:24</itunes:duration></item><item><title>081 81 大柴胡湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/081_daisaikoto.mp3" length="3817887" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-081_daisaikoto.mp3</guid><pubDate>Wed, 04 Nov 2026 09:00:00 +0000</pubDate>
+<itunes:episode>81</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:07:57</itunes:duration></item><item><title>082 82 白虎湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/082_byakkoto.mp3" length="2694108" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-082_byakkoto.mp3</guid><pubDate>Wed, 04 Nov 2026 10:00:00 +0000</pubDate>
+<itunes:episode>82</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:05:37</itunes:duration></item><item><title>083 83 白虎加人參湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/083_byakkokaninjinto.mp3" length="4320741" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-083_byakkokaninjinto.mp3</guid><pubDate>Wed, 04 Nov 2026 11:00:00 +0000</pubDate>
+<itunes:episode>83</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:09:00</itunes:duration></item><item><title>084 84 白虎加桂枝湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/084_byakkokakeishito.mp3" length="977253" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-084_byakkokakeishito.mp3</guid><pubDate>Wed, 04 Nov 2026 12:00:00 +0000</pubDate>
+<itunes:episode>84</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:02</itunes:duration></item><item><title>085 85 小承氣湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/085_shojokito.mp3" length="8261343" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-085_shojokito.mp3</guid><pubDate>Wed, 04 Nov 2026 13:00:00 +0000</pubDate>
+<itunes:episode>85</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:17:13</itunes:duration></item><item><title>086 86 厚朴三物湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/086_kobokusanmotsuto.mp3" length="1639266" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-086_kobokusanmotsuto.mp3</guid><pubDate>Wed, 04 Nov 2026 14:00:00 +0000</pubDate>
+<itunes:episode>86</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:03:25</itunes:duration></item><item><title>087 87 厚朴七物湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/087_kobokushichimotsuto.mp3" length="1393890" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-087_kobokushichimotsuto.mp3</guid><pubDate>Wed, 04 Nov 2026 15:00:00 +0000</pubDate>
+<itunes:episode>87</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:54</itunes:duration></item><item><title>088 88 大承氣湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/088_daijokito.mp3" length="19471647" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-088_daijokito.mp3</guid><pubDate>Wed, 04 Nov 2026 16:00:00 +0000</pubDate>
+<itunes:episode>88</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:40:34</itunes:duration></item><item><title>089 89 大黃黃連瀉心湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/089_daiokoorenshashinto.mp3" length="2669736" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-089_daiokoorenshashinto.mp3</guid><pubDate>Wed, 04 Nov 2026 17:00:00 +0000</pubDate>
+<itunes:episode>89</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:05:34</itunes:duration></item><item><title>090 90 瀉心湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/090_shashinto.mp3" length="2785500" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-090_shashinto.mp3</guid><pubDate>Wed, 04 Nov 2026 18:00:00 +0000</pubDate>
+<itunes:episode>90</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:05:48</itunes:duration></item><item><title>091 91 附子瀉心湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/091_bushishashinto.mp3" length="1084386" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-091_bushishashinto.mp3</guid><pubDate>Wed, 04 Nov 2026 19:00:00 +0000</pubDate>
+<itunes:episode>91</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:15</itunes:duration></item><item><title>092 92 大黃附子湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/092_daiobushito.mp3" length="1155426" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-092_daiobushito.mp3</guid><pubDate>Wed, 04 Nov 2026 20:00:00 +0000</pubDate>
+<itunes:episode>92</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:24</itunes:duration></item><item><title>093 93 大黃甘草湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/093_daiokanzoto.mp3" length="1563042" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-093_daiokanzoto.mp3</guid><pubDate>Wed, 04 Nov 2026 21:00:00 +0000</pubDate>
+<itunes:episode>93</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:03:15</itunes:duration></item><item><title>094 94 調胃承氣湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/094_chouijokito.mp3" length="5774946" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-094_chouijokito.mp3</guid><pubDate>Wed, 04 Nov 2026 22:00:00 +0000</pubDate>
+<itunes:episode>94</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:12:02</itunes:duration></item><item><title>095 95 橘皮大黃朴消湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/095_kippidaioboshoto.mp3" length="1267176" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-095_kippidaioboshoto.mp3</guid><pubDate>Wed, 04 Nov 2026 23:00:00 +0000</pubDate>
+<itunes:episode>95</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:38</itunes:duration></item><item><title>096 96 桃核承氣湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/096_tokakujokito.mp3" length="2777442" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-096_tokakujokito.mp3</guid><pubDate>Thu, 05 Nov 2026 00:00:00 +0000</pubDate>
+<itunes:episode>96</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:05:47</itunes:duration></item><item><title>097 97 大黃牡丹皮湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/097_daiobotanpito.mp3" length="2562405" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-097_daiobotanpito.mp3</guid><pubDate>Thu, 05 Nov 2026 01:00:00 +0000</pubDate>
+<itunes:episode>97</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:05:20</itunes:duration></item><item><title>098 98 大黃甘遂湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/098_daiokansuito.mp3" length="2075106" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-098_daiokansuito.mp3</guid><pubDate>Thu, 05 Nov 2026 02:00:00 +0000</pubDate>
+<itunes:episode>98</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:04:19</itunes:duration></item><item><title>099 99 下瘀血湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/099_geoketsuto.mp3" length="2442015" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-099_geoketsuto.mp3</guid><pubDate>Thu, 05 Nov 2026 03:00:00 +0000</pubDate>
+<itunes:episode>99</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:05:05</itunes:duration></item><item><title>100 100 抵當湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/100_teitoto.mp3" length="3638365" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-100_teitoto.mp3</guid><pubDate>Thu, 05 Nov 2026 04:00:00 +0000</pubDate>
+<itunes:episode>100</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:07:35</itunes:duration></item><item><title>101 101 抵當丸</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/101_teitogan.mp3" length="1218013" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-101_teitogan.mp3</guid><pubDate>Thu, 05 Nov 2026 05:00:00 +0000</pubDate>
+<itunes:episode>101</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:32</itunes:duration></item><item><title>102 102 土瓜根散</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/102_dokakonsan.mp3" length="2428192" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-102_dokakonsan.mp3</guid><pubDate>Thu, 05 Nov 2026 06:00:00 +0000</pubDate>
+<itunes:episode>102</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:05:03</itunes:duration></item><item><title>103 103 甘草湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/103_kanzoto.mp3" length="1244317" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-103_kanzoto.mp3</guid><pubDate>Thu, 05 Nov 2026 07:00:00 +0000</pubDate>
+<itunes:episode>103</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:35</itunes:duration></item><item><title>104 104 桔梗湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/104_kikyoto.mp3" length="2456221" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-104_kikyoto.mp3</guid><pubDate>Thu, 05 Nov 2026 08:00:00 +0000</pubDate>
+<itunes:episode>104</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:05:07</itunes:duration></item><item><title>105 105 排膿湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/105_hainoto.mp3" length="871261" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-105_hainoto.mp3</guid><pubDate>Thu, 05 Nov 2026 09:00:00 +0000</pubDate>
+<itunes:episode>105</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:01:49</itunes:duration></item><item><title>106 106 芍藥甘草湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/106_shakuyakukanzoto.mp3" length="1470691" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-106_shakuyakukanzoto.mp3</guid><pubDate>Thu, 05 Nov 2026 10:00:00 +0000</pubDate>
+<itunes:episode>106</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:03:04</itunes:duration></item><item><title>107 107 芍藥甘草附子湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/107_shakuyakukanzobushito.mp3" length="1064809" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-107_shakuyakukanzobushito.mp3</guid><pubDate>Thu, 05 Nov 2026 11:00:00 +0000</pubDate>
+<itunes:episode>107</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:13</itunes:duration></item><item><title>108 108 甘遂半夏湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/108_kanzuihangeto.mp3" length="1397731" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-108_kanzuihangeto.mp3</guid><pubDate>Thu, 05 Nov 2026 12:00:00 +0000</pubDate>
+<itunes:episode>108</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:55</itunes:duration></item><item><title>109 109 甘草小麥大棗湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/109_kanbakutaisoto.mp3" length="1481065" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-109_kanbakutaisoto.mp3</guid><pubDate>Thu, 05 Nov 2026 13:00:00 +0000</pubDate>
+<itunes:episode>109</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:03:05</itunes:duration></item><item><title>110 110 甘草粉蜜湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/110_kanzofunmitsuto.mp3" length="2305891" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-110_kanzofunmitsuto.mp3</guid><pubDate>Thu, 05 Nov 2026 14:00:00 +0000</pubDate>
+<itunes:episode>110</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:04:48</itunes:duration></item><item><title>111 111 生薑甘草湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/111_shokyokanzoto.mp3" length="722083" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-111_shokyokanzoto.mp3</guid><pubDate>Thu, 05 Nov 2026 15:00:00 +0000</pubDate>
+<itunes:episode>111</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:01:30</itunes:duration></item><item><title>112 112 甘草乾薑湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/112_kanzokankyoto.mp3" length="2437411" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-112_kanzokankyoto.mp3</guid><pubDate>Thu, 05 Nov 2026 16:00:00 +0000</pubDate>
+<itunes:episode>112</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:05:05</itunes:duration></item><item><title>113 113 乾薑附子湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/113_kankyobushito.mp3" length="1174243" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-113_kankyobushito.mp3</guid><pubDate>Thu, 05 Nov 2026 17:00:00 +0000</pubDate>
+<itunes:episode>113</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:27</itunes:duration></item><item><title>114 114 四逆湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/114_shigyakuto.mp3" length="7868509" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-114_shigyakuto.mp3</guid><pubDate>Thu, 05 Nov 2026 18:00:00 +0000</pubDate>
+<itunes:episode>114</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:16:24</itunes:duration></item><item><title>115 115 通脈四逆湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/115_tsumyakushigyakuto.mp3" length="1488163" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-115_tsumyakushigyakuto.mp3</guid><pubDate>Thu, 05 Nov 2026 19:00:00 +0000</pubDate>
+<itunes:episode>115</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:03:06</itunes:duration></item><item><title>116 116 四逆加人參湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/116_shigyakukaninjinto.mp3" length="1047718" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-116_shigyakukaninjinto.mp3</guid><pubDate>Thu, 05 Nov 2026 20:00:00 +0000</pubDate>
+<itunes:episode>116</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:11</itunes:duration></item><item><title>117 117 茯苓四逆湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/117_bukuryoshigyakuto.mp3" length="1507555" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-117_bukuryoshigyakuto.mp3</guid><pubDate>Thu, 05 Nov 2026 21:00:00 +0000</pubDate>
+<itunes:episode>117</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:03:08</itunes:duration></item><item><title>118 118 通脈四逆加猪膽汁湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/118_tsumyakushigyakukachotanjuto.mp3" length="1556911" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-118_tsumyakushigyakukachotanjuto.mp3</guid><pubDate>Thu, 05 Nov 2026 22:00:00 +0000</pubDate>
+<itunes:episode>118</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:03:14</itunes:duration></item><item><title>119 119 白通湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/119_hakutsuto.mp3" length="1727581" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-119_hakutsuto.mp3</guid><pubDate>Thu, 05 Nov 2026 23:00:00 +0000</pubDate>
+<itunes:episode>119</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:03:36</itunes:duration></item><item><title>120 120 白通加猪膽汁湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/120_hakutsukachotanjuto.mp3" length="1296937" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-120_hakutsukachotanjuto.mp3</guid><pubDate>Fri, 06 Nov 2026 00:00:00 +0000</pubDate>
+<itunes:episode>120</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:42</itunes:duration></item><item><title>121 121 眞武湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/121_shinbuto.mp3" length="2671645" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-121_shinbuto.mp3</guid><pubDate>Fri, 06 Nov 2026 01:00:00 +0000</pubDate>
+<itunes:episode>121</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:05:34</itunes:duration></item><item><title>122 122 附子湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/122_fushito.mp3" length="1660957" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-122_fushito.mp3</guid><pubDate>Fri, 06 Nov 2026 02:00:00 +0000</pubDate>
+<itunes:episode>122</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:03:28</itunes:duration></item><item><title>123 123 附子粳米湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/123_fushikobeito.mp3" length="1361827" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-123_fushikobeito.mp3</guid><pubDate>Fri, 06 Nov 2026 03:00:00 +0000</pubDate>
+<itunes:episode>123</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:50</itunes:duration></item><item><title>124 124 赤丸</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/124_sekigan.mp3" length="1038874" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-124_sekigan.mp3</guid><pubDate>Fri, 06 Nov 2026 04:00:00 +0000</pubDate>
+<itunes:episode>124</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:10</itunes:duration></item><item><title>125 125 大烏頭煎</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/125_daiuzusen.mp3" length="1493920" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-125_daiuzusen.mp3</guid><pubDate>Fri, 06 Nov 2026 05:00:00 +0000</pubDate>
+<itunes:episode>125</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:03:07</itunes:duration></item><item><title>126 126 烏頭湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/126_uzuto.mp3" length="2284381" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-126_uzuto.mp3</guid><pubDate>Fri, 06 Nov 2026 06:00:00 +0000</pubDate>
+<itunes:episode>126</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:04:45</itunes:duration></item><item><title>127 127 薏苡附子散</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/127_yokuininbushisan.mp3" length="1083619" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-127_yokuininbushisan.mp3</guid><pubDate>Fri, 06 Nov 2026 07:00:00 +0000</pubDate>
+<itunes:episode>127</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:15</itunes:duration></item><item><title>128 128 薏苡附子敗醬散</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/128_yokuininbushihaishosan.mp3" length="1725673" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-128_yokuininbushihaishosan.mp3</guid><pubDate>Fri, 06 Nov 2026 08:00:00 +0000</pubDate>
+<itunes:episode>128</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:03:36</itunes:duration></item><item><title>129 129 天雄散</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/129_tenyusan.mp3" length="1067677" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-129_tenyusan.mp3</guid><pubDate>Fri, 06 Nov 2026 09:00:00 +0000</pubDate>
+<itunes:episode>129</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:13</itunes:duration></item><item><title>130 130 蜀漆散</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/130_shokushitsusan.mp3" length="1078813" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-130_shokushitsusan.mp3</guid><pubDate>Fri, 06 Nov 2026 10:00:00 +0000</pubDate>
+<itunes:episode>130</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:15</itunes:duration></item><item><title>131 131 梔子豉湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/131_shishishito.mp3" length="5292064" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-131_shishishito.mp3</guid><pubDate>Fri, 06 Nov 2026 11:00:00 +0000</pubDate>
+<itunes:episode>131</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:11:01</itunes:duration></item><item><title>132 132 梔子甘草豉湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/132_shishikanzoshito.mp3" length="1377766" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-132_shishikanzoshito.mp3</guid><pubDate>Fri, 06 Nov 2026 12:00:00 +0000</pubDate>
+<itunes:episode>132</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:52</itunes:duration></item><item><title>133 133 梔子生薑豉湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/133_shishishokyoshito.mp3" length="894502" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-133_shishishokyoshito.mp3</guid><pubDate>Fri, 06 Nov 2026 13:00:00 +0000</pubDate>
+<itunes:episode>133</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:01:52</itunes:duration></item><item><title>134 134 枳實梔子豉湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/134_kijitsushishishito.mp3" length="1740454" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-134_kijitsushishishito.mp3</guid><pubDate>Fri, 06 Nov 2026 14:00:00 +0000</pubDate>
+<itunes:episode>134</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:03:37</itunes:duration></item><item><title>135 135 枳實梔子大黃豉湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/135_kijitsushishidaioshito.mp3" length="1203052" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-135_kijitsushishidaioshito.mp3</guid><pubDate>Fri, 06 Nov 2026 15:00:00 +0000</pubDate>
+<itunes:episode>135</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:30</itunes:duration></item><item><title>136 136 大黃消石湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/136_daioshosekito.mp3" length="1065763" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-136_daioshosekito.mp3</guid><pubDate>Fri, 06 Nov 2026 16:00:00 +0000</pubDate>
+<itunes:episode>136</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:13</itunes:duration></item><item><title>137 137 茵蔯蒿湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/137_inchinkoto.mp3" length="2493472" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-137_inchinkoto.mp3</guid><pubDate>Fri, 06 Nov 2026 17:00:00 +0000</pubDate>
+<itunes:episode>137</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:05:12</itunes:duration></item><item><title>138 138 梔子蘗皮湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/138_shishihakuhito.mp3" length="854179" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-138_shishihakuhito.mp3</guid><pubDate>Fri, 06 Nov 2026 18:00:00 +0000</pubDate>
+<itunes:episode>138</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:01:47</itunes:duration></item><item><title>139 139 梔子厚朴湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/139_shishikobokuto.mp3" length="1011043" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-139_shishikobokuto.mp3</guid><pubDate>Fri, 06 Nov 2026 19:00:00 +0000</pubDate>
+<itunes:episode>139</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:06</itunes:duration></item><item><title>140 140 梔子乾薑湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/140_shishikankyoto.mp3" length="766243" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-140_shishikankyoto.mp3</guid><pubDate>Fri, 06 Nov 2026 20:00:00 +0000</pubDate>
+<itunes:episode>140</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:01:36</itunes:duration></item><item><title>141 141 酸棗仁湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/141_sansoninto.mp3" length="1480096" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-141_sansoninto.mp3</guid><pubDate>Fri, 06 Nov 2026 21:00:00 +0000</pubDate>
+<itunes:episode>141</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:03:05</itunes:duration></item><item><title>142 142 大陷胸湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/142_daikankyoto.mp3" length="4753696" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-142_daikankyoto.mp3</guid><pubDate>Fri, 06 Nov 2026 22:00:00 +0000</pubDate>
+<itunes:episode>142</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:09:54</itunes:duration></item><item><title>143 143 大陷胸丸</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/143_daikankyogan.mp3" length="1536352" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-143_daikankyogan.mp3</guid><pubDate>Fri, 06 Nov 2026 23:00:00 +0000</pubDate>
+<itunes:episode>143</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:03:12</itunes:duration></item><item><title>144 144 小陷胸湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/144_shokankyoto.mp3" length="2024608" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-144_shokankyoto.mp3</guid><pubDate>Sat, 07 Nov 2026 00:00:00 +0000</pubDate>
+<itunes:episode>144</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:04:13</itunes:duration></item><item><title>145 145 枳實薤白桂枝湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/145_kijitsugaihakukeishito.mp3" length="1341865" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-145_kijitsugaihakukeishito.mp3</guid><pubDate>Sat, 07 Nov 2026 01:00:00 +0000</pubDate>
+<itunes:episode>145</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:48</itunes:duration></item><item><title>146 146 括蔞薤白白酒湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/146_karogaihakuhakushuto.mp3" length="1495081" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-146_karogaihakuhakushuto.mp3</guid><pubDate>Sat, 07 Nov 2026 02:00:00 +0000</pubDate>
+<itunes:episode>146</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:03:07</itunes:duration></item><item><title>147 147 括蔞薤白半夏湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/147_karogaihakuhangeto.mp3" length="1218409" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-147_karogaihakuhangeto.mp3</guid><pubDate>Sat, 07 Nov 2026 03:00:00 +0000</pubDate>
+<itunes:episode>147</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:32</itunes:duration></item><item><title>148 148 瓜蔕散</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/148_kateisan.mp3" length="2375197" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-148_kateisan.mp3</guid><pubDate>Sat, 07 Nov 2026 04:00:00 +0000</pubDate>
+<itunes:episode>148</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:04:57</itunes:duration></item><item><title>149 149 小半夏湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/149_shohangeto.mp3" length="2155936" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-149_shohangeto.mp3</guid><pubDate>Sat, 07 Nov 2026 05:00:00 +0000</pubDate>
+<itunes:episode>149</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:04:29</itunes:duration></item><item><title>150 150 小半夏加茯苓湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/150_shohangekabukuryoto.mp3" length="960169" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-150_shohangekabukuryoto.mp3</guid><pubDate>Sat, 07 Nov 2026 06:00:00 +0000</pubDate>
+<itunes:episode>150</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:00</itunes:duration></item><item><title>151 151 大半夏湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/151_daihangeto.mp3" length="731488" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-151_daihangeto.mp3</guid><pubDate>Sat, 07 Nov 2026 07:00:00 +0000</pubDate>
+<itunes:episode>151</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:01:31</itunes:duration></item><item><title>152 152 生薑半夏湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/152_shokyohangeto.mp3" length="1533091" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-152_shokyohangeto.mp3</guid><pubDate>Sat, 07 Nov 2026 08:00:00 +0000</pubDate>
+<itunes:episode>152</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:03:12</itunes:duration></item><item><title>153 153 半夏苦酒湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/153_hangekushuto.mp3" length="1395235" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-153_hangekushuto.mp3</guid><pubDate>Sat, 07 Nov 2026 09:00:00 +0000</pubDate>
+<itunes:episode>153</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:54</itunes:duration></item><item><title>154 154 半夏厚朴湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/154_hangekobokuto.mp3" length="1264675" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-154_hangekobokuto.mp3</guid><pubDate>Sat, 07 Nov 2026 10:00:00 +0000</pubDate>
+<itunes:episode>154</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:38</itunes:duration></item><item><title>155 155 半夏乾薑散</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/155_hangekankyosan.mp3" length="804835" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-155_hangekankyosan.mp3</guid><pubDate>Sat, 07 Nov 2026 11:00:00 +0000</pubDate>
+<itunes:episode>155</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:01:40</itunes:duration></item><item><title>156 156 厚朴生薑半夏甘草人參湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/156_kobokushokyohangekanzoninjinto.mp3" length="832309" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-156_kobokushokyohangekanzoninjinto.mp3</guid><pubDate>Sat, 07 Nov 2026 12:00:00 +0000</pubDate>
+<itunes:episode>156</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:01:44</itunes:duration></item><item><title>157 157 乾薑人參半夏丸</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/157_kankyoninjinhangegan.mp3" length="828073" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-157_kankyoninjinhangegan.mp3</guid><pubDate>Sat, 07 Nov 2026 13:00:00 +0000</pubDate>
+<itunes:episode>157</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:01:43</itunes:duration></item><item><title>158 158 乾薑黃連黃芩人參湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/158_kankyoorengonninjinto.mp3" length="1213039" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-158_kankyoorengonninjinto.mp3</guid><pubDate>Sat, 07 Nov 2026 14:00:00 +0000</pubDate>
+<itunes:episode>158</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:32</itunes:duration></item><item><title>159 159 黃連湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/159_orento.mp3" length="1138141" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-159_orento.mp3</guid><pubDate>Sat, 07 Nov 2026 15:00:00 +0000</pubDate>
+<itunes:episode>159</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:22</itunes:duration></item><item><title>160 160 半夏瀉心湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/160_hangeshashinto.mp3" length="2077795" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-160_hangeshashinto.mp3</guid><pubDate>Sat, 07 Nov 2026 16:00:00 +0000</pubDate>
+<itunes:episode>160</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:04:20</itunes:duration></item><item><title>161 161 甘草瀉心湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/161_kanzoshashinto.mp3" length="2127715" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-161_kanzoshashinto.mp3</guid><pubDate>Sat, 07 Nov 2026 17:00:00 +0000</pubDate>
+<itunes:episode>161</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:04:26</itunes:duration></item><item><title>162 162 生薑瀉心湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/162_shokyoshashinto.mp3" length="1385827" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-162_shokyoshashinto.mp3</guid><pubDate>Sat, 07 Nov 2026 18:00:00 +0000</pubDate>
+<itunes:episode>162</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:53</itunes:duration></item><item><title>163 163 旋覆花代赭石湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/163_senpukukataishasekito.mp3" length="1066345" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-163_senpukukataishasekito.mp3</guid><pubDate>Sat, 07 Nov 2026 19:00:00 +0000</pubDate>
+<itunes:episode>163</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:13</itunes:duration></item><item><title>164 164 吳茱萸湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/164_goshuyuto.mp3" length="2130784" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-164_goshuyuto.mp3</guid><pubDate>Sat, 07 Nov 2026 20:00:00 +0000</pubDate>
+<itunes:episode>164</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:04:26</itunes:duration></item><item><title>165 165 大建中湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/165_daikenchuto.mp3" length="1719328" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-165_daikenchuto.mp3</guid><pubDate>Sat, 07 Nov 2026 21:00:00 +0000</pubDate>
+<itunes:episode>165</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:03:35</itunes:duration></item><item><title>166 166 黃連阿膠湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/166_orenaokyoto.mp3" length="1542115" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-166_orenaokyoto.mp3</guid><pubDate>Sat, 07 Nov 2026 22:00:00 +0000</pubDate>
+<itunes:episode>166</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:03:13</itunes:duration></item><item><title>167 167 黃芩湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/167_ogonto.mp3" length="1051933" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-167_ogonto.mp3</guid><pubDate>Sat, 07 Nov 2026 23:00:00 +0000</pubDate>
+<itunes:episode>167</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:11</itunes:duration></item><item><title>168 168 黃芩加半夏生薑湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/168_ogonkahangeshokyoto.mp3" length="945964" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-168_ogonkahangeshokyoto.mp3</guid><pubDate>Sun, 08 Nov 2026 00:00:00 +0000</pubDate>
+<itunes:episode>168</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:01:58</itunes:duration></item><item><title>169 169 六物黃芩湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/169_rokumotsuogonto.mp3" length="854179" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-169_rokumotsuogonto.mp3</guid><pubDate>Sun, 08 Nov 2026 01:00:00 +0000</pubDate>
+<itunes:episode>169</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:01:47</itunes:duration></item><item><title>170 170 三物黃芩湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/170_sanmotsuogonto.mp3" length="1535011" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-170_sanmotsuogonto.mp3</guid><pubDate>Sun, 08 Nov 2026 02:00:00 +0000</pubDate>
+<itunes:episode>170</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:03:12</itunes:duration></item><item><title>171 171 白頭翁湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/171_hakutooto.mp3" length="1635808" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-171_hakutooto.mp3</guid><pubDate>Sun, 08 Nov 2026 03:00:00 +0000</pubDate>
+<itunes:episode>171</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:03:24</itunes:duration></item><item><title>172 172 白頭翁加甘草阿膠湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/172_hakutookakanzoakyoto.mp3" length="1088239" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-172_hakutookakanzoakyoto.mp3</guid><pubDate>Sun, 08 Nov 2026 04:00:00 +0000</pubDate>
+<itunes:episode>172</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:16</itunes:duration></item><item><title>173 173 木防已湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/173_mokuboito.mp3" length="1978720" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-173_mokuboito.mp3</guid><pubDate>Sun, 08 Nov 2026 05:00:00 +0000</pubDate>
+<itunes:episode>173</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:04:07</itunes:duration></item><item><title>174 174 木防已去石膏加茯苓芒消湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/174_mokuboikyosekkokabukuryobososhoto.mp3" length="1908280" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-174_mokuboikyosekkokabukuryobososhoto.mp3</guid><pubDate>Sun, 08 Nov 2026 06:00:00 +0000</pubDate>
+<itunes:episode>174</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:03:58</itunes:duration></item><item><title>175 175 防已茯苓湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/175_boibukuryoto.mp3" length="1144291" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-175_boibukuryoto.mp3</guid><pubDate>Sun, 08 Nov 2026 07:00:00 +0000</pubDate>
+<itunes:episode>175</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:23</itunes:duration></item><item><title>176 176 防已黃耆湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/176_boiogito.mp3" length="1800547" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-176_boiogito.mp3</guid><pubDate>Sun, 08 Nov 2026 08:00:00 +0000</pubDate>
+<itunes:episode>176</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:03:45</itunes:duration></item><item><title>177 177 枳朮湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/177_kijutsuto.mp3" length="1855069" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-177_kijutsuto.mp3</guid><pubDate>Sun, 08 Nov 2026 09:00:00 +0000</pubDate>
+<itunes:episode>177</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:03:52</itunes:duration></item><item><title>178 178 枳實芍藥散</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/178_kijitsushakuyakusan.mp3" length="1009699" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-178_kijitsushakuyakusan.mp3</guid><pubDate>Sun, 08 Nov 2026 10:00:00 +0000</pubDate>
+<itunes:episode>178</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:06</itunes:duration></item><item><title>179 179 排膿散</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/179_hainosan.mp3" length="1728157" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-179_hainosan.mp3</guid><pubDate>Sun, 08 Nov 2026 11:00:00 +0000</pubDate>
+<itunes:episode>179</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:03:36</itunes:duration></item><item><title>180 180 桂枝生薑枳實湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/180_keishishokyokijitsuto.mp3" length="1317673" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-180_keishishokyokijitsuto.mp3</guid><pubDate>Sun, 08 Nov 2026 12:00:00 +0000</pubDate>
+<itunes:episode>180</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:45</itunes:duration></item><item><title>181 181 橘皮枳實生薑湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/181_kippikijitsushokyoto.mp3" length="1334185" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-181_kippikijitsushokyoto.mp3</guid><pubDate>Sun, 08 Nov 2026 13:00:00 +0000</pubDate>
+<itunes:episode>181</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:47</itunes:duration></item><item><title>182 182 橘皮湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/182_kippito.mp3" length="600349" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-182_kippito.mp3</guid><pubDate>Sun, 08 Nov 2026 14:00:00 +0000</pubDate>
+<itunes:episode>182</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:01:15</itunes:duration></item><item><title>183 183 橘皮竹茹湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/183_kippichikujoto.mp3" length="1119139" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-183_kippichikujoto.mp3</guid><pubDate>Sun, 08 Nov 2026 15:00:00 +0000</pubDate>
+<itunes:episode>183</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:20</itunes:duration></item><item><title>184 184 茯苓飲</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/184_bukuryoin.mp3" length="1432669" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-184_bukuryoin.mp3</guid><pubDate>Sun, 08 Nov 2026 16:00:00 +0000</pubDate>
+<itunes:episode>184</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:59</itunes:duration></item><item><title>185 185 桂枝茯苓丸</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/185_keishibukuryogan.mp3" length="2693539" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-185_keishibukuryogan.mp3</guid><pubDate>Sun, 08 Nov 2026 17:00:00 +0000</pubDate>
+<itunes:episode>185</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:05:37</itunes:duration></item><item><title>186 186 芎歸膠艾湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/186_kyukikyogaito.mp3" length="1764067" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-186_kyukikyogaito.mp3</guid><pubDate>Sun, 08 Nov 2026 18:00:00 +0000</pubDate>
+<itunes:episode>186</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:03:40</itunes:duration></item><item><title>187 187 赤石脂禹餘糧湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/187_shakusekishiuyoryoto.mp3" length="1487977" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-187_shakusekishiuyoryoto.mp3</guid><pubDate>Sun, 08 Nov 2026 19:00:00 +0000</pubDate>
+<itunes:episode>187</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:03:06</itunes:duration></item><item><title>188 188 桃花湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/188_tokato.mp3" length="1910557" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-188_tokato.mp3</guid><pubDate>Sun, 08 Nov 2026 20:00:00 +0000</pubDate>
+<itunes:episode>188</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:03:59</itunes:duration></item><item><title>189 189 蜜煎導</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/189_missendo.mp3" length="1564573" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-189_missendo.mp3</guid><pubDate>Sun, 08 Nov 2026 21:00:00 +0000</pubDate>
+<itunes:episode>189</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:03:16</itunes:duration></item><item><title>190 190 大猪膽汁</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/190_daichotanju.mp3" length="374560" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-190_daichotanju.mp3</guid><pubDate>Sun, 08 Nov 2026 22:00:00 +0000</pubDate>
+<itunes:episode>190</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:00:47</itunes:duration></item><item><title>191 191 麻子仁丸</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/191_mashiningan.mp3" length="1178080" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-191_mashiningan.mp3</guid><pubDate>Sun, 08 Nov 2026 23:00:00 +0000</pubDate>
+<itunes:episode>191</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:27</itunes:duration></item><item><title>192 192 己椒藶黃丸</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/192_boishokureiogan.mp3" length="1048099" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-192_boishokureiogan.mp3</guid><pubDate>Mon, 09 Nov 2026 00:00:00 +0000</pubDate>
+<itunes:episode>192</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:11</itunes:duration></item><item><title>193 193 葶藶大棗瀉肺湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/193_teirekitaisohaito.mp3" length="1559593" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-193_teirekitaisohaito.mp3</guid><pubDate>Mon, 09 Nov 2026 01:00:00 +0000</pubDate>
+<itunes:episode>193</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:03:15</itunes:duration></item><item><title>194 194 十棗湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/194_jissoto.mp3" length="2452765" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-194_jissoto.mp3</guid><pubDate>Mon, 09 Nov 2026 02:00:00 +0000</pubDate>
+<itunes:episode>194</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:05:06</itunes:duration></item><item><title>195 195 桔梗白散</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/195_kikyohakusan.mp3" length="2526304" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-195_kikyohakusan.mp3</guid><pubDate>Mon, 09 Nov 2026 03:00:00 +0000</pubDate>
+<itunes:episode>195</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:05:16</itunes:duration></item><item><title>196 196 走馬湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/196_sohato.mp3" length="1592989" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-196_sohato.mp3</guid><pubDate>Mon, 09 Nov 2026 04:00:00 +0000</pubDate>
+<itunes:episode>196</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:03:19</itunes:duration></item><item><title>197 197 備急圓</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/197_bikyuen.mp3" length="1215325" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-197_bikyuen.mp3</guid><pubDate>Mon, 09 Nov 2026 05:00:00 +0000</pubDate>
+<itunes:episode>197</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:32</itunes:duration></item><item><title>198 198 礬石湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/198_bansekito.mp3" length="930781" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-198_bansekito.mp3</guid><pubDate>Mon, 09 Nov 2026 06:00:00 +0000</pubDate>
+<itunes:episode>198</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:01:56</itunes:duration></item><item><title>199 199 消石礬石散</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/199_shosekibansekisan.mp3" length="1545187" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-199_shosekibansekisan.mp3</guid><pubDate>Mon, 09 Nov 2026 07:00:00 +0000</pubDate>
+<itunes:episode>199</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:03:13</itunes:duration></item><item><title>200 200 礬石丸</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/200_bansekigan.mp3" length="1037917" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-200_bansekigan.mp3</guid><pubDate>Mon, 09 Nov 2026 08:00:00 +0000</pubDate>
+<itunes:episode>200</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:10</itunes:duration></item><item><title>201 201 蛇床子散</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/201_jashoshisan.mp3" length="862048" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-201_jashoshisan.mp3</guid><pubDate>Mon, 09 Nov 2026 09:00:00 +0000</pubDate>
+<itunes:episode>201</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:01:48</itunes:duration></item><item><title>202 202 竹葉石膏湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/202_chikuyosekkoto.mp3" length="1606243" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-202_chikuyosekkoto.mp3</guid><pubDate>Mon, 09 Nov 2026 10:00:00 +0000</pubDate>
+<itunes:episode>202</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:03:21</itunes:duration></item><item><title>203 203 麥門冬湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/203_bakumondoto.mp3" length="1267360" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-203_bakumondoto.mp3</guid><pubDate>Mon, 09 Nov 2026 11:00:00 +0000</pubDate>
+<itunes:episode>203</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:38</itunes:duration></item><item><title>204 204 雄黃熏</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/204_yuokun.mp3" length="462493" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-204_yuokun.mp3</guid><pubDate>Mon, 09 Nov 2026 12:00:00 +0000</pubDate>
+<itunes:episode>204</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:00:58</itunes:duration></item><item><title>205 205 頭風摩散</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/205_zufumasan.mp3" length="375328" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-205_zufumasan.mp3</guid><pubDate>Mon, 09 Nov 2026 13:00:00 +0000</pubDate>
+<itunes:episode>205</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:00:47</itunes:duration></item><item><title>206 206 皂莢丸</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/206_sokyogan.mp3" length="843421" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-206_sokyogan.mp3</guid><pubDate>Mon, 09 Nov 2026 14:00:00 +0000</pubDate>
+<itunes:episode>206</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:01:45</itunes:duration></item><item><title>207 207 葦莖湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/207_iketsuto.mp3" length="1214173" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-207_iketsuto.mp3</guid><pubDate>Mon, 09 Nov 2026 15:00:00 +0000</pubDate>
+<itunes:episode>207</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:32</itunes:duration></item><item><title>208 208 當歸生薑羊肉湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/208_tokishokyoyonikuto.mp3" length="1428841" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-208_tokishokyoyonikuto.mp3</guid><pubDate>Mon, 09 Nov 2026 16:00:00 +0000</pubDate>
+<itunes:episode>208</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:58</itunes:duration></item><item><title>209 209 蒲灰散</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/209_bokaisan.mp3" length="745309" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-209_bokaisan.mp3</guid><pubDate>Mon, 09 Nov 2026 17:00:00 +0000</pubDate>
+<itunes:episode>209</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:01:33</itunes:duration></item><item><title>210 210 滑石白魚散</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/210_kassekihakugyosan.mp3" length="680995" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-210_kassekihakugyosan.mp3</guid><pubDate>Mon, 09 Nov 2026 18:00:00 +0000</pubDate>
+<itunes:episode>210</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:01:25</itunes:duration></item><item><title>211 211 猪膏髮煎</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/211_chokohatsusen.mp3" length="743776" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-211_chokohatsusen.mp3</guid><pubDate>Mon, 09 Nov 2026 19:00:00 +0000</pubDate>
+<itunes:episode>211</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:01:33</itunes:duration></item><item><title>212 212 栢葉湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/212_hakuyoto.mp3" length="1073437" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-212_hakuyoto.mp3</guid><pubDate>Mon, 09 Nov 2026 20:00:00 +0000</pubDate>
+<itunes:episode>212</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:14</itunes:duration></item><item><title>213 213 黃土湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/213_odoto.mp3" length="1327837" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-213_odoto.mp3</guid><pubDate>Mon, 09 Nov 2026 21:00:00 +0000</pubDate>
+<itunes:episode>213</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:46</itunes:duration></item><item><title>214 214 鷄屎白散</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/214_keishihakusan.mp3" length="781408" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-214_keishihakusan.mp3</guid><pubDate>Mon, 09 Nov 2026 22:00:00 +0000</pubDate>
+<itunes:episode>214</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:01:38</itunes:duration></item><item><title>215 215 蜘蛛散</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/215_chichusan.mp3" length="812701" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-215_chichusan.mp3</guid><pubDate>Mon, 09 Nov 2026 23:00:00 +0000</pubDate>
+<itunes:episode>215</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:01:42</itunes:duration></item><item><title>216 216 當歸芍藥散</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/216_tokishakuyakusan.mp3" length="1556899" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-216_tokishakuyakusan.mp3</guid><pubDate>Tue, 10 Nov 2026 00:00:00 +0000</pubDate>
+<itunes:episode>216</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:03:14</itunes:duration></item><item><title>217 217 歸母苦參丸</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/217_kibokujingan.mp3" length="606307" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-217_kibokujingan.mp3</guid><pubDate>Tue, 10 Nov 2026 01:00:00 +0000</pubDate>
+<itunes:episode>217</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:01:16</itunes:duration></item><item><title>218 218 狼牙湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/218_rogato.mp3" length="655261" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-218_rogato.mp3</guid><pubDate>Tue, 10 Nov 2026 02:00:00 +0000</pubDate>
+<itunes:episode>218</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:01:22</itunes:duration></item><item><title>219 219 小兒疳蟲蝕齒方</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/219_shonikanchushokushiho.mp3" length="431785" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-219_shonikanchushokushiho.mp3</guid><pubDate>Tue, 10 Nov 2026 03:00:00 +0000</pubDate>
+<itunes:episode>219</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:00:54</itunes:duration></item><item><title>220 220 炙甘草湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/220_shakanzoto.mp3" length="2081056" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-220_shakanzoto.mp3</guid><pubDate>Tue, 10 Nov 2026 04:00:00 +0000</pubDate>
+<itunes:episode>220</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:04:20</itunes:duration></item><item><title>221 221 當歸四逆湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/221_tokishigyakuto.mp3" length="1315747" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-221_tokishigyakuto.mp3</guid><pubDate>Tue, 10 Nov 2026 05:00:00 +0000</pubDate>
+<itunes:episode>221</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:44</itunes:duration></item><item><title>222 222 當歸四逆加吳茱萸生薑湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/222_tokishigyakukagoshuyushokyoto.mp3" length="1257013" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-222_tokishigyakukagoshuyushokyoto.mp3</guid><pubDate>Tue, 10 Nov 2026 06:00:00 +0000</pubDate>
+<itunes:episode>222</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:37</itunes:duration></item><item><title>223 223 麻黃連軺赤小豆湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/223_maorenshosekishozuto.mp3" length="1150828" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-223_maorenshosekishozuto.mp3</guid><pubDate>Tue, 10 Nov 2026 07:00:00 +0000</pubDate>
+<itunes:episode>223</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:24</itunes:duration></item><item><title>224 224 四逆散</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/224_shigyakusan.mp3" length="1519453" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-224_shigyakusan.mp3</guid><pubDate>Tue, 10 Nov 2026 08:00:00 +0000</pubDate>
+<itunes:episode>224</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:03:10</itunes:duration></item><item><title>225 225 射干麻黃湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/225_yakanmaoto.mp3" length="1388131" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-225_yakanmaoto.mp3</guid><pubDate>Tue, 10 Nov 2026 09:00:00 +0000</pubDate>
+<itunes:episode>225</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:53</itunes:duration></item><item><title>226 226 桂枝芍藥知母湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/226_keishishakuyakuchimoto.mp3" length="1387945" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-226_keishishakuyakuchimoto.mp3</guid><pubDate>Tue, 10 Nov 2026 10:00:00 +0000</pubDate>
+<itunes:episode>226</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:53</itunes:duration></item><item><title>227 227 當歸建中湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/227_tokikenchuto.mp3" length="1222243" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-227_tokikenchuto.mp3</guid><pubDate>Tue, 10 Nov 2026 11:00:00 +0000</pubDate>
+<itunes:episode>227</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:33</itunes:duration></item><item><title>228 228 續命湯</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/228_zokumeito.mp3" length="1343197" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-228_zokumeito.mp3</guid><pubDate>Tue, 10 Nov 2026 12:00:00 +0000</pubDate>
+<itunes:episode>228</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:02:48</itunes:duration></item><item><title>229 229 烏梅圓</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/229_ubaien.mp3" length="1743517" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-229_ubaien.mp3</guid><pubDate>Tue, 10 Nov 2026 13:00:00 +0000</pubDate>
+<itunes:episode>229</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:03:38</itunes:duration></item><item><title>230 230 大黃䗪蟲丸</title>
+<enclosure url="https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/230_daioshachugan.mp3" length="1704931" type="audio/mpeg"/>
+<guid isPermaLink="false">ruijuho-230_daioshachugan.mp3</guid><pubDate>Tue, 10 Nov 2026 14:00:00 +0000</pubDate>
+<itunes:episode>230</itunes:episode><itunes:episodeType>full</itunes:episodeType>
+<itunes:duration>0:03:33</itunes:duration></item>
+</channel></rss>

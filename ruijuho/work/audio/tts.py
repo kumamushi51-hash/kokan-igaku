@@ -159,10 +159,11 @@ h1{{font-size:1.4rem;margin:.2em 0}} p{{color:var(--sub);font-size:.9rem;line-he
 .rate button.on{{border-color:var(--acc);color:var(--acc)}}
 ul{{list-style:none;padding:0;margin:0}} li{{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:10px 0}}
 .t{{display:flex;justify-content:space-between;gap:8px;margin-bottom:8px;font-size:1.05rem}} .t span{{color:var(--sub);font-size:.85rem;white-space:nowrap}}
-audio{{width:100%}}
+audio{{width:100%}} .pod code{{word-break:break-all;user-select:all}}
 </style></head><body><main>
 <h1>類聚方広義 リスニング</h1>
 <p>条文は書き下し文（男性の声）、現代語訳と尾台榕堂の頭注は聞きやすく整えた現代語訳（女性の声）です。1曲が終わると次へ進みます。</p>
+<p class="pod">車（CarPlay）などで続けて聞くには、iPhone の Podcast アプリでこの番組をフォローします：ライブラリ →（右上の …）→「URLで番組をフォロー」に次のURLを入れる。<br><code>https://kumamushi51-hash.github.io/kokan-igaku/ruijuho/audio/feed.xml</code></p>
 <div class="rate" id="rate">{''.join(f'<button data-r="{r}">{r}倍</button>' for r in ("1.0","1.25","1.5","2.0"))}</div>
 <ul>{''.join(rows)}</ul>
 </main><script>
@@ -174,6 +175,9 @@ bs.forEach(b=>b.onclick=()=>setR(parseFloat(b.dataset.r)));setR(r);
 as.forEach((a,i)=>{{a.onplay=()=>{{a.playbackRate=r;as.forEach(o=>o!==a&&o.pause())}};a.onended=()=>{{if(as[i+1]){{as[i+1].play()}}}}}});
 </script></body></html>"""
     (OUT / "index.html").write_text(page, encoding="utf-8")
+    # ポッドキャスト用フィード（CarPlay で連続再生するため。tools/podcast_feed.py）
+    import subprocess
+    subprocess.run([sys.executable, str(ROOT / "tools" / "podcast_feed.py"), "ruijuho"], check=False)
 
 
 async def main():

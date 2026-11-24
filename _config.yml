@@ -7,3 +7,4 @@ exclude:
   - kensaku/work
   - CLAUDE.md
   - README.md
+  - tools
