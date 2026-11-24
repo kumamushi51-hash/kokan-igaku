@@ -41,6 +41,13 @@
 12. tags には現代語の症状を入れ、必要なら app.src.html の SYN に言い換えを追加する（広すぎる語は避ける）
 13. 既存の書式・id の付け方・related のつなぎ方は、直近の data ファイルに合わせる
 
+## 試運用サイト（Cloudflare Pages ＋ Cloudflare Access）
+- 利用者の指定で、4アプリは許可した仲間（50人以内）だけが使える試運用サイトで公開する。GitHub のリポジトリは非公開にし、GitHub Pages は使わない（移行後）
+- .github/workflows/cloudflare_deploy.yml が3時間ごとに、変更があれば tools/build_site.py で _site/ を組み立てて Cloudflare Pages に上げる。急ぐときは `gh workflow run cloudflare_deploy.yml`
+- build_site.py：公開物だけを集め、各アプリに利用規約の同意画面を差し込み、旧URL（github.io）を SITE_URL に書き換える。音声（audio/, ruijuho/audio/, fukusho/audio/）は推測できないパス /<AUDIO_PATH>/ に置く（Access で Bypass。Apple Podcasts・CarPlay 用）
+- 設定値はリポジトリの Actions の Variables（CF_PAGES_PROJECT, SITE_URL, AUDIO_PATH）と Secrets（CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID）。AUDIO_PATH はファイルに書かない
+- 各アプリの sw.js は、ログインへの転送や失敗の応答をオフライン用に保存しない・mp3 を保存しない・自分のページ以外のナビゲーションは素通しにする（テンプレートも同じ）。build.py を直すときもこの動きを保つ
+
 ## git
 - コミットの末尾に次の2行を付ける
   Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
