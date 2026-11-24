@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>漢方 統合検索</title>
+<!--__PWA_HEAD__-->
+<style>
+:root{--bg:#f2f0eb;--card:#fff;--ink:#22303a;--sub:#5f6b73;--line:#d9d5cc;--acc:#2f5f6f;--acc2:#e7f0f2;
+  --R:#8a5a2b;--K:#2f5f6f;--F:#4f6f3a;--pos:#2f6f4f;--neg:#9a9a9a;--warn:#a2412b;--mark:#fff1b8;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 -apple-system,"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif}
+[hidden]{display:none!important}
+header{position:sticky;top:0;z-index:10;background:var(--acc);color:#fff;padding:8px 12px 0}
+header h1{margin:0;font-size:17px;font-weight:600;letter-spacing:.05em}
+header .sub{font-size:11px;opacity:.8}
+nav{display:flex;gap:2px;margin-top:6px;overflow-x:auto}
+nav button{flex:1;min-width:64px;border:0;background:transparent;color:#d8e6ea;padding:8px 4px;font-size:14px;border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap}
+nav button.on{color:#fff;border-bottom-color:#fff;font-weight:600}
+nav .cnt{display:inline-block;min-width:18px;padding:0 5px;border-radius:9px;background:#fff;color:var(--acc);font-size:11px;margin-left:3px}
+main{max-width:980px;margin:0 auto;padding:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;margin-bottom:12px}
+h2{font-size:15px;margin:0 0 8px;color:var(--acc)}
+h3{font-size:14px;margin:10px 0 6px}
+.note{font-size:12px;color:var(--sub)}
+textarea{width:100%;min-height:220px;font:15px/1.7 inherit;padding:10px;border:1px solid var(--line);border-radius:8px;resize:vertical}
+.btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.btn{border:1px solid var(--acc);background:var(--acc);color:#fff;border-radius:8px;padding:8px 14px;font-size:14px;cursor:pointer}
+.btn.ghost{background:#fff;color:var(--acc)}
+.btn.small{padding:4px 10px;font-size:13px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid var(--line);background:#fff;border-radius:16px;padding:4px 10px;font-size:13px;cursor:pointer;user-select:none;line-height:1.4}
+.chip.on{background:var(--acc);border-color:var(--acc);color:#fff}
+.chip .x{margin-left:6px;opacity:.7}
+.chip .st{margin-left:6px;color:#ffd75e;cursor:pointer}
+.chip .sd{font-size:11px;background:#fff3;border-radius:6px;padding:0 4px;margin-left:4px}
+.chip.src-t{box-shadow:inset 3px 0 0 #e0b44a}
+.cat{border-top:1px solid var(--line);padding:8px 0}
+.cat summary{cursor:pointer;font-weight:600;font-size:14px}
+.cat summary .n{color:var(--acc);font-weight:400;font-size:12px;margin-left:6px}
+.cat .chips{margin-top:8px}
+.marked{white-space:pre-wrap;line-height:1.9;font-size:14px;border:1px solid var(--line);border-radius:8px;padding:10px;background:#fcfbf8;max-height:420px;overflow:auto}
+.marked mark{background:var(--mark);border-radius:3px;padding:0 1px;cursor:pointer}
+.marked mark.neg,.marked mark.gone{background:#eee;color:#888;text-decoration:line-through}
+.marked mark.better{background:#dcebf7}
+.marked mark.rx{background:#f3dfe6}
+.marked .vh{display:inline-block;background:var(--acc);color:#fff;border-radius:4px;font-size:11px;padding:0 5px;margin-right:4px}
+.marked .ctx{color:#999}
+.visits{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}
+.legend{font-size:12px;color:var(--sub);display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+.legend i{font-style:normal;padding:0 4px;border-radius:3px}
+.res{border:1px solid var(--line);border-radius:10px;background:#fff;margin-bottom:8px}
+.res .top{display:flex;align-items:center;gap:8px;padding:10px;cursor:pointer}
+.res .rank{width:26px;text-align:center;font-weight:700;color:var(--acc)}
+.res .nm{font-weight:600;font-size:16px}
+.res .yomi{font-size:11px;color:var(--sub)}
+.res .bar{height:6px;background:var(--acc2);border-radius:3px;overflow:hidden;margin-top:4px}
+.res .bar i{display:block;height:100%;background:var(--acc)}
+.res .meta{font-size:12px;color:var(--sub)}
+.res .body{border-top:1px solid var(--line);padding:10px}
+.bk{display:inline-block;font-size:11px;border-radius:4px;padding:0 5px;color:#fff;margin-right:3px}
+.bk.R{background:var(--R)}.bk.K{background:var(--K)}.bk.F{background:var(--F)}
+.bk.off{background:#ccc}
+.mt{font-size:13px}
+.mt .chip{cursor:default}
+.mt .chip.m3{background:#2f5f6f;color:#fff;border-color:#2f5f6f}
+.mt .chip.m2{background:#5f8f9f;color:#fff;border-color:#5f8f9f}
+.mt .chip.m1{background:#e7f0f2;border-color:#bcd}
+.ev{font-size:13px;margin:4px 0 4px 10px;border-left:3px solid var(--line);padding-left:8px}
+.ev .k{color:var(--sub);font-size:11px}
+.warn{color:var(--warn);font-size:13px}
+.links a{display:inline-block;margin:4px 6px 0 0;font-size:13px;color:var(--acc);border:1px solid var(--acc);border-radius:6px;padding:2px 8px;text-decoration:none}
+.fig{max-width:140px;border:1px solid var(--line);border-radius:6px;margin:6px 6px 0 0}
+.cmp{overflow:auto}
+.cmp table{border-collapse:collapse;font-size:13px;min-width:100%}
+.cmp th,.cmp td{border:1px solid var(--line);padding:4px 6px;text-align:center;vertical-align:top}
+.cmp td.l,.cmp th.l{text-align:left;white-space:nowrap}
+.cmp tr.in td.l{background:var(--mark);font-weight:600}
+.cmp td.y{color:var(--acc);font-weight:700}
+.sb{display:grid;grid-template-columns:auto 1fr;gap:4px 8px;font-size:13px;align-items:center}
+.sb .b{height:8px;background:var(--acc2);border-radius:4px;overflow:hidden}
+.sb .b i{display:block;height:100%;background:var(--acc)}
+.bal{position:relative;height:10px;background:linear-gradient(90deg,#cfe0ea,#f3f3f3,#f2d6cf);border-radius:5px}
+.bal i{position:absolute;top:-3px;width:4px;height:16px;background:var(--ink);border-radius:2px}
+#abdsvg text{font-size:11px;cursor:pointer;user-select:none}
+#abdsvg .mk rect{fill:#fff;stroke:#9aa;cursor:pointer}
+#abdsvg .mk.on rect{fill:var(--acc);stroke:var(--acc)}
+#abdsvg .mk.on text{fill:#fff}
+.search{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:8px;font-size:15px}
+.sugg{margin-top:6px}
+.two{display:grid;grid-template-columns:1fr;gap:12px}
+@media(min-width:860px){.two{grid-template-columns:1fr 1fr}}
+.kbd{font-size:12px;color:var(--sub)}
+.tag{display:inline-block;font-size:11px;border:1px solid var(--line);border-radius:4px;padding:0 4px;margin-left:4px;color:var(--sub)}
+.empty{color:var(--sub);text-align:center;padding:30px 10px}
+</style>
+</head>
+<body>
+<header>
+  <h1>漢方 統合検索</h1>
+  <div class="sub">腹証奇覧・類聚方広義・皇漢医学から、所見に合う方剤を探す（参考用）</div>
+  <nav>
+    <button data-tab="case" class="on">症例文</button>
+    <button data-tab="find">所見<span class="cnt" id="ncnt">0</span></button>
+    <button data-tab="res">結果</button>
+    <button data-tab="form">方剤</button>
+    <button data-tab="help">使い方</button>
+  </nav>
+</header>
+<main>
+
+<section id="t-case">
+  <div class="card">
+    <h2>症例文から所見を拾う</h2>
+    <textarea id="caseText" placeholder="問診・診察の記載や経過をそのまま貼り付けてください。&#10;例）主訴：めまい。疲れやすく手足が冷える。口渇なし。脈沈細。舌淡白、歯痕あり。腹力3/5、右胸脇苦満、臍上悸（＋）。&#10;2週後：めまい軽減。"></textarea>
+    <div class="btns">
+      <button class="btn" id="bParse">所見を拾う</button>
+      <button class="btn ghost" id="bSample">例文を入れる</button>
+      <button class="btn ghost" id="bClear">消去</button>
+    </div>
+    <p class="note">文章は端末の中だけで処理し、保存も送信もしません。氏名・ID は書かないでください。</p>
+  </div>
+  <div class="card" id="parseOut" hidden>
+    <h2>拾った所見</h2>
+    <div class="note">どの時点の所見で検索するか選んでください（それまでの記載を引き継ぎ、「なし」「消失」とあれば外します）。</div>
+    <div class="visits" id="visits"></div>
+    <div class="marked" id="marked"></div>
+    <div class="legend"><span><i style="background:var(--mark)">あり</i></span><span><i style="background:#eee;text-decoration:line-through">なし・消失</i></span><span><i style="background:#dcebf7">改善</i></span><span><i style="background:#f3dfe6">処方名</i></span><span class="ctx">灰色の文＝既往歴・家族歴など（検索には使わない）</span></div>
+    <div id="rxMention" class="note" style="margin-top:6px"></div>
+    <div class="btns"><button class="btn" id="bUse">この時点の所見で確認へ →</button></div>
+  </div>
+</section>
+
+<section id="t-find" hidden>
+  <div class="card">
+    <h2>入力された所見</h2>
+    <div class="chips" id="selChips"></div>
+    <div class="btns">
+      <button class="btn" id="bSearch">この所見で検索 →</button>
+      <button class="btn ghost small" id="bReset">すべて外す</button>
+    </div>
+    <p class="note">★＝主訴（点数を2倍にします。「主訴：」の行から拾った所見には最初から付きます。☆を押すと切り替え）。黄色の線＝症例文から拾った所見。腹証は図またはボタンで左右を選べます（押すたびに あり→右→左→両側→外す）。</p>
+  </div>
+  <div class="two">
+    <div>
+      <div class="card">
+        <h2>所見をさがして追加</h2>
+        <input class="search" id="fq" placeholder="例：めまい、胸脇苦満、脈沈、口渇">
+        <div class="chips sugg" id="fsugg"></div>
+      </div>
+      <div class="card">
+        <h2>腹証</h2>
+        <div style="text-align:center"><svg id="abdsvg" viewBox="0 0 300 330" width="100%" style="max-width:380px"></svg></div>
+        <div class="note" style="text-align:center">図は患者さんを正面から見た向き（図の左＝患者さんの右）</div>
+        <div class="chips" id="abdChips" style="margin-top:8px"></div>
+      </div>
+      <div class="card" id="patho">
+        <h2>病態の傾向（参考）</h2>
+        <div id="pathoBody" class="note">所見を入れると表示します。</div>
+      </div>
+    </div>
+    <div class="card" id="catList"></div>
+  </div>
+</section>
+
+<section id="t-res" hidden>
+  <div class="card">
+    <h2>所見に合う方剤</h2>
+    <div class="note" id="resNote"></div>
+    <div class="btns" id="cmpBar" hidden><button class="btn small" id="bCmp">選んだ方剤を比べる</button><span class="note" id="cmpN"></span></div>
+  </div>
+  <div class="card cmp" id="cmpBox" hidden></div>
+  <div id="resList"></div>
+</section>
+
+<section id="t-form" hidden>
+  <div class="card">
+    <h2>方剤から引く</h2>
+    <input class="search" id="formQ" placeholder="方剤名・よみ（例：小柴胡、かっこん）">
+    <div class="chips sugg" id="formSugg"></div>
+  </div>
+  <div id="formOne"></div>
+</section>
+
+<section id="t-help" hidden>
+  <div class="card">
+    <h2>使い方</h2>
+    <ol>
+      <li><b>症例文</b>：問診・診察の記載や経過を貼り付けて「所見を拾う」。受診ごとに区切られるので、検索に使う時点を選びます。</li>
+      <li><b>所見</b>：拾った所見を確かめ、足りないものを追加・誤りを外します。項目ごとにボタンで入れることもできます。</li>
+      <li><b>結果</b>：一致した所見から方剤を順位づけします。方剤を開くと、どの本のどの記述に一致したかと、その方剤で<b>まだ確かめていない特徴的な所見</b>（鑑別のための追加問診・診察の手がかり）が出ます。各アプリの該当ページへ飛べます。</li>
+    </ol>
+    <h3>点数のつけ方</h3>
+    <ul class="note">
+      <li>一致した所見ごとに「その所見が方剤を絞り込む力」×「分類の重み」×「載っている本の数」を足します。多くの方剤に共通する所見（動悸・嘔吐など）は軽く、少数の方剤に特有の所見（小腹急結など）は重くなります。</li>
+      <li>分類の重み：腹証 1.5、脈 1.3、病名・状況 0.6、証（術者の判断）0.8、そのほか 1.0。本の数：2冊なら ×1.3、3冊なら ×1.6。</li>
+      <li>腹証の左右：入力と本の記載が同じ側なら ×1.2、反対側だけなら ×0.6。</li>
+      <li>★（主訴）を付けた所見は ×2。脈が条文の書き下しにしか出てこない場合は ×0.6（条件の違う条文の脈も拾うため）。</li>
+      <li>「薄白苔」「淡紅舌」など正常の表現は所見として拾いません。</li>
+      <li>記載の多い方剤が何にでも当たらないよう、方剤ごとの所見の数で少し割り引きます。</li>
+      <li>入力した所見が方剤の禁忌に当たると警告を出し、点数を下げます。</li>
+    </ul>
+    <h3>注意</h3>
+    <ul class="note">
+      <li>古典の記載にどれだけ一致するかを示す参考であり、診断や処方を決めるものではありません。必ず根拠の原文を読んで判断してください。</li>
+      <li>舌の所見は3冊にほとんど書かれていないため、点数にはあまり効きません。脈は条文の書き下しから拾っています。</li>
+      <li>皇漢医学は作業中のため、未収録の方剤があります。方剤を追加すると次の組み立てで自動的に取り込まれます。</li>
+      <li>湯本求真は腹証奇覧の影響を受けているため、両書の腹証が同じ系統の記載であることがあります。</li>
+      <li>症例文の読み取りは辞書による機械的な照合です。遠回しな表現や文をまたぐ否定は取りこぼすので、所見の画面で必ず確かめてください。</li>
+    </ul>
+    <p class="note">版：<span id="ver"></span>　方剤 <span id="nForm"></span>　所見辞書 <span id="nFind"></span> 項目</p>
+  </div>
+</section>
+</main>
+
+<script>
+/*__DATA__*/
+</script>
+<script>
+/*__EXTRACT__*/
+</script>
+<script>
+(function(){
+'use strict';
+const D=window.KS_DATA, X=window.KX;
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const FD={}; D.findings.forEach(f=>FD[f.id]=f);
+const CAT={}; D.cats.forEach(([k,l])=>CAT[k]=l);
+const M=X.makeMatcher(D.findings);
+const BASE=/github\.io$/.test(location.hostname)?'../':'https://kumamushi51-hash.github.io/kokan-igaku/';
+const BOOKURL={R:BASE+'ruijuho/',K:BASE,F:BASE+'fukusho/'};
+const BN={R:'類聚方広義',K:'皇漢医学',F:'腹証奇覧'}, BS={R:'類',K:'皇',F:'腹'};
+const LATERAL=new Set(['ab_kyokyo','ab_fukuchokukin','ab_saiho_atsutsu','ab_saihoki']);
+
+// ---- 状態（端末の中だけ。保存しない）
+const S={sel:{}, an:null, visit:0, cmp:new Set(), open:null};
+// sel[fid]={side:'', src:'t'|'m'}
+
+// ---- タブ
+function tab(name){
+  $$('nav button').forEach(b=>b.classList.toggle('on',b.dataset.tab===name));
+  $$('main>section').forEach(s=>s.hidden=s.id!=='t-'+name);
+  if(name==='res') renderResults();
+  if(name==='find') renderFind();
+  window.scrollTo(0,0);
+}
+$$('nav button').forEach(b=>b.onclick=()=>tab(b.dataset.tab));
+
+// ---- 症例文
+const SAMPLE=`（架空の例）52歳女性。
+主訴：めまい、頭痛
+現病歴：3年前から頭痛。1年前から立ちくらみとめまいが出現した。
+既往歴：高血圧。家族歴：母が糖尿病。
+現症：疲れやすく、手足の冷えあり。口渇なし。汗はかきやすい。食欲は普通。便秘傾向で3日に1回。夜間尿2回。寝つきが悪い。
+脈：沈細弱。舌：淡白、歯痕あり、薄白苔。
+腹診：腹力3/5、右胸脇苦満軽度、心下痞硬なし、心窩部振水音あり、臍上悸（＋）、両側臍傍圧痛。
+処方：苓桂朮甘湯エキス 7.5g/日
+2週後：めまいは軽減。頭痛は消失。冷えは変わらず。
+4週後：めまい消失。便秘あり。`;
+$('#bSample').onclick=()=>{$('#caseText').value=SAMPLE;};
+$('#bClear').onclick=()=>{$('#caseText').value='';$('#parseOut').hidden=true;S.an=null;};
+$('#caseText').oninput=()=>{window.KS_DIRTY=true;};
+$('#bParse').onclick=()=>{
+  const t=$('#caseText').value; if(!t.trim()) return;
+  S.an=X.analyzeCase(t,M,D.rxNames); S.visit=S.an.visits.length-1;
+  window.KS_DIRTY=true; renderParse();
+};
+function renderParse(){
+  const an=S.an; $('#parseOut').hidden=false;
+  $('#visits').innerHTML=an.visits.map((v,i)=>`<span class="chip ${i===S.visit?'on':''}" data-v="${i}">${esc(v.label)}</span>`).join('');
+  $$('#visits .chip').forEach(c=>c.onclick=()=>{S.visit=+c.dataset.v;renderParse();});
+  // 文に印をつける
+  const t=an.text; const marks=[];
+  an.visits.forEach((v,i)=>{ v.spans.forEach(sp=>marks.push({s:sp.s,e:sp.e,cls:sp.state==='pos'||sp.state==='worse'?'':sp.state,title:FD[sp.fid].label+(sp.side?'（'+sp.side+'）':'')+({neg:'：なし',gone:'：消失',better:'：改善',worse:'：増悪'}[sp.state]||'')})); v.rx.forEach(r=>marks.push({s:r.s,e:r.e,cls:'rx',title:'処方名'})); });
+  const ctxR=an.ctx.map(c=>[c.s,c.e]);
+  const vStart={}; an.visits.forEach((v,i)=>{ if(v.sents.length) vStart[v.sents[0][0]]=i; });
+  // 同じ範囲（脈の連続表記など）はまとめる
+  const byPos={}; marks.forEach(m=>{const k=m.s+':'+m.e; if(byPos[k]){byPos[k].title+='／'+m.title;} else byPos[k]=m;});
+  const ms=Object.values(byPos).sort((a,b)=>a.s-b.s||b.e-a.e);
+  let out='', pos=0;
+  const inCtx=i=>ctxR.some(([s,e])=>i>=s&&i<e);
+  const plain=(a,b)=>{ let o=''; for(let i=a;i<b;){ let j=i+1; const c=inCtx(i); while(j<b && inCtx(j)===c && vStart[j]===undefined) j++; if(vStart[i]!==undefined && i>0) o+=`<span class="vh">${esc(an.visits[vStart[i]].label)}</span>`; o+=c?`<span class="ctx">${esc(t.slice(i,j))}</span>`:esc(t.slice(i,j)); i=j; } return o; };
+  for(const m of ms){ if(m.s<pos) continue; out+=plain(pos,m.s); out+=`<mark class="${m.cls}" title="${esc(m.title)}">${esc(t.slice(m.s,m.e))}</mark>`; pos=m.e; }
+  out+=plain(pos,t.length);
+  $('#marked').innerHTML=out;
+  $$('#marked mark').forEach(m=>m.onclick=()=>alert(m.title));
+  const rx=[]; an.visits.forEach(v=>v.rx.forEach(r=>rx.push(v.label+'：'+r.name)));
+  $('#rxMention').textContent=rx.length?'文中の処方：'+rx.join('、'):'';
+}
+$('#bUse').onclick=()=>{
+  const st=X.stateAt(S.an,S.visit);
+  // 症例文から拾ったものを入れ替え、手で入れたものは残す
+  for(const k of Object.keys(S.sel)) if(S.sel[k].src==='t') delete S.sel[k];
+  for(const o of Object.values(st)) S.sel[o.fid]={side:o.side||'',src:'t',state:o.state,chief:o.chief};
+  tab('find');
+};
+
+// ---- 所見の画面
+function selCount(){ return Object.keys(S.sel).length; }
+function updCnt(){ $('#ncnt').textContent=selCount(); }
+function toggle(fid, side){
+  const cur=S.sel[fid];
+  if(side!==undefined){ // 図から
+    if(!cur) S.sel[fid]={side,src:'m'};
+    else if(!cur.side||cur.side===side) { if(cur.side===side) delete S.sel[fid]; else cur.side=side; }
+    else if(cur.side==='両') cur.side=side==='右'?'左':'右';
+    else cur.side='両';
+  } else if(LATERAL.has(fid)){
+    const seq=['','右','左','両'];
+    if(!cur) S.sel[fid]={side:'',src:'m'};
+    else { const i=seq.indexOf(cur.side); if(i===3) delete S.sel[fid]; else cur.side=seq[i+1]; }
+  } else { if(cur) delete S.sel[fid]; else S.sel[fid]={side:'',src:'m'}; }
+  // 腹力は1つだけ
+  if(fid.startsWith('ab_fukuryoku') && S.sel[fid]) for(const k of ['ab_fukuryoku_jitsu','ab_fukuryoku_chu','ab_fukuryoku_kyo']) if(k!==fid) delete S.sel[k];
+  window.KS_DIRTY=true; renderFind();
+}
+function chipHTML(fid){
+  const o=S.sel[fid]; const f=FD[fid];
+  return `<span class="chip ${o?'on':''}" data-f="${fid}">${esc(f.label)}${o&&o.side?`<span class="sd">${o.side}</span>`:''}</span>`;
+}
+function renderFind(){
+  updCnt();
+  const sel=Object.entries(S.sel);
+  $('#selChips').innerHTML=sel.length?sel.sort((a,b)=>D.cats.findIndex(c=>c[0]===FD[a[0]].cat)-D.cats.findIndex(c=>c[0]===FD[b[0]].cat)).map(([fid,o])=>`<span class="chip on ${o.src==='t'?'src-t':''}" data-f="${fid}" title="${esc(CAT[FD[fid].cat])}">${esc(FD[fid].label)}${o.side?`<span class="sd">${o.side}</span>`:''}${o.state==='better'?'<span class="sd">改善</span>':''}<span class="st" data-star="${fid}">${o.chief?'★':'☆'}</span><span class="x">×</span></span>`).join(''):'<span class="note">まだありません。症例文から拾うか、下のボタンで入れてください。</span>';
+  $$('#selChips .chip').forEach(c=>c.onclick=(e)=>{ const st=e.target.closest('[data-star]'); if(st){ const o=S.sel[c.dataset.f]; o.chief=!o.chief; renderFind(); return; } delete S.sel[c.dataset.f];renderFind();});
+  // 分類ごと
+  $('#catList').innerHTML='<h2>項目ごとに入れる</h2>'+D.cats.filter(([k])=>k!=='abd').map(([k,l])=>{
+    const fs=D.findings.filter(f=>f.cat===k); const n=fs.filter(f=>S.sel[f.id]).length;
+    return `<details class="cat" ${n||['kan','ase','mouth','gi','bowel','urine','psy','pulse','tongue'].includes(k)?'open':''}><summary>${esc(l)}<span class="n">${n?n+'件':''}</span></summary><div class="chips">${fs.map(f=>chipHTML(f.id)).join('')}</div></details>`;
+  }).join('');
+  $$('#catList .chip').forEach(c=>c.onclick=()=>toggle(c.dataset.f));
+  $('#abdChips').innerHTML=D.findings.filter(f=>f.cat==='abd').map(f=>chipHTML(f.id)).join('');
+  $$('#abdChips .chip').forEach(c=>c.onclick=()=>toggle(c.dataset.f));
+  drawAbd(); renderPatho();
+}
+// 所見をさがす
+$('#fq').oninput=()=>{
+  const q=X.norm($('#fq').value.trim()); if(!q){$('#fsugg').innerHTML='';return;}
+  const hit=D.findings.filter(f=>f.syn.some(s=>X.norm(s).includes(q))||f.label.includes(q)).slice(0,24);
+  // 文として入れた場合も拾う
+  const sp=X.extractSpans($('#fq').value,M).map(s=>s.fid);
+  const ids=[...new Set([...sp,...hit.map(f=>f.id)])];
+  $('#fsugg').innerHTML=ids.map(id=>chipHTML(id)+`<span class="tag">${esc(CAT[FD[id].cat])}</span>`).join('')||'<span class="note">見つかりません</span>';
+  $$('#fsugg .chip').forEach(c=>c.onclick=()=>{toggle(c.dataset.f);$('#fq').oninput();});
+};
+// 腹部の図（図の左＝患者の右）
+const ABD=[
+  ['ab_kyokyo','右',58,70,'胸脇苦満'],['ab_kyokyo','左',178,70,'胸脇苦満'],
+  ['ab_shinkahiko','',118,62,'心下痞硬'],['ab_shinkaki','',124,90,'心下悸'],['ab_shinsuion','',168,104,'振水音'],
+  ['ab_fukuchokukin','右',70,140,'腹直筋'],['ab_fukuchokukin','左',182,140,'腹直筋'],
+  ['ab_saijoki','',124,128,'臍上悸'],['ab_saihoki','右',72,172,'臍傍悸'],['ab_saihoki','左',186,172,'臍傍悸'],
+  ['ab_saiho_atsutsu','右',78,204,'臍傍圧痛'],['ab_saiho_atsutsu','左',176,204,'臍傍圧痛'],
+  ['ab_saikaki','',124,208,'臍下悸'],
+  ['ab_kaimo','',40,238,'回盲部'],['ab_sjo','',200,232,'S状結腸'],['ab_shofukukyuketsu','',196,262,'小腹急結'],
+  ['ab_shofukufujin','',118,244,'小腹不仁'],['ab_shofukukoman','',118,270,'小腹硬満'],['ab_shofukukokyu','',118,296,'小腹拘急']
+];
+function drawAbd(){
+  let s=`<path d="M70 20 Q150 4 230 20 L250 70 Q262 150 250 230 Q236 300 150 318 Q64 300 50 230 Q38 150 50 70 Z" fill="#fbf7f0" stroke="#bbb"/>
+  <path d="M70 34 Q150 70 230 34" fill="none" stroke="#ccc"/>
+  <circle cx="150" cy="168" r="6" fill="none" stroke="#999"/>
+  <text x="18" y="18" fill="#888">患者の右</text><text x="232" y="18" fill="#888">患者の左</text>`;
+  for(const [fid,side,x,y,lab] of ABD){
+    const o=S.sel[fid]; const on=o && (!side || !o.side || o.side===side || o.side==='両');
+    const w=lab.length*11+10;
+    s+=`<g class="mk ${on?'on':''}" data-f="${fid}" data-s="${side}"><rect x="${x}" y="${y}" width="${w}" height="18" rx="9"/><text x="${x+5}" y="${y+13}">${lab}</text></g>`;
+  }
+  $('#abdsvg').innerHTML=s;
+  $$('#abdsvg .mk').forEach(g=>g.onclick=()=>{ const side=g.dataset.s; toggle(g.dataset.f, side?side:undefined); });
+}
+// 病態の傾向（入力した所見の手がかりを数えるだけの参考）
+function renderPatho(){
+  const c={}; let n=0;
+  for(const fid in S.sel){ const f=FD[fid]; n++; for(const a of f.attr) c[a]=(c[a]||0)+1; }
+  if(!n){ $('#pathoBody').innerHTML='所見を入れると表示します。'; return; }
+  const bal=(a,b,la,lb)=>{ const x=(c[a]||0), y=(c[b]||0); const p=x+y?50+50*(y-x)/(x+y):50; return `<div style="display:flex;gap:8px;align-items:center;margin:6px 0"><span style="width:2.5em">${la}</span><div class="bal" style="flex:1"><i style="left:calc(${p}% - 2px)"></i></div><span style="width:2.5em;text-align:right">${lb}</span><span class="kbd">${x}:${y}</span></div>`; };
+  const kk=['気虚','気滞','気逆','血虚','瘀血','水滞']; const mx=Math.max(1,...kk.map(k=>c[k]||0));
+  $('#pathoBody').innerHTML=bal('虚','実','虚','実')+bal('寒','熱','寒','熱')+bal('表','裏','表','裏')+
+    '<div class="sb" style="margin-top:8px">'+kk.map(k=>`<span>${k}</span><div class="b"><i style="width:${100*(c[k]||0)/mx}%"></i></div>`).join('')+'</div>'+
+    '<p class="note">入力した所見に付けた手がかりの数です。気血水スコアなどの正式な評価ではありません。</p>';
+}
+$('#bReset').onclick=()=>{ if(confirm('入力した所見をすべて外しますか？')){S.sel={};renderFind();} };
+$('#bSearch').onclick=()=>tab('res');
+
+// ---- 点数
+const FORMS=D.formulas.filter(f=>Object.keys(f.ev).length);
+const DF={}; FORMS.forEach(f=>Object.keys(f.ev).forEach(k=>DF[k]=(DF[k]||0)+1));
+const NF=FORMS.length;
+const idf=fid=>Math.log(1+NF/(DF[fid]||NF));
+const CATW={abd:1.5,pulse:1.3,dx:0.6,sho:0.8};
+const booksOf=evs=>[...new Set(evs.map(r=>r[0]))];
+function scoreOne(f){
+  let raw=0; const hits=[], contra=[];
+  for(const [fid,o] of Object.entries(S.sel)){
+    const evs=f.ev[fid];
+    if(f.contra[fid]) contra.push(fid);
+    if(!evs) continue;
+    const nb=booksOf(evs).length;
+    let w=idf(fid)*(CATW[FD[fid].cat]||1)*(1+0.3*(nb-1));
+    if(FD[fid].cat==='pulse' && evs.every(r=>r[2]==='条文')) w*=0.6;
+    if(o.chief) w*=2;
+    let sideNote='';
+    if(o.side==='右'||o.side==='左'){
+      const sides=evs.map(r=>r[4]).filter(Boolean);
+      if(sides.length){ if(sides.some(s=>s===o.side||s==='両')){w*=1.2;sideNote='同側';} else {w*=0.6;sideNote='反対側';} }
+    }
+    raw+=w; hits.push({fid,w,nb,sideNote:(o.chief?'主訴':'')+(sideNote&&o.chief?'・':'')+sideNote});
+  }
+  const size=Object.keys(f.ev).length;
+  let score=raw/(1+0.015*size);
+  if(contra.length) score*=0.7;
+  return {f,score,raw,hits:hits.sort((a,b)=>b.w-a.w),contra,size};
+}
+function rank(){ return FORMS.map(scoreOne).filter(r=>r.hits.length).sort((a,b)=>b.score-a.score); }
+
+// ---- 結果
+function bookBadges(f){ return ['F','R','K'].map(b=>`<span class="bk ${f.books[b].length?b:'off'}" title="${BN[b]}">${BS[b]}</span>`).join(''); }
+function linkHTML(f){
+  const a=[];
+  for(const b of ['F','R','K']) for(const r of f.books[b]) a.push(`<a href="${BOOKURL[b]}#${encodeURIComponent(r.id)}" target="_blank" rel="noopener">${BN[b]}：${esc(r.title)}</a>`);
+  for(const [b,id,title] of f.fu) a.push(`<a href="${BOOKURL[b]}#${encodeURIComponent(id)}" target="_blank" rel="noopener">${BN[b]}（附）：${esc(title)}</a>`);
+  return `<div class="links">${a.join('')}</div>`;
+}
+function figHTML(f){ return f.books.F.filter(r=>r.fig).map(r=>`<a href="${BOOKURL.F}#${encodeURIComponent(r.id)}" target="_blank" rel="noopener"><img class="fig" loading="lazy" src="${BOOKURL.F}${esc(r.fig)}" alt="${esc(r.title)}の腹証図"></a>`).join(''); }
+function evHTML(f,fid){
+  const evs=f.ev[fid]||[];
+  return evs.slice(0,6).map(r=>`<div class="ev"><span class="bk ${r[0]}">${BS[r[0]]}</span><span class="k">${esc(r[2])}${r[4]?'・'+r[4]:''}${r[5]?'・解釈':''}</span> ${esc(r[3])}</div>`).join('')+(evs.length>6?`<div class="ev k">ほか ${evs.length-6} 件</div>`:'');
+}
+// その方剤に特徴的で、まだ入力していない所見（鑑別の手がかり）
+function missing(f,n){
+  return Object.keys(f.ev).filter(fid=>!S.sel[fid] && FD[fid].cat!=='dx').map(fid=>({fid,w:idf(fid)*(CATW[FD[fid].cat]||1)*(1+0.3*(booksOf(f.ev[fid]).length-1))}))
+    .sort((a,b)=>b.w-a.w).slice(0,n);
+}
+function detailHTML(r){
+  const f=r.f;
+  let h='';
+  if(f.herbs) h+=`<div class="note">構成：${esc(f.herbs)}</div>`;
+  if(f.shuchi) h+=`<div style="margin:6px 0"><span class="bk R">類</span><b>主治</b> ${esc(f.shuchi)}</div>`;
+  if(r.contra&&r.contra.length) h+=`<div class="warn">⚠ 禁忌の記載に当たる所見：${r.contra.map(fid=>esc(FD[fid].label)+'（'+f.contra[fid].map(c=>esc(c[2])).join('、')+'）').join('、')}</div>`;
+  if(r.hits){
+    h+='<h3>一致した所見と根拠</h3>';
+    for(const x of r.hits) h+=`<div><b>${esc(FD[x.fid].label)}</b> <span class="kbd">${x.w.toFixed(1)}点・${x.nb}冊${x.sideNote?'・'+x.sideNote:''}</span></div>${evHTML(f,x.fid)}`;
+  }
+  const ms=missing(f,10);
+  if(ms.length) h+=`<h3>まだ確かめていない、この方剤の特徴的な所見</h3><div class="chips">${ms.map(m=>`<span class="chip" data-add="${m.fid}">${esc(FD[m.fid].label)} <span class="kbd">${booksOf(f.ev[m.fid]).map(b=>BS[b]).join('')}</span></span>`).join('')}</div><div class="note">押すと所見に追加して再計算します。</div>`;
+  h+=figHTML(f)+linkHTML(f);
+  return h;
+}
+function renderResults(){
+  const n=selCount();
+  if(!n){ $('#resNote').textContent=''; $('#resList').innerHTML='<div class="empty">所見を入れてから検索してください。</div>'; $('#cmpBar').hidden=true; $('#cmpBox').hidden=true; return; }
+  const rs=rank(); const top=rs.slice(0,25); const mx=top.length?top[0].score:1;
+  const noEv=Object.keys(S.sel).filter(fid=>!DF[fid]).map(fid=>FD[fid].label);
+  $('#resNote').innerHTML=`入力 ${n} 件の所見で ${rs.length} 方剤が該当（上位 ${top.length} を表示）。`+(noEv.length?`<br>3冊に記載がなく点数に効かない所見：${esc(noEv.join('、'))}`:'');
+  $('#resList').innerHTML=top.map((r,i)=>{
+    const f=r.f; const k=f.key;
+    return `<div class="res" data-k="${esc(k)}"><div class="top"><div class="rank">${i+1}</div><div style="flex:1">
+      <div><span class="nm">${esc(f.name)}</span> <span class="yomi">${esc(f.yomi)}</span> ${bookBadges(f)}</div>
+      <div class="bar"><i style="width:${(100*r.score/mx).toFixed(0)}%"></i></div>
+      <div class="meta">一致 ${r.hits.length}/${n}：${r.hits.slice(0,6).map(x=>esc(FD[x.fid].label)).join('、')}${r.hits.length>6?' ほか':''}${r.contra.length?' <span class="warn">⚠禁忌</span>':''}</div></div>
+      <label onclick="event.stopPropagation()" style="font-size:12px;white-space:nowrap"><input type="checkbox" class="cmpc" data-k="${esc(k)}" ${S.cmp.has(k)?'checked':''}>比較</label></div>
+      <div class="body" ${S.open===k?'':'hidden'}>${S.open===k?detailHTML(r):''}</div></div>`;
+  }).join('');
+  $$('#resList .res .top').forEach(el=>el.onclick=()=>{ const k=el.parentNode.dataset.k; S.open=S.open===k?null:k; renderResults(); if(S.open) el.scrollIntoView({block:'start'}); });
+  $$('#resList [data-add]').forEach(el=>el.onclick=()=>{ S.sel[el.dataset.add]={side:'',src:'m'}; updCnt(); renderResults(); });
+  $$('.cmpc').forEach(c=>c.onchange=()=>{ const k=c.dataset.k; if(c.checked){ if(S.cmp.size>=4){c.checked=false;alert('比較は4方剤まで');return;} S.cmp.add(k);} else S.cmp.delete(k); updCmp(); });
+  updCmp();
+}
+function updCmp(){ $('#cmpBar').hidden=S.cmp.size<2; $('#cmpN').textContent=S.cmp.size+' 方剤を選択'; }
+$('#bCmp').onclick=()=>{
+  const fs=[...S.cmp].map(k=>FORMS.find(f=>f.key===k)).filter(Boolean);
+  // 行：入力した所見＋各方剤の特徴的な所見
+  const rows=new Set(Object.keys(S.sel).filter(fid=>fs.some(f=>f.ev[fid])));
+  fs.forEach(f=>missing(f,8).forEach(m=>rows.add(m.fid)));
+  const rl=[...rows].sort((a,b)=>(S.sel[b]?1:0)-(S.sel[a]?1:0)||D.cats.findIndex(c=>c[0]===FD[a].cat)-D.cats.findIndex(c=>c[0]===FD[b].cat));
+  let h=`<h2>方剤の比較</h2><table><tr><th class="l">所見</th>${fs.map(f=>`<th>${esc(f.name)}</th>`).join('')}</tr>`;
+  h+=`<tr><td class="l">腹証図</td>${fs.map(f=>`<td>${figHTML(f)||'—'}</td>`).join('')}</tr>`;
+  for(const fid of rl) h+=`<tr class="${S.sel[fid]?'in':''}"><td class="l">${esc(FD[fid].label)}${S.sel[fid]&&S.sel[fid].side?'（'+S.sel[fid].side+'）':''}</td>${fs.map(f=>{const e=f.ev[fid]; return `<td class="${e?'y':''}">${e?booksOf(e).map(b=>BS[b]).join(''):''}</td>`;}).join('')}</tr>`;
+  h+='</table><p class="note">黄色の行＝入力した所見。セルの文字＝その所見が載っている本（腹＝腹証奇覧、類＝類聚方広義、皇＝皇漢医学）。</p>';
+  $('#cmpBox').innerHTML=h; $('#cmpBox').hidden=false; $('#cmpBox').scrollIntoView({block:'start'});
+};
+
+// ---- 方剤から引く
+$('#formQ').oninput=()=>{
+  const q=$('#formQ').value.trim(); if(!q){$('#formSugg').innerHTML='';return;}
+  const nq=X.norm(q);
+  const hit=D.formulas.filter(f=>f.name.includes(nq)||(f.yomi||'').includes(q)||f.alias.some(a=>a.includes(nq))).slice(0,30);
+  $('#formSugg').innerHTML=hit.map(f=>`<span class="chip" data-k="${esc(f.key)}">${esc(f.name)}</span>`).join('')||'<span class="note">見つかりません</span>';
+  $$('#formSugg .chip').forEach(c=>c.onclick=()=>showForm(c.dataset.k));
+};
+function showForm(k){
+  const f=D.formulas.find(x=>x.key===k); if(!f) return;
+  const byCat={};
+  for(const fid of Object.keys(f.ev)) (byCat[FD[fid].cat]=byCat[FD[fid].cat]||[]).push(fid);
+  let h=`<div class="card"><h2>${esc(f.name)} <span class="yomi">${esc(f.yomi)}</span> ${bookBadges(f)}</h2>`;
+  if(f.alias.length) h+=`<div class="note">別名：${esc(f.alias.join('、'))}</div>`;
+  if(f.herbs) h+=`<div class="note">構成：${esc(f.herbs)}</div>`;
+  if(f.shuchi) h+=`<div style="margin:6px 0"><span class="bk R">類</span><b>主治</b> ${esc(f.shuchi)}</div>`;
+  h+=figHTML(f);
+  h+='<h3>3冊に載っている所見</h3>';
+  for(const [c] of D.cats){ const ids=byCat[c]; if(!ids) continue;
+    h+=`<div class="cat"><b style="font-size:13px">${esc(CAT[c])}</b><div class="chips" style="margin-top:4px">${ids.map(fid=>`<span class="chip" data-ev="${fid}">${esc(FD[fid].label)} <span class="kbd">${booksOf(f.ev[fid]).map(b=>BS[b]).join('')}</span></span>`).join('')}</div></div>`; }
+  const cs=Object.keys(f.contra); if(cs.length) h+=`<div class="warn">禁忌の記載：${cs.map(fid=>esc(f.contra[fid].map(c=>c[2]).join('、'))).join('、')}</div>`;
+  h+=`<div id="evBox"></div>`+linkHTML(f)+'</div>';
+  $('#formOne').innerHTML=h;
+  $$('#formOne [data-ev]').forEach(c=>c.onclick=()=>{ $('#evBox').innerHTML=`<h3>${esc(FD[c.dataset.ev].label)} の根拠</h3>`+evHTML(f,c.dataset.ev).replace(/slice/,''); });
+}
+
+$('#ver').textContent=D.ver; $('#nForm').textContent=FORMS.length; $('#nFind').textContent=D.findings.length;
+renderFind(); updCnt();
+})();
+</script>
+</body>
+</html>

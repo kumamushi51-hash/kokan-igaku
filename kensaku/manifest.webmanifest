@@ -1,0 +1,16 @@
+{
+  "name": "漢方 統合検索（腹証奇覧・類聚方広義・皇漢医学）",
+  "short_name": "漢方検索",
+  "description": "問診・診察所見や症例文から、3冊の記載に合う方剤を探す参考ツール",
+  "lang": "ja",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f2f0eb",
+  "theme_color": "#2f4f5f",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
