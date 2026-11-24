@@ -4,5 +4,6 @@ exclude:
   - work
   - ruijuho/work
   - fukusho/work
+  - kensaku/work
   - CLAUDE.md
   - README.md
