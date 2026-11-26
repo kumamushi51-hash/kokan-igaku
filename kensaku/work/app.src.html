@@ -60,7 +60,9 @@ textarea{width:100%;min-height:220px;font:15px/1.7 inherit;padding:10px;border:1
 .res .meta{font-size:12px;color:var(--sub)}
 .res .body{border-top:1px solid var(--line);padding:10px}
 .bk{display:inline-block;font-size:11px;border-radius:4px;padding:0 5px;color:#fff;margin-right:3px}
-.bk.R{background:var(--R)}.bk.K{background:var(--K)}.bk.F{background:var(--F)}
+.bk.R{background:var(--R)}.bk.K{background:var(--K)}.bk.F{background:var(--F)}.bk.J{background:#6b4f7a}
+.cs{font-size:13px;margin:4px 0;padding:6px 8px;background:#f7f4fa;border-radius:6px}
+.cs .eff{font-weight:600}.cs .eff.ng{color:#999}
 .bk.off{background:#ccc}
 .ext{display:inline-block;font-size:11px;border:1px solid #b5651d;color:#b5651d;border-radius:4px;padding:0 5px;margin-left:4px;background:#fff7ee;white-space:nowrap}
 .mt{font-size:13px}
@@ -196,13 +198,19 @@ textarea{width:100%;min-height:220px;font:15px/1.7 inherit;padding:10px;border:1
     <h3>点数のつけ方</h3>
     <ul class="note">
       <li>一致した所見ごとに「その所見が方剤を絞り込む力」×「分類の重み」×「載っている本の数」を足します。多くの方剤に共通する所見（動悸・嘔吐など）は軽く、少数の方剤に特有の所見（小腹急結など）は重くなります。</li>
-      <li>分類の重み：腹証 1.5、脈 1.3、病名・状況 0.6、証（術者の判断）0.8、そのほか 1.0。本の数：2冊なら ×1.3、3冊なら ×1.6。</li>
+      <li>分類の重み：腹証 1.5、脈 1.3、病名・状況 0.6、証（術者の判断）0.8、そのほか 1.0。本の数：2冊なら ×1.3、3冊なら ×1.6（日本東洋医学雑誌の症例報告も1冊として数えます）。</li>
       <li>腹証の左右：入力と本の記載が同じ側なら ×1.2、反対側だけなら ×0.6。</li>
       <li>★（主訴）を付けた所見は ×2。脈が条文の書き下しにしか出てこない場合は ×0.6（条件の違う条文の脈も拾うため）。</li>
       <li>「薄白苔」「淡紅舌」など正常の表現は所見として拾いません。</li>
       <li>記載の多い方剤が何にでも当たらないよう、方剤ごとの所見の数で少し割り引きます。</li>
       <li>入力した所見が方剤の禁忌に当たると警告を出し、点数を下げます。</li>
       <li>「エキス」の印＝保険診療で処方できる医療用エキス製剤がある方剤（PMDA の医療用医薬品情報で確認、2026年11月）。名前が違う場合は製剤名を併記（例：八味丸→八味地黄丸）。製剤の生薬の分量は古典の処方と異なることがあります。</li>
+    </ul>
+    <h3>症例報告（誌）</h3>
+    <ul class="note">
+      <li>日本東洋医学雑誌（J-STAGE、フリーアクセス）の臨床報告から、症例ごとに所見・証・方剤と効果の事実だけを抜き出し、有効だった方剤の根拠に加えています（収録 <span id="nCase"></span> 症例）。無効だった記録も方剤の画面に表示します。</li>
+      <li>本文のPDFは J-STAGE の設定で自動取得できないため、抄録にもとづいています。抄録には脈・舌・腹の所見がないことが多いです。</li>
+      <li>古典に載っていない方剤（清心蓮子飲・半夏白朮天麻湯など）も、症例報告から検索の対象に入ります。1例だけの報告も根拠になるので、根拠の欄で確かめてください。</li>
     </ul>
     <h3>注意</h3>
     <ul class="note">
@@ -234,7 +242,7 @@ const CAT={}; D.cats.forEach(([k,l])=>CAT[k]=l);
 const M=X.makeMatcher(D.findings);
 const BASE=/github\.io$/.test(location.hostname)?'../':'https://kumamushi51-hash.github.io/kokan-igaku/';
 const BOOKURL={R:BASE+'ruijuho/',K:BASE,F:BASE+'fukusho/'};
-const BN={R:'類聚方広義',K:'皇漢医学',F:'腹証奇覧'}, BS={R:'類',K:'皇',F:'腹'};
+const BN={R:'類聚方広義',K:'皇漢医学',F:'腹証奇覧',J:'日本東洋医学雑誌'}, BS={R:'類',K:'皇',F:'腹',J:'誌'};
 const LATERAL=new Set(['ab_kyokyo','ab_fukuchokukin','ab_saiho_atsutsu','ab_saihoki']);
 
 // ---- 状態（端末の中だけ。保存しない）
@@ -419,7 +427,7 @@ function rank(){ return FORMS.map(scoreOne).filter(r=>r.hits.length).sort((a,b)=
 
 // ---- 結果
 function extBadge(f){ if(!f.ext) return ''; return `<span class="ext" title="保険診療で処方できる医療用エキス製剤あり">エキス${f.ext!==f.name?'：'+esc(f.ext):''}</span>`; }
-function bookBadges(f){ return ['F','R','K'].map(b=>`<span class="bk ${f.books[b].length?b:'off'}" title="${BN[b]}">${BS[b]}</span>`).join(''); }
+function bookBadges(f){ return ['F','R','K','J'].map(b=>`<span class="bk ${f.books[b].length?b:'off'}" title="${BN[b]}">${BS[b]}</span>`).join(''); }
 function linkHTML(f){
   const a=[];
   for(const b of ['F','R','K']) for(const r of f.books[b]) a.push(`<a href="${BOOKURL[b]}#${encodeURIComponent(r.id)}" target="_blank" rel="noopener">${BN[b]}：${esc(r.title)}</a>`);
@@ -436,6 +444,10 @@ function missing(f,n){
   return Object.keys(f.ev).filter(fid=>!S.sel[fid] && FD[fid].cat!=='dx').map(fid=>({fid,w:idf(fid)*(CATW[FD[fid].cat]||1)*(1+0.3*(booksOf(f.ev[fid]).length-1))}))
     .sort((a,b)=>b.w-a.w).slice(0,n);
 }
+function casesHTML(f){
+  if(!f.cases||!f.cases.length) return '';
+  return `<h3>症例報告（日本東洋医学雑誌）</h3>`+f.cases.map(c=>`<div class="cs"><span class="eff ${c.eff==='無効'?'ng':''}">${esc(c.eff)}</span>　${esc(c.pt)}・${esc(c.dx)}${c.note?'<span class="kbd">（'+esc(c.note)+'）</span>':''}<br><a href="${esc(c.url)}" target="_blank" rel="noopener">${esc(c.title)}</a> <span class="kbd">${esc(c.cite)}</span></div>`).join('')+'<p class="note">抄録にもとづいて事実だけを抜き出しています。詳しくは論文をご覧ください。</p>';
+}
 function detailHTML(r){
   const f=r.f;
   let h='';
@@ -448,7 +460,7 @@ function detailHTML(r){
   }
   const ms=missing(f,10);
   if(ms.length) h+=`<h3>まだ確かめていない、この方剤の特徴的な所見</h3><div class="chips">${ms.map(m=>`<span class="chip" data-add="${m.fid}">${esc(FD[m.fid].label)} <span class="kbd">${booksOf(f.ev[m.fid]).map(b=>BS[b]).join('')}</span></span>`).join('')}</div><div class="note">押すと所見に追加して再計算します。</div>`;
-  h+=figHTML(f)+linkHTML(f);
+  h+=casesHTML(f)+figHTML(f)+linkHTML(f);
   return h;
 }
 function renderResults(){
@@ -507,12 +519,12 @@ function showForm(k){
   for(const [c] of D.cats){ const ids=byCat[c]; if(!ids) continue;
     h+=`<div class="cat"><b style="font-size:13px">${esc(CAT[c])}</b><div class="chips" style="margin-top:4px">${ids.map(fid=>`<span class="chip" data-ev="${fid}">${esc(FD[fid].label)} <span class="kbd">${booksOf(f.ev[fid]).map(b=>BS[b]).join('')}</span></span>`).join('')}</div></div>`; }
   const cs=Object.keys(f.contra); if(cs.length) h+=`<div class="warn">禁忌の記載：${cs.map(fid=>esc(f.contra[fid].map(c=>c[2]).join('、'))).join('、')}</div>`;
-  h+=`<div id="evBox"></div>`+linkHTML(f)+'</div>';
+  h+=`<div id="evBox"></div>`+casesHTML(f)+linkHTML(f)+'</div>';
   $('#formOne').innerHTML=h;
   $$('#formOne [data-ev]').forEach(c=>c.onclick=()=>{ $('#evBox').innerHTML=`<h3>${esc(FD[c.dataset.ev].label)} の根拠</h3>`+evHTML(f,c.dataset.ev).replace(/slice/,''); });
 }
 
-$('#ver').textContent=D.ver; $('#nForm').textContent=FORMS.length; $('#nFind').textContent=D.findings.length;
+$('#ver').textContent=D.ver; $('#nCase').textContent=D.nCase||0; $('#nForm').textContent=FORMS.length; $('#nFind').textContent=D.findings.length;
 renderFind(); updCnt();
 })();
 </script>

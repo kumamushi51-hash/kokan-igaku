@@ -9,14 +9,16 @@ const {CATS, FINDINGS, SHOKEN_MAP, fukuryoku}=require('./findings.js');
 
 const {K,R,F}=load();
 const M=X.makeMatcher(FINDINGS);
-const BOOKS={R:{name:'類聚方広義',path:'../ruijuho/'},K:{name:'皇漢医学',path:'../'},F:{name:'腹証奇覧',path:'../fukusho/'}};
+const BOOKS={R:{name:'類聚方広義',path:'../ruijuho/'},K:{name:'皇漢医学',path:'../'},F:{name:'腹証奇覧',path:'../fukusho/'},J:{name:'日本東洋医学雑誌（症例報告）',path:''}};
+// 症例報告（日本東洋医学雑誌）：kensaku/work/cases/*.js
+const CASES=(()=>{ const window={}; for(const f of fs.readdirSync(path.join(W,'cases')).filter(f=>/\.js$/.test(f)).sort()) eval(fs.readFileSync(path.join(W,'cases',f),'utf8')); return window.CASE_DATA||[]; })();
 
 // ---- 1. 方剤の対応表
 const entries=[...R.map(x=>['R',x]),...K.filter(x=>x.kind==='方剤').map(x=>['K',x]),...F.filter(x=>x.kind==='方剤').map(x=>['F',x])];
 const known=new Set();
 for(const [b,x] of entries){ const p=N.parseTitle(x.title); p.main.forEach(m=>known.add(m)); p.alias.forEach(a=>known.add(a)); }
 const FORM=new Map();
-const get=(key)=>{ if(!FORM.has(key)) FORM.set(key,{key,name:key,yomi:'',alias:new Set(),books:{R:[],K:[],F:[]},fu:[],ev:{},contra:{},herbs:''}); return FORM.get(key); };
+const get=(key)=>{ if(!FORM.has(key)) FORM.set(key,{key,name:key,yomi:'',alias:new Set(),books:{R:[],K:[],F:[],J:[]},fu:[],ev:{},contra:{},herbs:'',cases:[]}); return FORM.get(key); };
 
 const addEv=(f,fid,rec)=>{ (f.ev[fid]=f.ev[fid]||[]).push(rec); };
 const unmapped={};
@@ -78,12 +80,32 @@ for(const [b,x] of entries){
   }
 }
 
+// ---- 症例報告：有効だった方剤に、その症例の所見を根拠として付ける（無効の記録も表示用に残す）
+let nCase=0;
+for(const a of CASES){
+  for(const c of a.cases){
+    nCase++;
+    const text=(c.dx||'')+'。'+(c.f||'');
+    const sp=mapText(text);
+    for(const r of c.rx){
+      const key=N.canon(r.name); const f=get(key);
+      f.cases.push({a:a.id,url:a.url,title:a.title,cite:`日東医誌 ${a.vol}(${a.no}):${a.page}, ${a.year}`,n:c.n,pt:c.pt,dx:c.dx,eff:r.eff,note:r.note||''});
+      if(!f.books.J.some(x=>x.id===a.id)) f.books.J.push({id:a.id,title:a.title,url:a.url});
+      if(r.eff==='無効') continue;
+      for(const fid of new Set(sp.map(x=>x.fid))){
+        const side=(sp.find(x=>x.fid===fid&&x.side)||{}).side||'';
+        addEv(f,fid,['J',a.id,'症例'+(r.eff==='一部有効'?'（一部有効）':''),`${c.pt}・${c.dx}${r.note?'（'+r.note+'）':''}`,side]);
+      }
+    }
+  }
+}
+
 // 同じ所見に同じ本から重複した根拠は1つの本として数える（表示は全部）
 for(const k of Object.keys(N.EXTRACT)) if(!FORM.has(k)) console.warn('エキス対応表の方剤が索引にない:',k);
 const list=[...FORM.values()].map(f=>({
   ext: (f.key in N.EXTRACT) ? (N.EXTRACT[f.key]||f.key) : '',
   key:f.key, name:f.name, yomi:f.yomi, alias:[...f.alias], herbs:f.herbs||'', shuchi:f.shuchi||'',
-  books:f.books, fu:f.fu, ev:f.ev, contra:f.contra
+  books:f.books, fu:f.fu, ev:f.ev, contra:f.contra, cases:f.cases
 })).sort((a,b)=>(a.yomi||a.name).localeCompare(b.yomi||b.name,'ja'));
 
 // 方剤名の照合用（症例文の中の処方名）
@@ -100,8 +122,9 @@ const totalTags=entries.reduce((a,[b,x])=>a+(x.tags||[]).length,0);
 const umCount=um.reduce((a,[,n])=>a+n,0);
 
 // ---- 3. アプリの組み立て
-const DATA={ver:'', books:BOOKS, cats:CATS, findings:FINDINGS, formulas:list.filter(f=>Object.keys(f.ev).length||f.books.R.length||f.books.K.length||f.books.F.length), allFormulas:list.map(f=>f.key), rxNames};
+const DATA={ver:'', books:BOOKS, cats:CATS, findings:FINDINGS, formulas:list.filter(f=>Object.keys(f.ev).length||f.books.R.length||f.books.K.length||f.books.F.length||f.books.J.length), nCase, allFormulas:list.map(f=>f.key), rxNames};
 if(process.argv.includes('--stats')){
+  console.log('症例報告',CASES.length,'本',nCase,'症例');
   console.log('方剤',list.length,'根拠あり',list.filter(f=>Object.keys(f.ev).length).length,'タグ',totalTags,'未対応',umCount,(100*umCount/totalTags).toFixed(1)+'%','種類',um.length);
   process.exit(0);
 }
